@@ -293,12 +293,16 @@ governs what to do next, and the answer is never to make the gate ask for less.
 ## 5. Landing the work: every change becomes a PR
 
 Work is not delivered when it is committed, and it is not delivered when it is
-pushed. There is no automatic deployment yet: `main` is the source of truth, `npm run
-build` produces the static site in `dist/` (deployable to any static host, e.g. GitHub
-Pages), and the store builds are produced locally with `npx cap sync` after the desktop
-verification described in `specs/001-ear-trainer/quickstart.md`. "Delivered" for a web
-change means merged to `main` with all §4 gates green; for a store change it means the
-manual device checklist in quickstart.md has been run and the build submitted.
+pushed. `main` is the source of truth. A push to `main` triggers
+`.github/workflows/deploy.yml`, which builds and deploys the static site to GitHub Pages
+at https://thinkfast37.github.io/ear-trainer/ — that deploy, not the merge, is what makes
+a web change live; check `gh run list --workflow=deploy.yml` (or the Actions tab) and
+confirm the deploy succeeded before calling a web change delivered. Store builds are
+produced locally with `npx cap sync` after the desktop verification described in
+`specs/001-ear-trainer/quickstart.md`. "Delivered" for a web change means merged to
+`main` with all §4 gates green **and** the resulting Pages deploy green; for a store
+change it means the manual device checklist in quickstart.md has been run and the build
+submitted.
 
 Every change lands the same way:
 

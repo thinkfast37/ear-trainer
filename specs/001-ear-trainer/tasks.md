@@ -239,6 +239,8 @@ arbiter; a task is not done until its criteria are 🟢 in `specs/traceability-m
 *(Every change after the MVP ships gets a numbered task here — CLAUDE.md §3. Do not
 renumber the MVP section above.)*
 
+- [X] T092 GitHub Pages deployment: `.github/workflows/deploy.yml` (build on push to `main`, deploy `dist/` via `actions/upload-pages-artifact` + `actions/deploy-pages`), `CLAUDE.md` §5 updated to describe the deploy as the "delivered" signal for web changes. Infrastructure — no AC. Requested by the maintainer to view the app on other devices (2026-08-18).
+
 ---
 
 ## Dependencies & Execution Order
