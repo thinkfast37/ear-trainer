@@ -187,23 +187,23 @@ arbiter; a task is not done until its criteria are 🟢 in `specs/traceability-m
 
 ## Phase 31: US-9.1 — Unlock map (P-034)
 
-- [ ] T074 [US9.1] `src/ui/homeMap.js` (nodes with locked/available/in-progress/mastered, SVG dependency lines, tap → unlock condition or start session). AC-9.1.1–AC-9.1.3
-- [ ] T075 [US9.1] Tests `tests/e2e/homeMap.spec.js` (AC-9.1.1, AC-9.1.2/1, AC-9.1.2/2, AC-9.1.3/1, AC-9.1.3/2), named verbatim
+- [X] T074 [US9.1] `src/ui/homeMap.js` (nodes with locked/available/in-progress/mastered, SVG dependency lines, tap → unlock condition or start session). AC-9.1.1–AC-9.1.3
+- [X] T075 [US9.1] Tests `tests/e2e/homeMap.spec.js` (AC-9.1.1, AC-9.1.2/1, AC-9.1.2/2, AC-9.1.3/1, AC-9.1.3/2), named verbatim
 
 ## Phase 32: US-9.2 — Daily streak and session goal (P-035)
 
-- [ ] T076 [US9.2] `src/learning/streak.js` (day log, goal by minutes or questions, streak increment), stopping-point message in `src/ui/session.js`, `src/platform/notifications.js` (Capacitor local notification scheduling; no-op on web). AC-9.2.1–AC-9.2.3
-- [ ] T077 [US9.2] Tests `tests/unit/learning/streak.test.js` (AC-9.2.1/1, AC-9.2.1/2), `tests/e2e/stoppingPoint.spec.js` (AC-9.2.2), `tests/unit/platform/notifications.test.js` (AC-9.2.3 with a fake plugin), named verbatim
+- [X] T076 [US9.2] `src/learning/streak.js` (day log, goal by minutes or questions, streak increment), stopping-point message in `src/ui/session.js`, `src/platform/notifications.js` (Capacitor local notification scheduling; no-op on web). AC-9.2.1–AC-9.2.3
+- [X] T077 [US9.2] Tests `tests/unit/learning/streak.test.js` (AC-9.2.1/1, AC-9.2.1/2), `tests/e2e/stoppingPoint.spec.js` (AC-9.2.2), `tests/unit/ui/notifications.test.js` (AC-9.2.3 — settings toggle drives a fake plugin; UI-level per the checker), named verbatim
 
 ## Phase 33: US-9.3 — XP and level-up feedback (P-036)
 
-- [ ] T078 [US9.3] `src/learning/xp.js` (base, streak/replay/mixed multipliers), `src/ui/celebration.js` (accuracy, time, weakest item conquered), unlock evaluation in `src/learning/unlocks.js` reads mastery only. AC-9.3.1–AC-9.3.3
-- [ ] T079 [US9.3] Tests `tests/unit/learning/xp.test.js` (AC-9.3.1/1–/3, AC-9.3.3), `tests/e2e/celebration.spec.js` (AC-9.3.2), named verbatim
+- [X] T078 [US9.3] `src/learning/xp.js` (base, streak/replay/mixed multipliers), `src/ui/celebration.js` (accuracy, time, weakest item conquered), unlock evaluation in `src/learning/unlocks.js` reads mastery only. AC-9.3.1–AC-9.3.3
+- [X] T079 [US9.3] Tests `tests/unit/learning/xp.test.js` (AC-9.3.1/1–/3, AC-9.3.3), `tests/e2e/celebration.spec.js` (AC-9.3.2), named verbatim
 
 ## Phase 34: US-9.4 — Weakness dashboard (P-037)
 
-- [ ] T080 [US9.4] `src/learning/stats.js` (per-item accuracy/attempts/box, weakest-first, confusion detail, daily accuracy trend), `src/ui/stats.js` (screen, track detail, item detail, trend). AC-9.4.1–AC-9.4.4
-- [ ] T081 [US9.4] Tests `tests/e2e/stats.spec.js` (AC-9.4.1, AC-9.4.2, AC-9.4.3, AC-9.4.4), named verbatim
+- [X] T080 [US9.4] `src/learning/stats.js` (per-item accuracy/attempts/box, weakest-first, confusion detail, daily accuracy trend), `src/ui/stats.js` (screen, track detail, item detail, trend). AC-9.4.1–AC-9.4.4
+- [X] T081 [US9.4] Tests `tests/e2e/stats.spec.js` (AC-9.4.1, AC-9.4.2, AC-9.4.3, AC-9.4.4), named verbatim
 
 ## Phase 35: US-10.1 — Form-factor–adaptive layout (P-038)
 
