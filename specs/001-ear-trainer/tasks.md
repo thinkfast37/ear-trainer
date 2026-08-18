@@ -162,28 +162,28 @@ arbiter; a task is not done until its criteria are 🟢 in `specs/traceability-m
 
 ## Phase 26: US-8.1 — Progression track unlock (P-029)
 
-- [ ] T064 [US8.1] Multi-prerequisite lock display in `src/learning/unlocks.js` and `src/ui/homeMap.js` (both prerequisites with status). AC-8.1.1–AC-8.1.2
-- [ ] T065 [US8.1] Tests `tests/e2e/progressionsUnlock.spec.js` (AC-8.1.1, AC-8.1.2), named verbatim
+- [X] T064 [US8.1] Multi-prerequisite lock display in `src/learning/unlocks.js` and `src/ui/homeMap.js` (both prerequisites with status). AC-8.1.1–AC-8.1.2
+- [X] T065 [US8.1] Tests `tests/e2e/progressionsUnlock.spec.js` (AC-8.1.1, AC-8.1.2), named verbatim
 
 ## Phase 27: US-8.2 — Progression level design (P-030)
 
-- [ ] T066 [US8.2] `src/tracks/progressions.js` (catalog filtering by level, rotations as items `prog:<id>r<k>:<texture>`, random key, name lookup, cadence prelude), name in `src/ui/feedback.js`. AC-8.2.1–AC-8.2.5
-- [ ] T067 [US8.2] Tests `tests/unit/tracks/progressions.test.js` (AC-8.2.1/1–/8, AC-8.2.2, AC-8.2.4, AC-8.2.5) and `tests/unit/ui/progressionFeedback.test.js` (AC-8.2.3), named verbatim
+- [X] T066 [US8.2] `src/tracks/progressions.js` (catalog filtering by level, rotations as items `prog:<id>r<k>:<texture>`, random key, name lookup, cadence prelude), name in `src/ui/feedback.js`. AC-8.2.1–AC-8.2.5
+- [X] T067 [US8.2] Tests `tests/unit/tracks/progressions.test.js` (AC-8.2.1/1–/8, AC-8.2.2, AC-8.2.4, AC-8.2.5) and `tests/unit/ui/progressionFeedback.test.js` (AC-8.2.3), named verbatim
 
 ## Phase 28: US-8.3 — Roman numeral answer input (P-031)
 
-- [ ] T068 [US8.3] Numeral row scoped to vocabulary in `src/ui/answerGrid.js`, reuse `src/ui/sequenceInput.js`, chord-wise scoring via `src/learning/scoring.js`. AC-8.3.1–AC-8.3.3
-- [ ] T069 [US8.3] Tests `tests/e2e/numeralInput.spec.js` (AC-8.3.1, AC-8.3.2/1, AC-8.3.2/2), `tests/unit/learning/progressionScoring.test.js` (AC-8.3.3/2), `tests/unit/ui/progressionComparison.test.js` (AC-8.3.3/1), named verbatim
+- [X] T068 [US8.3] Numeral row scoped to vocabulary in `src/ui/answerGrid.js`, reuse `src/ui/sequenceInput.js`, chord-wise scoring via `src/learning/scoring.js`. AC-8.3.1–AC-8.3.3
+- [X] T069 [US8.3] Tests `tests/e2e/numeralInput.spec.js` (AC-8.3.1, AC-8.3.2/1, AC-8.3.2/2), `tests/unit/ui/progressionComparison.test.js` (AC-8.3.3/1, AC-8.3.3/2 — the AC names the comparison view), `tests/unit/learning/progressionScoring.test.js` (scoring helper), named verbatim
 
 ## Phase 29: US-8.4 — Bass-first sub-mode (P-032)
 
-- [ ] T070 [US8.4] Two-step question flow in `src/tracks/progressions.js` and `src/ui/session.js` (bass degrees step then numerals step, separate scores), toggle availability from level 2 in `src/ui/levelScreen.js`. AC-8.4.1–AC-8.4.2
-- [ ] T071 [US8.4] Tests `tests/e2e/bassFirst.spec.js` (AC-8.4.1/1–/3, AC-8.4.2/1, AC-8.4.2/2), named verbatim
+- [X] T070 [US8.4] Two-step question flow in `src/tracks/progressions.js` and `src/ui/session.js` (bass degrees step then numerals step, separate scores), toggle availability from level 2 in `src/ui/levelScreen.js`. AC-8.4.1–AC-8.4.2
+- [X] T071 [US8.4] Tests `tests/e2e/bassFirst.spec.js` (AC-8.4.1/1–/3, AC-8.4.2/1, AC-8.4.2/2), named verbatim
 
 ## Phase 30: US-8.5 — Voicing realism sub-stages (P-033)
 
-- [ ] T072 [US8.5] Texture sub-stages block→voiceLed→arp for progressions via `src/learning/subStages.js` and `src/theory/voicing.js`; items per texture. AC-8.5.1–AC-8.5.2
-- [ ] T073 [US8.5] Tests `tests/unit/tracks/progressionTextures.test.js` (AC-8.5.1/1–/3, AC-8.5.2), named verbatim
+- [X] T072 [US8.5] Texture sub-stages block→voiceLed→arp for progressions via `src/learning/subStages.js` and `src/theory/voicing.js`; items per texture. AC-8.5.1–AC-8.5.2
+- [X] T073 [US8.5] Tests `tests/unit/tracks/progressionTextures.test.js` (AC-8.5.1/1–/3, AC-8.5.2), named verbatim
 
 ## Phase 31: US-9.1 — Unlock map (P-034)
 

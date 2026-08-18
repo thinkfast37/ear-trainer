@@ -50,3 +50,14 @@ export function masteredProgress(tracks, entries, { box = 5 } = {}) {
   }
   return p;
 }
+
+/** Answer correctly until the current sub-stage (or level) masters; returns the answer count. */
+export async function answerUntilMastered(session, max = 80) {
+  if (session.state.phase === 'idle') await session.start();
+  for (let i = 1; i <= max; i++) {
+    const r = session.submit(session.state.question.answer);
+    if (r.subMastered || r.levelMastered) return i;
+    await session.next();
+  }
+  throw new Error(`not mastered after ${max} answers`);
+}

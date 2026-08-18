@@ -5,7 +5,8 @@ import { progressionExercise } from '../theory/exercise.js';
 import { compareSequences } from '../learning/scoring.js';
 import { pickKey, tonicMidi, selectItem } from './common.js';
 
-export function itemId(entryId, rotation, texture) { return `prog:${entryId}${rotation ? `r${rotation}` : ''}:${texture}`; }
+/** Rotation families carry r<k> for every rotation (including r0); plain entries carry none. */
+export function itemId(entryId, rotation, texture) { return `prog:${entryId}${rotation === null || rotation === undefined ? '' : `r${rotation}`}:${texture}`; }
 export function parseItemId(id) {
   const m = /^prog:(\d+)(?:r(\d+))?:(\w+)$/.exec(id);
   return { entryId: Number(m[1]), rotation: m[2] ? Number(m[2]) : 0, texture: m[3] };
@@ -17,7 +18,7 @@ export function catalogItems(catalog, levelNo, texture) {
   for (const e of catalog) {
     if (!e.active || e.level > levelNo) continue;
     const rots = e.rotations ? rotations(e.numerals).length : 1;
-    for (let r = 0; r < rots; r++) out.push({ id: itemId(e.id, r, texture), entry: e, rotation: r, numerals: e.rotations ? rotations(e.numerals)[r] : e.numerals });
+    for (let r = 0; r < rots; r++) out.push({ id: itemId(e.id, e.rotations ? r : null, texture), entry: e, rotation: r, numerals: e.rotations ? rotations(e.numerals)[r] : e.numerals });
   }
   return out;
 }
