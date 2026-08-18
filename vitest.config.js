@@ -6,5 +6,6 @@ export default defineConfig({
     // changing the checker means changing its tests).
     include: ['tests/unit/**/*.test.js', '.claude/skills/*/tests/*.test.js'],
     environment: 'node',
+    // tests/unit/ui/*.test.js opt into jsdom with `// @vitest-environment jsdom`.
   },
 });

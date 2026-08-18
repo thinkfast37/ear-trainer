@@ -1,0 +1,1299 @@
+{
+ "tracks": [
+  {
+   "id": "intervals",
+   "name": "Intervals",
+   "prerequisites": [],
+   "cadence": false,
+   "answerKind": "single",
+   "subStages": [
+    "asc",
+    "desc",
+    "harm"
+   ],
+   "levels": [
+    {
+     "no": 1,
+     "pool": [
+      "P8",
+      "P5"
+     ],
+     "confusables": [
+      [
+       "P8",
+       "P5"
+      ]
+     ],
+     "replayLimit": null,
+     "mixedReview": false
+    },
+    {
+     "no": 2,
+     "pool": [
+      "P8",
+      "P5",
+      "M3",
+      "m3"
+     ],
+     "confusables": [
+      [
+       "M3",
+       "m3"
+      ],
+      [
+       "P8",
+       "P5"
+      ]
+     ],
+     "replayLimit": null,
+     "mixedReview": false
+    },
+    {
+     "no": 3,
+     "pool": [
+      "P8",
+      "P5",
+      "M3",
+      "m3",
+      "P4"
+     ],
+     "confusables": [
+      [
+       "P4",
+       "P5"
+      ],
+      [
+       "M3",
+       "m3"
+      ]
+     ],
+     "replayLimit": null,
+     "mixedReview": false
+    },
+    {
+     "no": 4,
+     "pool": [
+      "P8",
+      "P5",
+      "M3",
+      "m3",
+      "P4",
+      "M2",
+      "m2"
+     ],
+     "confusables": [
+      [
+       "M2",
+       "m2"
+      ],
+      [
+       "P4",
+       "P5"
+      ],
+      [
+       "M3",
+       "m3"
+      ]
+     ],
+     "replayLimit": null,
+     "mixedReview": false
+    },
+    {
+     "no": 5,
+     "pool": [
+      "P8",
+      "P5",
+      "M3",
+      "m3",
+      "P4",
+      "M2",
+      "m2",
+      "M6",
+      "m6"
+     ],
+     "confusables": [
+      [
+       "M6",
+       "m6"
+      ],
+      [
+       "M2",
+       "m2"
+      ],
+      [
+       "P4",
+       "P5"
+      ],
+      [
+       "M3",
+       "m3"
+      ]
+     ],
+     "replayLimit": null,
+     "mixedReview": false
+    },
+    {
+     "no": 6,
+     "pool": [
+      "P8",
+      "P5",
+      "M3",
+      "m3",
+      "P4",
+      "M2",
+      "m2",
+      "M6",
+      "m6",
+      "M7",
+      "m7",
+      "TT"
+     ],
+     "confusables": [
+      [
+       "M7",
+       "m7"
+      ],
+      [
+       "TT",
+       "P4"
+      ],
+      [
+       "TT",
+       "P5"
+      ],
+      [
+       "M6",
+       "m6"
+      ],
+      [
+       "M2",
+       "m2"
+      ],
+      [
+       "P4",
+       "P5"
+      ],
+      [
+       "M3",
+       "m3"
+      ]
+     ],
+     "replayLimit": null,
+     "mixedReview": false
+    },
+    {
+     "no": 7,
+     "pool": [
+      "P8",
+      "P5",
+      "M3",
+      "m3",
+      "P4",
+      "M2",
+      "m2",
+      "M6",
+      "m6",
+      "M7",
+      "m7",
+      "TT"
+     ],
+     "confusables": [
+      [
+       "M7",
+       "m7"
+      ],
+      [
+       "TT",
+       "P4"
+      ],
+      [
+       "TT",
+       "P5"
+      ],
+      [
+       "M6",
+       "m6"
+      ],
+      [
+       "M2",
+       "m2"
+      ],
+      [
+       "P4",
+       "P5"
+      ],
+      [
+       "M3",
+       "m3"
+      ]
+     ],
+     "replayLimit": null,
+     "mixedReview": true
+    },
+    {
+     "no": 8,
+     "pool": [
+      "P8",
+      "P5",
+      "M3",
+      "m3",
+      "P4",
+      "M2",
+      "m2",
+      "M6",
+      "m6",
+      "M7",
+      "m7",
+      "TT",
+      "m9",
+      "M9"
+     ],
+     "confusables": [
+      [
+       "m9",
+       "m2"
+      ],
+      [
+       "M9",
+       "M2"
+      ],
+      [
+       "m9",
+       "M9"
+      ]
+     ],
+     "replayLimit": null,
+     "mixedReview": false
+    },
+    {
+     "no": 9,
+     "pool": [
+      "P8",
+      "P5",
+      "M3",
+      "m3",
+      "P4",
+      "M2",
+      "m2",
+      "M6",
+      "m6",
+      "M7",
+      "m7",
+      "TT",
+      "m9",
+      "M9",
+      "m10",
+      "M10"
+     ],
+     "confusables": [
+      [
+       "m10",
+       "m3"
+      ],
+      [
+       "M10",
+       "M3"
+      ],
+      [
+       "m10",
+       "M10"
+      ]
+     ],
+     "replayLimit": null,
+     "mixedReview": false
+    },
+    {
+     "no": 10,
+     "pool": [
+      "P8",
+      "P5",
+      "M3",
+      "m3",
+      "P4",
+      "M2",
+      "m2",
+      "M6",
+      "m6",
+      "M7",
+      "m7",
+      "TT",
+      "m9",
+      "M9",
+      "m10",
+      "M10",
+      "P11",
+      "P12"
+     ],
+     "confusables": [
+      [
+       "P11",
+       "P4"
+      ],
+      [
+       "P12",
+       "P5"
+      ],
+      [
+       "P11",
+       "P12"
+      ]
+     ],
+     "replayLimit": null,
+     "mixedReview": false
+    },
+    {
+     "no": 11,
+     "pool": [
+      "P8",
+      "P5",
+      "M3",
+      "m3",
+      "P4",
+      "M2",
+      "m2",
+      "M6",
+      "m6",
+      "M7",
+      "m7",
+      "TT",
+      "m9",
+      "M9",
+      "m10",
+      "M10",
+      "P11",
+      "P12",
+      "m13",
+      "M13"
+     ],
+     "confusables": [
+      [
+       "m13",
+       "m6"
+      ],
+      [
+       "M13",
+       "M6"
+      ],
+      [
+       "m13",
+       "M13"
+      ]
+     ],
+     "replayLimit": null,
+     "mixedReview": false
+    },
+    {
+     "no": 12,
+     "pool": [
+      "P8",
+      "P5",
+      "M3",
+      "m3",
+      "P4",
+      "M2",
+      "m2",
+      "M6",
+      "m6",
+      "M7",
+      "m7",
+      "TT",
+      "m9",
+      "M9",
+      "m10",
+      "M10",
+      "P11",
+      "P12",
+      "m13",
+      "M13"
+     ],
+     "confusables": [
+      [
+       "M7",
+       "m7"
+      ],
+      [
+       "m9",
+       "M9"
+      ],
+      [
+       "m10",
+       "M10"
+      ],
+      [
+       "P11",
+       "P12"
+      ],
+      [
+       "m13",
+       "M13"
+      ]
+     ],
+     "replayLimit": null,
+     "mixedReview": true
+    }
+   ]
+  },
+  {
+   "id": "scaleDegrees",
+   "name": "Scale Degrees",
+   "prerequisites": [],
+   "cadence": true,
+   "answerKind": "single",
+   "subStages": [],
+   "levels": [
+    {
+     "no": 1,
+     "pool": [
+      "Do",
+      "Mi",
+      "Sol"
+     ],
+     "mode": "major",
+     "confusables": [
+      [
+       "Mi",
+       "Sol"
+      ]
+     ],
+     "replayLimit": null,
+     "mixedReview": false
+    },
+    {
+     "no": 2,
+     "pool": [
+      "Do",
+      "Re",
+      "Mi",
+      "Sol",
+      "La"
+     ],
+     "mode": "major",
+     "confusables": [
+      [
+       "Re",
+       "La"
+      ],
+      [
+       "Mi",
+       "Sol"
+      ]
+     ],
+     "replayLimit": null,
+     "mixedReview": false
+    },
+    {
+     "no": 3,
+     "pool": [
+      "Do",
+      "Re",
+      "Mi",
+      "Fa",
+      "Sol",
+      "La",
+      "Ti"
+     ],
+     "mode": "major",
+     "confusables": [
+      [
+       "Fa",
+       "Mi"
+      ],
+      [
+       "Ti",
+       "Do"
+      ],
+      [
+       "Re",
+       "La"
+      ],
+      [
+       "Fa",
+       "Sol"
+      ]
+     ],
+     "replayLimit": null,
+     "mixedReview": false
+    },
+    {
+     "no": 4,
+     "pool": [
+      "Do",
+      "Re",
+      "Me",
+      "Fa",
+      "Sol",
+      "Le",
+      "Te"
+     ],
+     "mode": "minor",
+     "confusables": [
+      [
+       "Me",
+       "Do"
+      ],
+      [
+       "Le",
+       "Sol"
+      ],
+      [
+       "Te",
+       "Do"
+      ]
+     ],
+     "replayLimit": null,
+     "mixedReview": false
+    },
+    {
+     "no": 5,
+     "pool": [
+      "Do",
+      "Di",
+      "Re",
+      "Ri",
+      "Mi",
+      "Fa",
+      "Fi",
+      "Sol",
+      "Si",
+      "La",
+      "Li",
+      "Ti"
+     ],
+     "mode": "major",
+     "confusables": [
+      [
+       "Di",
+       "Re"
+      ],
+      [
+       "Ri",
+       "Mi"
+      ],
+      [
+       "Fi",
+       "Sol"
+      ],
+      [
+       "Si",
+       "La"
+      ],
+      [
+       "Li",
+       "Ti"
+      ]
+     ],
+     "replayLimit": null,
+     "mixedReview": false
+    }
+   ]
+  },
+  {
+   "id": "chordQualities",
+   "name": "Chord Qualities",
+   "prerequisites": [],
+   "cadence": false,
+   "answerKind": "single",
+   "subStages": [
+    "block",
+    "arp",
+    "varied"
+   ],
+   "levels": [
+    {
+     "no": 1,
+     "pool": [
+      "maj",
+      "min"
+     ],
+     "voicings": [
+      "root"
+     ],
+     "confusables": [
+      [
+       "maj",
+       "min"
+      ]
+     ],
+     "replayLimit": null,
+     "mixedReview": false
+    },
+    {
+     "no": 2,
+     "pool": [
+      "maj",
+      "min",
+      "dim"
+     ],
+     "voicings": [
+      "root"
+     ],
+     "confusables": [
+      [
+       "min",
+       "dim"
+      ],
+      [
+       "maj",
+       "min"
+      ]
+     ],
+     "replayLimit": null,
+     "mixedReview": false
+    },
+    {
+     "no": 3,
+     "pool": [
+      "maj",
+      "min",
+      "dim",
+      "aug"
+     ],
+     "voicings": [
+      "root"
+     ],
+     "confusables": [
+      [
+       "maj",
+       "aug"
+      ],
+      [
+       "min",
+       "dim"
+      ]
+     ],
+     "replayLimit": null,
+     "mixedReview": false
+    },
+    {
+     "no": 4,
+     "pool": [
+      "maj",
+      "min"
+     ],
+     "voicings": [
+      "root",
+      "inv1",
+      "inv2"
+     ],
+     "confusables": [
+      [
+       "maj",
+       "min"
+      ]
+     ],
+     "replayLimit": null,
+     "mixedReview": false
+    },
+    {
+     "no": 5,
+     "pool": [
+      "maj",
+      "min",
+      "dim",
+      "aug"
+     ],
+     "voicings": [
+      "root",
+      "inv1",
+      "inv2"
+     ],
+     "confusables": [
+      [
+       "maj",
+       "aug"
+      ],
+      [
+       "min",
+       "dim"
+      ],
+      [
+       "maj",
+       "min"
+      ]
+     ],
+     "replayLimit": null,
+     "mixedReview": false
+    },
+    {
+     "no": 6,
+     "pool": [
+      "dom7",
+      "maj7",
+      "m7"
+     ],
+     "voicings": [
+      "root"
+     ],
+     "confusables": [
+      [
+       "dom7",
+       "maj7"
+      ],
+      [
+       "dom7",
+       "m7"
+      ]
+     ],
+     "replayLimit": null,
+     "mixedReview": false
+    },
+    {
+     "no": 7,
+     "pool": [
+      "dom7",
+      "maj7",
+      "m7",
+      "m7b5",
+      "dim7"
+     ],
+     "voicings": [
+      "root"
+     ],
+     "confusables": [
+      [
+       "m7b5",
+       "m7"
+      ],
+      [
+       "m7b5",
+       "dim7"
+      ],
+      [
+       "dom7",
+       "maj7"
+      ]
+     ],
+     "replayLimit": null,
+     "mixedReview": false
+    },
+    {
+     "no": 8,
+     "pool": [
+      "dom7",
+      "maj7",
+      "m7",
+      "m7b5",
+      "dim7"
+     ],
+     "voicings": [
+      "root",
+      "inv1",
+      "inv2",
+      "inv3"
+     ],
+     "confusables": [
+      [
+       "m7b5",
+       "m7"
+      ],
+      [
+       "m7b5",
+       "dim7"
+      ],
+      [
+       "dom7",
+       "maj7"
+      ]
+     ],
+     "replayLimit": null,
+     "mixedReview": false
+    },
+    {
+     "no": 9,
+     "pool": [
+      "maj",
+      "min",
+      "dim",
+      "aug",
+      "dom7",
+      "maj7",
+      "m7",
+      "m7b5",
+      "dim7",
+      "sus2",
+      "sus4"
+     ],
+     "voicings": [
+      "root"
+     ],
+     "confusables": [
+      [
+       "sus2",
+       "sus4"
+      ],
+      [
+       "sus4",
+       "maj"
+      ]
+     ],
+     "replayLimit": null,
+     "mixedReview": false
+    },
+    {
+     "no": 10,
+     "pool": [
+      "maj",
+      "min",
+      "dim",
+      "aug",
+      "dom7",
+      "maj7",
+      "m7",
+      "m7b5",
+      "dim7",
+      "sus2",
+      "sus4"
+     ],
+     "voicings": [
+      "root",
+      "inv1",
+      "inv2",
+      "inv3"
+     ],
+     "confusables": [
+      [
+       "sus2",
+       "sus4"
+      ],
+      [
+       "m7b5",
+       "m7"
+      ],
+      [
+       "maj",
+       "aug"
+      ],
+      [
+       "min",
+       "dim"
+      ],
+      [
+       "dom7",
+       "maj7"
+      ]
+     ],
+     "replayLimit": null,
+     "mixedReview": true
+    }
+   ]
+  },
+  {
+   "id": "inversions",
+   "name": "Inversions",
+   "prerequisites": [
+    {
+     "track": "chordQualities",
+     "level": 1
+    }
+   ],
+   "cadence": false,
+   "answerKind": "inversion",
+   "subStages": [
+    "block",
+    "arp"
+   ],
+   "levels": [
+    {
+     "no": 1,
+     "quality": [
+      "maj"
+     ],
+     "inversions": [
+      0,
+      1,
+      2
+     ],
+     "answer": "inversion",
+     "confusables": [
+      [
+       "inv1",
+       "inv2"
+      ]
+     ],
+     "replayLimit": null,
+     "mixedReview": false
+    },
+    {
+     "no": 2,
+     "quality": [
+      "min"
+     ],
+     "inversions": [
+      0,
+      1,
+      2
+     ],
+     "answer": "inversion",
+     "confusables": [
+      [
+       "inv1",
+       "inv2"
+      ]
+     ],
+     "replayLimit": null,
+     "mixedReview": false
+    },
+    {
+     "no": 3,
+     "quality": [
+      "maj",
+      "min"
+     ],
+     "inversions": [
+      0,
+      1,
+      2
+     ],
+     "answer": "qualityInversion",
+     "confusables": [
+      [
+       "maj:inv1",
+       "min:inv1"
+      ]
+     ],
+     "replayLimit": null,
+     "mixedReview": false
+    },
+    {
+     "no": 4,
+     "quality": [
+      "dom7",
+      "maj7",
+      "m7"
+     ],
+     "inversions": [
+      0,
+      1,
+      2,
+      3
+     ],
+     "answer": "inversion",
+     "confusables": [
+      [
+       "inv2",
+       "inv3"
+      ]
+     ],
+     "replayLimit": null,
+     "mixedReview": false
+    }
+   ]
+  },
+  {
+   "id": "melodic",
+   "name": "Melodic Phrases",
+   "prerequisites": [],
+   "cadence": true,
+   "answerKind": "sequence",
+   "subStages": [],
+   "levels": [
+    {
+     "no": 1,
+     "notes": [
+      3,
+      3
+     ],
+     "motion": "step",
+     "startOnDo": true,
+     "rhythm": "even8",
+     "confusables": [],
+     "replayLimit": 3,
+     "mixedReview": false
+    },
+    {
+     "no": 2,
+     "notes": [
+      4,
+      5
+     ],
+     "motion": "third",
+     "startOnDo": true,
+     "rhythm": "even8",
+     "confusables": [],
+     "replayLimit": 3,
+     "mixedReview": false
+    },
+    {
+     "no": 3,
+     "notes": [
+      8,
+      8
+     ],
+     "motion": "leap5",
+     "startOnDo": true,
+     "rhythm": "even8",
+     "confusables": [],
+     "replayLimit": 3,
+     "mixedReview": false
+    },
+    {
+     "no": 4,
+     "notes": [
+      8,
+      8
+     ],
+     "motion": "leap5",
+     "startOnDo": false,
+     "rhythm": "even8",
+     "confusables": [],
+     "replayLimit": 3,
+     "mixedReview": false
+    },
+    {
+     "no": 5,
+     "notes": [
+      8,
+      8
+     ],
+     "motion": "any",
+     "startOnDo": false,
+     "rhythm": "even8",
+     "confusables": [],
+     "replayLimit": 3,
+     "mixedReview": false
+    },
+    {
+     "no": 6,
+     "notes": [
+      6,
+      8
+     ],
+     "motion": "any",
+     "startOnDo": false,
+     "rhythm": "mixed",
+     "confusables": [],
+     "replayLimit": 3,
+     "mixedReview": false
+    }
+   ]
+  },
+  {
+   "id": "progressions",
+   "name": "Chord Progressions",
+   "prerequisites": [
+    {
+     "track": "chordQualities",
+     "level": 6
+    },
+    {
+     "track": "inversions",
+     "level": 1
+    }
+   ],
+   "cadence": true,
+   "answerKind": "numerals",
+   "subStages": [
+    "block",
+    "voiceLed",
+    "arp"
+   ],
+   "levels": [
+    {
+     "no": 1,
+     "vocabulary": [
+      "I",
+      "IV",
+      "V"
+     ],
+     "bassFirst": false,
+     "mode": "major",
+     "confusables": [
+      [
+       "IV",
+       "V"
+      ]
+     ],
+     "replayLimit": 3,
+     "mixedReview": false
+    },
+    {
+     "no": 2,
+     "vocabulary": [
+      "I",
+      "IV",
+      "V",
+      "vi"
+     ],
+     "bassFirst": true,
+     "mode": "major",
+     "confusables": [
+      [
+       "vi",
+       "IV"
+      ],
+      [
+       "IV",
+       "V"
+      ]
+     ],
+     "replayLimit": 3,
+     "mixedReview": false
+    },
+    {
+     "no": 3,
+     "vocabulary": [
+      "I",
+      "ii",
+      "iii",
+      "IV",
+      "V",
+      "vi"
+     ],
+     "bassFirst": true,
+     "mode": "major",
+     "confusables": [
+      [
+       "ii",
+       "IV"
+      ],
+      [
+       "iii",
+       "vi"
+      ],
+      [
+       "vi",
+       "IV"
+      ]
+     ],
+     "replayLimit": 3,
+     "mixedReview": false
+    },
+    {
+     "no": 4,
+     "vocabulary": [
+      "i",
+      "iv",
+      "v",
+      "V",
+      "VI",
+      "VII",
+      "III"
+     ],
+     "bassFirst": true,
+     "mode": "minor",
+     "confusables": [
+      [
+       "v",
+       "V"
+      ],
+      [
+       "VI",
+       "iv"
+      ],
+      [
+       "VII",
+       "III"
+      ]
+     ],
+     "replayLimit": 3,
+     "mixedReview": false
+    },
+    {
+     "no": 5,
+     "vocabulary": [
+      "Imaj7",
+      "ii7",
+      "iii7",
+      "IVmaj7",
+      "V7",
+      "vi7",
+      "I7",
+      "IV7"
+     ],
+     "bassFirst": true,
+     "mode": "major",
+     "confusables": [
+      [
+       "ii7",
+       "IVmaj7"
+      ],
+      [
+       "iii7",
+       "vi7"
+      ],
+      [
+       "V7",
+       "I7"
+      ]
+     ],
+     "replayLimit": 3,
+     "mixedReview": false
+    },
+    {
+     "no": 6,
+     "vocabulary": [
+      "I",
+      "ii",
+      "IV",
+      "V",
+      "vi",
+      "I6",
+      "I64",
+      "V6",
+      "V64",
+      "i",
+      "imaj7",
+      "i7",
+      "i6"
+     ],
+     "bassFirst": true,
+     "mode": "major",
+     "confusables": [
+      [
+       "I6",
+       "I"
+      ],
+      [
+       "V6",
+       "V"
+      ],
+      [
+       "I64",
+       "IV"
+      ]
+     ],
+     "replayLimit": 3,
+     "mixedReview": false
+    },
+    {
+     "no": 7,
+     "vocabulary": [
+      "I",
+      "ii",
+      "iii",
+      "IV",
+      "iv",
+      "V",
+      "vi",
+      "III",
+      "bVII",
+      "bVI",
+      "bVII7"
+     ],
+     "bassFirst": true,
+     "mode": "major",
+     "confusables": [
+      [
+       "iv",
+       "IV"
+      ],
+      [
+       "bVII",
+       "V"
+      ],
+      [
+       "bVI",
+       "vi"
+      ],
+      [
+       "III",
+       "iii"
+      ]
+     ],
+     "replayLimit": 3,
+     "mixedReview": false
+    }
+   ]
+  }
+ ]
+}

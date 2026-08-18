@@ -1,0 +1,16 @@
+[
+ {
+  "asset": "Piano samples",
+  "author": "Alexander Holm (Salamander Grand Piano), trimmed set via tonejs-instruments (Nicholaus P. Brosowsky)",
+  "source": "https://github.com/nbrosowsky/tonejs-instruments",
+  "licence": "CC BY 3.0",
+  "path": "public/samples/"
+ },
+ {
+  "asset": "Anchor-song reference and progression catalog",
+  "author": "Ear Trainer project (compiled from public references)",
+  "source": "specs/001-ear-trainer/spec.md Appendices A and B",
+  "licence": "Project content",
+  "path": "src/data/"
+ }
+]

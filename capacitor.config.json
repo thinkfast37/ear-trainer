@@ -1,0 +1,10 @@
+{
+  "appId": "com.eartrainer.app",
+  "appName": "Ear Trainer",
+  "webDir": "dist",
+  "bundledWebRuntime": false,
+  "server": { "androidScheme": "https" },
+  "plugins": {
+    "LocalNotifications": { "smallIcon": "ic_stat_icon", "iconColor": "#6cc0ff" }
+  }
+}

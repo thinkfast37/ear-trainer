@@ -1,4 +1,11 @@
 {
-  "note": "Exports nothing in src/ reaches, accepted as debt. Reported but not build-failing; anything not listed here fails. A gate that is permanently red gates nothing, which is why this file exists — but an entry here is OUTSTANDING WORK unless its reason says 'Permanent' (a genuine test seam). This list may only shrink: `npm run check:unwired -- --prune` strikes off entries that are no longer findings, and nothing writes new ones. Adding an entry by hand means taking on debt deliberately, and has to be argued for in review.",
-  "accepted": {}
+  "note": "Exports nothing in src/ reaches, accepted as debt. Reported but not build-failing; anything not listed here fails. A gate that is permanently red gates nothing, which is why this file exists \u2014 but an entry here is OUTSTANDING WORK unless its reason says 'Permanent' (a genuine test seam). This list may only shrink: `npm run check:unwired -- --prune` strikes off entries that are no longer findings, and nothing writes new ones. Adding an entry by hand means taking on debt deliberately, and has to be argued for in review.",
+  "accepted": {
+    "src/theory/chords.js isQuality": "Permanent: consumed by tools/validate-data.mjs (the lint-time data gate, Constitution IX), which lives outside src/ by design.",
+    "src/theory/intervals.js isInterval": "Permanent: consumed by tools/validate-data.mjs (the lint-time data gate, Constitution IX), which lives outside src/ by design.",
+    "src/theory/scales.js isDegree": "Permanent: consumed by tools/validate-data.mjs (the lint-time data gate, Constitution IX), which lives outside src/ by design.",
+    "src/theory/progressions.js isNumeral": "Permanent: consumed by tools/validate-data.mjs (the lint-time data gate, Constitution IX), which lives outside src/ by design.",
+    "src/storage/storage.js memoryAdapter": "Permanent: test seam \u2014 the storage contract tests run the same createStorage() over an in-memory adapter; production uses the localStorage and Preferences adapters.",
+    "src/platform/capacitor.js featureParity": "Permanent: test seam \u2014 AC-10.1.5/2 asserts web/native parity over the FEATURES registry; the registry itself is what the app ships, the checker is only proved in tests."
+  }
 }
