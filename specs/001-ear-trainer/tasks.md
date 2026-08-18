@@ -241,6 +241,11 @@ renumber the MVP section above.)*
 
 - [X] T092 GitHub Pages deployment: `.github/workflows/deploy.yml` (build on push to `main`, deploy `dist/` via `actions/upload-pages-artifact` + `actions/deploy-pages`), `CLAUDE.md` §5 updated to describe the deploy as the "delivered" signal for web changes. Infrastructure — no AC. Requested by the maintainer to view the app on other devices (2026-08-18).
 
+- [X] T093 [US2.6] In-session progress visibility (P-043): compact mastery-progress meter in the session header — current sub-stage name (tracks with sub-stages), answers counted toward the 20-answer window, rolling accuracy vs the 90% threshold, items still below box 3, updated on every answer — and a sub-stage transition announcement in the feedback panel on the mastering answer, naming the next sub-stage with its position (level celebration unchanged for the last sub-stage). Files: `src/ui/session.js`, `src/ui/feedback.js`, `src/styles.css` (reuses `src/ui/labels.js` subStageLabel unchanged). Implements AC-2.6.1, AC-2.6.2 (2026-08-18).
+- [X] T094 [US2.6] Tests for US-2.6, verbatim-named per Case: AC-2.6.1/1–4 and AC-2.6.2/1–3 in `tests/unit/ui/sessionProgress.test.js` (DOM-capable). Proves AC-2.6.1, AC-2.6.2 (2026-08-18).
+- [X] T095 [US9.2] Daily-goal progress visibility (P-044): questions answered today vs the daily goal's question target shown on the session screen; stopping-point toast verified to already name the daily goal (no wording change needed; AC-9.2.4/2's test proves it). Files: `src/ui/session.js` (reads `src/learning/streak.js` day keys; no streak.js change). Implements AC-9.2.4 (2026-08-18).
+- [X] T096 [US9.2] Tests for AC-9.2.4, verbatim-named per Case: AC-9.2.4/1–2 in `tests/unit/ui/sessionProgress.test.js` (DOM-capable). Proves AC-9.2.4 (2026-08-18).
+
 ---
 
 ## Dependencies & Execution Order
