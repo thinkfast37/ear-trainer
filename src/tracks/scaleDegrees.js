@@ -27,12 +27,12 @@ export function createScaleDegreesTrack(def) {
   return {
     id: def.id, name: def.name, def, kind: 'single',
     itemsFor(levelNo) { const l = levelByNo(levelNo); return l.pool.map((d) => itemId(d, l.mode)); },
-    generate({ levelNo, progress, rng, settings, bias = null, avoid = null, accuracy = 0, prevKey = null, withCadence = true }) {
+    generate({ levelNo, progress, rng, settings, bias = null, avoid = null, accuracy = 0, prevKey = null, withCadence = true, recency = null }) {
       const level = levelByNo(levelNo);
       const ids = this.itemsFor(levelNo);
       const dw = degreeWeights(level.pool, accuracy);
       const extraWeights = Object.fromEntries(ids.map((id) => [id, dw[parseItemId(id).degree] ?? 1]));
-      const id = selectItem(rng, progress, ids, { bias, avoid, extraWeights });
+      const id = selectItem(rng, progress, ids, { bias, avoid, extraWeights, recency });
       const { degree, mode } = parseItemId(id);
       const key = pickKey(rng, prevKey);
       const tonic = tonicMidi(key, settings.register);

@@ -17,10 +17,10 @@ export function createIntervalsTrack(def) {
     itemsFor(levelNo, subStage = 'asc') {
       return levelByNo(levelNo).pool.map((iv) => itemId(iv, subStage));
     },
-    generate({ levelNo, subStage = 'asc', progress, rng, settings, bias = null, avoid = null }) {
+    generate({ levelNo, subStage = 'asc', progress, rng, settings, bias = null, avoid = null, recency = null }) {
       const level = levelByNo(levelNo);
       const ids = this.itemsFor(levelNo, subStage);
-      const id = selectItem(rng, progress, ids, { bias, avoid });
+      const id = selectItem(rng, progress, ids, { bias, avoid, recency });
       const { intervalId } = parseItemId(id);
       const span = semitonesOf(intervalId);
       const low = pickRoot(rng, span, settings.register);

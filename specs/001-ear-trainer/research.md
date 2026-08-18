@@ -67,6 +67,11 @@ level (or sub-stage). Mastery = ≥ 20 answers, accuracy ≥ 90%, every item ≥
 bias: above 75% rolling accuracy, after a wrong answer on item X answered as Y where (X,Y) is
 a declared confusable pair, both X and Y get a ×4 weight for the next 5 questions.
 
+**Amended 2026-08-18 (during implementation of AC-3.1.2/1)**: selection weight is additionally
+multiplied by a recency factor `1 + min(questionsSinceAsked, 20) / 10` within a session
+(never-asked = ×3), so a 20-item pool is reliably covered inside 50 questions. Leitner
+weighting still dominates; recency only stops an item being starved.
+
 **Why**: simple, explainable, deterministic to test with a seeded PRNG (`learning/random.js`,
 mulberry32).
 

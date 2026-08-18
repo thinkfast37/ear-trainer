@@ -87,23 +87,23 @@ arbiter; a task is not done until its criteria are 🟢 in `specs/traceability-m
 
 ## Phase 11: US-3.1 — Interval level progression (P-014)
 
-- [ ] T034 [US3.1] `src/tracks/intervals.js` (level pools from data, cumulative item set, question generator, compound-distractor rule), registered in `src/tracks/index.js`. AC-3.1.1–AC-3.1.3
-- [ ] T035 [US3.1] Tests `tests/unit/tracks/intervals.test.js` (AC-3.1.1/1–/12, AC-3.1.2/1, AC-3.1.2/2) and `tests/unit/ui/intervalOptions.test.js` (AC-3.1.3), named verbatim
+- [X] T034 [US3.1] `src/tracks/intervals.js` (level pools from data, cumulative item set, question generator, compound-distractor rule), registered in `src/tracks/index.js`. AC-3.1.1–AC-3.1.3
+- [X] T035 [US3.1] Tests `tests/unit/tracks/intervals.test.js` (AC-3.1.1/1–/12, AC-3.1.2/1, AC-3.1.2/2) and `tests/unit/ui/intervalOptions.test.js` (AC-3.1.3), named verbatim
 
 ## Phase 12: US-3.2 — Interval presentation sub-stages (P-015)
 
-- [ ] T036 [US3.2] `src/learning/subStages.js` (ordered sub-stages, per-sub-stage mastery, unlock next), interval items keyed `interval:<id>:<asc|desc|harm>` in `src/tracks/intervals.js`, randomized roots within register. AC-3.2.1–AC-3.2.3
-- [ ] T037 [US3.2] Tests `tests/unit/learning/subStages.test.js` (AC-3.2.1/1, AC-3.2.1/2), `tests/unit/tracks/intervalItems.test.js` (AC-3.2.2, AC-3.2.3/1, AC-3.2.3/2), named verbatim
+- [X] T036 [US3.2] `src/learning/subStages.js` (ordered sub-stages, per-sub-stage mastery, unlock next), interval items keyed `interval:<id>:<asc|desc|harm>` in `src/tracks/intervals.js`, randomized roots within register. AC-3.2.1–AC-3.2.3
+- [X] T037 [US3.2] Tests `tests/unit/learning/subStages.test.js` (AC-3.2.1/1, AC-3.2.1/2), `tests/unit/tracks/intervalItems.test.js` (AC-3.2.2, AC-3.2.3/1, AC-3.2.3/2), named verbatim
 
 ## Phase 13: US-3.3 — Interval answer input (P-016)
 
-- [ ] T038 [US3.3] `src/ui/answerGrid.js` (scoped buttons, ≥ 44 px, label modes) and `src/ui/labels.js` (interval short/full names). AC-3.3.1–AC-3.3.2
-- [ ] T039 [US3.3] Tests `tests/e2e/intervalGrid.spec.js` (AC-3.3.1/1, AC-3.3.1/2 measured ≥ 44 px, AC-3.3.2), named verbatim
+- [X] T038 [US3.3] `src/ui/answerGrid.js` (scoped buttons, ≥ 44 px, label modes) and `src/ui/labels.js` (interval short/full names). AC-3.3.1–AC-3.3.2
+- [X] T039 [US3.3] Tests `tests/e2e/intervalGrid.spec.js` (AC-3.3.1/1, AC-3.3.1/2 measured ≥ 44 px, AC-3.3.2), named verbatim
 
 ## Phase 14: US-3.4 — Anchor-song reference (P-017)
 
-- [ ] T040 [US3.4] `src/ui/anchors.js` (up to 5 anchors, direction ordering/marking, compound decomposition + simple anchors + compound examples) used by `src/ui/feedback.js`; `src/ui/reference.js` (browse level intervals with anchors, route from level screen). AC-3.4.1–AC-3.4.5
-- [ ] T041 [US3.4] Tests `tests/unit/ui/anchors.test.js` (AC-3.4.1/1, AC-3.4.1/2, AC-3.4.2, AC-3.4.4/1, AC-3.4.4/2), `tests/e2e/reference.spec.js` (AC-3.4.3), `tests/unit/data/anchorsBundled.test.js` (AC-3.4.5), named verbatim
+- [X] T040 [US3.4] `src/ui/anchors.js` (up to 5 anchors, direction ordering/marking, compound decomposition + simple anchors + compound examples) used by `src/ui/feedback.js`; `src/ui/reference.js` (browse level intervals with anchors, route from level screen). AC-3.4.1–AC-3.4.5
+- [X] T041 [US3.4] Tests `tests/unit/ui/anchors.test.js` (AC-3.4.1/1, AC-3.4.1/2, AC-3.4.2, AC-3.4.4/1, AC-3.4.4/2), `tests/e2e/reference.spec.js` (AC-3.4.3), `tests/unit/data/anchorsBundled.test.js` (AC-3.4.5), named verbatim
 
 ## Phase 15: US-4.1 — Tonal context establishment (P-018)
 

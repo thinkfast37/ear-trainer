@@ -45,10 +45,10 @@ export function createProgressionsTrack(def, catalog) {
       if (level.mode === mode) for (const n of level.vocabulary) set.add(n);
       return [...set];
     },
-    generate({ levelNo, subStage = 'block', progress, rng, settings, bias = null, avoid = null, prevKey = null, bassFirst = false }) {
+    generate({ levelNo, subStage = 'block', progress, rng, settings, bias = null, avoid = null, prevKey = null, bassFirst = false, recency = null }) {
       const level = levelByNo(levelNo);
       const items = catalogItems(catalog, levelNo, subStage);
-      const id = selectItem(rng, progress, items.map((c) => c.id), { bias, avoid });
+      const id = selectItem(rng, progress, items.map((c) => c.id), { bias, avoid, recency });
       const item = items.find((c) => c.id === id);
       const mode = item.entry.mode;
       const key = pickKey(rng, prevKey);

@@ -22,7 +22,7 @@ export function createSession({ trackId = null, levelNo = null, mixed = false, b
     id, trackId, levelNo, mixed, bassFirst,
     phase: 'idle', question: null, result: null, replaysUsed: 0, stepIndex: 0, stepResults: [],
     startedAt: now(), lastTick: now(), questions: 0, correct: 0, replays: 0, streak: 0,
-    prevKey: null, prevItem: null, bias: null, ended: false, cadenceHeard: false,
+    prevKey: null, prevItem: null, bias: null, ended: false, cadenceHeard: false, asked: 0, lastAsked: {},
   };
   const listeners = new Set();
   const emit = () => { for (const l of listeners) l(state); };
@@ -70,12 +70,16 @@ export function createSession({ trackId = null, levelNo = null, mixed = false, b
     if (mixed) { const m = pickMixedTarget(); tid = m.tid; no = m.no; sub = m.sub; }
     else sub = subStageFor(tid, no);
     const t = track(tid);
-    const accuracy = rollingAccuracy(historyFor(tid, no, sub));
+    const accuracy = rollingAccuracy(historyFor(tid, no, null)); // proficiency is level-wide (AC-2.5.1, AC-4.2.2)
+    const recency = {};
+    for (const [iid, idx] of Object.entries(state.lastAsked)) recency[iid] = state.asked - idx;
     const q = t.generate({
       levelNo: no, subStage: sub ?? undefined, progress: progress(), rng, settings: settings(),
-      bias: state.bias, avoid: state.prevItem, accuracy, prevKey: state.prevKey,
+      bias: state.bias, avoid: state.prevItem, accuracy, prevKey: state.prevKey, recency,
       withCadence: withCadence(), bassFirst: state.bassFirst,
     });
+    state.asked++;
+    state.lastAsked[q.itemId] = state.asked;
     q.trackLabel = t.name;
     q.replayLimit = q.meta?.replayLimit ?? levelDef(tid, no).replayLimit ?? (t.kind === 'single' ? null : settings().replayLimit);
     if (q.replayLimit == null && (t.kind === 'sequence' || t.kind === 'numerals')) q.replayLimit = settings().replayLimit;
@@ -192,7 +196,7 @@ export function createSession({ trackId = null, levelNo = null, mixed = false, b
       outcome = { xp, subMastered, levelMastered: levelMastered && !wasMastered, dayCompleted: act.justCompleted, levelState: structuredClone(ls) };
     });
 
-    const accuracy = rollingAccuracy(historyFor(q.trackId, q.levelNo, sub));
+    const accuracy = rollingAccuracy(historyFor(q.trackId, q.levelNo, null));
     state.bias = nextBias({ bias: state.bias, accuracy, correct, itemId: q.itemId, chosenItemId, confusablePairs: (level.confusables ?? []).map((p) => p.map((o) => t.optionItemId(o, q))) });
 
     state.result = {

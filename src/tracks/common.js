@@ -26,8 +26,19 @@ export function pickRoot(rng, span, register) {
   return lo + Math.floor(rng() * (hi - lo + 1));
 }
 
+/**
+ * Pick the next item: Leitner weight × recency factor × any track-specific extra weights.
+ * `ctx.recency` maps item id → questions since it was last asked in this session (absent =
+ * never asked, treated as RECENCY_CAP), so under-asked items rise and a 20-item pool is
+ * covered within a few dozen questions (D-006, AC-3.1.2/1).
+ */
+export const RECENCY_CAP = 20;
+export function recencyFactor(sinceAsked) { return 1 + Math.min(sinceAsked ?? RECENCY_CAP, RECENCY_CAP) / 10; }
+
 export function selectItem(rng, progress, itemIds, ctx = {}) {
-  return pickItem(rng, progress.items, itemIds, ctx);
+  const extra = {};
+  for (const id of itemIds) extra[id] = (ctx.extraWeights?.[id] ?? 1) * (ctx.recency ? recencyFactor(ctx.recency[id]) : 1);
+  return pickItem(rng, progress.items, itemIds, { ...ctx, extraWeights: extra });
 }
 
 export function shuffle(rng, arr) {

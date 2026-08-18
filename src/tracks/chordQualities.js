@@ -23,10 +23,10 @@ export function createChordQualitiesTrack(def) {
       for (const q of l.pool) for (const v of voicings) if (v === 'root' && l.voicings.includes('root') || v === 'inv') ids.push(itemId(q, v, subStage));
       return ids;
     },
-    generate({ levelNo, subStage = 'block', progress, rng, settings, bias = null, avoid = null }) {
+    generate({ levelNo, subStage = 'block', progress, rng, settings, bias = null, avoid = null, recency = null }) {
       const level = levelByNo(levelNo);
       const ids = this.itemsFor(levelNo, subStage);
-      const id = selectItem(rng, progress, ids, { bias, avoid });
+      const id = selectItem(rng, progress, ids, { bias, avoid, recency });
       const { quality, voicing } = parseItemId(id);
       const invChoices = voicing === 'root' ? [0] : level.voicings.filter((v) => v !== 'root').map(inversionIndex).filter((i) => i < chordSize(quality));
       const inversion = pick(rng, invChoices.length ? invChoices : [1]);

@@ -19,10 +19,10 @@ export function createInversionsTrack(def) {
       for (const q of l.quality) for (const i of l.inversions) ids.push(itemId(q, i, subStage));
       return ids;
     },
-    generate({ levelNo, subStage = 'block', progress, rng, settings, bias = null, avoid = null }) {
+    generate({ levelNo, subStage = 'block', progress, rng, settings, bias = null, avoid = null, recency = null }) {
       const level = levelByNo(levelNo);
       const ids = this.itemsFor(levelNo, subStage);
-      const id = selectItem(rng, progress, ids, { bias, avoid });
+      const id = selectItem(rng, progress, ids, { bias, avoid, recency });
       const { quality, inversion } = parseItemId(id);
       const root = pickRoot(rng, 16, settings.register);
       const exercise = chordExercise(root, quality, inversion, subStage === 'arp' ? 'arp' : 'block', { tempo: settings.arpeggioTempo });
