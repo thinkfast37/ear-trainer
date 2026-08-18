@@ -55,6 +55,7 @@ export function renderSessionScreen(container, { session, store, tracks, go, onE
       }
       replace(feedbackArea);
     } else if (st.phase === 'feedback') {
+      replace(feedbackArea);
       renderFeedback(feedbackArea, { session, track, settings, store, onNext: () => session.next().then(draw) });
       const r = st.result;
       if (r.levelMastered) {

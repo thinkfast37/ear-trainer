@@ -62,28 +62,28 @@ arbiter; a task is not done until its criteria are 🟢 in `specs/traceability-m
 
 ## Phase 6: US-2.1 — Per-item Leitner scheduling (P-009)
 
-- [ ] T024 [US2.1] `src/learning/leitner.js` (item record, promote/demote, attempts/correct/lastSeen), `src/learning/selection.js` (weight 6−box, weighted pick with PRNG); persistence through store. AC-2.1.1–AC-2.1.4
-- [ ] T025 [US2.1] Tests `tests/unit/learning/leitner.test.js` (AC-2.1.1, AC-2.1.2, AC-2.1.3) and `tests/unit/storage/leitnerPersistence.test.js` (AC-2.1.4/1–/3), named verbatim
+- [X] T024 [US2.1] `src/learning/leitner.js` (item record, promote/demote, attempts/correct/lastSeen), `src/learning/selection.js` (weight 6−box, weighted pick with PRNG); persistence through store. AC-2.1.1–AC-2.1.4
+- [X] T025 [US2.1] Tests `tests/unit/learning/leitner.test.js` (AC-2.1.1, AC-2.1.2, AC-2.1.3) and `tests/unit/storage/leitnerPersistence.test.js` (AC-2.1.4/1–/3), named verbatim
 
 ## Phase 7: US-2.2 — Mastery-gated level advancement (P-010)
 
-- [ ] T026 [US2.2] `src/learning/mastery.js` (rolling accuracy over last 20, box floor, `evaluate(level)` → mastered/unmet conditions, unlock next level, retain mastered on decay), `src/ui/levelScreen.js` (level status, unmet condition text, start button). AC-2.2.1–AC-2.2.3
-- [ ] T027 [US2.2] Tests `tests/unit/learning/mastery.test.js` (AC-2.2.1/1, AC-2.2.1/2, AC-2.2.2/1, AC-2.2.3/1, AC-2.2.3/2) and `tests/unit/ui/levelScreen.test.js` (AC-2.2.2/2), named verbatim
+- [X] T026 [US2.2] `src/learning/mastery.js` (rolling accuracy over last 20, box floor, `evaluate(level)` → mastered/unmet conditions, unlock next level, retain mastered on decay), `src/ui/levelScreen.js` (level status, unmet condition text, start button). AC-2.2.1–AC-2.2.3
+- [X] T027 [US2.2] Tests `tests/unit/learning/mastery.test.js` (AC-2.2.1/1, AC-2.2.1/2, AC-2.2.2/1, AC-2.2.3/1, AC-2.2.3/2) and `tests/unit/ui/levelScreen.test.js` (AC-2.2.2/2), named verbatim
 
 ## Phase 8: US-2.3 — Interleaved review mode (P-011)
 
-- [ ] T028 [US2.3] `src/learning/mixedReview.js` (eligibility: ≥ 2 mastered levels; question drawing across tracks weighted by box; track label on question), Mixed Review node on `src/ui/homeMap.js`, track label in `src/ui/feedback.js`, streak counting via `src/learning/streak.js`. AC-2.3.1–AC-2.3.3
-- [ ] T029 [US2.3] Tests `tests/unit/learning/mixedReview.test.js` (AC-2.3.2/1, AC-2.3.2/2, AC-2.3.3) and `tests/e2e/mixedReview.spec.js` (AC-2.3.1, AC-2.3.2/3), named verbatim
+- [X] T028 [US2.3] `src/learning/mixedReview.js` (eligibility: ≥ 2 mastered levels; question drawing across tracks weighted by box; track label on question), Mixed Review node on `src/ui/homeMap.js`, track label in `src/ui/feedback.js`, streak counting via `src/learning/streak.js`. AC-2.3.1–AC-2.3.3
+- [X] T029 [US2.3] Tests `tests/unit/learning/mixedReview.test.js` (AC-2.3.3) and `tests/e2e/mixedReview.spec.js` (AC-2.3.1, AC-2.3.2/1–/3 — the AC names the feedback screen, so all its Cases are UI-level), named verbatim
 
 ## Phase 9: US-2.4 — Immediate feedback with comparison replay (P-012)
 
-- [ ] T030 [US2.4] `src/ui/feedback.js` (verdict rendered synchronously on submit, comparison button playing correct then chosen with on-screen labels, replay button using stored exercise), `src/learning/session.js` submit path. AC-2.4.1–AC-2.4.3
-- [ ] T031 [US2.4] Tests `tests/e2e/feedback.spec.js` (AC-2.4.1 verdict ≤ 200 ms, AC-2.4.2/1, AC-2.4.2/2, AC-2.4.3), named verbatim
+- [X] T030 [US2.4] `src/ui/feedback.js` (verdict rendered synchronously on submit, comparison button playing correct then chosen with on-screen labels, replay button using stored exercise), `src/learning/session.js` submit path. AC-2.4.1–AC-2.4.3
+- [X] T031 [US2.4] Tests `tests/e2e/feedback.spec.js` (AC-2.4.1 verdict ≤ 200 ms, AC-2.4.2/1, AC-2.4.2/2, AC-2.4.3), named verbatim
 
 ## Phase 10: US-2.5 — Confusion-weighted question generation (P-013)
 
-- [ ] T032 [US2.5] Confusion bias in `src/learning/selection.js` (×4 for 5 questions when accuracy > 75% and a confusable pair was confused), options builder `src/learning/options.js` (always include confusable partner). AC-2.5.1–AC-2.5.3
-- [ ] T033 [US2.5] Tests `tests/unit/learning/confusion.test.js` (AC-2.5.1, AC-2.5.2) and `tests/unit/ui/options.test.js` (AC-2.5.3 answer buttons include partner), named verbatim
+- [X] T032 [US2.5] Confusion bias in `src/learning/selection.js` (×4 for 5 questions when accuracy > 75% and a confusable pair was confused), options builder `src/learning/options.js` (always include confusable partner). AC-2.5.1–AC-2.5.3
+- [X] T033 [US2.5] Tests `tests/unit/learning/confusion.test.js` (AC-2.5.1, AC-2.5.2) and `tests/unit/ui/options.test.js` (AC-2.5.3 answer buttons include partner), named verbatim
 
 ## Phase 11: US-3.1 — Interval level progression (P-014)
 
