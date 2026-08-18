@@ -286,7 +286,7 @@ fail the build, and it is outstanding work — never a settled decision.
 | US-9.4 | `AC-9.4.3` 🖵 | Item detail shows the most frequent wrong answers | P-037 | T080 (1/1 done) | T081 (1/1 done) | `stats.spec.js` | 🟢 OK |
 | US-9.4 | `AC-9.4.4` 🖵 | A track shows an accuracy trend after seven days of history | P-037 | T080 (1/1 done) | T081 (1/1 done) | `stats.spec.js` | 🟢 OK |
 | US-10.1 | `AC-10.1.1/1` 🖵 | A phone viewport renders the single-column stacked layout | P-038 | T082 (1/1 done) | T083 (1/1 done) | `layout.spec.js` | 🟢 OK |
-| US-10.1 | `AC-10.1.1/2` 🖵 | On a phone viewport all controls are visible and touch-friendly with no hover interactions | P-038 | T082 (1/1 done) | T083 (1/1 done) | `layout.spec.js` | 🟢 OK |
+| US-10.1 | `AC-10.1.1/2` 🖵 | On a phone viewport all controls are visible and touch-friendly with no hover interactions | P-038 | T082 (1/1 done) | T083 (1/1 done) | `layout.test.js`, `layout.spec.js` | 🟢 OK |
 | US-10.1 | `AC-10.1.2` 🖵 | Tablet viewports use the wider tablet layout | P-038 | T082 (1/1 done) | T083 (1/1 done) | `layout.spec.js` | 🟢 OK |
 | US-10.1 | `AC-10.1.3/1` 🖵 | A desktop viewport presents the tablet layout | P-038 | T082 (1/1 done) | T083 (1/1 done) | `layout.spec.js` | 🟢 OK |
 | US-10.1 | `AC-10.1.3/2` 🖵 | No desktop-only layout or hover-dependent behavior exists | P-038 | T082 (1/1 done) | T083 (1/1 done) | `layout.spec.js` | 🟢 OK |

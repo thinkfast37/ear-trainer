@@ -4,6 +4,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" content="#1b1f2a" />
+    <!-- iOS Home-Screen web app: draw under the status bar so the safe-area inset (styles.css .frame)
+         moves the top bar out of the status-bar dead zone (T097). -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Ear Trainer" />
     <title>Ear Trainer</title>
     <link rel="stylesheet" href="./src/styles.css" />
   </head>
