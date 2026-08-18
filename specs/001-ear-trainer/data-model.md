@@ -28,7 +28,8 @@
     "labels": { "degrees": "both", "chords": "symbolAndName", "intervals": "short" },
     "sessionGoal": { "minutes": 10, "questions": 30 },
     "notifications": { "enabled": false, "hour": 19 }
-  }
+  },
+  "guidance": { "scaleDegrees": true }              // per-track first-open guidance dismissed (US-4.5, added 2026-08-18)
 }
 ```
 
@@ -41,6 +42,8 @@ Rules:
 - Import merge (AC-10.3.3/2): per item, the record with the newer `lastSeen` wins; `levels`
   mastered = OR; `xp` = max; `streak.best` = max; `days` = union taking the larger counts;
   `sessions` = union by id; `settings` = local wins.
+- `guidance` holds per-track "first-open guidance dismissed" flags; a progress reset clears it
+  (US-4.5). Import: local wins.
 
 ## Levels data (`src/data/levels.json`)
 
@@ -53,7 +56,8 @@ Rules:
         { "no": 1, "pool": ["P8", "P5"], "mixedReview": false,
           "confusables": [["P8","P5"]], "replayLimit": null }
       ] },
-    { "id": "scaleDegrees", "cadence": true, "subStages": [], "levels": [ { "no": 1, "pool": ["Do","Mi","Sol"], "mode": "major" } ] },
+    { "id": "scaleDegrees", "cadence": true, "subStages": [], "levels": [ { "no": 1, "pool": ["Do","Mi","Sol"], "mode": "major",
+          "scaleReference": "auto" } ] },   // auto | onDemand | none — scale scaffold policy (US-4.4); must be none in minor keys
     { "id": "chordQualities", "subStages": ["block","arp","varied"], "levels": [ { "no": 1, "pool": ["maj","min"], "voicings": ["root"] } ] },
     { "id": "inversions", "prerequisites": [{ "track": "chordQualities", "level": 1 }],
       "subStages": ["block","arp"], "levels": [ { "no": 1, "quality": ["maj"], "inversions": [0,1,2], "answer": "inversion" } ] },

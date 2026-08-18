@@ -1,5 +1,5 @@
 /**
- * Session screen: stimulus controls (play/replay/re-hear cadence), the answer input for the
+ * Session screen: stimulus controls (replay / re-hear cadence / hear scale), the answer input for the
  * question kind, and — after an answer — the feedback panel (US-2.4, US-3.4, US-7.2, US-7.3,
  * US-8.3, US-8.4, US-9.2, US-9.3).
  */
@@ -13,6 +13,7 @@ import { getLevelState, evaluate, WINDOW, ACCURACY_THRESHOLD, BOX_FLOOR } from '
 import { evaluateSubStage } from '../learning/subStages.js';
 import { dayKey } from '../learning/streak.js';
 import { subStageLabel } from './labels.js';
+import { helpButton, questionsAnsweredOnTrack, ORDER_HINT, ORDER_HINT_UNTIL } from './guidance.js';
 
 export function renderSessionScreen(container, { session, store, tracks, go, onEnd }) {
   const wrap = h('div', { class: 'stack session', 'data-role': 'session' });
@@ -21,8 +22,9 @@ export function renderSessionScreen(container, { session, store, tracks, go, onE
   const stimulus = h('div', { class: 'card stimulus', 'data-role': 'stimulus' });
   const answerArea = h('div', { class: 'stack', 'data-role': 'answer-area' });
   const feedbackArea = h('div', { class: 'stack', 'data-role': 'feedback-area' });
+  const guidanceArea = h('div', { 'data-role': 'guidance-area' });
   const toastArea = h('div', { 'data-role': 'toast-area' });
-  wrap.append(header, status, stimulus, answerArea, feedbackArea, toastArea);
+  wrap.append(header, status, stimulus, guidanceArea, answerArea, feedbackArea, toastArea);
   replace(container, wrap);
   let seqModel = null;
   let toastShown = false;
@@ -55,10 +57,22 @@ export function renderSessionScreen(container, { session, store, tracks, go, onE
     );
     const capped = session.replayLimitReached();
     const replayInfo = q.replayLimit != null ? ` (${st.replaysUsed}/${q.replayLimit})` : '';
+    // Scale reference (US-4.4): offered only where the level's policy says so; shown disabled with
+    // a hint at the other scale-degree levels so the learner knows the aid exists and has been withdrawn.
+    const scalePolicy = q.meta?.scaleReference;
+    const scaleOn = session.scaleAvailable();
+    const scaleControls = scalePolicy ? [
+      h('button', { class: 'btn', 'data-action': 'hear-scale', disabled: !scaleOn, 'aria-disabled': String(!scaleOn), onClick: () => { if (scaleOn) session.hearScale(); } }, 'Hear scale'),
+      scaleOn ? null : h('span', { class: 'muted', 'data-role': 'scale-hint' }, 'Scale reference is a level 1–2 aid'),
+    ] : [];
+    const showOrderHint = scalePolicy === 'auto' && st.phase === 'question' && questionsAnsweredOnTrack(state, q.trackId) < ORDER_HINT_UNTIL;
     replace(stimulus,
       h('button', { class: 'btn primary', 'data-action': 'replay', disabled: capped, 'aria-disabled': String(capped), onClick: () => session.replay().then(draw) }, `Replay${replayInfo}`),
       q.exercise.prelude ? h('button', { class: 'btn', 'data-action': 'rehear-cadence', onClick: () => session.rehearCadence() }, 'Re-hear cadence') : null,
+      ...scaleControls,
+      helpButton({ store, trackId: q.trackId, container: guidanceArea }),
       st.phase === 'question' && q.steps ? h('span', { class: 'muted', 'data-role': 'step-indicator' }, `Step ${st.stepIndex + 1} of ${q.steps.length}`) : null,
+      showOrderHint ? h('div', { class: 'muted order-hint', 'data-role': 'order-hint' }, ORDER_HINT) : null,
     );
 
     replace(answerArea);
