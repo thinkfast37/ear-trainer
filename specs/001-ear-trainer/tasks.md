@@ -107,33 +107,33 @@ arbiter; a task is not done until its criteria are 🟢 in `specs/traceability-m
 
 ## Phase 15: US-4.1 — Tonal context establishment (P-018)
 
-- [ ] T042 [US4.1] `src/tracks/scaleDegrees.js` (cadence prelude per setting, random key rotation from all 12, target note), re-hear cadence control in `src/ui/session.js` that does not touch replay count/score. AC-4.1.1–AC-4.1.3
-- [ ] T043 [US4.1] Tests `tests/unit/tracks/scaleDegrees.test.js` (AC-4.1.1, AC-4.1.2) and `tests/e2e/scaleDegrees.spec.js` (AC-4.1.3/1, AC-4.1.3/2), named verbatim
+- [X] T042 [US4.1] `src/tracks/scaleDegrees.js` (cadence prelude per setting, random key rotation from all 12, target note), re-hear cadence control in `src/ui/session.js` that does not touch replay count/score. AC-4.1.1–AC-4.1.3
+- [X] T043 [US4.1] Tests `tests/unit/tracks/scaleDegrees.test.js` (AC-4.1.1, AC-4.1.2) and `tests/e2e/scaleDegrees.spec.js` (AC-4.1.3/1, AC-4.1.3/2), named verbatim
 
 ## Phase 16: US-4.2 — Scale degree level progression (P-019)
 
-- [ ] T044 [US4.2] Level pools and prevalence/tendency weighting in `src/tracks/scaleDegrees.js` (stable-degree weights below 75%, tendency-tone weights at/above 75%). AC-4.2.1–AC-4.2.3
-- [ ] T045 [US4.2] Tests `tests/unit/tracks/scaleDegreeLevels.test.js` (AC-4.2.1/1–/5, AC-4.2.2, AC-4.2.3), named verbatim
+- [X] T044 [US4.2] Level pools and prevalence/tendency weighting in `src/tracks/scaleDegrees.js` (stable-degree weights below 75%, tendency-tone weights at/above 75%). AC-4.2.1–AC-4.2.3
+- [X] T045 [US4.2] Tests `tests/unit/tracks/scaleDegreeLevels.test.js` (AC-4.2.1/1–/5, AC-4.2.2, AC-4.2.3), named verbatim
 
 ## Phase 17: US-4.3 — Degree answer input (P-020)
 
-- [ ] T046 [US4.3] Degree row in `src/ui/answerGrid.js` with label mode syllable/number/both from `src/ui/labels.js`, scoped to level pool. AC-4.3.1–AC-4.3.2
-- [ ] T047 [US4.3] Tests `tests/e2e/degreeRow.spec.js` (AC-4.3.1, AC-4.3.2), named verbatim
+- [X] T046 [US4.3] Degree row in `src/ui/answerGrid.js` with label mode syllable/number/both from `src/ui/labels.js`, scoped to level pool. AC-4.3.1–AC-4.3.2
+- [X] T047 [US4.3] Tests `tests/e2e/degreeRow.spec.js` (AC-4.3.1, AC-4.3.2), named verbatim
 
 ## Phase 18: US-5.1 — Chord quality level progression (P-021)
 
-- [ ] T048 [US5.1] `src/tracks/chordQualities.js` (pools + voicing rules per level, quality-only answer across inversions, items keyed `chord:<quality>:<root|inv>` and by presentation, random roots). AC-5.1.1–AC-5.1.5
-- [ ] T049 [US5.1] Tests `tests/unit/tracks/chordQualities.test.js` (AC-5.1.1/1–/10, AC-5.1.2/1, AC-5.1.3/1, AC-5.1.3/2, AC-5.1.4, AC-5.1.5) and `tests/unit/ui/chordOptions.test.js` (AC-5.1.2/2), named verbatim
+- [X] T048 [US5.1] `src/tracks/chordQualities.js` (pools + voicing rules per level, quality-only answer across inversions, items keyed `chord:<quality>:<root|inv>` and by presentation, random roots). AC-5.1.1–AC-5.1.5
+- [X] T049 [US5.1] Tests `tests/unit/tracks/chordQualities.test.js` (AC-5.1.1/1–/10, AC-5.1.2/1, AC-5.1.3/1, AC-5.1.3/2, AC-5.1.4, AC-5.1.5) and `tests/unit/ui/chordOptions.test.js` (AC-5.1.2/2), named verbatim
 
 ## Phase 19: US-5.2 — Chord presentation sub-stages (P-022)
 
-- [ ] T050 [US5.2] Chord sub-stages block→arp→varied via `src/learning/subStages.js`, items `chord:<q>:<block|arp|varied>`, arpeggiation tempo from settings in `src/theory/exercise.js`. AC-5.2.1–AC-5.2.3
-- [ ] T051 [US5.2] Tests `tests/unit/tracks/chordSubStages.test.js` (AC-5.2.1/1–/3, AC-5.2.2, AC-5.2.3), named verbatim
+- [X] T050 [US5.2] Chord sub-stages block→arp→varied via `src/learning/subStages.js`, items `chord:<q>:<block|arp|varied>`, arpeggiation tempo from settings in `src/theory/exercise.js`. AC-5.2.1–AC-5.2.3
+- [X] T051 [US5.2] Tests `tests/unit/tracks/chordSubStages.test.js` (AC-5.2.1/1–/3, AC-5.2.2, AC-5.2.3), named verbatim
 
 ## Phase 20: US-5.3 — Chord quality answer input (P-023)
 
-- [ ] T052 [US5.3] Chord labels symbol · name in `src/ui/labels.js`, grid scoped in `src/ui/answerGrid.js`. AC-5.3.1
-- [ ] T053 [US5.3] Tests `tests/e2e/chordGrid.spec.js` (AC-5.3.1/1, AC-5.3.1/2), named verbatim
+- [X] T052 [US5.3] Chord labels symbol · name in `src/ui/labels.js`, grid scoped in `src/ui/answerGrid.js`. AC-5.3.1
+- [X] T053 [US5.3] Tests `tests/e2e/chordGrid.spec.js` (AC-5.3.1/1, AC-5.3.1/2), named verbatim
 
 ## Phase 21: US-6.1 — Inversion track unlock (P-024)
 
