@@ -1,0 +1,751 @@
+[
+ {
+  "id": 1,
+  "numerals": [
+   "I",
+   "IV",
+   "V",
+   "I"
+  ],
+  "level": 1,
+  "name": "Basic full cadence",
+  "rotations": false,
+  "mode": "major",
+  "active": true
+ },
+ {
+  "id": 2,
+  "numerals": [
+   "I",
+   "IV",
+   "I",
+   "V"
+  ],
+  "level": 1,
+  "name": "Alternating tonic",
+  "rotations": false,
+  "mode": "major",
+  "active": true
+ },
+ {
+  "id": 3,
+  "numerals": [
+   "I",
+   "V",
+   "IV",
+   "V"
+  ],
+  "level": 1,
+  "name": "Three-chord rock vamp",
+  "rotations": false,
+  "mode": "major",
+  "active": true
+ },
+ {
+  "id": 4,
+  "numerals": [
+   "I",
+   "IV"
+  ],
+  "level": 1,
+  "name": "Plagal vamp",
+  "rotations": false,
+  "mode": "major",
+  "active": true
+ },
+ {
+  "id": 5,
+  "numerals": [
+   "I",
+   "V"
+  ],
+  "level": 1,
+  "name": "Tonic–dominant vamp",
+  "rotations": false,
+  "mode": "major",
+  "active": true
+ },
+ {
+  "id": 6,
+  "numerals": [
+   "I",
+   "I",
+   "I",
+   "I",
+   "IV",
+   "IV",
+   "I",
+   "I",
+   "V",
+   "IV",
+   "I",
+   "V"
+  ],
+  "level": 1,
+  "name": "12-bar blues",
+  "rotations": false,
+  "mode": "major",
+  "active": true
+ },
+ {
+  "id": 7,
+  "numerals": [
+   "I",
+   "V",
+   "IV",
+   "IV",
+   "I",
+   "V",
+   "I",
+   "V"
+  ],
+  "level": 1,
+  "name": "8-bar blues",
+  "rotations": false,
+  "mode": "major",
+  "active": true
+ },
+ {
+  "id": 8,
+  "numerals": [
+   "I",
+   "V",
+   "vi",
+   "IV"
+  ],
+  "level": 2,
+  "name": "Axis",
+  "rotations": true,
+  "mode": "major",
+  "active": true
+ },
+ {
+  "id": 9,
+  "numerals": [
+   "vi",
+   "IV",
+   "I",
+   "V"
+  ],
+  "level": 2,
+  "name": "Axis rotation (sensitive)",
+  "rotations": false,
+  "mode": "major",
+  "active": true
+ },
+ {
+  "id": 10,
+  "numerals": [
+   "I",
+   "vi",
+   "IV",
+   "V"
+  ],
+  "level": 2,
+  "name": "50s / doo-wop",
+  "rotations": true,
+  "mode": "major",
+  "active": true
+ },
+ {
+  "id": 11,
+  "numerals": [
+   "I",
+   "IV",
+   "vi",
+   "V"
+  ],
+  "level": 2,
+  "name": "Pop variant",
+  "rotations": false,
+  "mode": "major",
+  "active": true
+ },
+ {
+  "id": 12,
+  "numerals": [
+   "I",
+   "IV",
+   "vi",
+   "IV"
+  ],
+  "level": 2,
+  "name": "Alternating plagal color",
+  "rotations": false,
+  "mode": "major",
+  "active": true
+ },
+ {
+  "id": 13,
+  "numerals": [
+   "vi",
+   "V",
+   "IV",
+   "V"
+  ],
+  "level": 2,
+  "name": "Descending-then-hover",
+  "rotations": false,
+  "mode": "major",
+  "active": true
+ },
+ {
+  "id": 14,
+  "numerals": [
+   "vi",
+   "IV"
+  ],
+  "level": 2,
+  "name": "Minor-color vamp",
+  "rotations": false,
+  "mode": "major",
+  "active": true
+ },
+ {
+  "id": 15,
+  "numerals": [
+   "ii",
+   "V",
+   "I"
+  ],
+  "level": 3,
+  "name": "Jazz cadence (triads)",
+  "rotations": false,
+  "mode": "major",
+  "active": true
+ },
+ {
+  "id": 16,
+  "numerals": [
+   "I",
+   "vi",
+   "ii",
+   "V"
+  ],
+  "level": 3,
+  "name": "Rhythm-changes turnaround",
+  "rotations": false,
+  "mode": "major",
+  "active": true
+ },
+ {
+  "id": 17,
+  "numerals": [
+   "I",
+   "V",
+   "vi",
+   "iii",
+   "IV",
+   "I",
+   "IV",
+   "V"
+  ],
+  "level": 3,
+  "name": "Pachelbel's Canon",
+  "rotations": false,
+  "mode": "major",
+  "active": true
+ },
+ {
+  "id": 18,
+  "numerals": [
+   "IV",
+   "V",
+   "iii",
+   "vi"
+  ],
+  "level": 3,
+  "name": "Royal Road",
+  "rotations": false,
+  "mode": "major",
+  "active": true
+ },
+ {
+  "id": 19,
+  "numerals": [
+   "vi",
+   "ii",
+   "V",
+   "I"
+  ],
+  "level": 3,
+  "name": "Circle-of-fifths",
+  "rotations": false,
+  "mode": "major",
+  "active": true
+ },
+ {
+  "id": 20,
+  "numerals": [
+   "I",
+   "iii",
+   "IV",
+   "V"
+  ],
+  "level": 3,
+  "name": "Ascending pop",
+  "rotations": false,
+  "mode": "major",
+  "active": true
+ },
+ {
+  "id": 21,
+  "numerals": [
+   "I",
+   "IV",
+   "ii",
+   "V"
+  ],
+  "level": 3,
+  "name": "Montgomery-Ward bridge",
+  "rotations": false,
+  "mode": "major",
+  "active": true
+ },
+ {
+  "id": 22,
+  "numerals": [
+   "iii",
+   "vi",
+   "ii",
+   "V"
+  ],
+  "level": 3,
+  "name": "Extended circle turnaround",
+  "rotations": false,
+  "mode": "major",
+  "active": true
+ },
+ {
+  "id": 23,
+  "numerals": [
+   "I",
+   "ii",
+   "iii",
+   "IV",
+   "V"
+  ],
+  "level": 3,
+  "name": "Ascending diatonic steps",
+  "rotations": false,
+  "mode": "major",
+  "active": true
+ },
+ {
+  "id": 24,
+  "numerals": [
+   "i",
+   "VII",
+   "VI",
+   "VII"
+  ],
+  "level": 4,
+  "name": "Aeolian vamp",
+  "rotations": false,
+  "mode": "minor",
+  "active": true
+ },
+ {
+  "id": 25,
+  "numerals": [
+   "i",
+   "VI",
+   "III",
+   "VII"
+  ],
+  "level": 4,
+  "name": "Minor Axis",
+  "rotations": false,
+  "mode": "minor",
+  "active": true
+ },
+ {
+  "id": 26,
+  "numerals": [
+   "i",
+   "VII",
+   "VI",
+   "V"
+  ],
+  "level": 4,
+  "name": "Andalusian cadence",
+  "rotations": false,
+  "mode": "minor",
+  "active": true
+ },
+ {
+  "id": 27,
+  "numerals": [
+   "i",
+   "iv",
+   "V7",
+   "i"
+  ],
+  "level": 4,
+  "name": "Harmonic-minor cadence",
+  "rotations": false,
+  "mode": "minor",
+  "active": true
+ },
+ {
+  "id": 28,
+  "numerals": [
+   "i",
+   "iv",
+   "v",
+   "i"
+  ],
+  "level": 4,
+  "name": "Natural-minor cadence",
+  "rotations": false,
+  "mode": "minor",
+  "active": true
+ },
+ {
+  "id": 29,
+  "numerals": [
+   "i",
+   "VI",
+   "VII",
+   "i"
+  ],
+  "level": 4,
+  "name": "Epic/rock minor",
+  "rotations": false,
+  "mode": "minor",
+  "active": true
+ },
+ {
+  "id": 30,
+  "numerals": [
+   "i",
+   "III",
+   "VII",
+   "VI"
+  ],
+  "level": 4,
+  "name": "Minor pop",
+  "rotations": false,
+  "mode": "minor",
+  "active": true
+ },
+ {
+  "id": 31,
+  "numerals": [
+   "i",
+   "VII",
+   "i",
+   "V",
+   "III",
+   "VII",
+   "i",
+   "V",
+   "i"
+  ],
+  "level": 4,
+  "name": "Passamezzo antico",
+  "rotations": false,
+  "mode": "minor",
+  "active": true
+ },
+ {
+  "id": 32,
+  "numerals": [
+   "i",
+   "V",
+   "i",
+   "VII",
+   "III",
+   "VII",
+   "i",
+   "V"
+  ],
+  "level": 4,
+  "name": "La Folia",
+  "rotations": false,
+  "mode": "minor",
+  "active": true
+ },
+ {
+  "id": 33,
+  "numerals": [
+   "i",
+   "iv",
+   "VII",
+   "III"
+  ],
+  "level": 4,
+  "name": "Minor circle-of-fifths",
+  "rotations": false,
+  "mode": "minor",
+  "active": true
+ },
+ {
+  "id": 34,
+  "numerals": [
+   "ii7",
+   "V7",
+   "Imaj7"
+  ],
+  "level": 5,
+  "name": "Jazz ii–V–I",
+  "rotations": false,
+  "mode": "major",
+  "active": true
+ },
+ {
+  "id": 35,
+  "numerals": [
+   "Imaj7",
+   "vi7",
+   "ii7",
+   "V7"
+  ],
+  "level": 5,
+  "name": "Jazz turnaround",
+  "rotations": false,
+  "mode": "major",
+  "active": true
+ },
+ {
+  "id": 36,
+  "numerals": [
+   "iii7",
+   "vi7",
+   "ii7",
+   "V7"
+  ],
+  "level": 5,
+  "name": "Extended turnaround",
+  "rotations": false,
+  "mode": "major",
+  "active": true
+ },
+ {
+  "id": 37,
+  "numerals": [
+   "I7",
+   "IV7",
+   "I7",
+   "V7",
+   "IV7",
+   "I7"
+  ],
+  "level": 5,
+  "name": "Blues with dominant 7ths",
+  "rotations": false,
+  "mode": "major",
+  "active": true
+ },
+ {
+  "id": 38,
+  "numerals": [
+   "Imaj7",
+   "IVmaj7"
+  ],
+  "level": 5,
+  "name": "Neo-soul vamp",
+  "rotations": false,
+  "mode": "major",
+  "active": true
+ },
+ {
+  "id": 39,
+  "numerals": [
+   "ii7",
+   "V7",
+   "iii7",
+   "vi7"
+  ],
+  "level": 5,
+  "name": "Royal Road with 7ths",
+  "rotations": false,
+  "mode": "major",
+  "active": true
+ },
+ {
+  "id": 40,
+  "numerals": [
+   "I",
+   "V6",
+   "vi",
+   "I6",
+   "IV",
+   "I64",
+   "V"
+  ],
+  "level": 6,
+  "name": "Descending stepwise bass",
+  "rotations": false,
+  "mode": "major",
+  "active": true
+ },
+ {
+  "id": 41,
+  "numerals": [
+   "I",
+   "I6",
+   "IV",
+   "V"
+  ],
+  "level": 6,
+  "name": "First-inversion approach",
+  "rotations": false,
+  "mode": "major",
+  "active": true
+ },
+ {
+  "id": 42,
+  "numerals": [
+   "I",
+   "V64",
+   "I6",
+   "IV"
+  ],
+  "level": 6,
+  "name": "Passing 6-4",
+  "rotations": false,
+  "mode": "major",
+  "active": true
+ },
+ {
+  "id": 43,
+  "numerals": [
+   "i",
+   "imaj7",
+   "i7",
+   "i6"
+  ],
+  "level": 6,
+  "name": "Line cliché",
+  "rotations": false,
+  "mode": "minor",
+  "active": true
+ },
+ {
+  "id": 44,
+  "numerals": [
+   "IV",
+   "I6",
+   "ii"
+  ],
+  "level": 6,
+  "name": "Stepwise bass ascent",
+  "rotations": false,
+  "mode": "major",
+  "active": true
+ },
+ {
+  "id": 45,
+  "numerals": [
+   "I",
+   "III",
+   "IV",
+   "iv"
+  ],
+  "level": 7,
+  "name": "Creep progression",
+  "rotations": false,
+  "mode": "major",
+  "active": true
+ },
+ {
+  "id": 46,
+  "numerals": [
+   "I",
+   "bVII",
+   "IV",
+   "I"
+  ],
+  "level": 7,
+  "name": "Mixolydian bVII",
+  "rotations": false,
+  "mode": "major",
+  "active": true
+ },
+ {
+  "id": 47,
+  "numerals": [
+   "bVI",
+   "bVII",
+   "I"
+  ],
+  "level": 7,
+  "name": "Mario cadence",
+  "rotations": false,
+  "mode": "major",
+  "active": true
+ },
+ {
+  "id": 48,
+  "numerals": [
+   "I",
+   "V",
+   "bVII",
+   "IV"
+  ],
+  "level": 7,
+  "name": "Chromatic descending 5–6",
+  "rotations": false,
+  "mode": "major",
+  "active": true
+ },
+ {
+  "id": 49,
+  "numerals": [
+   "iv",
+   "I"
+  ],
+  "level": 7,
+  "name": "Minor plagal cadence",
+  "rotations": false,
+  "mode": "major",
+  "active": true
+ },
+ {
+  "id": 50,
+  "numerals": [
+   "ii",
+   "bVII7",
+   "I"
+  ],
+  "level": 7,
+  "name": "Backdoor cadence",
+  "rotations": false,
+  "mode": "major",
+  "active": true
+ },
+ {
+  "id": 51,
+  "numerals": [
+   "I",
+   "vi",
+   "IV",
+   "iv",
+   "I"
+  ],
+  "level": 7,
+  "name": "Doo-wop with minor plagal",
+  "rotations": false,
+  "mode": "major",
+  "active": true
+ },
+ {
+  "id": 52,
+  "numerals": [
+   "I",
+   "V",
+   "vi",
+   "IV",
+   "I",
+   "V",
+   "vi",
+   "IV"
+  ],
+  "level": 7,
+  "name": "Extended Axis phrase",
+  "rotations": false,
+  "mode": "major",
+  "active": true
+ }
+]

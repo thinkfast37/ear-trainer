@@ -4,16 +4,33 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview --mode test --port 4173 --strictPort",
+    "lint": "eslint . && node tools/lint-extras.mjs",
     "test": "vitest run",
     "test:watch": "vitest",
+    "test:e2e": "playwright test",
     "coverage:ac": "node tests/ac-coverage.js",
     "check:trace": "node .claude/skills/spec-trace/spec-trace.mjs",
     "trace:matrix": "node .claude/skills/spec-trace/spec-trace.mjs matrix",
     "trace:changed": "node .claude/skills/spec-trace/spec-trace.mjs changed",
     "trace:prune": "node .claude/skills/spec-trace/spec-trace.mjs prune-baseline",
-    "check:unwired": "node tools/check-unwired.mjs"
+    "check:unwired": "node tools/check-unwired.mjs",
+    "samples": "node tools/gen-samples.mjs"
   },
   "devDependencies": {
+    "@eslint/js": "^9.39.5",
+    "@playwright/test": "^1.62.1",
+    "eslint": "^9.39.5",
+    "globals": "^17.11.0",
+    "jsdom": "^29.1.1",
+    "vite": "^5.4.21",
     "vitest": "^3.0.0"
+  },
+  "dependencies": {
+    "@capacitor/core": "^6.2.1",
+    "@capacitor/local-notifications": "^6.1.3",
+    "@capacitor/preferences": "^6.0.4"
   }
 }

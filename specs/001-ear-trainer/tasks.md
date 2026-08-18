@@ -20,26 +20,26 @@ arbiter; a task is not done until its criteria are 🟢 in `specs/traceability-m
 
 ## Phase 1: Setup (P-001)
 
-- [ ] T001 Vite scaffold: `package.json` (scripts dev/build/preview/lint/test/test:e2e, deps: vite, vitest, jsdom, @playwright/test, eslint, @capacitor/core, @capacitor/preferences, @capacitor/local-notifications), `vite.config.js`, `index.html`, `src/main.js` (composition root stub), `src/styles.css`
-- [ ] T002 [P] Lint: `eslint.config.js` (flat config, ES2022 modules, browser + node globals) and `tools/lint-extras.mjs` (fails on `:hover` in any CSS, runs `tools/validate-data.mjs`, fails when a media directory under `public/` lacks `LICENSE.md`); wire `npm run lint`
-- [ ] T003 [P] Playwright: `playwright.config.js` (phone 375×812 touch and tablet 1024×768 projects, `webServer: vite preview --mode test`, baseURL) and `tests/e2e/helpers.js` (goto, tapToUnlock, seed, readAudioLog)
-- [ ] T004 [P] Vitest: extend `vitest.config.js` include with `tests/unit/**/*.test.js`; `tests/unit/ui/` files opt into jsdom via `// @vitest-environment jsdom`; add `tests/unit/ui/dom.js` (mount helper)
-- [ ] T005 [P] Fake AudioContext test double `tests/unit/audio/fakeAudioContext.js` (records `createBufferSource().start(t)`, gain envelopes, `currentTime`, `state`, `resume()`), plus `tests/unit/audio/offlineRender.js` helper for onset measurement
+- [X] T001 Vite scaffold: `package.json` (scripts dev/build/preview/lint/test/test:e2e, deps: vite, vitest, jsdom, @playwright/test, eslint, @capacitor/core, @capacitor/preferences, @capacitor/local-notifications), `vite.config.js`, `index.html`, `src/main.js` (composition root stub), `src/styles.css`
+- [X] T002 [P] Lint: `eslint.config.js` (flat config, ES2022 modules, browser + node globals) and `tools/lint-extras.mjs` (fails on `:hover` in any CSS, runs `tools/validate-data.mjs`, fails when a media directory under `public/` lacks `LICENSE.md`); wire `npm run lint`
+- [X] T003 [P] Playwright: `playwright.config.js` (phone 375×812 touch and tablet 1024×768 projects, `webServer: vite preview --mode test`, baseURL) and `tests/e2e/helpers.js` (goto, tapToUnlock, seed, readAudioLog)
+- [X] T004 [P] Vitest: extend `vitest.config.js` include with `tests/unit/**/*.test.js`; `tests/unit/ui/` files opt into jsdom via `// @vitest-environment jsdom`; add `tests/unit/ui/dom.js` (mount helper)
+- [X] T005 [P] Fake AudioContext test double `tests/unit/audio/fakeAudioContext.js` (records `createBufferSource().start(t)`, gain envelopes, `currentTime`, `state`, `resume()`), plus `tests/unit/audio/offlineRender.js` helper for onset measurement
 
 ## Phase 2: Foundational (P-002 – P-005) — blocks every story
 
-- [ ] T006 [P] Levels data `src/data/levels.json`: all six tracks with every level's pool/voicings/inversions/melodic constraints/vocabulary, sub-stage lists, prerequisites, confusable pairs, replay limits, mixedReview flags, per contracts/data-files.md (Epics 3–8)
-- [ ] T007 [P] Catalog and anchors data `src/data/progressions.json` (Appendix A, 52 entries with level/name/rotations/mode/active) and `src/data/anchors.json` (Appendix B, simple + compound with `simple` links)
-- [ ] T008 Data validator `tools/validate-data.mjs` per contracts/data-files.md; exits non-zero on any violation; invoked by `tools/lint-extras.mjs`
-- [ ] T009 Tests for data files and validator in `tests/unit/data/levels.test.js`, `tests/unit/data/progressions.test.js`, `tests/unit/data/anchors.test.js`, `tests/unit/data/validate.test.js`
-- [ ] T010 [P] Theory core `src/theory/notes.js` (midi↔name, octave, clamp to register) and `src/theory/intervals.js` (ids m2…M13, semitones, simple↔compound, labels short/full)
-- [ ] T011 [P] Theory harmony `src/theory/chords.js` (quality formulas maj/min/dim/aug/dom7/maj7/m7/m7b5/dim7/sus2/sus4, inversions 0–3, close voicing, labels symbol/name) and `src/theory/scales.js` (12 keys, major/minor, degrees, solfège incl. chromatic movable-do, degree↔midi)
-- [ ] T012 Theory progressions `src/theory/progressions.js` (roman numeral parse incl. ♭VII, iv, 7ths, ⁶/⁶⁴ bass inversions; numeral→chord in key; rotations), `src/theory/cadence.js` (I–IV–V–I major, i–iv–V–i minor, tonic reference), `src/theory/voicing.js` (identical block, voice-led with register variation, arpeggio/strum event expansion), `src/theory/melody.js` (constrained phrase generator per level rules)
-- [ ] T013 Theory tests `tests/unit/theory/notes.test.js`, `tests/unit/theory/intervals.test.js`, `tests/unit/theory/chords.test.js`, `tests/unit/theory/scales.test.js`, `tests/unit/theory/progressions.test.js`, `tests/unit/theory/voicing.test.js`, `tests/unit/theory/melody.test.js`
-- [ ] T014 Store and storage: `src/learning/random.js` (seedable mulberry32), `src/app/store.js` (state, dispatch, subscribe, debounced persist), `src/storage/schema.js` (schemaVersion 1, empty document, validate), `src/storage/storage.js` (localStorage adapter + Capacitor Preferences adapter selected by platform, load/save)
-- [ ] T015 Store/storage tests `tests/unit/storage/schema.test.js`, `tests/unit/storage/storage.test.js`, `tests/unit/app/store.test.js`
-- [ ] T016 App shell: `src/app/router.js` (hash routes: home, level, session, feedback, stats, settings, reference), `src/ui/dom.js` (h(), on(), mount), `src/ui/layout.js` (app frame, header/nav, phone/tablet container), `src/styles.css` (tokens, breakpoints, ≥44 px controls, no `:hover`), wire in `src/main.js`
-- [ ] T017 Shell tests `tests/unit/ui/router.test.js`, `tests/unit/ui/layout.test.js`
+- [X] T006 [P] Levels data `src/data/levels.json`: all six tracks with every level's pool/voicings/inversions/melodic constraints/vocabulary, sub-stage lists, prerequisites, confusable pairs, replay limits, mixedReview flags, per contracts/data-files.md (Epics 3–8)
+- [X] T007 [P] Catalog and anchors data `src/data/progressions.json` (Appendix A, 52 entries with level/name/rotations/mode/active) and `src/data/anchors.json` (Appendix B, simple + compound with `simple` links)
+- [X] T008 Data validator `tools/validate-data.mjs` per contracts/data-files.md; exits non-zero on any violation; invoked by `tools/lint-extras.mjs`
+- [X] T009 Tests for data files and validator in `tests/unit/data/levels.test.js`, `tests/unit/data/progressions.test.js`, `tests/unit/data/anchors.test.js`, `tests/unit/data/validate.test.js`
+- [X] T010 [P] Theory core `src/theory/notes.js` (midi↔name, octave, clamp to register) and `src/theory/intervals.js` (ids m2…M13, semitones, simple↔compound, labels short/full)
+- [X] T011 [P] Theory harmony `src/theory/chords.js` (quality formulas maj/min/dim/aug/dom7/maj7/m7/m7b5/dim7/sus2/sus4, inversions 0–3, close voicing, labels symbol/name) and `src/theory/scales.js` (12 keys, major/minor, degrees, solfège incl. chromatic movable-do, degree↔midi)
+- [X] T012 Theory progressions `src/theory/progressions.js` (roman numeral parse incl. ♭VII, iv, 7ths, ⁶/⁶⁴ bass inversions; numeral→chord in key; rotations), `src/theory/cadence.js` (I–IV–V–I major, i–iv–V–i minor, tonic reference), `src/theory/voicing.js` (identical block, voice-led with register variation, arpeggio/strum event expansion), `src/theory/melody.js` (constrained phrase generator per level rules)
+- [X] T013 Theory tests `tests/unit/theory/notes.test.js`, `tests/unit/theory/intervals.test.js`, `tests/unit/theory/chords.test.js`, `tests/unit/theory/scales.test.js`, `tests/unit/theory/progressions.test.js`, `tests/unit/theory/voicing.test.js`, `tests/unit/theory/melody.test.js`
+- [X] T014 Store and storage: `src/learning/random.js` (seedable mulberry32), `src/app/store.js` (state, dispatch, subscribe, debounced persist), `src/storage/schema.js` (schemaVersion 1, empty document, validate), `src/storage/storage.js` (localStorage adapter + Capacitor Preferences adapter selected by platform, load/save)
+- [X] T015 Store/storage tests `tests/unit/storage/schema.test.js`, `tests/unit/storage/storage.test.js`, `tests/unit/app/store.test.js`
+- [X] T016 App shell: `src/app/router.js` (hash routes: home, level, session, feedback, stats, settings, reference), `src/ui/dom.js` (h(), on(), mount), `src/ui/layout.js` (app frame, header/nav, phone/tablet container), `src/styles.css` (tokens, breakpoints, ≥44 px controls, no `:hover`), wire in `src/main.js`
+- [X] T017 Shell tests `tests/unit/ui/router.test.js`, `tests/unit/ui/layout.test.js`
 
 **Checkpoint**: data validates, theory tests green, store persists, shell routes render.
 

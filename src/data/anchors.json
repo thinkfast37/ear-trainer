@@ -1,0 +1,480 @@
+{
+ "m2": [
+  {
+   "title": "Jaws theme",
+   "cue": "the two-note motif",
+   "direction": "asc",
+   "playsMotif": true
+  },
+  {
+   "title": "Für Elise",
+   "cue": "opening E–D♯",
+   "direction": "desc",
+   "playsMotif": true
+  },
+  {
+   "title": "White Christmas",
+   "cue": "\"I'm drea-ming…\"",
+   "direction": "asc",
+   "playsMotif": false
+  },
+  {
+   "title": "The Pink Panther theme",
+   "cue": "opening chromatic slide",
+   "direction": "asc",
+   "playsMotif": false
+  },
+  {
+   "title": "Isn't She Lovely",
+   "cue": "\"Isn't she…\"",
+   "direction": "asc",
+   "playsMotif": false
+  }
+ ],
+ "M2": [
+  {
+   "title": "Happy Birthday",
+   "cue": "\"Happy birth-…\"",
+   "direction": "asc",
+   "playsMotif": true
+  },
+  {
+   "title": "Frère Jacques",
+   "cue": "opening",
+   "direction": "asc",
+   "playsMotif": true
+  },
+  {
+   "title": "Silent Night",
+   "cue": "\"Si-lent…\"",
+   "direction": "desc",
+   "playsMotif": false
+  },
+  {
+   "title": "Mary Had a Little Lamb",
+   "cue": "opening (desc, then asc)",
+   "direction": "desc",
+   "playsMotif": false
+  },
+  {
+   "title": "Do-Re-Mi (The Sound of Music)",
+   "cue": "\"Doe, a deer\"",
+   "direction": "asc",
+   "playsMotif": false
+  }
+ ],
+ "m3": [
+  {
+   "title": "Greensleeves",
+   "cue": "\"A-las…\"",
+   "direction": "asc",
+   "playsMotif": true
+  },
+  {
+   "title": "Smoke on the Water",
+   "cue": "riff's first interval (as commonly sung)",
+   "direction": "asc",
+   "playsMotif": false
+  },
+  {
+   "title": "Brahms' Lullaby",
+   "cue": "\"Lul-la-by…\"",
+   "direction": "asc",
+   "playsMotif": false
+  },
+  {
+   "title": "Georgia on My Mind",
+   "cue": "\"Geor-gia…\"",
+   "direction": "asc",
+   "playsMotif": false
+  },
+  {
+   "title": "Hey Jude",
+   "cue": "\"Hey Jude\"",
+   "direction": "desc",
+   "playsMotif": false
+  }
+ ],
+ "M3": [
+  {
+   "title": "Oh, When the Saints Go Marching In",
+   "cue": "\"Oh when…\"",
+   "direction": "asc",
+   "playsMotif": true
+  },
+  {
+   "title": "Kumbaya",
+   "cue": "\"Kum-ba…\"",
+   "direction": "asc",
+   "playsMotif": false
+  },
+  {
+   "title": "Morning Has Broken",
+   "cue": "opening",
+   "direction": "asc",
+   "playsMotif": false
+  },
+  {
+   "title": "Blue Danube Waltz",
+   "cue": "opening arpeggio",
+   "direction": "asc",
+   "playsMotif": false
+  },
+  {
+   "title": "Swing Low, Sweet Chariot",
+   "cue": "\"Swing low…\"",
+   "direction": "desc",
+   "playsMotif": false
+  }
+ ],
+ "P4": [
+  {
+   "title": "Here Comes the Bride",
+   "cue": "\"Here comes…\"",
+   "direction": "asc",
+   "playsMotif": true
+  },
+  {
+   "title": "Amazing Grace",
+   "cue": "\"A-maz-…\"",
+   "direction": "asc",
+   "playsMotif": true
+  },
+  {
+   "title": "We Wish You a Merry Christmas",
+   "cue": "\"We wish…\"",
+   "direction": "asc",
+   "playsMotif": false
+  },
+  {
+   "title": "Hedwig's Theme (Harry Potter)",
+   "cue": "after the pickup note",
+   "direction": "asc",
+   "playsMotif": false
+  },
+  {
+   "title": "Auld Lang Syne",
+   "cue": "\"Should auld…\"",
+   "direction": "asc",
+   "playsMotif": false
+  }
+ ],
+ "TT": [
+  {
+   "title": "The Simpsons theme",
+   "cue": "\"The Simp-sons\"",
+   "direction": "asc",
+   "playsMotif": true
+  },
+  {
+   "title": "Maria (West Side Story)",
+   "cue": "\"Ma-ri-a\"",
+   "direction": "asc",
+   "playsMotif": true
+  },
+  {
+   "title": "Purple Haze",
+   "cue": "opening riff",
+   "direction": "asc",
+   "playsMotif": false
+  },
+  {
+   "title": "Danse Macabre",
+   "cue": "the violin's \"devil's interval\"",
+   "direction": "asc",
+   "playsMotif": false
+  },
+  {
+   "title": "YYZ (Rush)",
+   "cue": "opening motif",
+   "direction": "asc",
+   "playsMotif": false
+  }
+ ],
+ "P5": [
+  {
+   "title": "Twinkle, Twinkle, Little Star",
+   "cue": "\"Twin-kle twin-kle\"",
+   "direction": "asc",
+   "playsMotif": true
+  },
+  {
+   "title": "Star Wars main theme",
+   "cue": "after the pickup",
+   "direction": "asc",
+   "playsMotif": false
+  },
+  {
+   "title": "Also Sprach Zarathustra (2001)",
+   "cue": "second interval of the opening",
+   "direction": "asc",
+   "playsMotif": false
+  },
+  {
+   "title": "Scarborough Fair",
+   "cue": "\"Are you…\"",
+   "direction": "asc",
+   "playsMotif": false
+  },
+  {
+   "title": "Flintstones theme",
+   "cue": "\"Flint-stones\"",
+   "direction": "desc",
+   "playsMotif": false
+  }
+ ],
+ "m6": [
+  {
+   "title": "Where Do I Begin (Love Story theme)",
+   "cue": "opening",
+   "direction": "asc",
+   "playsMotif": true
+  },
+  {
+   "title": "Manhã de Carnaval (Black Orpheus)",
+   "cue": "opening",
+   "direction": "asc",
+   "playsMotif": false
+  },
+  {
+   "title": "In My Life (The Beatles)",
+   "cue": "opening guitar",
+   "direction": "desc",
+   "playsMotif": false
+  },
+  {
+   "title": "The Morning After",
+   "cue": "opening",
+   "direction": "asc",
+   "playsMotif": false
+  },
+  {
+   "title": "Go Down Moses",
+   "cue": "\"When Is-rael…\"",
+   "direction": "desc",
+   "playsMotif": false
+  }
+ ],
+ "M6": [
+  {
+   "title": "NBC chimes",
+   "cue": "first two notes",
+   "direction": "asc",
+   "playsMotif": true
+  },
+  {
+   "title": "My Bonnie Lies Over the Ocean",
+   "cue": "\"My Bon-nie\"",
+   "direction": "asc",
+   "playsMotif": true
+  },
+  {
+   "title": "Jingle Bells",
+   "cue": "\"Dash-ing through the snow\"",
+   "direction": "asc",
+   "playsMotif": false
+  },
+  {
+   "title": "It Came Upon a Midnight Clear",
+   "cue": "opening",
+   "direction": "asc",
+   "playsMotif": false
+  },
+  {
+   "title": "Take the \"A\" Train",
+   "cue": "opening",
+   "direction": "asc",
+   "playsMotif": false
+  }
+ ],
+ "m7": [
+  {
+   "title": "Somewhere (West Side Story)",
+   "cue": "\"There's a place for us\"",
+   "direction": "asc",
+   "playsMotif": true
+  },
+  {
+   "title": "Star Trek (original series theme)",
+   "cue": "opening leap",
+   "direction": "asc",
+   "playsMotif": false
+  },
+  {
+   "title": "Watermelon Man",
+   "cue": "opening horn line",
+   "direction": "asc",
+   "playsMotif": false
+  },
+  {
+   "title": "An American in Paris",
+   "cue": "main theme leap",
+   "direction": "asc",
+   "playsMotif": false
+  },
+  {
+   "title": "The Winner Takes It All",
+   "cue": "\"The win-ner…\"",
+   "direction": "desc",
+   "playsMotif": false
+  }
+ ],
+ "M7": [
+  {
+   "title": "Take On Me",
+   "cue": "the big chorus leap",
+   "direction": "asc",
+   "playsMotif": true
+  },
+  {
+   "title": "Don't Know Why (Norah Jones)",
+   "cue": "opening",
+   "direction": "desc",
+   "playsMotif": false
+  },
+  {
+   "title": "Cast Your Fate to the Wind",
+   "cue": "opening",
+   "direction": "asc",
+   "playsMotif": false
+  },
+  {
+   "title": "I Love You (Cole Porter)",
+   "cue": "\"I love you\"",
+   "direction": "desc",
+   "playsMotif": false
+  },
+  {
+   "title": "Superman theme",
+   "cue": "the leap in the main fanfare",
+   "direction": "asc",
+   "playsMotif": false
+  }
+ ],
+ "P8": [
+  {
+   "title": "Somewhere Over the Rainbow",
+   "cue": "\"Some-where\"",
+   "direction": "asc",
+   "playsMotif": true
+  },
+  {
+   "title": "Starman (David Bowie)",
+   "cue": "\"Star-man\" in the chorus",
+   "direction": "asc",
+   "playsMotif": false
+  },
+  {
+   "title": "Singin' in the Rain",
+   "cue": "\"I'm sing-in'\"",
+   "direction": "asc",
+   "playsMotif": false
+  },
+  {
+   "title": "The Christmas Song",
+   "cue": "\"Chest-nuts roast-ing\"",
+   "direction": "asc",
+   "playsMotif": false
+  },
+  {
+   "title": "My Sharona",
+   "cue": "the octave riff",
+   "direction": "asc",
+   "playsMotif": false
+  }
+ ],
+ "m9": {
+  "simple": "m2",
+  "examples": [
+   {
+    "title": "What Is This Thing Called Love",
+    "cue": "piano stab (some arrangements); mostly heard harmonically in jazz voicings",
+    "direction": "asc",
+    "playsMotif": false
+   }
+  ]
+ },
+ "M9": {
+  "simple": "M2",
+  "examples": [
+   {
+    "title": "La Traviata, Act 1 Prelude",
+    "cue": "opening span",
+    "direction": "asc",
+    "playsMotif": false
+   },
+   {
+    "title": "Somewhere in My Memory (Home Alone)",
+    "cue": "span",
+    "direction": "asc",
+    "playsMotif": false
+   }
+  ]
+ },
+ "m10": {
+  "simple": "m3",
+  "examples": [
+   {
+    "title": "Maple Leaf Rag",
+    "cue": "ragtime stride left-hand leaps",
+    "direction": "asc",
+    "playsMotif": false
+   }
+  ]
+ },
+ "M10": {
+  "simple": "M3",
+  "examples": [
+   {
+    "title": "Chopin Étude Op. 10 No. 1",
+    "cue": "arpeggio span; stride piano bass",
+    "direction": "asc",
+    "playsMotif": false
+   }
+  ]
+ },
+ "P11": {
+  "simple": "P4",
+  "examples": [
+   {
+    "title": "On the Trail (Grofé)",
+    "cue": "horn leap; rare melodically",
+    "direction": "asc",
+    "playsMotif": false
+   }
+  ]
+ },
+ "P12": {
+  "simple": "P5",
+  "examples": [
+   {
+    "title": "Rhapsody in Blue",
+    "cue": "opening clarinet span",
+    "direction": "asc",
+    "playsMotif": false
+   }
+  ]
+ },
+ "m13": {
+  "simple": "m6",
+  "examples": [
+   {
+    "title": "Jazz 13th chords",
+    "cue": "heard harmonically",
+    "direction": "asc",
+    "playsMotif": false
+   }
+  ]
+ },
+ "M13": {
+  "simple": "M6",
+  "examples": [
+   {
+    "title": "Jazz-harmony color",
+    "cue": "not a melodic leap",
+    "direction": "asc",
+    "playsMotif": false
+   }
+  ]
+ }
+}
