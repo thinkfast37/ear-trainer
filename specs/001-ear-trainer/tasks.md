@@ -245,6 +245,7 @@ renumber the MVP section above.)*
 - [X] T094 [US2.6] Tests for US-2.6, verbatim-named per Case: AC-2.6.1/1–4 and AC-2.6.2/1–3 in `tests/unit/ui/sessionProgress.test.js` (DOM-capable). Proves AC-2.6.1, AC-2.6.2 (2026-08-18).
 - [X] T095 [US9.2] Daily-goal progress visibility (P-044): questions answered today vs the daily goal's question target shown on the session screen; stopping-point toast verified to already name the daily goal (no wording change needed; AC-9.2.4/2's test proves it). Files: `src/ui/session.js` (reads `src/learning/streak.js` day keys; no streak.js change). Implements AC-9.2.4 (2026-08-18).
 - [X] T096 [US9.2] Tests for AC-9.2.4, verbatim-named per Case: AC-9.2.4/1–2 in `tests/unit/ui/sessionProgress.test.js` (DOM-capable). Proves AC-9.2.4 (2026-08-18).
+- [X] T097 Build-version stamp: `vite.config.js` (a `build-stamp` plugin injecting `<meta name="build-version" content="YYYY-MM-DD HH:MM:SS UTC (commit)">` into `index.html` at build time), `CLAUDE.md` §6 (the rule). Infrastructure — no AC; renders nothing on screen. View-source on the live site or the Capacitor bundle shows which build is running. Requested by the maintainer across all their repos (2026-08-18).
 
 ---
 

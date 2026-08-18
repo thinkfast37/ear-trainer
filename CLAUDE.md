@@ -368,6 +368,11 @@ Say so in the option text and let them choose. Do not change the default.
   viewport width only (`src/ui/layout.js`), never by platform (D-008).
 - **Every export reachable.** `npm run check:unwired` — `src/main.js` is the composition
   root; a module that nothing wires is unbuilt work.
+- **Every deployed build is stamped.** `vite.config.js` injects a
+  `<meta name="build-version">` tag — UTC build time to the second, plus the commit —
+  into `index.html` at build time. View-source on the live site (or the Capacitor
+  bundle) answers "which version is running?"; nothing is rendered on screen. Do not
+  remove the stamp, and any replacement build pipeline must keep it.
 
 ---
 
