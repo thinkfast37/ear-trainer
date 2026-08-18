@@ -6,7 +6,7 @@
  * the times the scheduler computed — which is what the criterion is about.
  */
 export function renderOnsets(log, { sampleRate = 44100 } = {}) {
-  const starts = log.filter((e) => e.kind === 'note' || e.kind === 'start').map((e) => e.at);
+  const starts = log.filter((e) => typeof e.at === 'number' && (e.kind === undefined || e.kind === 'note' || e.kind === 'start')).map((e) => e.at);
   const length = Math.ceil((Math.max(0, ...starts) + 1) * sampleRate);
   const buf = new Float32Array(length);
   for (const t of starts) {

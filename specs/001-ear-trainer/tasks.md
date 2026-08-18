@@ -23,7 +23,7 @@ arbiter; a task is not done until its criteria are 🟢 in `specs/traceability-m
 - [X] T001 Vite scaffold: `package.json` (scripts dev/build/preview/lint/test/test:e2e, deps: vite, vitest, jsdom, @playwright/test, eslint, @capacitor/core, @capacitor/preferences, @capacitor/local-notifications), `vite.config.js`, `index.html`, `src/main.js` (composition root stub), `src/styles.css`
 - [X] T002 [P] Lint: `eslint.config.js` (flat config, ES2022 modules, browser + node globals) and `tools/lint-extras.mjs` (fails on `:hover` in any CSS, runs `tools/validate-data.mjs`, fails when a media directory under `public/` lacks `LICENSE.md`); wire `npm run lint`
 - [X] T003 [P] Playwright: `playwright.config.js` (phone 375×812 touch and tablet 1024×768 projects, `webServer: vite preview --mode test`, baseURL) and `tests/e2e/helpers.js` (goto, tapToUnlock, seed, readAudioLog)
-- [X] T004 [P] Vitest: extend `vitest.config.js` include with `tests/unit/**/*.test.js`; `tests/unit/ui/` files opt into jsdom via `// @vitest-environment jsdom`; add `tests/unit/ui/dom.js` (mount helper)
+- [X] T004 [P] Vitest: extend `vitest.config.js` include to cover every unit test under tests/unit; `tests/unit/ui/` files opt into jsdom via `// @vitest-environment jsdom`; add `tests/unit/ui/dom.js` (mount helper)
 - [X] T005 [P] Fake AudioContext test double `tests/unit/audio/fakeAudioContext.js` (records `createBufferSource().start(t)`, gain envelopes, `currentTime`, `state`, `resume()`), plus `tests/unit/audio/offlineRender.js` helper for onset measurement
 
 ## Phase 2: Foundational (P-002 – P-005) — blocks every story
@@ -47,18 +47,18 @@ arbiter; a task is not done until its criteria are 🟢 in `specs/traceability-m
 
 ## Phase 3: US-1.1 — Piano playback (P-006)
 
-- [ ] T018 [US1.1] Sampler `src/audio/sampler.js` (load 17 bundled samples from `public/samples/`, decode once, nearest-sample selection, playbackRate pitch shift, per-note gain envelope), `tools/gen-samples.mjs` (synthesises the placeholder set with the real file names until licensed samples land), `public/samples/LICENSE.md`; wire in `src/main.js`. AC-1.1.1, AC-1.1.2
-- [ ] T019 [US1.1] Tests `tests/unit/audio/sampler.test.js` (AC-1.1.1/1, AC-1.1.1/3, AC-1.1.2) and `tests/e2e/audio.spec.js` (AC-1.1.1/2 — no network request during playback), named verbatim
+- [X] T018 [US1.1] Sampler `src/audio/sampler.js` (load 17 bundled samples from `public/samples/`, decode once, nearest-sample selection, playbackRate pitch shift, per-note gain envelope), `tools/gen-samples.mjs` (synthesises the placeholder set with the real file names until licensed samples land), `public/samples/LICENSE.md`; wire in `src/main.js`. AC-1.1.1, AC-1.1.2
+- [X] T019 [US1.1] Tests `tests/unit/audio/sampler.test.js` (AC-1.1.1/1, AC-1.1.1/3, AC-1.1.2) and `tests/e2e/audio.spec.js` (AC-1.1.1/2 — no network request during playback), named verbatim
 
 ## Phase 4: US-1.2 — Mobile-safe audio initialization (P-007)
 
-- [ ] T020 [US1.2] `src/audio/context.js` (create/get context, first-gesture unlock listeners, visibilitychange resume, `ensureRunning()`), `src/audio/scheduler.js` (absolute-time scheduling on `ctx.currentTime`, no timers); wire in `src/main.js`. AC-1.2.1–AC-1.2.3
-- [ ] T021 [US1.2] Tests `tests/unit/audio/scheduler.test.js` (AC-1.2.2/1, AC-1.2.2/2 via offline render), `tests/unit/ui/audioUnlock.test.js` (AC-1.2.1 tap unlock, AC-1.2.3 return-and-tap resume), named verbatim
+- [X] T020 [US1.2] `src/audio/context.js` (create/get context, first-gesture unlock listeners, visibilitychange resume, `ensureRunning()`), `src/audio/scheduler.js` (absolute-time scheduling on `ctx.currentTime`, no timers); wire in `src/main.js`. AC-1.2.1–AC-1.2.3
+- [X] T021 [US1.2] Tests `tests/unit/audio/scheduler.test.js` (AC-1.2.2/1, AC-1.2.2/2 via offline render), `tests/unit/ui/audioUnlock.test.js` (AC-1.2.1 tap unlock, AC-1.2.3 return-and-tap resume), named verbatim
 
 ## Phase 5: US-1.3 — Unified exercise renderer (P-008)
 
-- [ ] T022 [US1.3] `src/audio/renderer.js` (`play(exercise, at)`: prelude then stimulus, all eight shapes via scheduler+sampler; returns the scheduled event log; `stop()`), exercise builders in `src/theory/exercise.js` (single, interval asc/desc/harm, chord block/arp, sequence, progression, with cadence prelude); replay path in `src/learning/session.js` reuses the stored exercise object. AC-1.3.1–AC-1.3.3
-- [ ] T023 [US1.3] Tests `tests/unit/audio/renderer.test.js` (AC-1.3.1/1–/8, AC-1.3.2) and `tests/unit/ui/replay.test.js` (AC-1.3.3 tap replay identical rendering), named verbatim
+- [X] T022 [US1.3] `src/audio/renderer.js` (`play(exercise, at)`: prelude then stimulus, all eight shapes via scheduler+sampler; returns the scheduled event log; `stop()`), exercise builders in `src/theory/exercise.js` (single, interval asc/desc/harm, chord block/arp, sequence, progression, with cadence prelude); replay path in `src/learning/session.js` reuses the stored exercise object. AC-1.3.1–AC-1.3.3
+- [X] T023 [US1.3] Tests `tests/unit/audio/renderer.test.js` (AC-1.3.1/1–/8, AC-1.3.2) and `tests/unit/ui/replay.test.js` (AC-1.3.3 tap replay identical rendering), named verbatim
 
 ## Phase 6: US-2.1 — Per-item Leitner scheduling (P-009)
 
