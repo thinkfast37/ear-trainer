@@ -137,28 +137,28 @@ arbiter; a task is not done until its criteria are 🟢 in `specs/traceability-m
 
 ## Phase 21: US-6.1 — Inversion track unlock (P-024)
 
-- [ ] T054 [US6.1] `src/learning/unlocks.js` (track prerequisites from data → locked/available with message text), used by `src/ui/homeMap.js`. AC-6.1.1–AC-6.1.2
-- [ ] T055 [US6.1] Tests `tests/e2e/inversionsUnlock.spec.js` (AC-6.1.1, AC-6.1.2), named verbatim
+- [X] T054 [US6.1] `src/learning/unlocks.js` (track prerequisites from data → locked/available with message text), used by `src/ui/homeMap.js`. AC-6.1.1–AC-6.1.2
+- [X] T055 [US6.1] Tests `tests/e2e/inversionsUnlock.spec.js` (AC-6.1.1, AC-6.1.2), named verbatim
 
 ## Phase 22: US-6.2 — Inversion level progression (P-025)
 
-- [ ] T056 [US6.2] `src/tracks/inversions.js` (pools per level, combined quality+inversion answer at level 3, block→arp sub-stages), combined answer UI in `src/ui/answerGrid.js`. AC-6.2.1–AC-6.2.3
-- [ ] T057 [US6.2] Tests `tests/unit/tracks/inversions.test.js` (AC-6.2.1/1–/4, AC-6.2.2/2, AC-6.2.3) and `tests/e2e/inversionAnswer.spec.js` (AC-6.2.2/1), named verbatim
+- [X] T056 [US6.2] `src/tracks/inversions.js` (pools per level, combined quality+inversion answer at level 3, block→arp sub-stages), combined answer UI in `src/ui/answerGrid.js`. AC-6.2.1–AC-6.2.3
+- [X] T057 [US6.2] Tests `tests/unit/tracks/inversions.test.js` (AC-6.2.1/1–/4, AC-6.2.2/2, AC-6.2.3) and `tests/e2e/inversionAnswer.spec.js` (AC-6.2.2/1), named verbatim
 
 ## Phase 23: US-7.1 — Melodic dictation levels (P-026)
 
-- [ ] T058 [US7.1] `src/tracks/melodic.js` (phrase generation per level via `src/theory/melody.js`, cadence + tonic reference prelude). AC-7.1.1–AC-7.1.2
-- [ ] T059 [US7.1] Tests `tests/unit/tracks/melodic.test.js` (AC-7.1.1/1–/6, AC-7.1.2), named verbatim
+- [X] T058 [US7.1] `src/tracks/melodic.js` (phrase generation per level via `src/theory/melody.js`, cadence + tonic reference prelude). AC-7.1.1–AC-7.1.2
+- [X] T059 [US7.1] Tests `tests/unit/tracks/melodic.test.js` (AC-7.1.1/1–/6, AC-7.1.2), named verbatim
 
 ## Phase 24: US-7.2 — Sequence answer input (P-027)
 
-- [ ] T060 [US7.2] `src/ui/sequenceInput.js` (append, delete-last, clear-all, insert-at-cursor, submit) and `src/learning/scoring.js` (position-wise comparison, partial credit), comparison marks in `src/ui/feedback.js`. AC-7.2.1–AC-7.2.3
-- [ ] T061 [US7.2] Tests `tests/unit/ui/sequenceInput.test.js` (AC-7.2.1, AC-7.2.2/1–/3), `tests/unit/learning/scoring.test.js` (AC-7.2.3/2), `tests/unit/ui/comparison.test.js` (AC-7.2.3/1), named verbatim
+- [X] T060 [US7.2] `src/ui/sequenceInput.js` (append, delete-last, clear-all, insert-at-cursor, submit) and `src/learning/scoring.js` (position-wise comparison, partial credit), comparison marks in `src/ui/feedback.js`. AC-7.2.1–AC-7.2.3
+- [X] T061 [US7.2] Tests `tests/unit/ui/sequenceInput.test.js` (AC-7.2.1, AC-7.2.2/1–/3), `tests/unit/ui/comparison.test.js` (AC-7.2.3/1, AC-7.2.3/2 — the AC names the comparison view), `tests/unit/learning/scoring.test.js` (scoring helpers), named verbatim
 
 ## Phase 25: US-7.3 — Limited replays with replay scoring (P-028)
 
-- [ ] T062 [US7.3] Replay cap and disabled state in `src/ui/session.js`, replay factor in `src/learning/scoring.js`, average replays in `src/learning/stats.js` and session summary in `src/ui/stats.js`. AC-7.3.1–AC-7.3.3
-- [ ] T063 [US7.3] Tests `tests/e2e/replayCap.spec.js` (AC-7.3.1, AC-7.3.3), `tests/unit/learning/replayScore.test.js` (AC-7.3.2), named verbatim
+- [X] T062 [US7.3] Replay cap and disabled state in `src/ui/session.js`, replay factor in `src/learning/scoring.js`, average replays in `src/learning/stats.js` and session summary in `src/ui/stats.js`. AC-7.3.1–AC-7.3.3
+- [X] T063 [US7.3] Tests `tests/e2e/replayCap.spec.js` (AC-7.3.1, AC-7.3.3), `tests/unit/learning/replayScore.test.js` (AC-7.3.2), named verbatim
 
 ## Phase 26: US-8.1 — Progression track unlock (P-029)
 
