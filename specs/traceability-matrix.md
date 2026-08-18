@@ -14,13 +14,13 @@
 -->
 
 **Feature**: specs/001-ear-trainer/spec.md
-**Criteria**: 207 across 36 User Stories
+**Criteria**: 216 across 37 User Stories
 
-**Coverage**: 207 of 207 criteria proven (100.0%)
+**Coverage**: 216 of 216 criteria proven (100.0%)
 
 | | Criteria | Share |
 |---|---|---|
-| 🟢 Proven | 207 | 100.0% |
+| 🟢 Proven | 216 | 100.0% |
 
 A row is one *criterion*: an Acceptance Criterion that asserts one thing, or one Case of
 an AC that asserts several. 🖵 marks a criterion that describes something a person sees or
@@ -63,6 +63,7 @@ fail the build, and it is outstanding work — never a settled decision.
 | 🟢 US-2.3 | 5 | **5** | · | · | · | · | · |
 | 🟢 US-2.4 | 4 | **4** | · | · | · | · | · |
 | 🟢 US-2.5 | 3 | **3** | · | · | · | · | · |
+| 🟢 US-2.6 | 7 | **7** | · | · | · | · | · |
 | 🟢 US-3.1 | 15 | **15** | · | · | · | · | · |
 | 🟢 US-3.2 | 5 | **5** | · | · | · | · | · |
 | 🟢 US-3.3 | 3 | **3** | · | · | · | · | · |
@@ -84,7 +85,7 @@ fail the build, and it is outstanding work — never a settled decision.
 | 🟢 US-8.4 | 5 | **5** | · | · | · | · | · |
 | 🟢 US-8.5 | 4 | **4** | · | · | · | · | · |
 | 🟢 US-9.1 | 5 | **5** | · | · | · | · | · |
-| 🟢 US-9.2 | 4 | **4** | · | · | · | · | · |
+| 🟢 US-9.2 | 6 | **6** | · | · | · | · | · |
 | 🟢 US-9.3 | 5 | **5** | · | · | · | · | · |
 | 🟢 US-9.4 | 4 | **4** | · | · | · | · | · |
 | 🟢 US-10.1 | 9 | **9** | · | · | · | · | · |
@@ -138,6 +139,13 @@ fail the build, and it is outstanding work — never a settled decision.
 | US-2.5 | `AC-2.5.1` | A confused pair is re-asked within five questions once proficient | P-013 | T032 (1/1 done) | T033 (1/1 done) | `confusion.test.js` | 🟢 OK |
 | US-2.5 | `AC-2.5.2` | Pair bias is inactive below the proficiency threshold | P-013 | T032 (1/1 done) | T033 (1/1 done) | `confusion.test.js` | 🟢 OK |
 | US-2.5 | `AC-2.5.3` 🖵 | The confusable partner is always among the answer options | P-013 | T032 (1/1 done) | T033 (1/1 done) | `options.test.js` | 🟢 OK |
+| US-2.6 | `AC-2.6.1/1` 🖵 | The answers counted toward the 20-answer window are shown and update on each answer | P-043 | T093 (1/1 done) | T094 (1/1 done) | `sessionProgress.test.js` | 🟢 OK |
+| US-2.6 | `AC-2.6.1/2` 🖵 | The rolling accuracy is shown against the 90% threshold and updates on each answer | P-043 | T093 (1/1 done) | T094 (1/1 done) | `sessionProgress.test.js` | 🟢 OK |
+| US-2.6 | `AC-2.6.1/3` 🖵 | The number of items still below box 3 is shown | P-043 | T093 (1/1 done) | T094 (1/1 done) | `sessionProgress.test.js` | 🟢 OK |
+| US-2.6 | `AC-2.6.1/4` 🖵 | The current sub-stage name is shown for tracks with sub-stages | P-043 | T093 (1/1 done) | T094 (1/1 done) | `sessionProgress.test.js` | 🟢 OK |
+| US-2.6 | `AC-2.6.2/1` 🖵 | The mastering answer's feedback announces the sub-stage is mastered | P-043 | T093 (1/1 done) | T094 (1/1 done) | `sessionProgress.test.js` | 🟢 OK |
+| US-2.6 | `AC-2.6.2/2` 🖵 | The next sub-stage is named with its position in the order | P-043 | T093 (1/1 done) | T094 (1/1 done) | `sessionProgress.test.js` | 🟢 OK |
+| US-2.6 | `AC-2.6.2/3` 🖵 | Mastering the last sub-stage shows the level celebration, not a transition announcement | P-043 | T093 (1/1 done) | T094 (1/1 done) | `sessionProgress.test.js` | 🟢 OK |
 | US-3.1 | `AC-3.1.1/1` | Interval level 1 pool is exactly P8, P5 | P-014 | T034 (1/1 done) | T035 (1/1 done) | `intervals.test.js` | 🟢 OK |
 | US-3.1 | `AC-3.1.1/2` | Interval level 2 pool is exactly P8, P5, M3, m3 | P-014 | T034 (1/1 done) | T035 (1/1 done) | `intervals.test.js` | 🟢 OK |
 | US-3.1 | `AC-3.1.1/3` | Interval level 3 pool is exactly P8, P5, M3, m3, P4 | P-014 | T034 (1/1 done) | T035 (1/1 done) | `intervals.test.js` | 🟢 OK |
@@ -266,6 +274,8 @@ fail the build, and it is outstanding work — never a settled decision.
 | US-9.2 | `AC-9.2.1/2` | Reaching 10 minutes marks today complete and increments the streak | P-035 | T076 (1/1 done) | T077 (1/1 done) | `streak.test.js` | 🟢 OK |
 | US-9.2 | `AC-9.2.2` 🖵 | A dismissible stopping-point suggestion follows the goal | P-035 | T076 (1/1 done) | T077 (1/1 done) | `stoppingPoint.spec.js` | 🟢 OK |
 | US-9.2 | `AC-9.2.3` 🖵 | An optional local reminder fires on the mobile build | P-035 | T076 (1/1 done) | T077 (1/1 done) | `notifications.test.js` | 🟢 OK |
+| US-9.2 | `AC-9.2.4/1` 🖵 | Questions answered today are shown against the daily goal's question target during a session | P-044 | T095 (1/1 done) | T096 (1/1 done) | `sessionProgress.test.js` | 🟢 OK |
+| US-9.2 | `AC-9.2.4/2` 🖵 | The stopping-point message names the daily goal as the reason | P-044 | T095 (1/1 done) | T096 (1/1 done) | `sessionProgress.test.js` | 🟢 OK |
 | US-9.3 | `AC-9.3.1/1` | An in-session answer streak multiplies XP | P-036 | T078 (1/1 done) | T079 (1/1 done) | `xp.test.js` | 🟢 OK |
 | US-9.3 | `AC-9.3.1/2` | Fewer replays used multiplies XP | P-036 | T078 (1/1 done) | T079 (1/1 done) | `xp.test.js` | 🟢 OK |
 | US-9.3 | `AC-9.3.1/3` | A mixed-review question multiplies XP | P-036 | T078 (1/1 done) | T079 (1/1 done) | `xp.test.js` | 🟢 OK |

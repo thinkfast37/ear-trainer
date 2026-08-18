@@ -9,15 +9,20 @@ import { createSequenceModel, renderSequenceInput } from './sequenceInput.js';
 import { renderFeedback } from './feedback.js';
 import { celebrationStats, renderCelebration } from './celebration.js';
 import { getSettings } from '../app/settings.js';
+import { getLevelState, evaluate, WINDOW, ACCURACY_THRESHOLD, BOX_FLOOR } from '../learning/mastery.js';
+import { evaluateSubStage } from '../learning/subStages.js';
+import { dayKey } from '../learning/streak.js';
+import { subStageLabel } from './labels.js';
 
 export function renderSessionScreen(container, { session, store, tracks, go, onEnd }) {
   const wrap = h('div', { class: 'stack session', 'data-role': 'session' });
   const header = h('div', { class: 'row', 'data-role': 'session-header' });
+  const status = h('div', { class: 'row session-status', 'data-role': 'session-status' });
   const stimulus = h('div', { class: 'card stimulus', 'data-role': 'stimulus' });
   const answerArea = h('div', { class: 'stack', 'data-role': 'answer-area' });
   const feedbackArea = h('div', { class: 'stack', 'data-role': 'feedback-area' });
   const toastArea = h('div', { 'data-role': 'toast-area' });
-  wrap.append(header, stimulus, answerArea, feedbackArea, toastArea);
+  wrap.append(header, status, stimulus, answerArea, feedbackArea, toastArea);
   replace(container, wrap);
   let seqModel = null;
   let toastShown = false;
@@ -32,6 +37,21 @@ export function renderSessionScreen(container, { session, store, tracks, go, onE
       h('span', { 'data-role': 'track-label' }, q.trackLabel + (st.mixed ? ' (Mixed Review)' : '')),
       h('span', { class: 'muted', 'data-role': 'progress' }, `Q${st.questions + (st.phase === 'question' ? 1 : 0)} · ${st.correct} correct`),
       h('button', { class: 'btn ghost', 'data-action': 'end-session', onClick: () => { session.end(); onEnd?.(); } }, 'End'),
+    );
+    const state = store.getState();
+    const ls = getLevelState(state, q.trackId, q.levelNo);
+    const itemIds = track.itemsFor(q.levelNo, q.subStage ?? undefined);
+    const ev = q.subStage ? evaluateSubStage(ls, q.subStage, state.items, itemIds) : evaluate(ls.history, state.items, itemIds);
+    const meterParts = [];
+    if (q.subStage) meterParts.push(subStageLabel(q.subStage));
+    meterParts.push(`${ev.answered}/${WINDOW}`);
+    meterParts.push(`${Math.round(ev.accuracy * 100)}% (target ${Math.round(ACCURACY_THRESHOLD * 100)}%)`);
+    if (ev.weakItems.length) meterParts.push(`${ev.weakItems.length} below box ${BOX_FLOOR}`);
+    const goal = settings.sessionGoal;
+    const today = state.days[dayKey(Date.now())] ?? { questions: 0 };
+    replace(status,
+      h('span', { class: 'muted', 'data-role': 'mastery-meter', 'data-weak': String(ev.weakItems.length) }, meterParts.join(' · ')),
+      h('span', { class: 'muted', 'data-role': 'goal-progress' }, `Today ${today.questions}/${goal.questions}`),
     );
     const capped = session.replayLimitReached();
     const replayInfo = q.replayLimit != null ? ` (${st.replaysUsed}/${q.replayLimit})` : '';

@@ -308,6 +308,40 @@ follows within 5; at < 75% confirm plain Leitner weighting.
 
 ---
 
+### User Story 2.6 - In-session progress visibility
+
+*Traceability: `US-2.6` — In-session progress visibility*
+
+As a learner, I want to see how close I am to mastering the current stage while I practise
+so that I know how much longer to continue and when it is safe to stop.
+
+**Independent Test**: start an interval level 1 session and confirm the header meter counts
+answers toward the 20-answer window and tracks rolling accuracy; master the ascending
+sub-stage and confirm the transition announcement names descending.
+
+**Acceptance Scenarios**:
+
+- **AC-2.6.1** — The session header shows a live mastery-progress meter
+  - **Given** a practice session in a level, scoped to the current sub-stage where the track has sub-stages
+  - **When** I answer a question
+  - **Then** the session header shows how many answers count toward the 20-answer window, the rolling accuracy against the 90% threshold, and how many items are still below box 3, updated for that answer
+  - **And** where the track has sub-stages, the meter names the current sub-stage
+  - **Cases**:
+    - **AC-2.6.1/1** — The answers counted toward the 20-answer window are shown and update on each answer
+    - **AC-2.6.1/2** — The rolling accuracy is shown against the 90% threshold and updates on each answer
+    - **AC-2.6.1/3** — The number of items still below box 3 is shown
+    - **AC-2.6.1/4** — The current sub-stage name is shown for tracks with sub-stages
+
+- **AC-2.6.2** — Mastering a sub-stage is announced with the next sub-stage named
+  - **Given** the current sub-stage of a level in a track with sub-stages
+  - **When** my answer satisfies that sub-stage's mastery conditions
+  - **Then** the feedback panel announces the sub-stage is mastered and names the next sub-stage that now begins, with its position in the order (e.g. "Descending — 2 of 3")
+  - **And** when the mastered sub-stage is the last one, the level mastery celebration is shown instead of the transition announcement
+  - **Cases**:
+    - **AC-2.6.2/1** — The mastering answer's feedback announces the sub-stage is mastered
+    - **AC-2.6.2/2** — The next sub-stage is named with its position in the order
+    - **AC-2.6.2/3** — Mastering the last sub-stage shows the level celebration, not a transition announcement
+
 ## Epic 3: Track 1 — Intervals
 
 ### User Story 3.1 - Interval level progression
@@ -1118,6 +1152,15 @@ increments; confirm the stopping-point message.
   - **When** my usual practice window passes without a session
   - **Then** a local notification reminder fires
 
+- **AC-9.2.4** — Daily-goal progress is visible during a session
+  - **Given** a practice session
+  - **When** I view the session screen
+  - **Then** it shows how many questions I have answered today against the daily goal's question target
+  - **And** the stopping-point message says the daily goal was reached
+  - **Cases**:
+    - **AC-9.2.4/1** — Questions answered today are shown against the daily goal's question target during a session
+    - **AC-9.2.4/2** — The stopping-point message names the daily goal as the reason
+
 ### User Story 9.3 - XP and level-up feedback
 
 *Traceability: `US-9.3` — XP and level-up feedback*
@@ -1424,7 +1467,8 @@ restart, and confirm retention.
 
 - **SC-001**: A learner can go from app open to hearing the first question in under 3 taps.
 - **SC-002**: Verdict appears within 200 ms of answering in 100% of questions.
-- **SC-003**: Every one of the 36 user stories has 100% AC coverage with verbatim-named tests
+- **SC-003**: Every one of the 37 user stories has 100% AC coverage with verbatim-named tests
+  (36 from the backlog, plus US-2.6 — in-session progress visibility, added 2026-08-18)
   and no CRITICAL/HIGH traceability gaps.
 - **SC-004**: A full session completes in airplane mode with zero network requests.
 - **SC-005**: Progress round-trips through export → import with no loss.
@@ -1442,6 +1486,9 @@ restart, and confirm retention.
   single-stimulus tracks unless configured.
 - Default arpeggiation tempo: 120 BPM eighth notes.
 - The daily goal defaults to 10 minutes or 30 questions and is configurable (AC-10.4.1/6).
+- The in-session daily-goal display shows progress against the question target only; the
+  time threshold can still complete the day first, and the stopping-point message covers
+  either case (2026-08-18, US-2.6/AC-9.2.4).
 - Sing-back and sing-first (US-V2.x) are deferred and out of scope for this feature.
 - The piano sample set is a CC-licensed multi-sample set trimmed to ≤ 5 MB; the licence is
   recorded in `research.md`.

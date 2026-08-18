@@ -44,3 +44,16 @@
 ## Notes
 
 - All items pass. Ready for `/speckit-plan`.
+
+## Extension: In-session progress visibility (2026-08-18)
+
+Validated for US-2.6 (AC-2.6.1, AC-2.6.2) and AC-9.2.4:
+
+- [x] No implementation details (no file, module or framework names in the ACs)
+- [x] Focused on user value (knowing how long to continue and when to stop)
+- [x] No [NEEDS CLARIFICATION] markers remain
+- [x] Requirements testable and unambiguous (thresholds and ordering stated per AC)
+- [x] Compound ACs declare numbered Cases (T4 passes)
+- [x] Scope bounded: session header meter, sub-stage transition announcement, daily-goal display and toast wording — nothing else
+- [x] Assumptions recorded (question-target-only display; time threshold still completes the day)
+- [x] Success criteria updated (SC-003 story count 36 → 37)
