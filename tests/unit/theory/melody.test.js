@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { generatePhrase, maxLeap } from '../../../src/theory/melody.js';
+import { generatePhrase } from '../../../src/theory/melody.js';
+import { maxLeap } from '../helpers/melody.js';
 import { createRng } from '../../../src/learning/random.js';
 
 describe('melody', () => {

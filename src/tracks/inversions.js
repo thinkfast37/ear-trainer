@@ -6,7 +6,6 @@ import { pickRoot, selectItem } from './common.js';
 export function itemId(quality, inversion, presentation) { return `inv:${quality}:inv${inversion}:${presentation}`; }
 export function parseItemId(id) { const [, quality, inv, presentation] = id.split(':'); return { quality, inversion: Number(inv.slice(3)), presentation }; }
 
-export const INVERSION_OPTION_IDS = ['inv0', 'inv1', 'inv2', 'inv3'];
 export function inversionOptionLabel(id) { return INVERSION_NAMES[Number(id.slice(3))]; }
 
 export function createInversionsTrack(def) {

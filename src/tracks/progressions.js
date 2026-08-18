@@ -23,13 +23,6 @@ export function catalogItems(catalog, levelNo, texture) {
   return out;
 }
 
-/** Cumulative vocabulary through a level. */
-export function vocabularyFor(def, levelNo) {
-  const set = new Set();
-  for (const l of def.levels) if (l.no <= levelNo) for (const v of l.vocabulary) set.add(v);
-  return [...set];
-}
-
 export function bassDegreeLabel(bd) {
   return `${bd.accidental < 0 ? '♭' : bd.accidental > 0 ? '♯' : ''}${bd.number}`;
 }

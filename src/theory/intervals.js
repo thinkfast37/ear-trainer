@@ -11,8 +11,6 @@ const DEF = [
 export const INTERVALS = DEF.map(([id, semitones, full, simple = null]) => ({ id, semitones, full, simple }));
 const BY_ID = new Map(INTERVALS.map((i) => [i.id, i]));
 
-export const SIMPLE_IDS = INTERVALS.filter((i) => !i.simple).map((i) => i.id);
-export const COMPOUND_IDS = INTERVALS.filter((i) => i.simple).map((i) => i.id);
 
 export function intervalById(id) {
   const i = BY_ID.get(id);

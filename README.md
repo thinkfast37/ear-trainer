@@ -1,47 +1,42 @@
-# spec-kit-base
+# Ear Trainer
 
-A template repository for spec-driven projects with enforced traceability. Extracted
-from [rhythm-master](https://github.com/thinkfast37/rhythm-master), where the approach
-was developed the hard way — each gate here exists because of a specific failure the
-previous gates could not see.
+A mobile-first, offline ear-training app: intervals, scale degrees, chord qualities,
+inversions, melodic phrases and chord progressions, drilled with a real (sampled) piano,
+per-item Leitner scheduling and mastery-gated levels. Built as a web app first; packaged for
+iOS and Android with Capacitor.
 
-## What you get
+- **Stack**: plain ES-module JavaScript, Vite, Web Audio, Vitest + Playwright, Capacitor 6.
+- **Content is data**: `src/data/levels.json`, `progressions.json` (52-entry catalog),
+  `anchors.json` (anchor songs), `credits.json`.
+- **Samples**: Salamander Grand Piano (CC BY 3.0) via tonejs-instruments — 17 files, 3.5 MB,
+  `public/samples/LICENSE.md`; credited in-app under Settings → Credits.
 
-| Artefact | What it does |
-|---|---|
-| `CLAUDE.md` | The working agreement: blast-radius rule, workflow table, test-integrity rules, gate list, PR protocol. Generic sections ready to use; project-specific sections marked `TODO`. |
-| `.claude/skills/spec-trace/` | Dependency-free traceability checker and matrix generator. Nine checks over the AC → plan → task → test chain, with severity-ranked gaps, waivers, and a shrink-only baseline. Self-tested. |
-| `.claude/settings.json` | A `Stop` hook that surfaces new traceability findings at session end (never blocks). |
-| `tests/ac-coverage.js` | Fails the build when an Acceptance Criterion has no test naming it. |
-| `tools/check-unwired.mjs` | Fails the build when `src/` exports something nothing in `src/` reaches — the shape of a specified, written, tested feature the app cannot use. |
-| `spec-trace.config.json` | The one place document and test paths live; both tools read it. |
-| Empty baselines | A new project starts with zero accepted debt. Keep it that way. |
-
-## What you don't get
-
-The spec-kit scaffolding itself (`.specify/`, slash commands, templates) — install
-that with [`specify init`](https://github.com/github/spec-kit) in the new project, so
-it stays current with upstream. And everything project-specific: the spec, the
-constitution's principles, lint rules, e2e tooling, deployment.
-
-## Using it
+## Run
 
 ```bash
-gh repo create my-new-project --template thinkfast37/spec-kit-base --private --clone
-cd my-new-project
+npm install
+npm run dev          # http://localhost:5173
+npm run build        # static site → dist/
+npm run preview      # serve dist/ (what the e2e suite tests)
 ```
 
-Then follow `SETUP.md` — or open the repo in Claude Code and say "do the template
-setup". It walks through both halves: wiring this template's tooling (config paths,
-gate verification), and the spec-kit flow for the first feature (`specify init` →
-`/speckit-constitution` → `/speckit-specify` → `/speckit-plan` → `/speckit-tasks` →
-`/speckit-implement`), including the document conventions the traceability checks
-expect the spec and plan to follow.
+## Gates (all must pass before a commit — see CLAUDE.md §4)
 
-## Updating projects created from this template
+```bash
+npm run lint && npm test && npm run test:e2e && npm run coverage:ac && \
+npm run trace:matrix && npm run check:trace && npm run check:unwired
+```
 
-Template copies are snapshots; fixes here do not propagate. The spec-trace skill is
-self-contained, so updating a project is a verbatim overwrite of
-`.claude/skills/spec-trace/` (plus `tools/check-unwired.mjs` and
-`tests/ac-coverage.js` if they changed). Nothing project-specific lives in those
-paths.
+## Where things live
+
+| Path | What |
+|---|---|
+| `CLAUDE.md` | The working agreement: blast-radius rule, workflow table, gates, PR protocol |
+| `.specify/memory/constitution.md` | Principles (v1.1.0) |
+| `specs/001-ear-trainer/` | spec.md (36 stories, 109 ACs, 207 criteria), plan.md, research.md (D-001–D-012), data-model.md, tasks.md, quickstart.md |
+| `specs/traceability-matrix.md` | Generated: every criterion → plan item → tasks → test |
+| `src/` | `audio/` `theory/` `learning/` `tracks/` `ui/` `storage/` `platform/` `data/`, `main.js` composition root |
+| `tests/` | `unit/` (Vitest; `unit/ui/` runs under jsdom), `e2e/` (Playwright, phone + tablet) |
+
+Store builds: `npm run build && npx cap add ios|android && npx cap sync` after the desktop
+verification in `specs/001-ear-trainer/quickstart.md`.

@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { buildTracks } from '../../../src/tracks/index.js';
 import { DEFAULT_SETTINGS } from '../../../src/storage/schema.js';
 import { createRng } from '../../../src/learning/random.js';
-import { maxLeap } from '../../../src/theory/melody.js';
+import { maxLeap } from '../helpers/melody.js';
 import { harness } from '../helpers/harness.js';
 
 const track = buildTracks().byId.melodic;

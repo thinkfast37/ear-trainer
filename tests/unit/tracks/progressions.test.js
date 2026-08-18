@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { buildTracks } from '../../../src/tracks/index.js';
 import { emptyProgress, DEFAULT_SETTINGS } from '../../../src/storage/schema.js';
 import { createRng } from '../../../src/learning/random.js';
-import { catalogItems, parseItemId, vocabularyFor } from '../../../src/tracks/progressions.js';
+import { catalogItems, parseItemId } from '../../../src/tracks/progressions.js';
 import { parseNumeral, rotations } from '../../../src/theory/progressions.js';
 import catalog from '../../../src/data/progressions.json';
 import { harness } from '../helpers/harness.js';
@@ -19,7 +19,7 @@ describe('US-8.2 Progression level design', () => {
   it('AC-8.2.1/1 — Progression level 1 uses only I, IV, V in root position', () => {
     const qs = sample(1);
     for (const n of numeralsUsed(qs)) { expect(['I', 'IV', 'V']).toContain(n); expect(parseNumeral(n).inversion).toBe(0); }
-    expect(vocabularyFor(track.def, 1)).toEqual(['I', 'IV', 'V']);
+    expect(track.def.levels[0].vocabulary).toEqual(['I', 'IV', 'V']);
   });
   it('AC-8.2.1/2 — Progression level 2 adds vi with 4-chord pop templates', () => {
     const qs = sample(2); const used = numeralsUsed(qs);

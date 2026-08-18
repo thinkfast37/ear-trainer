@@ -207,30 +207,30 @@ arbiter; a task is not done until its criteria are 🟢 in `specs/traceability-m
 
 ## Phase 35: US-10.1 — Form-factor–adaptive layout (P-038)
 
-- [ ] T082 [US10.1] Responsive rules in `src/styles.css` and `src/ui/layout.js` (phone < 600, tablet ≥ 600, desktop = tablet, no hover), state-in-store so rotation re-renders; static build settings in `vite.config.js` (relative base). AC-10.1.1–AC-10.1.5
-- [ ] T083 [US10.1] Tests `tests/e2e/layout.spec.js` (AC-10.1.1/1, AC-10.1.1/2, AC-10.1.2, AC-10.1.3/1, AC-10.1.3/2, AC-10.1.4/1, AC-10.1.4/2, AC-10.1.5/1 served from `dist/`), `tests/unit/platform/parity.test.js` (AC-10.1.5/2 feature registry parity), named verbatim
+- [X] T082 [US10.1] Responsive rules in `src/styles.css` and `src/ui/layout.js` (phone < 600, tablet ≥ 600, desktop = tablet, no hover), state-in-store so rotation re-renders; static build settings in `vite.config.js` (relative base). AC-10.1.1–AC-10.1.5
+- [X] T083 [US10.1] Tests `tests/e2e/layout.spec.js` (AC-10.1.1/1, AC-10.1.1/2, AC-10.1.2, AC-10.1.3/1, AC-10.1.3/2, AC-10.1.4/1, AC-10.1.4/2, AC-10.1.5/1 served from `dist/`), `tests/unit/platform/parity.test.js` (AC-10.1.5/2 feature registry parity), named verbatim
 
 ## Phase 36: US-10.2 — Capacitor mobile build (P-039)
 
-- [ ] T084 [US10.2] `capacitor.config.json`, `src/platform/capacitor.js` (isNative, Preferences adapter binding), release checklist in `specs/001-ear-trainer/quickstart.md`. AC-10.2.1–AC-10.2.4
-- [ ] T085 [US10.2] Tests `tests/unit/platform/capacitor.test.js` (AC-10.2.1/1, AC-10.2.1/2, AC-10.2.3 offline session against fake network, AC-10.2.4 schema parity), `tests/unit/platform/releaseGate.test.js` (AC-10.2.2 checklist present and ordered), named verbatim
+- [X] T084 [US10.2] `capacitor.config.json`, `src/platform/capacitor.js` (isNative, Preferences adapter binding), release checklist in `specs/001-ear-trainer/quickstart.md`. AC-10.2.1–AC-10.2.4
+- [X] T085 [US10.2] Tests `tests/unit/ui/capacitor.test.js` (AC-10.2.1/1, AC-10.2.1/2, AC-10.2.3 offline session against a dead network — UI-level per the checker), `tests/unit/platform/capacitor.test.js` (AC-10.2.4 schema parity), `tests/unit/platform/releaseGate.test.js` (AC-10.2.2 checklist present and ordered), named verbatim
 
 ## Phase 37: US-10.3 — Progress persistence and export (P-040)
 
-- [ ] T086 [US10.3] `src/storage/exportImport.js` (export document, import validate/merge/reject), export/import controls in `src/ui/settings.js`. AC-10.3.1–AC-10.3.3
-- [ ] T087 [US10.3] Tests `tests/unit/storage/exportImport.test.js` (AC-10.3.1, AC-10.3.3/1–/3), `tests/e2e/exportImport.spec.js` (AC-10.3.2 tap export produces JSON), named verbatim
+- [X] T086 [US10.3] `src/storage/exportImport.js` (export document, import validate/merge/reject), export/import controls in `src/ui/settings.js`. AC-10.3.1–AC-10.3.3
+- [X] T087 [US10.3] Tests `tests/unit/storage/exportImport.test.js` (AC-10.3.1, AC-10.3.3/1–/3), `tests/e2e/exportImport.spec.js` (AC-10.3.2 tap export produces JSON), named verbatim
 
 ## Phase 38: US-10.4 — Settings (P-041)
 
-- [ ] T088 [US10.4] `src/ui/settings.js` (all seven controls, link to Credits), `src/ui/credits.js` (bundled assets with author/source/licence from `src/data/credits.json`), `src/app/settings.js` (defaults, apply, persist). AC-10.4.1–AC-10.4.3
-- [ ] T089 [US10.4] Tests `tests/e2e/settings.spec.js` (AC-10.4.1/1–/7, AC-10.4.2, AC-10.4.3), named verbatim
+- [X] T088 [US10.4] `src/ui/settings.js` (all seven controls, link to Credits), `src/ui/credits.js` (bundled assets with author/source/licence from `src/data/credits.json`), `src/app/settings.js` (defaults, apply, persist). AC-10.4.1–AC-10.4.3
+- [X] T089 [US10.4] Tests `tests/e2e/settings.spec.js` (AC-10.4.1/1–/7, AC-10.4.2, AC-10.4.3) and `tests/unit/ui/notifications.test.js` (AC-10.4.1/7 native path via a fake plugin), named verbatim
 
 ---
 
 ## Phase 39: Polish (P-042)
 
-- [ ] T090 Replace `README.md` with the project README; delete `SETUP.md`; fill CLAUDE.md TODOs (title, §4 gates, §5 deployment, §6 architecture rules, §3/§7 paths); commit `specs/traceability-matrix.md`
-- [ ] T091 Full gate run: `npm run lint`, `npm test`, `npm run test:e2e`, `npm run coverage:ac` (100%), `npm run trace:matrix`, `npm run check:trace` (0 findings), `npm run check:unwired` (0 findings); prune nothing (baselines empty)
+- [X] T090 Replace `README.md` with the project README; delete `SETUP.md`; fill CLAUDE.md TODOs (title, §4 gates, §5 deployment, §6 architecture rules, §3/§7 paths); commit `specs/traceability-matrix.md`
+- [X] T091 Full gate run: `npm run lint`, `npm test`, `npm run test:e2e`, `npm run coverage:ac` (100%), `npm run trace:matrix`, `npm run check:trace` (0 findings), `npm run check:unwired` (0 findings); prune nothing (baselines empty)
 
 ---
 

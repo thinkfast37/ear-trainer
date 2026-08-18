@@ -2,7 +2,9 @@ import { describe, it, expect } from 'vitest';
 import { buildTracks } from '../../../src/tracks/index.js';
 import { emptyProgress, DEFAULT_SETTINGS } from '../../../src/storage/schema.js';
 import { createRng } from '../../../src/learning/random.js';
-import { SIMPLE_IDS, COMPOUND_IDS } from '../../../src/theory/intervals.js';
+import { INTERVALS } from '../../../src/theory/intervals.js';
+const SIMPLE_IDS = INTERVALS.filter((i) => !i.simple).map((i) => i.id);
+const COMPOUND_IDS = INTERVALS.filter((i) => i.simple).map((i) => i.id);
 import { parseItemId } from '../../../src/tracks/intervals.js';
 
 const tracks = buildTracks();

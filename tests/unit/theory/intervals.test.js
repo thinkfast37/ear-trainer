@@ -1,5 +1,7 @@
 import { describe, it, expect } from 'vitest';
-import { INTERVALS, SIMPLE_IDS, COMPOUND_IDS, semitonesOf, isCompound, simpleOf, intervalLabel } from '../../../src/theory/intervals.js';
+import { INTERVALS, semitonesOf, isCompound, simpleOf, intervalLabel } from '../../../src/theory/intervals.js';
+const SIMPLE_IDS = INTERVALS.filter((i) => !i.simple).map((i) => i.id);
+const COMPOUND_IDS = INTERVALS.filter((i) => i.simple).map((i) => i.id);
 
 describe('intervals', () => {
   it('has 12 simple and 8 compound', () => { expect(SIMPLE_IDS.length).toBe(12); expect(COMPOUND_IDS.length).toBe(8); expect(INTERVALS.length).toBe(20); });

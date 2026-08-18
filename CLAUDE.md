@@ -1,8 +1,14 @@
-# PROJECT_NAME — working agreement
+# Ear Trainer — working agreement
 
-<!-- TODO(new project): one paragraph on what this project is, who the maintainer
-     is, and how they describe work ("they describe what they want in their own
-     words, and you pick the right workflow for it"). -->
+Ear Trainer is a mobile-first, offline ear-training web app (plain ES-module JS + Vite,
+Web Audio with bundled Salamander piano samples, Vitest + Playwright, Capacitor for iOS and
+Android): six tracks — intervals, scale degrees, chord qualities, inversions, melodic
+phrases, chord progressions — driven by per-item Leitner scheduling and mastery-gated
+unlocks. The maintainer is Steve Sanyal; they describe what they want in their own words,
+and you pick the right workflow for it from §2. **Ask before overriding anything they have
+set** — spec text, D-00x decisions, gate configuration, the plan — even when §2 would allow
+an amend-and-proceed. The spec-kit workflow runs through the `/speckit-*` skills, never
+hand-authored substitutes.
 
 Read this before starting any change.
 
@@ -242,7 +248,7 @@ says it is a permanent test seam.
 
 ## 3. Every change gets a task
 
-`specs/001-CHANGE-ME/tasks.md` carries a **Post-MVP** section (create it when the MVP
+`specs/001-ear-trainer/tasks.md` carries a **Post-MVP** section (create it when the MVP
 ships). Every change — bug, data fix, feature, anything — gets a numbered task there,
 checked off when done, naming the files it touched and the US/AC IDs it implements or
 revises.
@@ -256,17 +262,20 @@ The MVP section is a historical record once built. Do not renumber it.
 Run before every commit. All must pass:
 
 ```bash
-npm run lint          # <!-- TODO: include any architecture-boundary rules -->
+npm run lint          # eslint + tools/lint-extras.mjs (no :hover, data validation, licence files)
 npm test              # unit suites, plus the spec-trace skill's own tests
-npm run test:e2e      # <!-- TODO: remove if the project has no UI -->
+npm run test:e2e      # playwright, phone + tablet, against vite preview of dist/
 npm run coverage:ac   # every AC has a test naming it — must be 100%
 npm run trace:matrix  # regenerate the matrix, and commit it (§2b)
 npm run check:trace   # the AC → plan → task → test chain (§2b)
 npm run check:unwired # every export in src/ is reachable from src/ (§2c)
 ```
 
-<!-- TODO(new project): add project-specific gates here (data validation,
-     accessibility checks, …) and list them in package.json. -->
+Project-specific gates live inside `npm run lint` (`tools/lint-extras.mjs`): no `:hover`
+anywhere in CSS (Constitution VI), `tools/validate-data.mjs` over `src/data/*.json`
+(Constitution IX), and a `LICENSE.md` beside every media directory under `public/`
+(Constitution X). ESLint additionally forbids `setTimeout`/`setInterval` in `src/audio/`
+(Constitution VII).
 
 `npm run check:trace --silent -- --summary` prints one line per check when you only
 need to know which are red.
@@ -284,8 +293,12 @@ governs what to do next, and the answer is never to make the gate ask for less.
 ## 5. Landing the work: every change becomes a PR
 
 Work is not delivered when it is committed, and it is not delivered when it is
-pushed. <!-- TODO(new project): state what deployment looks like — what branch is
-live, what workflow deploys it, and what "delivered" means here. -->
+pushed. There is no automatic deployment yet: `main` is the source of truth, `npm run
+build` produces the static site in `dist/` (deployable to any static host, e.g. GitHub
+Pages), and the store builds are produced locally with `npx cap sync` after the desktop
+verification described in `specs/001-ear-trainer/quickstart.md`. "Delivered" for a web
+change means merged to `main` with all §4 gates green; for a store change it means the
+manual device checklist in quickstart.md has been run and the build submitted.
 
 Every change lands the same way:
 
@@ -336,16 +349,21 @@ Say so in the option text and let them choose. Do not change the default.
 
 ## 6. Architecture rules that are enforced, not suggested
 
-<!-- TODO(new project): the rules that ESLint or other tooling actually enforces.
-     Examples from the project this template came from:
-     - A pure core: no DOM, no I/O, no Date.now, no Math.random in src/core/;
-       lint fails the build otherwise. Derived values are computed, never stored.
-     - One source of truth per derived artefact (one timeline consumed by
-       playback, rendering and export — they cannot disagree because there is
-       only one).
-     - Rendering is a pure function of (state, position).
-     Delete this section only if the project genuinely has no such rules — and
-     then say so, so nobody goes looking. -->
+- **The audio path uses the AudioContext clock only.** ESLint fails the build on
+  `setTimeout`/`setInterval` anywhere in `src/audio/`; the scheduler computes absolute
+  `currentTime` offsets (D-004). Tests use `tests/unit/audio/fakeAudioContext.js`.
+- **One renderer.** Every track produces an `Exercise` object; `src/audio/renderer.js` is
+  the only code that turns events into sound, and the same object always renders the same
+  way (D-003) — replay and comparison depend on it.
+- **Content is data.** Level pools, sub-stages, prerequisites, confusables, the progression
+  catalog and anchor songs live in `src/data/*.json`; `tools/validate-data.mjs` fails lint
+  on a malformed entry (D-011). Code never hard-codes a pool.
+- **Unlocks never read XP.** `src/learning/unlocks.js` and `mastery.js` contain no `xp`
+  reference — a test greps for it (AC-9.3.3).
+- **No hover, no desktop layout.** `tools/lint-extras.mjs` fails on `:hover`; layout is by
+  viewport width only (`src/ui/layout.js`), never by platform (D-008).
+- **Every export reachable.** `npm run check:unwired` — `src/main.js` is the composition
+  root; a module that nothing wires is unbuilt work.
 
 ---
 
@@ -354,10 +372,10 @@ Say so in the option text and let them choose. Do not change the default.
 | Path | What |
 |---|---|
 | `.specify/memory/constitution.md` | Principles and quality bars. Amending needs a version bump. |
-| `specs/001-CHANGE-ME/spec.md` | User Stories and Acceptance Criteria — the contract. |
-| `specs/001-CHANGE-ME/research.md` | Technical decisions (D-00x) with rejected alternatives. |
-| `specs/001-CHANGE-ME/data-model.md` | Data shapes, storage schema, validation rules. |
-| `specs/001-CHANGE-ME/tasks.md` | Build plan, plus the post-ship task log. |
+| `specs/001-ear-trainer/spec.md` | User Stories and Acceptance Criteria — the contract. |
+| `specs/001-ear-trainer/research.md` | Technical decisions (D-00x) with rejected alternatives. |
+| `specs/001-ear-trainer/data-model.md` | Data shapes, storage schema, validation rules. |
+| `specs/001-ear-trainer/tasks.md` | Build plan, plus the post-ship task log. |
 | `specs/traceability-matrix.md` | Generated. The AC → plan → task → test chain, whole-application. |
 | `src/` | The application. |
 | `tests/ac-coverage.js` | The gate that makes per-AC testing real. |

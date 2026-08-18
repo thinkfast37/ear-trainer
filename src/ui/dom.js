@@ -21,12 +21,6 @@ export function clear(el) { while (el.firstChild) el.removeChild(el.firstChild);
 
 export function replace(el, ...children) { clear(el); el.append(...children.flat(Infinity).filter(Boolean)); return el; }
 
-/** Tap = pointerdown-first activation with click fallback; the first tap anywhere unlocks audio. */
-export function onTap(el, fn) {
-  el.addEventListener('click', fn);
-  return el;
-}
-
 /** SVG element helper. */
 export function svg(tag, props = {}, ...children) {
   const el = document.createElementNS('http://www.w3.org/2000/svg', tag);

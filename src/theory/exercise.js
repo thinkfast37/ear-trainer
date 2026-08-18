@@ -50,7 +50,7 @@ export function melodicExercise(tonicMidi, degrees, rhythm, mode = 'major', { bp
 /** A single scale degree with cadence prelude. */
 export function scaleDegreeExercise(tonicMidi, degreeId, mode = 'major', { withCadence = true } = {}) {
   const midi = degreeToMidi(tonicMidi, degreeId);
-  const ex = { kind: 'single', presentation: 'degree', key: { tonicMidi, mode }, events: [{ midi, at: 0, dur: 1.0, gain: 1 }] };
+  const ex = { ...singleNote(midi, { dur: 1.0 }), presentation: 'degree', key: { tonicMidi, mode } };
   if (withCadence) {
     const cad = cadenceEvents(tonicMidi, mode, 0);
     ex.prelude = { events: cad.events, duration: cad.duration + 0.4 };
@@ -77,9 +77,4 @@ export function progressionExercise(voiced, texture, key, { tempo = 120, chordDu
     ex.prelude = { events: cad.events, duration: cad.duration + 0.5 };
   }
   return ex;
-}
-
-export function exerciseDuration(ex) {
-  const end = (evs) => evs.reduce((m, e) => Math.max(m, e.at + e.dur), 0);
-  return (ex.prelude ? ex.prelude.duration : 0) + end(ex.events);
 }

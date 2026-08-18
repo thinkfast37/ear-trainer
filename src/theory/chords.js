@@ -13,7 +13,6 @@ const Q = {
   sus4: { intervals: [0, 5, 7], symbol: 'sus4', name: 'suspended 4th' },
 };
 
-export const QUALITY_IDS = Object.keys(Q);
 export function quality(id) {
   const q = Q[id];
   if (!q) throw new Error(`unknown chord quality ${id}`);
@@ -25,7 +24,6 @@ export function chordSize(id) { return quality(id).intervals.length; }
 export const INVERSION_NAMES = ['root position', '1st inversion', '2nd inversion', '3rd inversion'];
 export const INVERSION_IDS = ['root', 'inv1', 'inv2', 'inv3'];
 export function inversionIndex(id) { return typeof id === 'number' ? id : INVERSION_IDS.indexOf(id); }
-export function inversionId(n) { return INVERSION_IDS[n]; }
 
 /**
  * Close-voiced chord tones for `root` (MIDI) in `inversion` (0..3): the inversion's bass

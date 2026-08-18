@@ -1,8 +1,6 @@
 /** Settings access and mutation (US-10.4). */
 import { DEFAULT_SETTINGS } from '../storage/schema.js';
 
-export const SETTING_KEYS = ['cadenceFrequency', 'replayLimit', 'arpeggioTempo', 'register', 'labels', 'sessionGoal', 'notifications'];
-
 export function getSettings(state) { return { ...DEFAULT_SETTINGS, ...state.settings }; }
 
 /** Path like 'labels.degrees' or 'replayLimit'. */
