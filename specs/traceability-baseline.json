@@ -1,0 +1,5 @@
+{
+  "note": "Traceability findings that pre-date the gate. Reported, but not build-failing. This list may only shrink: `prune-baseline` removes entries that are fixed, and nothing writes new ones. Adding an entry by hand is taking on debt deliberately and needs to be justified in review. A project adopting the gate from day one should keep this empty forever.",
+  "generated": null,
+  "accepted": []
+}

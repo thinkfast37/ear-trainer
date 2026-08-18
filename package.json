@@ -1,0 +1,19 @@
+{
+  "name": "CHANGE-ME",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "coverage:ac": "node tests/ac-coverage.js",
+    "check:trace": "node .claude/skills/spec-trace/spec-trace.mjs",
+    "trace:matrix": "node .claude/skills/spec-trace/spec-trace.mjs matrix",
+    "trace:changed": "node .claude/skills/spec-trace/spec-trace.mjs changed",
+    "trace:prune": "node .claude/skills/spec-trace/spec-trace.mjs prune-baseline",
+    "check:unwired": "node tools/check-unwired.mjs"
+  },
+  "devDependencies": {
+    "vitest": "^3.0.0"
+  }
+}

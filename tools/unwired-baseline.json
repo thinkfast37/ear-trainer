@@ -1,0 +1,4 @@
+{
+  "note": "Exports nothing in src/ reaches, accepted as debt. Reported but not build-failing; anything not listed here fails. A gate that is permanently red gates nothing, which is why this file exists — but an entry here is OUTSTANDING WORK unless its reason says 'Permanent' (a genuine test seam). This list may only shrink: `npm run check:unwired -- --prune` strikes off entries that are no longer findings, and nothing writes new ones. Adding an entry by hand means taking on debt deliberately, and has to be argued for in review.",
+  "accepted": {}
+}
