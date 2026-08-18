@@ -118,10 +118,22 @@ export function createSession({ trackId = null, levelNo = null, mixed = false, b
     return true;
   }
 
-  /** Re-hear the cadence prelude only; free (AC-4.1.3). */
+  /** Re-hear the cadence only; free (AC-4.1.3). Plays the cadence part alone when the prelude has parts. */
   async function rehearCadence() {
-    if (!state.question?.exercise.prelude) return false;
-    await renderer.play(state.question.exercise, { preludeOnly: true });
+    const ex = state.question?.exercise;
+    if (!ex?.prelude) return false;
+    if (ex.prelude.parts?.cadence) await renderer.play(ex, { part: 'cadence' });
+    else await renderer.play(ex, { preludeOnly: true });
+    return true;
+  }
+
+  /** Whether the current question offers the scale reference on demand (US-4.4). */
+  function scaleAvailable() { return Boolean(state.question?.exercise.prelude?.parts?.scale); }
+
+  /** Hear the scale reference alone; free — never touches the replay count (AC-4.4.4). */
+  async function hearScale() {
+    if (!scaleAvailable()) return false;
+    await renderer.play(state.question.exercise, { part: 'scale' });
     return true;
   }
 
@@ -220,7 +232,7 @@ export function createSession({ trackId = null, levelNo = null, mixed = false, b
   }
 
   return {
-    id, state, start, play, replay, rehearCadence, playComparison, submit, next, end,
+    id, state, start, play, replay, rehearCadence, hearScale, scaleAvailable, playComparison, submit, next, end,
     replayLimitReached, currentStep,
     subscribe(fn) { listeners.add(fn); return () => listeners.delete(fn); },
     summary() { return { questions: state.questions, correct: state.correct, replays: state.replays, avgReplays: state.questions ? state.replays / state.questions : 0, seconds: Math.round((now() - state.startedAt) / 1000) }; },

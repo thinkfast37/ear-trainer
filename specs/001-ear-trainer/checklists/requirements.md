@@ -57,3 +57,17 @@ Validated for US-2.6 (AC-2.6.1, AC-2.6.2) and AC-9.2.4:
 - [x] Scope bounded: session header meter, sub-stage transition announcement, daily-goal display and toast wording — nothing else
 - [x] Assumptions recorded (question-target-only display; time threshold still completes the day)
 - [x] Success criteria updated (SC-003 story count 36 → 37)
+
+## Extension: Scale reference scaffold and onboarding (2026-08-18)
+
+Validated for US-4.4 (AC-4.4.1–AC-4.4.6) and US-4.5 (AC-4.5.1–AC-4.5.3):
+
+- [x] No implementation details in the ACs (no file, module or framework names; "one renderer" and "level definition" name existing constitutional concepts, not code)
+- [x] Focused on user value (a novice can hear every degree before guessing; knows what the sounds are for)
+- [x] No [NEEDS CLARIFICATION] markers remain — the three open choices (scale ends on Do without a held Do; level 2 on-demand only; hint counts track questions and stops at 5) are recorded as defaults in Assumptions for the maintainer to confirm
+- [x] Requirements testable and unambiguous (order, levels, counts and free/counted replays stated per AC)
+- [x] Compound ACs declare numbered Cases (T4)
+- [x] Scope bounded: scale in the prelude, three reference controls, disabled-with-hint state, cadence-frequency interaction, first-open guidance with persisted dismissal, early-question hint — nothing else
+- [x] Assumptions recorded (tempo, ending, level policy as data, minor keys excluded, reset clears the flag)
+- [x] Success criteria updated (SC-003 story count 37 → 39)
+- [x] Plan items P-045/P-046 and tasks T097–T100 added in the same change (T1/T2)

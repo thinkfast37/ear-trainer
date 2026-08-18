@@ -22,6 +22,7 @@ export function emptyProgress() {
     days: {},
     sessions: [],
     settings: structuredClone(DEFAULT_SETTINGS),
+    guidance: {}, // per-track first-open guidance dismissed flags (US-4.5), e.g. { scaleDegrees: true }
   };
 }
 
@@ -51,6 +52,7 @@ export function normaliseProgress(doc) {
   out.settings.sessionGoal = { ...base.settings.sessionGoal, ...(doc.settings?.sessionGoal ?? {}) };
   out.settings.notifications = { ...base.settings.notifications, ...(doc.settings?.notifications ?? {}) };
   out.streak = { ...base.streak, ...(doc.streak ?? {}) };
+  out.guidance = { ...base.guidance, ...(doc.guidance ?? {}) };
   out.schemaVersion = SCHEMA_VERSION;
   return out;
 }

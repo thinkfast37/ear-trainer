@@ -456,7 +456,8 @@
       ]
      ],
      "replayLimit": null,
-     "mixedReview": false
+     "mixedReview": false,
+     "scaleReference": "auto"
     },
     {
      "no": 2,
@@ -479,7 +480,8 @@
       ]
      ],
      "replayLimit": null,
-     "mixedReview": false
+     "mixedReview": false,
+     "scaleReference": "onDemand"
     },
     {
      "no": 3,
@@ -512,7 +514,8 @@
       ]
      ],
      "replayLimit": null,
-     "mixedReview": false
+     "mixedReview": false,
+     "scaleReference": "none"
     },
     {
      "no": 4,
@@ -541,7 +544,8 @@
       ]
      ],
      "replayLimit": null,
-     "mixedReview": false
+     "mixedReview": false,
+     "scaleReference": "none"
     },
     {
      "no": 5,
@@ -583,7 +587,8 @@
       ]
      ],
      "replayLimit": null,
-     "mixedReview": false
+     "mixedReview": false,
+     "scaleReference": "none"
     }
    ]
   },

@@ -6,13 +6,14 @@ async function startDegrees(page) {
   await tapToUnlock(page);
   await page.getByRole('button', { name: 'Start' }).tap();
   await page.waitForFunction(() => window.__test.session && window.__test.session.state.phase === 'question');
-  await page.waitForFunction(() => window.__test.audioLog.length >= 13);
+  await page.waitForFunction(() => window.__test.audioLog.length >= 28); // 15 scale + 12 cadence + target
 }
 
 test.describe('US-4.1 — re-hear cadence', () => {
   test('AC-4.1.3/1 — Tapping re-hear cadence replays the cadence', async ({ page }) => {
     await startDegrees(page);
-    const prelude = await page.evaluate(() => window.__test.session.state.question.exercise.prelude.events.map((e) => e.midi));
+    // the cadence part alone — at level 1 the prelude also carries the scale reference (US-4.4)
+    const prelude = await page.evaluate(() => window.__test.session.state.question.exercise.prelude.parts.cadence.events.map((e) => e.midi));
     await clearAudioLog(page);
     await page.locator('[data-action="rehear-cadence"]').tap();
     await page.waitForFunction((n) => window.__test.audioLog.length >= n, prelude.length);

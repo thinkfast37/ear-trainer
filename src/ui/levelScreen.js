@@ -3,6 +3,7 @@ import { h, replace } from './dom.js';
 import { getLevelState, evaluate, describeUnmet } from '../learning/mastery.js';
 import { currentSubStage, isSubStageUnlocked, subStageState, evaluateSubStage } from '../learning/subStages.js';
 import { subStageLabel } from './labels.js';
+import { renderGuidance, helpButton, guidanceDismissed } from './guidance.js';
 
 export function renderLevelScreen(container, { store, tracks, trackId, levelNo, go, session: sessionOpts = {} }) {
   const progress = store.getState();
@@ -41,7 +42,12 @@ export function renderLevelScreen(container, { store, tracks, trackId, levelNo, 
   }
   startRow.append(h('button', { class: 'btn primary', 'data-action': 'start-session', onClick: () => go(`/session/${trackId}/${levelNo}${bassFirst ? '?bassFirst=1' : ''}`) }, 'Start'));
   if (trackId === 'intervals') startRow.append(h('button', { class: 'btn', 'data-action': 'open-reference', onClick: () => go(`/reference/${trackId}/${levelNo}`) }, 'Reference'));
-  wrap.append(startRow);
+  const guidanceArea = h('div', { 'data-role': 'guidance-area' });
+  const help = helpButton({ store, trackId, container: guidanceArea });
+  if (help) startRow.append(help);
+  wrap.append(startRow, guidanceArea);
+  // First open of a track with guidance shows it automatically until dismissed (AC-4.5.1, AC-4.5.2).
+  if (help && !guidanceDismissed(progress, trackId)) renderGuidance(guidanceArea, { store, trackId });
   replace(container, wrap);
   return wrap;
 }
