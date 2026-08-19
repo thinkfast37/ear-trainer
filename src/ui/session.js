@@ -9,10 +9,9 @@ import { createSequenceModel, renderSequenceInput } from './sequenceInput.js';
 import { renderFeedback } from './feedback.js';
 import { celebrationStats, renderCelebration } from './celebration.js';
 import { getSettings } from '../app/settings.js';
-import { getLevelState, evaluate, WINDOW, ACCURACY_THRESHOLD, BOX_FLOOR } from '../learning/mastery.js';
-import { evaluateSubStage } from '../learning/subStages.js';
+import { getLevelState, evaluate, ACCURACY_THRESHOLD, BOX_FLOOR } from '../learning/mastery.js';
 import { dayKey } from '../learning/streak.js';
-import { subStageLabel } from './labels.js';
+import { presentationLabel } from './labels.js';
 import { helpButton, questionsAnsweredOnTrack, ORDER_HINT, ORDER_HINT_UNTIL } from './guidance.js';
 
 export function renderSessionScreen(container, { session, store, tracks, go, onEnd }) {
@@ -42,17 +41,19 @@ export function renderSessionScreen(container, { session, store, tracks, go, onE
     );
     const state = store.getState();
     const ls = getLevelState(state, q.trackId, q.levelNo);
-    const itemIds = track.itemsFor(q.levelNo, q.subStage ?? undefined);
-    const ev = q.subStage ? evaluateSubStage(ls, q.subStage, state.items, itemIds) : evaluate(ls.history, state.items, itemIds);
+    const itemIds = track.itemsFor(q.levelNo);
+    const ev = evaluate(ls.history, state.items, itemIds);
+    const level = track.def.levels.find((l) => l.no === q.levelNo);
     const meterParts = [];
-    if (q.subStage) meterParts.push(subStageLabel(q.subStage));
-    meterParts.push(`${ev.answered}/${WINDOW}`);
+    const pres = presentationLabel(level);
+    if (pres) meterParts.push(pres);
+    meterParts.push(`${ev.answered}/${ev.required}`);
     meterParts.push(`${Math.round(ev.accuracy * 100)}% (target ${Math.round(ACCURACY_THRESHOLD * 100)}%)`);
     if (ev.weakItems.length) meterParts.push(`${ev.weakItems.length} below box ${BOX_FLOOR}`);
     const goal = settings.sessionGoal;
     const today = state.days[dayKey(Date.now())] ?? { questions: 0 };
     replace(status,
-      h('span', { class: 'muted', 'data-role': 'mastery-meter', 'data-weak': String(ev.weakItems.length) }, meterParts.join(' · ')),
+      h('span', { class: 'muted', 'data-role': 'mastery-meter', 'data-weak': String(ev.weakItems.length), 'data-presentation': pres ?? '' }, meterParts.join(' · ')),
       h('span', { class: 'muted', 'data-role': 'goal-progress' }, `Today ${today.questions}/${goal.questions}`),
     );
     const capped = session.replayLimitReached();
@@ -93,9 +94,9 @@ export function renderSessionScreen(container, { session, store, tracks, go, onE
       renderFeedback(feedbackArea, { session, track, settings, store, onNext: () => session.next().then(draw) });
       const r = st.result;
       if (r.levelMastered) {
-        const ids = track.itemsFor(q.levelNo, q.subStage ?? undefined);
+        const ids = track.itemsFor(q.levelNo);
         const stats = celebrationStats(r.levelState, store.getState().items, ids);
-        renderCelebration(feedbackArea, { trackName: track.name, levelNo: q.levelNo, stats, onContinue: () => go('/home') });
+        renderCelebration(feedbackArea, { trackName: track.name, levelNo: q.levelNo, stats, track, onContinue: () => go('/home') });
       }
       if (r.dayCompleted && !toastShown) {
         toastShown = true;

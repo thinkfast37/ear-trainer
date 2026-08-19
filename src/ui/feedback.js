@@ -3,7 +3,6 @@ import { h } from './dom.js';
 import { renderComparison } from './sequenceInput.js';
 import { renderAnchors } from './anchors.js';
 import { parseItemId as parseIntervalItem } from '../tracks/intervals.js';
-import { subStageLabel } from './labels.js';
 
 export function renderFeedback(container, { session, track, settings, onNext }) {
   const st = session.state;
@@ -19,12 +18,6 @@ export function renderFeedback(container, { session, track, settings, onNext }) 
   if (r.positions) renderComparison(panel, { positions: r.positions, labelFor, score: { matches: r.positions.filter((p) => p.correct).length, total: r.positions.length } });
   if (r.steps?.length > 1) {
     panel.append(h('ul', { 'data-role': 'step-scores' }, r.steps.map((s) => h('li', { 'data-step': s.kind }, `${s.kind === 'bass' ? 'Bass degrees' : 'Roman numerals'}: ${s.matches}/${s.total}`))));
-  }
-  if (r.subMastered && !r.levelMastered) {
-    const subs = track.def.subStages;
-    const next = r.levelState?.subStage;
-    panel.append(h('div', { class: 'substage-transition', 'data-role': 'substage-transition', role: 'status' },
-      `${subStageLabel(q.subStage)} mastered ✓ — ${subStageLabel(next)} starts now (${subs.indexOf(next) + 1} of ${subs.length})`));
   }
   panel.append(h('div', { class: 'muted', 'data-role': 'xp-awarded' }, `+${r.xp} XP`));
 

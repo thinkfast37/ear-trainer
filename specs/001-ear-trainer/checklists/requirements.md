@@ -71,3 +71,21 @@ Validated for US-4.4 (AC-4.4.1–AC-4.4.6) and US-4.5 (AC-4.5.1–AC-4.5.3):
 - [x] Assumptions recorded (tempo, ending, level policy as data, minor keys excluded, reset clears the flag)
 - [x] Success criteria updated (SC-003 story count 37 → 39)
 - [x] Plan items P-045/P-046 and tasks T097–T100 added in the same change (T1/T2)
+
+## Revision: Presentation-tier levels, pool-scaled mastery gate, progress reset (2026-08-18)
+
+Validated for the revised US-2.2 (AC-2.2.1, new AC-2.2.4), US-2.6 (AC-2.6.1–AC-2.6.2), US-3.1
+(AC-3.1.1–AC-3.1.3), US-3.2 (AC-3.2.1), US-3.4 (AC-3.4.4), US-5.1 (AC-5.1.1), US-5.2
+(AC-5.2.1), US-6.2 (AC-6.2.1–AC-6.2.3), US-8.2 (AC-8.2.1–AC-8.2.2), US-8.5 (AC-8.5.1) and
+US-10.3 (new AC-10.3.4):
+
+- [x] No implementation details in the ACs (level tables, presentations, thresholds and schema-version behaviour are stated as learner-visible facts; file and module names live in research.md/data-model.md only)
+- [x] Focused on user value (each level has one difficulty; a learner is not held on two intervals for 60 answers; the smallest levels are the shortest)
+- [x] No [NEEDS CLARIFICATION] markers remain — the open choices (3× multiplier not 5×; block-before-arpeggiated kept for chords; settings survive the reset; mixed-direction level 10 and all-presentation capstone 16) are recorded as defaults in Assumptions and D-006/D-013 for the maintainer to confirm
+- [x] Requirements testable and unambiguous (every level's presentation and pool is a table row with its own Case; the answer floor is a formula with two worked cases)
+- [x] Compound ACs declare numbered Cases (T4) — AC-3.1.1/1–16, AC-5.1.1/1–15, AC-6.2.1/1–6, AC-8.2.1/1–14, AC-2.2.4/1–3, AC-10.3.4/1–2
+- [x] Every revised AC carries a dated parenthetical naming what it replaced and why (CLAUDE.md §2 spec-defect convention); retired sub-stage ACs were revised in place, not deleted, so no test can keep an orphaned ID (T7)
+- [x] Scope bounded: level restructure of the four sub-staged tracks, the answer-floor formula, the reset — nothing else (scale degrees and melodic phrases untouched; item ids unchanged; prerequisites CQ L1 / CQ L6 / Inv L1 unchanged)
+- [x] Assumptions recorded (presentation tiers, catalog tiers, one-time reset)
+- [x] Success criteria unchanged (SC-003 story count stays 39 — no story added or removed)
+- [x] Plan items P-047/P-048 and tasks T101–T106 added in the same change (T1/T2)

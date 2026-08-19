@@ -41,7 +41,7 @@ export function createScaleDegreesTrack(def) {
       const scaleReference = level.scaleReference ?? 'none';
       const exercise = scaleDegreeExercise(tonic, degree, mode, { withCadence: true, scale: scaleReference, tempo: settings.arpeggioTempo ?? 120 });
       const options = optionsFor(level.pool, degree, level.confusables);
-      return { trackId: def.id, levelNo, subStage: null, itemId: id, answer: degree, options, exercise, kind: 'single', meta: { key, tonic, mode, scaleReference } };
+      return { trackId: def.id, levelNo, itemId: id, answer: degree, options, exercise, kind: 'single', meta: { key, tonic, mode, scaleReference } };
     },
     optionItemId(optionId, question) { return itemId(optionId, question.meta.mode); },
     evaluate(question, answer) { const correct = answer === question.answer; return { correct, score: correct ? 1 : 0 }; },

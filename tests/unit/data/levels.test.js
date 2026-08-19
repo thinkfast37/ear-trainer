@@ -7,7 +7,7 @@ describe('levels.json', () => {
     expect(levels.tracks.map((t) => t.id)).toEqual(['intervals', 'scaleDegrees', 'chordQualities', 'inversions', 'melodic', 'progressions']);
   });
   it('validates against the contract', () => { expect(validateLevels(levels)).toEqual([]); });
-  it('level counts match the spec (12, 5, 10, 4, 6, 7)', () => {
-    expect(levels.tracks.map((t) => t.levels.length)).toEqual([12, 5, 10, 4, 6, 7]);
+  it('level counts match the spec (16, 5, 15, 6, 6, 13)', () => {
+    expect(levels.tracks.map((t) => t.levels.length)).toEqual([16, 5, 15, 6, 6, 13]);
   });
 });

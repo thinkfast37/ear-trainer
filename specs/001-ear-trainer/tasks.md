@@ -92,8 +92,8 @@ arbiter; a task is not done until its criteria are 🟢 in `specs/traceability-m
 
 ## Phase 12: US-3.2 — Interval presentation sub-stages (P-015)
 
-- [X] T036 [US3.2] `src/learning/subStages.js` (ordered sub-stages, per-sub-stage mastery, unlock next), interval items keyed `interval:<id>:<asc|desc|harm>` in `src/tracks/intervals.js`, randomized roots within register. AC-3.2.1–AC-3.2.3
-- [X] T037 [US3.2] Tests `tests/unit/learning/subStages.test.js` (AC-3.2.1/1, AC-3.2.1/2), `tests/unit/tracks/intervalItems.test.js` (AC-3.2.2, AC-3.2.3/1, AC-3.2.3/2), named verbatim
+- [X] T036 [US3.2] src/learning/subStages.js (removed 2026-08-18, D-013 — see T102) (ordered sub-stages, per-sub-stage mastery, unlock next), interval items keyed `interval:<id>:<asc|desc|harm>` in `src/tracks/intervals.js`, randomized roots within register. AC-3.2.1–AC-3.2.3
+- [X] T037 [US3.2] Tests tests/unit/learning/subStages.test.js (removed 2026-08-18, D-013 — see T104) (AC-3.2.1/1, AC-3.2.1/2), `tests/unit/tracks/intervalItems.test.js` (AC-3.2.2, AC-3.2.3/1, AC-3.2.3/2), named verbatim
 
 ## Phase 13: US-3.3 — Interval answer input (P-016)
 
@@ -127,8 +127,8 @@ arbiter; a task is not done until its criteria are 🟢 in `specs/traceability-m
 
 ## Phase 19: US-5.2 — Chord presentation sub-stages (P-022)
 
-- [X] T050 [US5.2] Chord sub-stages block→arp→varied via `src/learning/subStages.js`, items `chord:<q>:<block|arp|varied>`, arpeggiation tempo from settings in `src/theory/exercise.js`. AC-5.2.1–AC-5.2.3
-- [X] T051 [US5.2] Tests `tests/unit/tracks/chordSubStages.test.js` (AC-5.2.1/1–/3, AC-5.2.2, AC-5.2.3), named verbatim
+- [X] T050 [US5.2] Chord sub-stages block→arp→varied via src/learning/subStages.js (removed 2026-08-18, D-013 — see T102), items `chord:<q>:<block|arp|varied>`, arpeggiation tempo from settings in `src/theory/exercise.js`. AC-5.2.1–AC-5.2.3
+- [X] T051 [US5.2] Tests tests/unit/tracks/chordSubStages.test.js (renamed to `tests/unit/tracks/chordTiers.test.js` 2026-08-18, D-013 — see T104) (AC-5.2.1/1–/3, AC-5.2.2, AC-5.2.3), named verbatim
 
 ## Phase 20: US-5.3 — Chord quality answer input (P-023)
 
@@ -182,7 +182,7 @@ arbiter; a task is not done until its criteria are 🟢 in `specs/traceability-m
 
 ## Phase 30: US-8.5 — Voicing realism sub-stages (P-033)
 
-- [X] T072 [US8.5] Texture sub-stages block→voiceLed→arp for progressions via `src/learning/subStages.js` and `src/theory/voicing.js`; items per texture. AC-8.5.1–AC-8.5.2
+- [X] T072 [US8.5] Texture sub-stages block→voiceLed→arp for progressions via src/learning/subStages.js (removed 2026-08-18, D-013 — see T102) and `src/theory/voicing.js`; items per texture. AC-8.5.1–AC-8.5.2
 - [X] T073 [US8.5] Tests `tests/unit/tracks/progressionTextures.test.js` (AC-8.5.1/1–/3, AC-8.5.2), named verbatim
 
 ## Phase 31: US-9.1 — Unlock map (P-034)
@@ -253,6 +253,13 @@ renumber the MVP section above.)*
 - [X] T100 [US4.5] Tests for US-4.5, verbatim-named per Case: AC-4.5.1/1–3, AC-4.5.2/1–2, AC-4.5.3/1–2 in `tests/unit/ui/scaleScaffold.test.js` (DOM-capable). Proves AC-4.5.1–AC-4.5.3 (2026-08-18).
 - [X] T101 Build-version stamp: `vite.config.js` (a `build-stamp` plugin injecting `<meta name="build-version" content="YYYY-MM-DD HH:MM:SS UTC (commit)">` into `index.html` at build time), `CLAUDE.md` §6 (the rule). Infrastructure — no AC; renders nothing on screen. View-source on the live site or the Capacitor bundle shows which build is running. Requested by the maintainer across all their repos. First logged as T097, renumbered on merge — main had taken T097–T100 in the meantime (2026-08-18).
 
+- [X] T101 [US3.1] Presentation-tier level data (D-013; P-014/P-015/P-021/P-022/P-025/P-030/P-033): `src/data/levels.json` rewritten — no track has `subStages`; every level of intervals, chordQualities, inversions and progressions carries `presentations` (intervals asc|desc|harm, chords block|arp|varied, inversions block|arp, progressions block|voiceLed|arp) exactly per the spec tables: intervals 16 levels (1–6 asc, 7–9 desc, 10 asc+desc, 11–13 harm, 14–15 asc + compound, 16 all three), chord qualities 15 (1–9 block, 10–13 arp, 14–15 varied), inversions 6 (1–4 block, 5–6 arp), progressions 13 (1–7 block, 8–10 voiceLed, 11–13 arp) each with `catalogTier`; `tools/validate-data.mjs` exports `PRESENTATIONS`, rejects a `subStages` key, requires a non-empty duplicate-free `presentations` list from the track's set on the four tracks (and forbids it elsewhere), requires `catalogTier` 1–7 on progression levels. Implements AC-3.1.1/1–16, AC-3.2.1/1–5, AC-5.1.1/1–15, AC-5.2.1/1–3, AC-6.2.1/1–6, AC-6.2.3/1–2, AC-8.2.1/1–14, AC-8.2.2, AC-8.5.1/1–3 (2026-08-18).
+- [X] T102 [US2.2] Presentation-tier engine and UI (D-006 amendment, D-013; P-010/P-043/P-047 and the revised track rows): deleted src/learning/subStages.js and tests/unit/learning/subStages.test.js; `src/learning/mastery.js` — `emptyLevelState()` is `{ mastered, masteredAt, history }`, new `minAnswers(n) = max(10, 3 × n)` (`MIN_ANSWERS_FLOOR`, `MIN_ANSWERS_PER_ITEM`), `evaluate` returns `required` and counts `answered` toward it, accuracy window stays 20, `describeUnmet` names the level's minimum; `src/tracks/intervals.js`, `src/tracks/chordQualities.js`, `src/tracks/inversions.js`, `src/tracks/progressions.js` — `itemsFor(levelNo)` is pool × `level.presentations` (progressions: `catalogItems(catalog, catalogTier, texture)`), `generate` takes the presentation from the selected item id and carries it as `question.meta.presentation` (no `subStage`), inversions levels 3 and 5 use the combined answer per `level.answer`; `src/tracks/melodic.js`, `src/tracks/scaleDegrees.js` — `subStage: null` dropped; `src/learning/session.js` — no sub-stage branching, level evaluated on `ls.history`, `subMastered` gone; `src/learning/unlocks.js`, `src/learning/stats.js`, `src/storage/exportImport.js` — sub-stage history merging/counting removed; `src/ui/labels.js` — `presentationName`, `presentationLabel(level)` ("Ascending + descending"), `levelTitle(level)`; `src/ui/session.js` — meter shows `answered/required`, accuracy vs 90%, items below box 3, and the level's presentation (`data-presentation`); `src/ui/feedback.js` — sub-stage transition announcement removed; `src/ui/celebration.js` — `nextLevelText`; the celebration carries `[data-role="next-level"]` naming "Level N — Presentation" or "<track> complete" (`data-last`); `src/ui/levelScreen.js` — presentation in the heading and a `[data-role="presentation"]` line instead of the sub-stage row. Compound handling in `src/ui/anchors.js` was already by interval id, so no level number to change. Implements AC-2.2.1/1–2, AC-2.2.4/1–3, AC-2.6.1/1–4, AC-2.6.2/1–2, AC-3.1.2/1–2, AC-3.1.3, AC-3.4.4/1–2, AC-6.2.2/1–2 (2026-08-18).
+- [X] T103 [US10.3] Progress reset at the restructure (D-007 amendment; P-048): `src/storage/schema.js` — `SCHEMA_VERSION = 2`, `MIN_LOADABLE_SCHEMA = 2`, `validateProgress` flags an older document, `needsReset(doc)`, `resetProgress(oldDoc)` (fresh document keeping only validated `settings`); `src/storage/storage.js` — `resetIfStale(text)`; `createStorage().load()` writes the fresh document back immediately so the reset happens once; `src/storage/exportImport.js` — an import file older than schema 2 is rejected naming both versions. Implements AC-10.3.4/1–2 (2026-08-18).
+- [X] T104 [US3.1] Tests for the level-data criteria, verbatim-named per Case (T5/T7): `tests/unit/tracks/intervals.test.js` (AC-3.1.1/1–16, AC-3.1.2/1–2 within a tier, AC-3.2.1/1–5, AC-3.2.2), `tests/unit/tracks/intervalItems.test.js` (AC-3.2.2 across levels 5/8), `tests/unit/tracks/chordTiers.test.js` (renamed from chordSubStages; AC-5.2.1/1–3, AC-5.2.2, AC-5.2.3), `tests/unit/tracks/chordQualities.test.js` (AC-5.1.1/1–15), `tests/unit/tracks/inversions.test.js` (AC-6.2.1/1–6, AC-6.2.2/2, AC-6.2.3/1–2), `tests/unit/tracks/progressions.test.js` (AC-8.2.1/1–14, AC-8.2.2), `tests/unit/tracks/progressionTextures.test.js` (AC-8.5.1/1–3, AC-8.5.2), `tests/unit/data/validate.test.js` (D-013 validator cases), `tests/unit/data/levels.test.js` (counts 16/5/15/6/6/13); `tests/unit/helpers/harness.js` and `tests/e2e/helpers.js` (`masteredDoc`) seed levels without sub-stage state; `tests/e2e/homeMap.spec.js`, `tests/e2e/inversionsUnlock.spec.js`, `tests/e2e/mixedReview.spec.js`, `tests/e2e/progressionsUnlock.spec.js`, `tests/e2e/stats.spec.js`, `tests/e2e/bassFirst.spec.js` (level 13 added), `tests/e2e/exportImport.spec.js` (schema 2) updated. Every test naming a retired title was renamed to the new title. Proves AC-3.1.1, AC-3.2.1, AC-5.1.1, AC-5.2.1, AC-6.2.1, AC-6.2.3, AC-8.2.1, AC-8.2.2, AC-8.5.1 (2026-08-18).
+- [X] T105 [US2.2] Tests for the engine and UI criteria, verbatim-named per Case: `tests/unit/learning/mastery.test.js` (AC-2.2.4/1–3; the sub-stage advancement test removed with the behaviour), `tests/unit/ui/sessionProgress.test.js` (AC-2.6.1/1–4, AC-2.6.2/1–2 — DOM-capable), `tests/unit/ui/intervalOptions.test.js` (AC-3.1.3 at levels 14–16), `tests/unit/ui/anchors.test.js` (AC-3.4.2 at level 8, AC-3.4.4/1–2 at level 14), `tests/unit/ui/options.test.js`, `tests/unit/ui/chordOptions.test.js`, `tests/e2e/inversionAnswer.spec.js` (AC-6.2.2/1 at levels 3 and 5), `tests/e2e/celebration.spec.js` (AC-9.3.2: 10 answers master scale-degree level 1 — the test had encoded the flat 20-answer floor that AC-2.2.4 now contradicts, §2a). Proves AC-2.2.1, AC-2.2.4, AC-2.6.1, AC-2.6.2, AC-3.1.2, AC-3.1.3, AC-3.4.4, AC-6.2.2 (2026-08-18).
+- [X] T106 [US10.3] Tests for AC-10.3.4, verbatim-named per Case: `tests/unit/storage/storage.test.js` (AC-10.3.4/1 — a stored v1 document is discarded on load, settings retained, the fresh v2 document written back, a v2 document loads untouched) and `tests/unit/storage/exportImport.test.js` (AC-10.3.4/2 — a v1 export is rejected naming schema 1 and 2). Proves AC-10.3.4 (2026-08-18).
+
 ---
 
 ## Dependencies & Execution Order
@@ -263,6 +270,7 @@ renumber the MVP section above.)*
   (needs 5.x, 6.x, 7.2 sequence input).
 - Epic 9 needs the tracks and mastery; Epic 10 needs everything for parity tests.
 - Within a story: the test task is written with the implementation task; tests fail first.
+- Post-MVP presentation tiers (2026-08-18): T101 (data) → T102 (engine/UI) and T103 (storage) → T104–T106 (tests, written alongside; the renamed titles fail T5/T7 until they exist).
 
 ## Parallel Opportunities
 

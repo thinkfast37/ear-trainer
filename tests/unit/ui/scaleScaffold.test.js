@@ -245,7 +245,7 @@ describe('US-4.5 — scale-degree onboarding guidance', () => {
     expect(root.querySelector('[data-role="order-hint"]')).toBeNull();
     // answers on another level of the same track count too
     const p = emptyProgress();
-    p.levels['scaleDegrees:2'] = { mastered: false, masteredAt: null, subStage: null, subStages: {}, history: Array.from({ length: 5 }, (_, i) => ({ item: 'degree:Re:major', correct: true, at: i, replays: 0, score: 1 })) };
+    p.levels['scaleDegrees:2'] = { mastered: false, masteredAt: null, history: Array.from({ length: 5 }, (_, i) => ({ item: 'degree:Re:major', correct: true, at: i, replays: 0, score: 1 })) };
     const h2 = harness({ trackId: 'scaleDegrees', levelNo: 1, progress: p, now: realNow });
     const root2 = screen(h2);
     await h2.session.start();

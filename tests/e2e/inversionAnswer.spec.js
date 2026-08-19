@@ -2,8 +2,8 @@ import { test, expect } from '@playwright/test';
 import { open, tapToUnlock } from './helpers.js';
 
 test.describe('US-6.2 — combined answer', () => {
-  test('AC-6.2.2/1 — Inversion level 3 requires selecting both quality and inversion', async ({ page }) => {
-    await open(page, '#/level/inversions/3');
+  for (const lvl of [3, 5]) test(`AC-6.2.2/1 — Inversion levels 3 and 5 require selecting both quality and inversion: level ${lvl}`, async ({ page }) => {
+    await open(page, `#/level/inversions/${lvl}`);
     await tapToUnlock(page);
     await page.getByRole('button', { name: 'Start' }).tap();
     await page.waitForFunction(() => window.__test.session && window.__test.session.state.phase === 'question');

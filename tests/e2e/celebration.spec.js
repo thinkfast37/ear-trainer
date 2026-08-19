@@ -7,8 +7,9 @@ test.describe('US-9.3 — celebration', () => {
     await tapToUnlock(page);
     await page.getByRole('button', { name: 'Start' }).tap();
     await page.waitForFunction(() => window.__test.session && window.__test.session.state.phase === 'question');
-    // 19 correct answers through the API, then the 20th through the UI
-    await page.evaluate(async () => { const s = window.__test.session; for (let i = 0; i < 19; i++) { s.submit(s.state.question.answer); await s.next(); } });
+    // scale-degree level 1 has 3 items → minimum max(10, 3×3) = 10 answers (AC-2.2.4):
+    // 9 correct answers through the API, then the 10th through the UI
+    await page.evaluate(async () => { const s = window.__test.session; for (let i = 0; i < 9; i++) { s.submit(s.state.question.answer); await s.next(); } });
     const answer = await page.evaluate(() => window.__test.session.state.question.answer);
     await page.locator(`[data-option="${answer}"]`).tap();
     const cel = page.locator('[data-role="celebration"]');

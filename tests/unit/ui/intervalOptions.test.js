@@ -11,9 +11,10 @@ describe('US-3.1 — compound distractors', () => {
   it('AC-3.1.3 — Compound interval questions offer the simple equivalent as a distractor', () => {
     const track = buildTracks().byId.intervals; const rng = createRng(5);
     let compoundSeen = 0;
-    for (const lvl of [8, 9, 10, 11, 12]) {
-      for (let i = 0; i < 60; i++) {
-        const q = track.generate({ levelNo: lvl, subStage: 'asc', progress: emptyProgress(), rng, settings: DEFAULT_SETTINGS });
+    // compound levels are 14+ (AC-3.1.3, 2026-08-18)
+    for (const lvl of [14, 15, 16]) {
+      for (let i = 0; i < 80; i++) {
+        const q = track.generate({ levelNo: lvl, progress: emptyProgress(), rng, settings: DEFAULT_SETTINGS });
         if (!isCompound(q.answer)) continue;
         compoundSeen++;
         const root = mount(() => {});

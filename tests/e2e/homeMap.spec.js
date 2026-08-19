@@ -1,25 +1,14 @@
 import { test, expect } from '@playwright/test';
-import { open, setState, tapToUnlock } from './helpers.js';
+import { open, setState, tapToUnlock, masteredDoc } from './helpers.js';
 
-async function withMastered(page, entries, inProgress = []) {
-  return page.evaluate(({ entries, inProgress }) => {
-    const t = window.__test; const doc = JSON.parse(JSON.stringify(t.store.getState()));
-    for (const { trackId, levelNo } of entries) {
-      const track = t.tracks.byId[trackId]; const subs = track.def.subStages.length ? track.def.subStages : [null];
-      const key = `${trackId}:${levelNo}`; doc.levels[key] = { mastered: true, masteredAt: 1, subStage: subs[subs.length - 1], subStages: {}, history: [] };
-      for (const s of subs) { const ids = track.itemsFor(levelNo, s ?? undefined); for (const id of ids) doc.items[id] = { box: 5, attempts: 10, correct: 9, lastSeen: 1, confusions: {} }; const hist = Array.from({ length: 20 }, (_, i) => ({ item: ids[i % ids.length], correct: true, at: 1000 + i, replays: 0, score: 1 })); if (s) doc.levels[key].subStages[s] = { mastered: true, history: hist }; else doc.levels[key].history = hist; }
-    }
-    for (const { trackId, levelNo } of inProgress) doc.levels[`${trackId}:${levelNo}`] = { mastered: false, masteredAt: null, subStage: null, subStages: {}, history: [{ item: 'x', correct: true, at: 1, replays: 0, score: 1 }] };
-    return doc;
-  }, { entries, inProgress });
-}
+const withMastered = (page, entries, inProgress = []) => masteredDoc(page, entries, { inProgress });
 
 test.describe('US-9.1 Unlock map', () => {
   test('AC-9.1.1 — Every level node displays one of four states', async ({ page }) => {
     await open(page, '#/home');
     await setState(page, await withMastered(page, [{ trackId: 'intervals', levelNo: 1 }], [{ trackId: 'intervals', levelNo: 2 }]));
     const states = await page.locator('[data-role="map"] .node').evaluateAll((els) => els.map((e) => e.dataset.state));
-    expect(states.length).toBe(12 + 5 + 10 + 4 + 6 + 7);
+    expect(states.length).toBe(16 + 5 + 15 + 6 + 6 + 13);
     for (const s of states) expect(['locked', 'available', 'in-progress', 'mastered']).toContain(s);
     await expect(page.locator('[data-track="intervals"] [data-level="1"]')).toHaveAttribute('data-state', 'mastered');
     await expect(page.locator('[data-track="intervals"] [data-level="2"]')).toHaveAttribute('data-state', 'in-progress');

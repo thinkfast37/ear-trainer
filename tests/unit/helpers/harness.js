@@ -38,25 +38,22 @@ export function masteredProgress(tracks, entries, { box = 5 } = {}) {
   const p = emptyProgress();
   for (const { trackId, levelNo } of entries) {
     const t = tracks.byId[trackId];
-    const subs = t.def.subStages.length ? t.def.subStages : [null];
     const key = `${trackId}:${levelNo}`;
-    p.levels[key] = { mastered: true, masteredAt: 1, subStage: subs[subs.length - 1], subStages: {}, history: [] };
-    for (const s of subs) {
-      const ids = t.itemsFor(levelNo, s ?? undefined);
-      for (const id of ids) p.items[id] = { box, attempts: 10, correct: 9, lastSeen: 1, confusions: {} };
-      const hist = Array.from({ length: 20 }, (_, i) => ({ item: ids[i % ids.length], correct: true, at: 1000 + i, replays: 0, score: 1 }));
-      if (s) p.levels[key].subStages[s] = { mastered: true, history: hist }; else p.levels[key].history = hist;
-    }
+    const ids = t.itemsFor(levelNo);
+    for (const id of ids) p.items[id] = { box, attempts: 10, correct: 9, lastSeen: 1, confusions: {} };
+    const n = Math.max(20, 3 * ids.length);
+    const hist = Array.from({ length: n }, (_, i) => ({ item: ids[i % ids.length], correct: true, at: 1000 + i, replays: 0, score: 1 }));
+    p.levels[key] = { mastered: true, masteredAt: 1, history: hist };
   }
   return p;
 }
 
-/** Answer correctly until the current sub-stage (or level) masters; returns the answer count. */
-export async function answerUntilMastered(session, max = 80) {
+/** Answer correctly until the level masters; returns the answer count. */
+export async function answerUntilMastered(session, max = 400) {
   if (session.state.phase === 'idle') await session.start();
   for (let i = 1; i <= max; i++) {
     const r = session.submit(session.state.question.answer);
-    if (r.subMastered || r.levelMastered) return i;
+    if (r.levelMastered) return i;
     await session.next();
   }
   throw new Error(`not mastered after ${max} answers`);

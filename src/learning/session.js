@@ -1,11 +1,11 @@
 /**
  * A practice session: generates questions from a track/level (or Mixed Review), plays them,
- * scores answers, and writes every consequence to the store — Leitner boxes, level and
- * sub-stage history, mastery and unlocks, XP, the day log and streak, the session record.
+ * scores answers, and writes every consequence to the store — Leitner boxes, level history,
+ * mastery and unlocks, XP, the day log and streak, the session record. Levels have no
+ * sub-stages (D-013): a level's presentation is data and its items are pool × presentations.
  */
 import { recordAnswer, getItem, weightOf } from './leitner.js';
 import { evaluate, getLevelState, levelKey, emptyLevelState, pushHistory, rollingAccuracy } from './mastery.js';
-import { currentSubStage, evaluateSubStage, nextSubStage } from './subStages.js';
 import { nextBias } from './selection.js';
 import { partnersOf } from './options.js';
 import { questionScore } from './scoring.js';
@@ -32,15 +32,7 @@ export function createSession({ trackId = null, levelNo = null, mixed = false, b
   function track(tid = state.question?.trackId ?? trackId) { return tracks.byId[tid]; }
   function levelDef(tid, no) { return track(tid).def.levels.find((l) => l.no === no); }
 
-  function subStageFor(tid, no) {
-    const t = track(tid);
-    return currentSubStage(getLevelState(progress(), tid, no), t.def.subStages);
-  }
-
-  function historyFor(tid, no, sub) {
-    const ls = getLevelState(progress(), tid, no);
-    return sub ? (ls.subStages?.[sub]?.history ?? []) : ls.history;
-  }
+  function historyFor(tid, no) { return getLevelState(progress(), tid, no).history; }
 
   function withCadence() {
     const f = settings().cadenceFrequency;
@@ -54,10 +46,9 @@ export function createSession({ trackId = null, levelNo = null, mixed = false, b
     const p = progress();
     const cands = masteredLevels(p).map(({ trackId: tid, levelNo: no }) => {
       const t = track(tid);
-      const sub = t.def.subStages.length ? t.def.subStages[t.def.subStages.length - 1] : null;
-      const ids = t.itemsFor(no, sub ?? undefined);
+      const ids = t.itemsFor(no);
       const weight = ids.reduce((s, iid) => s + weightOf(getItem(p.items, iid).box), 0);
-      return { tid, no, sub, weight };
+      return { tid, no, weight };
     });
     const total = cands.reduce((s, c) => s + c.weight, 0);
     let r = rng() * total;
@@ -66,15 +57,14 @@ export function createSession({ trackId = null, levelNo = null, mixed = false, b
   }
 
   function generate() {
-    let tid = trackId, no = levelNo, sub = null;
-    if (mixed) { const m = pickMixedTarget(); tid = m.tid; no = m.no; sub = m.sub; }
-    else sub = subStageFor(tid, no);
+    let tid = trackId, no = levelNo;
+    if (mixed) { const m = pickMixedTarget(); tid = m.tid; no = m.no; }
     const t = track(tid);
-    const accuracy = rollingAccuracy(historyFor(tid, no, null)); // proficiency is level-wide (AC-2.5.1, AC-4.2.2)
+    const accuracy = rollingAccuracy(historyFor(tid, no)); // proficiency is level-wide (AC-2.5.1, AC-4.2.2)
     const recency = {};
     for (const [iid, idx] of Object.entries(state.lastAsked)) recency[iid] = state.asked - idx;
     const q = t.generate({
-      levelNo: no, subStage: sub ?? undefined, progress: progress(), rng, settings: settings(),
+      levelNo: no, progress: progress(), rng, settings: settings(),
       bias: state.bias, avoid: state.prevItem, accuracy, prevKey: state.prevKey, recency,
       withCadence: withCadence(), bassFirst: state.bassFirst,
     });
@@ -173,7 +163,6 @@ export function createSession({ trackId = null, levelNo = null, mixed = false, b
     state.questions++;
     if (correct) { state.correct++; state.streak++; } else state.streak = 0;
     const level = levelDef(q.trackId, q.levelNo);
-    const sub = q.subStage ?? null;
 
     let outcome = {};
     store.update((d) => {
@@ -182,22 +171,10 @@ export function createSession({ trackId = null, levelNo = null, mixed = false, b
       const ls = d.levels[key] ?? (d.levels[key] = emptyLevelState());
       const entry = { item: q.itemId, correct, at: ts, replays: state.replaysUsed, score };
       pushHistory(ls.history, entry);
-      let subMastered = false;
       let levelMastered = false;
       const wasMastered = ls.mastered;
-      if (sub) {
-        const ss = ls.subStages[sub] ?? (ls.subStages[sub] = { mastered: false, history: [] });
-        pushHistory(ss.history, entry);
-        const ev = evaluateSubStage(ls, sub, d.items, t.itemsFor(q.levelNo, sub));
-        if (ev.mastered && !ss.mastered) {
-          ss.mastered = true; subMastered = true;
-          const nx = nextSubStage(t.def.subStages, sub);
-          if (nx) ls.subStage = nx; else if (!ls.mastered) { ls.mastered = true; ls.masteredAt = ts; levelMastered = true; }
-        }
-      } else {
-        const ev = evaluate(ls.history, d.items, t.itemsFor(q.levelNo));
-        if (ev.mastered && !ls.mastered) { ls.mastered = true; ls.masteredAt = ts; levelMastered = true; }
-      }
+      const ev = evaluate(ls.history, d.items, t.itemsFor(q.levelNo));
+      if (ev.mastered && !ls.mastered) { ls.mastered = true; ls.masteredAt = ts; levelMastered = true; }
       const xp = awardXp({ score: baseScore, replays: state.replaysUsed, streak: state.streak - (correct ? 1 : 0), mixed });
       d.xp += xp;
       const act = recordActivity(d, { questions: 1, seconds: elapsed }, ts, d.settings.sessionGoal);
@@ -205,10 +182,10 @@ export function createSession({ trackId = null, levelNo = null, mixed = false, b
       if (!rec) { rec = { id, trackId, levelNo, mixed, startedAt: state.startedAt, endedAt: ts, questions: 0, correct: 0, replays: 0 }; d.sessions.push(rec); }
       rec.endedAt = ts; rec.questions = state.questions; rec.correct = state.correct; rec.replays = state.replays;
       if (d.sessions.length > 500) d.sessions.splice(0, d.sessions.length - 500);
-      outcome = { xp, subMastered, levelMastered: levelMastered && !wasMastered, dayCompleted: act.justCompleted, levelState: structuredClone(ls) };
+      outcome = { xp, levelMastered: levelMastered && !wasMastered, dayCompleted: act.justCompleted, levelState: structuredClone(ls) };
     });
 
-    const accuracy = rollingAccuracy(historyFor(q.trackId, q.levelNo, null));
+    const accuracy = rollingAccuracy(historyFor(q.trackId, q.levelNo));
     state.bias = nextBias({ bias: state.bias, accuracy, correct, itemId: q.itemId, chosenItemId, confusablePairs: (level.confusables ?? []).map((p) => p.map((o) => t.optionItemId(o, q))) });
 
     state.result = {

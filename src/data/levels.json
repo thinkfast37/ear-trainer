@@ -6,14 +6,14 @@
    "prerequisites": [],
    "cadence": false,
    "answerKind": "single",
-   "subStages": [
-    "asc",
-    "desc",
-    "harm"
-   ],
    "levels": [
     {
+     "replayLimit": null,
+     "mixedReview": false,
      "no": 1,
+     "presentations": [
+      "asc"
+     ],
      "pool": [
       "P8",
       "P5"
@@ -23,12 +23,15 @@
        "P8",
        "P5"
       ]
-     ],
-     "replayLimit": null,
-     "mixedReview": false
+     ]
     },
     {
+     "replayLimit": null,
+     "mixedReview": false,
      "no": 2,
+     "presentations": [
+      "asc"
+     ],
      "pool": [
       "P8",
       "P5",
@@ -44,12 +47,15 @@
        "P8",
        "P5"
       ]
-     ],
-     "replayLimit": null,
-     "mixedReview": false
+     ]
     },
     {
+     "replayLimit": null,
+     "mixedReview": false,
      "no": 3,
+     "presentations": [
+      "asc"
+     ],
      "pool": [
       "P8",
       "P5",
@@ -66,12 +72,15 @@
        "M3",
        "m3"
       ]
-     ],
-     "replayLimit": null,
-     "mixedReview": false
+     ]
     },
     {
+     "replayLimit": null,
+     "mixedReview": false,
      "no": 4,
+     "presentations": [
+      "asc"
+     ],
      "pool": [
       "P8",
       "P5",
@@ -94,12 +103,15 @@
        "M3",
        "m3"
       ]
-     ],
-     "replayLimit": null,
-     "mixedReview": false
+     ]
     },
     {
+     "replayLimit": null,
+     "mixedReview": false,
      "no": 5,
+     "presentations": [
+      "asc"
+     ],
      "pool": [
       "P8",
       "P5",
@@ -128,12 +140,15 @@
        "M3",
        "m3"
       ]
-     ],
-     "replayLimit": null,
-     "mixedReview": false
+     ]
     },
     {
+     "replayLimit": null,
+     "mixedReview": false,
      "no": 6,
+     "presentations": [
+      "asc"
+     ],
      "pool": [
       "P8",
       "P5",
@@ -177,12 +192,81 @@
        "M3",
        "m3"
       ]
-     ],
-     "replayLimit": null,
-     "mixedReview": false
+     ]
     },
     {
+     "replayLimit": null,
+     "mixedReview": false,
      "no": 7,
+     "presentations": [
+      "desc"
+     ],
+     "pool": [
+      "P8",
+      "P5",
+      "P4",
+      "M3",
+      "m3"
+     ],
+     "confusables": [
+      [
+       "P4",
+       "P5"
+      ],
+      [
+       "M3",
+       "m3"
+      ],
+      [
+       "P8",
+       "P5"
+      ]
+     ]
+    },
+    {
+     "replayLimit": null,
+     "mixedReview": false,
+     "no": 8,
+     "presentations": [
+      "desc"
+     ],
+     "pool": [
+      "P8",
+      "P5",
+      "P4",
+      "M3",
+      "m3",
+      "M2",
+      "m2",
+      "M6",
+      "m6"
+     ],
+     "confusables": [
+      [
+       "M6",
+       "m6"
+      ],
+      [
+       "M2",
+       "m2"
+      ],
+      [
+       "P4",
+       "P5"
+      ],
+      [
+       "M3",
+       "m3"
+      ]
+     ]
+    },
+    {
+     "replayLimit": null,
+     "mixedReview": false,
+     "no": 9,
+     "presentations": [
+      "desc"
+     ],
      "pool": [
       "P8",
       "P5",
@@ -226,12 +310,16 @@
        "M3",
        "m3"
       ]
-     ],
-     "replayLimit": null,
-     "mixedReview": true
+     ]
     },
     {
-     "no": 8,
+     "replayLimit": null,
+     "mixedReview": true,
+     "no": 10,
+     "presentations": [
+      "asc",
+      "desc"
+     ],
      "pool": [
       "P8",
       "P5",
@@ -244,29 +332,182 @@
       "m6",
       "M7",
       "m7",
-      "TT",
-      "m9",
-      "M9"
+      "TT"
      ],
      "confusables": [
       [
-       "m9",
+       "M7",
+       "m7"
+      ],
+      [
+       "TT",
+       "P4"
+      ],
+      [
+       "TT",
+       "P5"
+      ],
+      [
+       "M6",
+       "m6"
+      ],
+      [
+       "M2",
        "m2"
       ],
       [
-       "M9",
-       "M2"
+       "P4",
+       "P5"
       ],
       [
-       "m9",
-       "M9"
+       "M3",
+       "m3"
       ]
-     ],
-     "replayLimit": null,
-     "mixedReview": false
+     ]
     },
     {
-     "no": 9,
+     "replayLimit": null,
+     "mixedReview": false,
+     "no": 11,
+     "presentations": [
+      "harm"
+     ],
+     "pool": [
+      "P8",
+      "P5",
+      "P4",
+      "TT",
+      "M2",
+      "m2"
+     ],
+     "confusables": [
+      [
+       "TT",
+       "P4"
+      ],
+      [
+       "TT",
+       "P5"
+      ],
+      [
+       "M2",
+       "m2"
+      ],
+      [
+       "P4",
+       "P5"
+      ],
+      [
+       "P8",
+       "P5"
+      ]
+     ]
+    },
+    {
+     "replayLimit": null,
+     "mixedReview": false,
+     "no": 12,
+     "presentations": [
+      "harm"
+     ],
+     "pool": [
+      "P8",
+      "P5",
+      "P4",
+      "TT",
+      "M2",
+      "m2",
+      "M3",
+      "m3",
+      "M6",
+      "m6"
+     ],
+     "confusables": [
+      [
+       "M3",
+       "m3"
+      ],
+      [
+       "M6",
+       "m6"
+      ],
+      [
+       "TT",
+       "P4"
+      ],
+      [
+       "TT",
+       "P5"
+      ],
+      [
+       "M2",
+       "m2"
+      ],
+      [
+       "P4",
+       "P5"
+      ]
+     ]
+    },
+    {
+     "replayLimit": null,
+     "mixedReview": false,
+     "no": 13,
+     "presentations": [
+      "harm"
+     ],
+     "pool": [
+      "P8",
+      "P5",
+      "M3",
+      "m3",
+      "P4",
+      "M2",
+      "m2",
+      "M6",
+      "m6",
+      "M7",
+      "m7",
+      "TT"
+     ],
+     "confusables": [
+      [
+       "M7",
+       "m7"
+      ],
+      [
+       "TT",
+       "P4"
+      ],
+      [
+       "TT",
+       "P5"
+      ],
+      [
+       "M6",
+       "m6"
+      ],
+      [
+       "M2",
+       "m2"
+      ],
+      [
+       "P4",
+       "P5"
+      ],
+      [
+       "M3",
+       "m3"
+      ]
+     ]
+    },
+    {
+     "replayLimit": null,
+     "mixedReview": false,
+     "no": 14,
+     "presentations": [
+      "asc"
+     ],
      "pool": [
       "P8",
       "P5",
@@ -287,6 +528,18 @@
      ],
      "confusables": [
       [
+       "m9",
+       "m2"
+      ],
+      [
+       "M9",
+       "M2"
+      ],
+      [
+       "m9",
+       "M9"
+      ],
+      [
        "m10",
        "m3"
       ],
@@ -298,51 +551,15 @@
        "m10",
        "M10"
       ]
-     ],
-     "replayLimit": null,
-     "mixedReview": false
+     ]
     },
     {
-     "no": 10,
-     "pool": [
-      "P8",
-      "P5",
-      "M3",
-      "m3",
-      "P4",
-      "M2",
-      "m2",
-      "M6",
-      "m6",
-      "M7",
-      "m7",
-      "TT",
-      "m9",
-      "M9",
-      "m10",
-      "M10",
-      "P11",
-      "P12"
-     ],
-     "confusables": [
-      [
-       "P11",
-       "P4"
-      ],
-      [
-       "P12",
-       "P5"
-      ],
-      [
-       "P11",
-       "P12"
-      ]
-     ],
      "replayLimit": null,
-     "mixedReview": false
-    },
-    {
-     "no": 11,
+     "mixedReview": false,
+     "no": 15,
+     "presentations": [
+      "asc"
+     ],
      "pool": [
       "P8",
       "P5",
@@ -367,6 +584,18 @@
      ],
      "confusables": [
       [
+       "P11",
+       "P4"
+      ],
+      [
+       "P12",
+       "P5"
+      ],
+      [
+       "P11",
+       "P12"
+      ],
+      [
        "m13",
        "m6"
       ],
@@ -377,13 +606,42 @@
       [
        "m13",
        "M13"
+      ],
+      [
+       "m9",
+       "m2"
+      ],
+      [
+       "M9",
+       "M2"
+      ],
+      [
+       "m9",
+       "M9"
+      ],
+      [
+       "m10",
+       "m3"
+      ],
+      [
+       "M10",
+       "M3"
+      ],
+      [
+       "m10",
+       "M10"
       ]
-     ],
-     "replayLimit": null,
-     "mixedReview": false
+     ]
     },
     {
-     "no": 12,
+     "replayLimit": null,
+     "mixedReview": true,
+     "no": 16,
+     "presentations": [
+      "asc",
+      "desc",
+      "harm"
+     ],
      "pool": [
       "P8",
       "P5",
@@ -413,7 +671,23 @@
       ],
       [
        "m9",
+       "m2"
+      ],
+      [
+       "M9",
+       "M2"
+      ],
+      [
+       "m9",
        "M9"
+      ],
+      [
+       "m10",
+       "m3"
+      ],
+      [
+       "M10",
+       "M3"
       ],
       [
        "m10",
@@ -421,15 +695,29 @@
       ],
       [
        "P11",
+       "P4"
+      ],
+      [
+       "P12",
+       "P5"
+      ],
+      [
+       "P11",
        "P12"
+      ],
+      [
+       "m13",
+       "m6"
+      ],
+      [
+       "M13",
+       "M6"
       ],
       [
        "m13",
        "M13"
       ]
-     ],
-     "replayLimit": null,
-     "mixedReview": true
+     ]
     }
    ]
   },
@@ -439,7 +727,6 @@
    "prerequisites": [],
    "cadence": true,
    "answerKind": "single",
-   "subStages": [],
    "levels": [
     {
      "no": 1,
@@ -598,14 +885,14 @@
    "prerequisites": [],
    "cadence": false,
    "answerKind": "single",
-   "subStages": [
-    "block",
-    "arp",
-    "varied"
-   ],
    "levels": [
     {
+     "replayLimit": null,
+     "mixedReview": false,
      "no": 1,
+     "presentations": [
+      "block"
+     ],
      "pool": [
       "maj",
       "min"
@@ -618,12 +905,15 @@
        "maj",
        "min"
       ]
-     ],
-     "replayLimit": null,
-     "mixedReview": false
+     ]
     },
     {
+     "replayLimit": null,
+     "mixedReview": false,
      "no": 2,
+     "presentations": [
+      "block"
+     ],
      "pool": [
       "maj",
       "min",
@@ -641,12 +931,15 @@
        "maj",
        "min"
       ]
-     ],
-     "replayLimit": null,
-     "mixedReview": false
+     ]
     },
     {
+     "replayLimit": null,
+     "mixedReview": false,
      "no": 3,
+     "presentations": [
+      "block"
+     ],
      "pool": [
       "maj",
       "min",
@@ -665,12 +958,15 @@
        "min",
        "dim"
       ]
-     ],
-     "replayLimit": null,
-     "mixedReview": false
+     ]
     },
     {
+     "replayLimit": null,
+     "mixedReview": false,
      "no": 4,
+     "presentations": [
+      "block"
+     ],
      "pool": [
       "maj",
       "min"
@@ -685,12 +981,15 @@
        "maj",
        "min"
       ]
-     ],
-     "replayLimit": null,
-     "mixedReview": false
+     ]
     },
     {
+     "replayLimit": null,
+     "mixedReview": false,
      "no": 5,
+     "presentations": [
+      "block"
+     ],
      "pool": [
       "maj",
       "min",
@@ -715,12 +1014,15 @@
        "maj",
        "min"
       ]
-     ],
-     "replayLimit": null,
-     "mixedReview": false
+     ]
     },
     {
+     "replayLimit": null,
+     "mixedReview": false,
      "no": 6,
+     "presentations": [
+      "block"
+     ],
      "pool": [
       "dom7",
       "maj7",
@@ -738,12 +1040,15 @@
        "dom7",
        "m7"
       ]
-     ],
-     "replayLimit": null,
-     "mixedReview": false
+     ]
     },
     {
+     "replayLimit": null,
+     "mixedReview": false,
      "no": 7,
+     "presentations": [
+      "block"
+     ],
      "pool": [
       "dom7",
       "maj7",
@@ -767,12 +1072,15 @@
        "dom7",
        "maj7"
       ]
-     ],
-     "replayLimit": null,
-     "mixedReview": false
+     ]
     },
     {
+     "replayLimit": null,
+     "mixedReview": false,
      "no": 8,
+     "presentations": [
+      "block"
+     ],
      "pool": [
       "dom7",
       "maj7",
@@ -799,12 +1107,15 @@
        "dom7",
        "maj7"
       ]
-     ],
-     "replayLimit": null,
-     "mixedReview": false
+     ]
     },
     {
+     "replayLimit": null,
+     "mixedReview": false,
      "no": 9,
+     "presentations": [
+      "block"
+     ],
      "pool": [
       "maj",
       "min",
@@ -830,12 +1141,111 @@
        "sus4",
        "maj"
       ]
-     ],
-     "replayLimit": null,
-     "mixedReview": false
+     ]
     },
     {
+     "replayLimit": null,
+     "mixedReview": false,
      "no": 10,
+     "presentations": [
+      "arp"
+     ],
+     "pool": [
+      "maj",
+      "min",
+      "dim",
+      "aug"
+     ],
+     "voicings": [
+      "root"
+     ],
+     "confusables": [
+      [
+       "maj",
+       "aug"
+      ],
+      [
+       "min",
+       "dim"
+      ],
+      [
+       "maj",
+       "min"
+      ]
+     ]
+    },
+    {
+     "replayLimit": null,
+     "mixedReview": false,
+     "no": 11,
+     "presentations": [
+      "arp"
+     ],
+     "pool": [
+      "maj",
+      "min",
+      "dim",
+      "aug"
+     ],
+     "voicings": [
+      "root",
+      "inv1",
+      "inv2"
+     ],
+     "confusables": [
+      [
+       "maj",
+       "aug"
+      ],
+      [
+       "min",
+       "dim"
+      ],
+      [
+       "maj",
+       "min"
+      ]
+     ]
+    },
+    {
+     "replayLimit": null,
+     "mixedReview": false,
+     "no": 12,
+     "presentations": [
+      "arp"
+     ],
+     "pool": [
+      "dom7",
+      "maj7",
+      "m7",
+      "m7b5",
+      "dim7"
+     ],
+     "voicings": [
+      "root"
+     ],
+     "confusables": [
+      [
+       "m7b5",
+       "m7"
+      ],
+      [
+       "m7b5",
+       "dim7"
+      ],
+      [
+       "dom7",
+       "maj7"
+      ]
+     ]
+    },
+    {
+     "replayLimit": null,
+     "mixedReview": false,
+     "no": 13,
+     "presentations": [
+      "arp"
+     ],
      "pool": [
       "maj",
       "min",
@@ -861,8 +1271,16 @@
        "sus4"
       ],
       [
+       "sus4",
+       "maj"
+      ],
+      [
        "m7b5",
        "m7"
+      ],
+      [
+       "m7b5",
+       "dim7"
       ],
       [
        "maj",
@@ -876,9 +1294,97 @@
        "dom7",
        "maj7"
       ]
-     ],
+     ]
+    },
+    {
      "replayLimit": null,
-     "mixedReview": true
+     "mixedReview": false,
+     "no": 14,
+     "presentations": [
+      "varied"
+     ],
+     "pool": [
+      "maj",
+      "min",
+      "dim",
+      "aug"
+     ],
+     "voicings": [
+      "root",
+      "inv1",
+      "inv2"
+     ],
+     "confusables": [
+      [
+       "maj",
+       "aug"
+      ],
+      [
+       "min",
+       "dim"
+      ],
+      [
+       "maj",
+       "min"
+      ]
+     ]
+    },
+    {
+     "replayLimit": null,
+     "mixedReview": true,
+     "no": 15,
+     "presentations": [
+      "varied"
+     ],
+     "pool": [
+      "maj",
+      "min",
+      "dim",
+      "aug",
+      "dom7",
+      "maj7",
+      "m7",
+      "m7b5",
+      "dim7",
+      "sus2",
+      "sus4"
+     ],
+     "voicings": [
+      "root",
+      "inv1",
+      "inv2",
+      "inv3"
+     ],
+     "confusables": [
+      [
+       "sus2",
+       "sus4"
+      ],
+      [
+       "sus4",
+       "maj"
+      ],
+      [
+       "m7b5",
+       "m7"
+      ],
+      [
+       "m7b5",
+       "dim7"
+      ],
+      [
+       "maj",
+       "aug"
+      ],
+      [
+       "min",
+       "dim"
+      ],
+      [
+       "dom7",
+       "maj7"
+      ]
+     ]
     }
    ]
   },
@@ -893,13 +1399,14 @@
    ],
    "cadence": false,
    "answerKind": "inversion",
-   "subStages": [
-    "block",
-    "arp"
-   ],
    "levels": [
     {
+     "replayLimit": null,
+     "mixedReview": false,
      "no": 1,
+     "presentations": [
+      "block"
+     ],
      "quality": [
       "maj"
      ],
@@ -914,12 +1421,15 @@
        "inv1",
        "inv2"
       ]
-     ],
-     "replayLimit": null,
-     "mixedReview": false
+     ]
     },
     {
+     "replayLimit": null,
+     "mixedReview": false,
      "no": 2,
+     "presentations": [
+      "block"
+     ],
      "quality": [
       "min"
      ],
@@ -934,12 +1444,15 @@
        "inv1",
        "inv2"
       ]
-     ],
-     "replayLimit": null,
-     "mixedReview": false
+     ]
     },
     {
+     "replayLimit": null,
+     "mixedReview": false,
      "no": 3,
+     "presentations": [
+      "block"
+     ],
      "quality": [
       "maj",
       "min"
@@ -955,12 +1468,15 @@
        "maj:inv1",
        "min:inv1"
       ]
-     ],
-     "replayLimit": null,
-     "mixedReview": false
+     ]
     },
     {
+     "replayLimit": null,
+     "mixedReview": false,
      "no": 4,
+     "presentations": [
+      "block"
+     ],
      "quality": [
       "dom7",
       "maj7",
@@ -978,9 +1494,57 @@
        "inv2",
        "inv3"
       ]
-     ],
+     ]
+    },
+    {
      "replayLimit": null,
-     "mixedReview": false
+     "mixedReview": false,
+     "no": 5,
+     "presentations": [
+      "arp"
+     ],
+     "quality": [
+      "maj",
+      "min"
+     ],
+     "inversions": [
+      0,
+      1,
+      2
+     ],
+     "answer": "qualityInversion",
+     "confusables": [
+      [
+       "maj:inv1",
+       "min:inv1"
+      ]
+     ]
+    },
+    {
+     "replayLimit": null,
+     "mixedReview": false,
+     "no": 6,
+     "presentations": [
+      "arp"
+     ],
+     "quality": [
+      "dom7",
+      "maj7",
+      "m7"
+     ],
+     "inversions": [
+      0,
+      1,
+      2,
+      3
+     ],
+     "answer": "inversion",
+     "confusables": [
+      [
+       "inv2",
+       "inv3"
+      ]
+     ]
     }
    ]
   },
@@ -990,7 +1554,6 @@
    "prerequisites": [],
    "cadence": true,
    "answerKind": "sequence",
-   "subStages": [],
    "levels": [
     {
      "no": 1,
@@ -1087,14 +1650,15 @@
    ],
    "cadence": true,
    "answerKind": "numerals",
-   "subStages": [
-    "block",
-    "voiceLed",
-    "arp"
-   ],
    "levels": [
     {
+     "replayLimit": 3,
+     "mixedReview": false,
      "no": 1,
+     "presentations": [
+      "block"
+     ],
+     "catalogTier": 1,
      "vocabulary": [
       "I",
       "IV",
@@ -1107,12 +1671,16 @@
        "IV",
        "V"
       ]
-     ],
-     "replayLimit": 3,
-     "mixedReview": false
+     ]
     },
     {
+     "replayLimit": 3,
+     "mixedReview": false,
      "no": 2,
+     "presentations": [
+      "block"
+     ],
+     "catalogTier": 2,
      "vocabulary": [
       "I",
       "IV",
@@ -1130,12 +1698,16 @@
        "IV",
        "V"
       ]
-     ],
-     "replayLimit": 3,
-     "mixedReview": false
+     ]
     },
     {
+     "replayLimit": 3,
+     "mixedReview": false,
      "no": 3,
+     "presentations": [
+      "block"
+     ],
+     "catalogTier": 3,
      "vocabulary": [
       "I",
       "ii",
@@ -1159,12 +1731,16 @@
        "vi",
        "IV"
       ]
-     ],
-     "replayLimit": 3,
-     "mixedReview": false
+     ]
     },
     {
+     "replayLimit": 3,
+     "mixedReview": false,
      "no": 4,
+     "presentations": [
+      "block"
+     ],
+     "catalogTier": 4,
      "vocabulary": [
       "i",
       "iv",
@@ -1189,12 +1765,16 @@
        "VII",
        "III"
       ]
-     ],
-     "replayLimit": 3,
-     "mixedReview": false
+     ]
     },
     {
+     "replayLimit": 3,
+     "mixedReview": false,
      "no": 5,
+     "presentations": [
+      "block"
+     ],
+     "catalogTier": 5,
      "vocabulary": [
       "Imaj7",
       "ii7",
@@ -1220,12 +1800,16 @@
        "V7",
        "I7"
       ]
-     ],
-     "replayLimit": 3,
-     "mixedReview": false
+     ]
     },
     {
+     "replayLimit": 3,
+     "mixedReview": false,
      "no": 6,
+     "presentations": [
+      "block"
+     ],
+     "catalogTier": 6,
      "vocabulary": [
       "I",
       "ii",
@@ -1256,12 +1840,16 @@
        "I64",
        "IV"
       ]
-     ],
-     "replayLimit": 3,
-     "mixedReview": false
+     ]
     },
     {
+     "replayLimit": 3,
+     "mixedReview": false,
      "no": 7,
+     "presentations": [
+      "block"
+     ],
+     "catalogTier": 7,
      "vocabulary": [
       "I",
       "ii",
@@ -1294,9 +1882,337 @@
        "III",
        "iii"
       ]
-     ],
+     ]
+    },
+    {
      "replayLimit": 3,
-     "mixedReview": false
+     "mixedReview": false,
+     "no": 8,
+     "presentations": [
+      "voiceLed"
+     ],
+     "catalogTier": 3,
+     "vocabulary": [
+      "I",
+      "IV",
+      "V",
+      "vi",
+      "ii",
+      "iii"
+     ],
+     "bassFirst": true,
+     "mode": "major",
+     "confusables": [
+      [
+       "ii",
+       "IV"
+      ],
+      [
+       "iii",
+       "vi"
+      ],
+      [
+       "vi",
+       "IV"
+      ]
+     ]
+    },
+    {
+     "replayLimit": 3,
+     "mixedReview": false,
+     "no": 9,
+     "presentations": [
+      "voiceLed"
+     ],
+     "catalogTier": 5,
+     "vocabulary": [
+      "I",
+      "IV",
+      "V",
+      "vi",
+      "ii",
+      "iii",
+      "i",
+      "iv",
+      "v",
+      "VI",
+      "VII",
+      "III",
+      "Imaj7",
+      "ii7",
+      "iii7",
+      "IVmaj7",
+      "V7",
+      "vi7",
+      "I7",
+      "IV7"
+     ],
+     "bassFirst": true,
+     "mode": "major",
+     "confusables": [
+      [
+       "v",
+       "V"
+      ],
+      [
+       "VI",
+       "iv"
+      ],
+      [
+       "VII",
+       "III"
+      ],
+      [
+       "ii7",
+       "IVmaj7"
+      ],
+      [
+       "iii7",
+       "vi7"
+      ],
+      [
+       "V7",
+       "I7"
+      ]
+     ]
+    },
+    {
+     "replayLimit": 3,
+     "mixedReview": false,
+     "no": 10,
+     "presentations": [
+      "voiceLed"
+     ],
+     "catalogTier": 7,
+     "vocabulary": [
+      "I",
+      "IV",
+      "V",
+      "vi",
+      "ii",
+      "iii",
+      "i",
+      "iv",
+      "v",
+      "VI",
+      "VII",
+      "III",
+      "Imaj7",
+      "ii7",
+      "iii7",
+      "IVmaj7",
+      "V7",
+      "vi7",
+      "I7",
+      "IV7",
+      "I6",
+      "I64",
+      "V6",
+      "V64",
+      "imaj7",
+      "i7",
+      "i6",
+      "bVII",
+      "bVI",
+      "bVII7"
+     ],
+     "bassFirst": true,
+     "mode": "major",
+     "confusables": [
+      [
+       "I6",
+       "I"
+      ],
+      [
+       "V6",
+       "V"
+      ],
+      [
+       "I64",
+       "IV"
+      ],
+      [
+       "iv",
+       "IV"
+      ],
+      [
+       "bVII",
+       "V"
+      ],
+      [
+       "bVI",
+       "vi"
+      ],
+      [
+       "III",
+       "iii"
+      ]
+     ]
+    },
+    {
+     "replayLimit": 3,
+     "mixedReview": false,
+     "no": 11,
+     "presentations": [
+      "arp"
+     ],
+     "catalogTier": 3,
+     "vocabulary": [
+      "I",
+      "IV",
+      "V",
+      "vi",
+      "ii",
+      "iii"
+     ],
+     "bassFirst": true,
+     "mode": "major",
+     "confusables": [
+      [
+       "ii",
+       "IV"
+      ],
+      [
+       "iii",
+       "vi"
+      ],
+      [
+       "vi",
+       "IV"
+      ]
+     ]
+    },
+    {
+     "replayLimit": 3,
+     "mixedReview": false,
+     "no": 12,
+     "presentations": [
+      "arp"
+     ],
+     "catalogTier": 5,
+     "vocabulary": [
+      "I",
+      "IV",
+      "V",
+      "vi",
+      "ii",
+      "iii",
+      "i",
+      "iv",
+      "v",
+      "VI",
+      "VII",
+      "III",
+      "Imaj7",
+      "ii7",
+      "iii7",
+      "IVmaj7",
+      "V7",
+      "vi7",
+      "I7",
+      "IV7"
+     ],
+     "bassFirst": true,
+     "mode": "major",
+     "confusables": [
+      [
+       "v",
+       "V"
+      ],
+      [
+       "VI",
+       "iv"
+      ],
+      [
+       "VII",
+       "III"
+      ],
+      [
+       "ii7",
+       "IVmaj7"
+      ],
+      [
+       "iii7",
+       "vi7"
+      ],
+      [
+       "V7",
+       "I7"
+      ]
+     ]
+    },
+    {
+     "replayLimit": 3,
+     "mixedReview": false,
+     "no": 13,
+     "presentations": [
+      "arp"
+     ],
+     "catalogTier": 7,
+     "vocabulary": [
+      "I",
+      "IV",
+      "V",
+      "vi",
+      "ii",
+      "iii",
+      "i",
+      "iv",
+      "v",
+      "VI",
+      "VII",
+      "III",
+      "Imaj7",
+      "ii7",
+      "iii7",
+      "IVmaj7",
+      "V7",
+      "vi7",
+      "I7",
+      "IV7",
+      "I6",
+      "I64",
+      "V6",
+      "V64",
+      "imaj7",
+      "i7",
+      "i6",
+      "bVII",
+      "bVI",
+      "bVII7"
+     ],
+     "bassFirst": true,
+     "mode": "major",
+     "confusables": [
+      [
+       "I6",
+       "I"
+      ],
+      [
+       "V6",
+       "V"
+      ],
+      [
+       "I64",
+       "IV"
+      ],
+      [
+       "iv",
+       "IV"
+      ],
+      [
+       "bVII",
+       "V"
+      ],
+      [
+       "bVI",
+       "vi"
+      ],
+      [
+       "III",
+       "iii"
+      ]
+     ]
     }
    ]
   }

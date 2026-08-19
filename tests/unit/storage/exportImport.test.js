@@ -37,8 +37,8 @@ describe('US-10.3 Progress persistence and export', () => {
     other.items.c = { box: 3, attempts: 2, correct: 2, lastSeen: 10, confusions: {} };          // only remote
     local.xp = 10; other.xp = 40; local.streak.best = 5; other.streak.best = 2;
     local.days['2026-08-01'] = { questions: 10, seconds: 100, complete: false }; other.days['2026-08-01'] = { questions: 30, seconds: 50, complete: true }; other.days['2026-08-02'] = { questions: 3, seconds: 9, complete: false };
-    local.levels['intervals:1'] = { mastered: false, masteredAt: null, subStage: null, subStages: {}, history: [{ item: 'a', correct: true, at: 1 }] };
-    other.levels['intervals:1'] = { mastered: true, masteredAt: 9, subStage: null, subStages: {}, history: [{ item: 'a', correct: false, at: 2 }] };
+    local.levels['intervals:1'] = { mastered: false, masteredAt: null, history: [{ item: 'a', correct: true, at: 1 }] };
+    other.levels['intervals:1'] = { mastered: true, masteredAt: 9, history: [{ item: 'a', correct: false, at: 2 }] };
     local.settings.replayLimit = 2; other.settings.replayLimit = 9;
     const m = mergeProgress(local, other);
     expect(m.items.a.box).toBe(4); expect(m.items.a.lastSeen).toBe(200);
@@ -50,6 +50,18 @@ describe('US-10.3 Progress persistence and export', () => {
     expect(m.settings.replayLimit).toBe(2); // local settings win
     // importing a file identical to local changes nothing
     expect(mergeProgress(m, m)).toEqual(m);
+  });
+  it('AC-10.3.4/2 — Importing an export file from before the restructure is rejected with an error naming both schema versions', () => {
+    // A schema-1 export (pre presentation tiers) with sub-stage state and old level numbers.
+    const v1 = { ...emptyProgress(), schemaVersion: 1, xp: 99 };
+    v1.levels['intervals:1'] = { mastered: false, masteredAt: null, subStage: 'desc', subStages: { asc: { mastered: true, history: [] } }, history: [] };
+    const r = parseImport(JSON.stringify(v1));
+    expect(r.ok).toBe(false);
+    expect(r.error).toContain('schema 1'); expect(r.error).toContain(`schema ${SCHEMA_VERSION}`);
+    expect(r.error).toMatch(/level restructure/);
+    // and a current-schema file is still accepted
+    expect(parseImport(JSON.stringify(emptyProgress())).ok).toBe(true);
+    expect(SCHEMA_VERSION).toBe(2);
   });
   it('AC-10.3.3/3 — An invalid import file is rejected with a clear error', () => {
     expect(parseImport('not json at all')).toEqual({ ok: false, error: 'That file is not valid JSON.' });

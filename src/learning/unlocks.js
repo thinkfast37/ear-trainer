@@ -34,8 +34,7 @@ export function levelNodeState(progress, track, levelNo, tracksById) {
   if (st.mastered) return 'mastered';
   if (!trackUnlocked(track, progress, tracksById)) return 'locked';
   if (levelNo > 1 && !isLevelMastered(progress, track.id, levelNo - 1)) return 'locked';
-  const answered = st.history.length + Object.values(st.subStages ?? {}).reduce((s, x) => s + (x.history?.length ?? 0), 0);
-  return answered > 0 ? 'in-progress' : 'available';
+  return st.history.length > 0 ? 'in-progress' : 'available';
 }
 
 export function levelUnlockCondition(progress, track, levelNo, tracksById) {

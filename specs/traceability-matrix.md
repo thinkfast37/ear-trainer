@@ -14,13 +14,13 @@
 -->
 
 **Feature**: specs/001-ear-trainer/spec.md
-**Criteria**: 242 across 39 User Stories
+**Criteria**: 267 across 39 User Stories
 
-**Coverage**: 242 of 242 criteria proven (100.0%)
+**Coverage**: 267 of 267 criteria proven (100.0%)
 
 | | Criteria | Share |
 |---|---|---|
-| 🟢 Proven | 242 | 100.0% |
+| 🟢 Proven | 267 | 100.0% |
 
 A row is one *criterion*: an Acceptance Criterion that asserts one thing, or one Case of
 an AC that asserts several. 🖵 marks a criterion that describes something a person sees or
@@ -59,13 +59,13 @@ fail the build, and it is outstanding work — never a settled decision.
 | 🟢 US-1.2 | 4 | **4** | · | · | · | · | · |
 | 🟢 US-1.3 | 10 | **10** | · | · | · | · | · |
 | 🟢 US-2.1 | 6 | **6** | · | · | · | · | · |
-| 🟢 US-2.2 | 6 | **6** | · | · | · | · | · |
+| 🟢 US-2.2 | 9 | **9** | · | · | · | · | · |
 | 🟢 US-2.3 | 5 | **5** | · | · | · | · | · |
 | 🟢 US-2.4 | 4 | **4** | · | · | · | · | · |
 | 🟢 US-2.5 | 3 | **3** | · | · | · | · | · |
-| 🟢 US-2.6 | 7 | **7** | · | · | · | · | · |
-| 🟢 US-3.1 | 15 | **15** | · | · | · | · | · |
-| 🟢 US-3.2 | 5 | **5** | · | · | · | · | · |
+| 🟢 US-2.6 | 6 | **6** | · | · | · | · | · |
+| 🟢 US-3.1 | 19 | **19** | · | · | · | · | · |
+| 🟢 US-3.2 | 8 | **8** | · | · | · | · | · |
 | 🟢 US-3.3 | 3 | **3** | · | · | · | · | · |
 | 🟢 US-3.4 | 7 | **7** | · | · | · | · | · |
 | 🟢 US-4.1 | 4 | **4** | · | · | · | · | · |
@@ -73,16 +73,16 @@ fail the build, and it is outstanding work — never a settled decision.
 | 🟢 US-4.3 | 2 | **2** | · | · | · | · | · |
 | 🟢 US-4.4 | 19 | **19** | · | · | · | · | · |
 | 🟢 US-4.5 | 7 | **7** | · | · | · | · | · |
-| 🟢 US-5.1 | 16 | **16** | · | · | · | · | · |
+| 🟢 US-5.1 | 21 | **21** | · | · | · | · | · |
 | 🟢 US-5.2 | 5 | **5** | · | · | · | · | · |
 | 🟢 US-5.3 | 2 | **2** | · | · | · | · | · |
 | 🟢 US-6.1 | 2 | **2** | · | · | · | · | · |
-| 🟢 US-6.2 | 7 | **7** | · | · | · | · | · |
+| 🟢 US-6.2 | 10 | **10** | · | · | · | · | · |
 | 🟢 US-7.1 | 7 | **7** | · | · | · | · | · |
 | 🟢 US-7.2 | 6 | **6** | · | · | · | · | · |
 | 🟢 US-7.3 | 3 | **3** | · | · | · | · | · |
 | 🟢 US-8.1 | 2 | **2** | · | · | · | · | · |
-| 🟢 US-8.2 | 12 | **12** | · | · | · | · | · |
+| 🟢 US-8.2 | 18 | **18** | · | · | · | · | · |
 | 🟢 US-8.3 | 5 | **5** | · | · | · | · | · |
 | 🟢 US-8.4 | 5 | **5** | · | · | · | · | · |
 | 🟢 US-8.5 | 4 | **4** | · | · | · | · | · |
@@ -92,7 +92,7 @@ fail the build, and it is outstanding work — never a settled decision.
 | 🟢 US-9.4 | 4 | **4** | · | · | · | · | · |
 | 🟢 US-10.1 | 9 | **9** | · | · | · | · | · |
 | 🟢 US-10.2 | 5 | **5** | · | · | · | · | · |
-| 🟢 US-10.3 | 5 | **5** | · | · | · | · | · |
+| 🟢 US-10.3 | 7 | **7** | · | · | · | · | · |
 | 🟢 US-10.4 | 9 | **9** | · | · | · | · | · |
 
 ## Every criterion
@@ -123,12 +123,15 @@ fail the build, and it is outstanding work — never a settled decision.
 | US-2.1 | `AC-2.1.4/1` | Every item's box is unchanged after reopening | P-009 | T024 (1/1 done) | T025 (1/1 done) | `leitnerPersistence.test.js` | 🟢 OK |
 | US-2.1 | `AC-2.1.4/2` | Every item's attempts and correct count are unchanged after reopening | P-009 | T024 (1/1 done) | T025 (1/1 done) | `leitnerPersistence.test.js` | 🟢 OK |
 | US-2.1 | `AC-2.1.4/3` | Every item's last-seen timestamp is unchanged after reopening | P-009 | T024 (1/1 done) | T025 (1/1 done) | `leitnerPersistence.test.js` | 🟢 OK |
-| US-2.2 | `AC-2.2.1/1` | The level is marked mastered on the satisfying answer | P-010 | T026 (1/1 done) | T027 (1/1 done) | `mastery.test.js` | 🟢 OK |
-| US-2.2 | `AC-2.2.1/2` | The next level unlocks when the level is mastered | P-010 | T026 (1/1 done) | T027 (1/1 done) | `mastery.test.js` | 🟢 OK |
-| US-2.2 | `AC-2.2.2/1` 🖵 | The level is not mastered while an item is below box 3 | P-010 | T026 (1/1 done) | T027 (1/1 done) | `mastery.test.js`, `levelScreen.test.js` | 🟢 OK |
-| US-2.2 | `AC-2.2.2/2` 🖵 | The level screen shows which mastery condition is unmet | P-010 | T026 (1/1 done) | T027 (1/1 done) | `levelScreen.test.js` | 🟢 OK |
-| US-2.2 | `AC-2.2.3/1` | An incorrect answer in a mastered level decreases that item's box | P-010 | T026 (1/1 done) | T027 (1/1 done) | `mastery.test.js` | 🟢 OK |
-| US-2.2 | `AC-2.2.3/2` | The mastered status is retained for unlock purposes after decay | P-010 | T026 (1/1 done) | T027 (1/1 done) | `mastery.test.js` | 🟢 OK |
+| US-2.2 | `AC-2.2.1/1` | The level is marked mastered on the satisfying answer | P-010 | T026, T102 (2/2 done) | T027, T105 (2/2 done) | `mastery.test.js` | 🟢 OK |
+| US-2.2 | `AC-2.2.1/2` | The next level unlocks when the level is mastered | P-010 | T026, T102 (2/2 done) | T027, T105 (2/2 done) | `mastery.test.js` | 🟢 OK |
+| US-2.2 | `AC-2.2.4/1` | A two-item level requires at least 10 answers | P-047 | T102 (1/1 done) | T105 (1/1 done) | `mastery.test.js` | 🟢 OK |
+| US-2.2 | `AC-2.2.4/2` | A twelve-item level requires at least 36 answers | P-047 | T102 (1/1 done) | T105 (1/1 done) | `mastery.test.js` | 🟢 OK |
+| US-2.2 | `AC-2.2.4/3` | Rolling accuracy is measured over the last 20 answers regardless of item count | P-047 | T102 (1/1 done) | T105 (1/1 done) | `mastery.test.js` | 🟢 OK |
+| US-2.2 | `AC-2.2.2/1` 🖵 | The level is not mastered while an item is below box 3 | P-010 | T026, T102 (2/2 done) | T027, T105 (2/2 done) | `mastery.test.js`, `levelScreen.test.js` | 🟢 OK |
+| US-2.2 | `AC-2.2.2/2` 🖵 | The level screen shows which mastery condition is unmet | P-010 | T026, T102 (2/2 done) | T027, T105 (2/2 done) | `levelScreen.test.js` | 🟢 OK |
+| US-2.2 | `AC-2.2.3/1` | An incorrect answer in a mastered level decreases that item's box | P-010 | T026, T102 (2/2 done) | T027, T105 (2/2 done) | `mastery.test.js` | 🟢 OK |
+| US-2.2 | `AC-2.2.3/2` | The mastered status is retained for unlock purposes after decay | P-010 | T026, T102 (2/2 done) | T027, T105 (2/2 done) | `mastery.test.js` | 🟢 OK |
 | US-2.3 | `AC-2.3.1` 🖵 | Mixed Review is locked until two levels are mastered | P-011 | T028 (1/1 done) | T029 (1/1 done) | `mixedReview.spec.js` | 🟢 OK |
 | US-2.3 | `AC-2.3.2/1` 🖵 | Mixed Review questions are drawn from multiple tracks | P-011 | T028 (1/1 done) | T029 (1/1 done) | `mixedReview.spec.js` | 🟢 OK |
 | US-2.3 | `AC-2.3.2/2` 🖵 | Mixed Review selection is weighted by Leitner box | P-011 | T028 (1/1 done) | T029 (1/1 done) | `mixedReview.spec.js` | 🟢 OK |
@@ -141,33 +144,39 @@ fail the build, and it is outstanding work — never a settled decision.
 | US-2.5 | `AC-2.5.1` | A confused pair is re-asked within five questions once proficient | P-013 | T032 (1/1 done) | T033 (1/1 done) | `confusion.test.js` | 🟢 OK |
 | US-2.5 | `AC-2.5.2` | Pair bias is inactive below the proficiency threshold | P-013 | T032 (1/1 done) | T033 (1/1 done) | `confusion.test.js` | 🟢 OK |
 | US-2.5 | `AC-2.5.3` 🖵 | The confusable partner is always among the answer options | P-013 | T032 (1/1 done) | T033 (1/1 done) | `options.test.js` | 🟢 OK |
-| US-2.6 | `AC-2.6.1/1` 🖵 | The answers counted toward the 20-answer window are shown and update on each answer | P-043 | T093 (1/1 done) | T094 (1/1 done) | `sessionProgress.test.js` | 🟢 OK |
-| US-2.6 | `AC-2.6.1/2` 🖵 | The rolling accuracy is shown against the 90% threshold and updates on each answer | P-043 | T093 (1/1 done) | T094 (1/1 done) | `sessionProgress.test.js` | 🟢 OK |
-| US-2.6 | `AC-2.6.1/3` 🖵 | The number of items still below box 3 is shown | P-043 | T093 (1/1 done) | T094 (1/1 done) | `sessionProgress.test.js` | 🟢 OK |
-| US-2.6 | `AC-2.6.1/4` 🖵 | The current sub-stage name is shown for tracks with sub-stages | P-043 | T093 (1/1 done) | T094 (1/1 done) | `sessionProgress.test.js` | 🟢 OK |
-| US-2.6 | `AC-2.6.2/1` 🖵 | The mastering answer's feedback announces the sub-stage is mastered | P-043 | T093 (1/1 done) | T094 (1/1 done) | `sessionProgress.test.js` | 🟢 OK |
-| US-2.6 | `AC-2.6.2/2` 🖵 | The next sub-stage is named with its position in the order | P-043 | T093 (1/1 done) | T094 (1/1 done) | `sessionProgress.test.js` | 🟢 OK |
-| US-2.6 | `AC-2.6.2/3` 🖵 | Mastering the last sub-stage shows the level celebration, not a transition announcement | P-043 | T093 (1/1 done) | T094 (1/1 done) | `sessionProgress.test.js` | 🟢 OK |
-| US-3.1 | `AC-3.1.1/1` | Interval level 1 pool is exactly P8, P5 | P-014 | T034 (1/1 done) | T035 (1/1 done) | `intervals.test.js` | 🟢 OK |
-| US-3.1 | `AC-3.1.1/2` | Interval level 2 pool is exactly P8, P5, M3, m3 | P-014 | T034 (1/1 done) | T035 (1/1 done) | `intervals.test.js` | 🟢 OK |
-| US-3.1 | `AC-3.1.1/3` | Interval level 3 pool is exactly P8, P5, M3, m3, P4 | P-014 | T034 (1/1 done) | T035 (1/1 done) | `intervals.test.js` | 🟢 OK |
-| US-3.1 | `AC-3.1.1/4` | Interval level 4 pool is exactly P8, P5, M3, m3, P4, M2, m2 | P-014 | T034 (1/1 done) | T035 (1/1 done) | `intervals.test.js` | 🟢 OK |
-| US-3.1 | `AC-3.1.1/5` | Interval level 5 pool is exactly P8, P5, M3, m3, P4, M2, m2, M6, m6 | P-014 | T034 (1/1 done) | T035 (1/1 done) | `intervals.test.js` | 🟢 OK |
-| US-3.1 | `AC-3.1.1/6` | Interval level 6 pool is all 12 simple intervals | P-014 | T034 (1/1 done) | T035 (1/1 done) | `intervals.test.js` | 🟢 OK |
-| US-3.1 | `AC-3.1.1/7` | Interval level 7 pool is all 12 simple intervals as mixed review | P-014 | T034 (1/1 done) | T035 (1/1 done) | `intervals.test.js` | 🟢 OK |
-| US-3.1 | `AC-3.1.1/8` | Interval level 8 pool adds m9 and M9 | P-014 | T034 (1/1 done) | T035 (1/1 done) | `intervals.test.js` | 🟢 OK |
-| US-3.1 | `AC-3.1.1/9` | Interval level 9 pool adds m10 and M10 | P-014 | T034 (1/1 done) | T035 (1/1 done) | `intervals.test.js` | 🟢 OK |
-| US-3.1 | `AC-3.1.1/10` | Interval level 10 pool adds P11 and P12 | P-014 | T034 (1/1 done) | T035 (1/1 done) | `intervals.test.js` | 🟢 OK |
-| US-3.1 | `AC-3.1.1/11` | Interval level 11 pool adds m13 and M13 | P-014 | T034 (1/1 done) | T035 (1/1 done) | `intervals.test.js` | 🟢 OK |
-| US-3.1 | `AC-3.1.1/12` | Interval level 12 pool is all simple and compound intervals as mixed review | P-014 | T034 (1/1 done) | T035 (1/1 done) | `intervals.test.js` | 🟢 OK |
-| US-3.1 | `AC-3.1.2/1` | Intervals from all previous levels appear in the question stream | P-014 | T034 (1/1 done) | T035 (1/1 done) | `intervals.test.js` | 🟢 OK |
-| US-3.1 | `AC-3.1.2/2` | Selection among cumulative intervals is weighted by Leitner box | P-014 | T034 (1/1 done) | T035 (1/1 done) | `intervals.test.js` | 🟢 OK |
-| US-3.1 | `AC-3.1.3` 🖵 | Compound interval questions offer the simple equivalent as a distractor | P-014 | T034 (1/1 done) | T035 (1/1 done) | `intervalOptions.test.js` | 🟢 OK |
-| US-3.2 | `AC-3.2.1/1` | Mastering the ascending sub-stage unlocks the descending sub-stage | P-015 | T036 (1/1 done) | T037 (1/1 done) | `subStages.test.js` | 🟢 OK |
-| US-3.2 | `AC-3.2.1/2` | The harmonic sub-stage remains locked until descending is mastered | P-015 | T036 (1/1 done) | T037 (1/1 done) | `subStages.test.js` | 🟢 OK |
-| US-3.2 | `AC-3.2.2` | Each interval presentation form is a separate Leitner item | P-015 | T036 (1/1 done) | T037 (1/1 done) | `intervalItems.test.js`, `intervals.test.js` | 🟢 OK |
-| US-3.2 | `AC-3.2.3/1` | Root notes vary across the configured register range over 20 questions | P-015 | T036 (1/1 done) | T037 (1/1 done) | `intervalItems.test.js` | 🟢 OK |
-| US-3.2 | `AC-3.2.3/2` | No fixed reference pitch recurs in a detectable pattern | P-015 | T036 (1/1 done) | T037 (1/1 done) | `intervalItems.test.js` | 🟢 OK |
+| US-2.6 | `AC-2.6.1/1` 🖵 | The answers counted toward the level's minimum answer count are shown and update on each answer | P-043 | T093, T102 (2/2 done) | T094, T105 (2/2 done) | `sessionProgress.test.js` | 🟢 OK |
+| US-2.6 | `AC-2.6.1/2` 🖵 | The rolling accuracy is shown against the 90% threshold and updates on each answer | P-043 | T093, T102 (2/2 done) | T094, T105 (2/2 done) | `sessionProgress.test.js` | 🟢 OK |
+| US-2.6 | `AC-2.6.1/3` 🖵 | The number of items still below box 3 is shown | P-043 | T093, T102 (2/2 done) | T094, T105 (2/2 done) | `sessionProgress.test.js` | 🟢 OK |
+| US-2.6 | `AC-2.6.1/4` 🖵 | The level's presentation is named for tracks whose levels carry one | P-043 | T093, T102 (2/2 done) | T094, T105 (2/2 done) | `sessionProgress.test.js` | 🟢 OK |
+| US-2.6 | `AC-2.6.2/1` 🖵 | The celebration names the next level with its number and presentation | P-043 | T093, T102 (2/2 done) | T094, T105 (2/2 done) | `sessionProgress.test.js` | 🟢 OK |
+| US-2.6 | `AC-2.6.2/2` 🖵 | Mastering the last level of a track says the track is complete | P-043 | T093, T102 (2/2 done) | T094, T105 (2/2 done) | `sessionProgress.test.js` | 🟢 OK |
+| US-3.1 | `AC-3.1.1/1` | Interval level 1 is ascending P8, P5 | P-014 | T034, T101 (2/2 done) | T035, T104 (2/2 done) | `intervals.test.js` | 🟢 OK |
+| US-3.1 | `AC-3.1.1/2` | Interval level 2 is ascending P8, P5, M3, m3 | P-014 | T034, T101 (2/2 done) | T035, T104 (2/2 done) | `intervals.test.js` | 🟢 OK |
+| US-3.1 | `AC-3.1.1/3` | Interval level 3 is ascending P8, P5, M3, m3, P4 | P-014 | T034, T101 (2/2 done) | T035, T104 (2/2 done) | `intervals.test.js` | 🟢 OK |
+| US-3.1 | `AC-3.1.1/4` | Interval level 4 is ascending P8, P5, M3, m3, P4, M2, m2 | P-014 | T034, T101 (2/2 done) | T035, T104 (2/2 done) | `intervals.test.js` | 🟢 OK |
+| US-3.1 | `AC-3.1.1/5` | Interval level 5 is ascending P8, P5, M3, m3, P4, M2, m2, M6, m6 | P-014 | T034, T101 (2/2 done) | T035, T104 (2/2 done) | `intervals.test.js` | 🟢 OK |
+| US-3.1 | `AC-3.1.1/6` | Interval level 6 is ascending all 12 simple intervals | P-014 | T034, T101 (2/2 done) | T035, T104 (2/2 done) | `intervals.test.js` | 🟢 OK |
+| US-3.1 | `AC-3.1.1/7` | Interval level 7 is descending P8, P5, P4, M3, m3 | P-014 | T034, T101 (2/2 done) | T035, T104 (2/2 done) | `intervals.test.js` | 🟢 OK |
+| US-3.1 | `AC-3.1.1/8` | Interval level 8 is descending P8, P5, P4, M3, m3, M2, m2, M6, m6 | P-014 | T034, T101 (2/2 done) | T035, T104 (2/2 done) | `intervals.test.js` | 🟢 OK |
+| US-3.1 | `AC-3.1.1/9` | Interval level 9 is descending all 12 simple intervals | P-014 | T034, T101 (2/2 done) | T035, T104 (2/2 done) | `intervals.test.js` | 🟢 OK |
+| US-3.1 | `AC-3.1.1/10` | Interval level 10 is ascending and descending mixed over all 12 simple intervals | P-014 | T034, T101 (2/2 done) | T035, T104 (2/2 done) | `intervals.test.js` | 🟢 OK |
+| US-3.1 | `AC-3.1.1/11` | Interval level 11 is harmonic P8, P5, P4, TT, M2, m2 | P-014 | T034, T101 (2/2 done) | T035, T104 (2/2 done) | `intervals.test.js` | 🟢 OK |
+| US-3.1 | `AC-3.1.1/12` | Interval level 12 is harmonic P8, P5, P4, TT, M2, m2, M3, m3, M6, m6 | P-014 | T034, T101 (2/2 done) | T035, T104 (2/2 done) | `intervals.test.js` | 🟢 OK |
+| US-3.1 | `AC-3.1.1/13` | Interval level 13 is harmonic all 12 simple intervals | P-014 | T034, T101 (2/2 done) | T035, T104 (2/2 done) | `intervals.test.js` | 🟢 OK |
+| US-3.1 | `AC-3.1.1/14` | Interval level 14 is ascending all 12 simple plus m9, M9, m10, M10 | P-014 | T034, T101 (2/2 done) | T035, T104 (2/2 done) | `intervals.test.js` | 🟢 OK |
+| US-3.1 | `AC-3.1.1/15` | Interval level 15 is ascending all 12 simple plus all eight compound intervals | P-014 | T034, T101 (2/2 done) | T035, T104 (2/2 done) | `intervals.test.js` | 🟢 OK |
+| US-3.1 | `AC-3.1.1/16` | Interval level 16 is all presentations mixed over all simple and compound intervals | P-014 | T034, T101 (2/2 done) | T035, T104 (2/2 done) | `intervals.test.js` | 🟢 OK |
+| US-3.1 | `AC-3.1.2/1` | Intervals from all previous levels of the tier appear in the question stream | P-014 | T034, T101 (2/2 done) | T035, T104 (2/2 done) | `intervals.test.js` | 🟢 OK |
+| US-3.1 | `AC-3.1.2/2` | Selection among cumulative intervals is weighted by Leitner box | P-014 | T034, T101 (2/2 done) | T035, T104 (2/2 done) | `intervals.test.js` | 🟢 OK |
+| US-3.1 | `AC-3.1.3` 🖵 | Compound interval questions offer the simple equivalent as a distractor | P-014 | T034, T101 (2/2 done) | T035, T104 (2/2 done) | `intervalOptions.test.js` | 🟢 OK |
+| US-3.2 | `AC-3.2.1/1` | Levels 1 to 6 present intervals ascending only | P-015 | T036, T101 (2/2 done) | T037, T104 (2/2 done) | `intervals.test.js` | 🟢 OK |
+| US-3.2 | `AC-3.2.1/2` | Levels 7 to 9 present intervals descending only | P-015 | T036, T101 (2/2 done) | T037, T104 (2/2 done) | `intervals.test.js` | 🟢 OK |
+| US-3.2 | `AC-3.2.1/3` | Level 10 mixes ascending and descending presentations | P-015 | T036, T101 (2/2 done) | T037, T104 (2/2 done) | `intervals.test.js` | 🟢 OK |
+| US-3.2 | `AC-3.2.1/4` | Levels 11 to 13 present intervals harmonically only | P-015 | T036, T101 (2/2 done) | T037, T104 (2/2 done) | `intervals.test.js` | 🟢 OK |
+| US-3.2 | `AC-3.2.1/5` | A level's presentation is fixed by its definition and does not change with progress | P-015 | T036, T101 (2/2 done) | T037, T104 (2/2 done) | `intervals.test.js` | 🟢 OK |
+| US-3.2 | `AC-3.2.2` | Each interval presentation form is a separate Leitner item | P-015 | T036, T101 (2/2 done) | T037, T104 (2/2 done) | `intervalItems.test.js`, `intervals.test.js` | 🟢 OK |
+| US-3.2 | `AC-3.2.3/1` | Root notes vary across the configured register range over 20 questions | P-015 | T036, T101 (2/2 done) | T037, T104 (2/2 done) | `intervalItems.test.js` | 🟢 OK |
+| US-3.2 | `AC-3.2.3/2` | No fixed reference pitch recurs in a detectable pattern | P-015 | T036, T101 (2/2 done) | T037, T104 (2/2 done) | `intervalItems.test.js` | 🟢 OK |
 | US-3.3 | `AC-3.3.1/1` 🖵 | Only the level 3 interval buttons P8, P5, M3, m3, P4 are shown | P-016 | T038 (1/1 done) | T039 (1/1 done) | `intervalGrid.spec.js` | 🟢 OK |
 | US-3.3 | `AC-3.3.1/2` 🖵 | Each interval answer touch target is at least 44 px | P-016 | T038 (1/1 done) | T039 (1/1 done) | `intervalGrid.spec.js` | 🟢 OK |
 | US-3.3 | `AC-3.3.2` 🖵 | The label setting switches interval buttons to full names | P-016 | T038 (1/1 done) | T039 (1/1 done) | `intervalGrid.spec.js` | 🟢 OK |
@@ -217,38 +226,46 @@ fail the build, and it is outstanding work — never a settled decision.
 | US-4.5 | `AC-4.5.2/2` | A help affordance reopens the guidance on demand | P-046 | T099 (1/1 done) | T100 (1/1 done) | `scaleScaffold.test.js` | 🟢 OK |
 | US-4.5 | `AC-4.5.3/1` 🖵 | The first four level-1 questions show the "scale → cadence → note" hint | P-046 | T099 (1/1 done) | T100 (1/1 done) | `scaleScaffold.test.js` | 🟢 OK |
 | US-4.5 | `AC-4.5.3/2` 🖵 | The hint is not shown once 5 questions have been answered on the track | P-046 | T099 (1/1 done) | T100 (1/1 done) | `scaleScaffold.test.js` | 🟢 OK |
-| US-5.1 | `AC-5.1.1/1` | Chord level 1 pool is maj and min in root position only | P-021 | T048 (1/1 done) | T049 (1/1 done) | `chordQualities.test.js` | 🟢 OK |
-| US-5.1 | `AC-5.1.1/2` | Chord level 2 pool adds dim in root position only | P-021 | T048 (1/1 done) | T049 (1/1 done) | `chordQualities.test.js` | 🟢 OK |
-| US-5.1 | `AC-5.1.1/3` | Chord level 3 pool adds aug in root position only | P-021 | T048 (1/1 done) | T049 (1/1 done) | `chordQualities.test.js` | 🟢 OK |
-| US-5.1 | `AC-5.1.1/4` | Chord level 4 pool is maj and min in root, first and second inversions | P-021 | T048 (1/1 done) | T049 (1/1 done) | `chordQualities.test.js` | 🟢 OK |
-| US-5.1 | `AC-5.1.1/5` | Chord level 5 pool is all triads in any inversion | P-021 | T048 (1/1 done) | T049 (1/1 done) | `chordQualities.test.js` | 🟢 OK |
-| US-5.1 | `AC-5.1.1/6` | Chord level 6 pool is dom7, maj7 and m7 in root position only | P-021 | T048 (1/1 done) | T049 (1/1 done) | `chordQualities.test.js` | 🟢 OK |
-| US-5.1 | `AC-5.1.1/7` | Chord level 7 pool adds m7b5 and dim7 in root position only | P-021 | T048 (1/1 done) | T049 (1/1 done) | `chordQualities.test.js` | 🟢 OK |
-| US-5.1 | `AC-5.1.1/8` | Chord level 8 pool is all seventh chords in any inversion root through third | P-021 | T048 (1/1 done) | T049 (1/1 done) | `chordQualities.test.js` | 🟢 OK |
-| US-5.1 | `AC-5.1.1/9` | Chord level 9 pool adds sus2 and sus4 in root position | P-021 | T048 (1/1 done) | T049 (1/1 done) | `chordQualities.test.js` | 🟢 OK |
-| US-5.1 | `AC-5.1.1/10` | Chord level 10 pool is all qualities in any voicing as mixed review | P-021 | T048 (1/1 done) | T049 (1/1 done) | `chordQualities.test.js` | 🟢 OK |
-| US-5.1 | `AC-5.1.2/1` | The correct answer for an inverted chord is the quality alone | P-021 | T048 (1/1 done) | T049 (1/1 done) | `chordQualities.test.js` | 🟢 OK |
-| US-5.1 | `AC-5.1.2/2` | The inversion varies the sound without changing the answer options | P-021 | T048 (1/1 done) | T049 (1/1 done) | `chordOptions.test.js` | 🟢 OK |
-| US-5.1 | `AC-5.1.3/1` | A quality group is drilled in root position only when it first appears | P-021 | T048 (1/1 done) | T049 (1/1 done) | `chordQualities.test.js` | 🟢 OK |
-| US-5.1 | `AC-5.1.3/2` | Inverted voicings of a group are introduced in a later level after root-position mastery | P-021 | T048 (1/1 done) | T049 (1/1 done) | `chordQualities.test.js` | 🟢 OK |
-| US-5.1 | `AC-5.1.4` | Voicing is a Leitner dimension for chord qualities | P-021 | T048 (1/1 done) | T049 (1/1 done) | `chordQualities.test.js` | 🟢 OK |
-| US-5.1 | `AC-5.1.5` | Chord roots are randomized across the register | P-021 | T048 (1/1 done) | T049 (1/1 done) | `chordQualities.test.js` | 🟢 OK |
-| US-5.2 | `AC-5.2.1/1` | A chord level starts in the block sub-stage with close voicing and fixed register | P-022 | T050 (1/1 done) | T051 (1/1 done) | `chordSubStages.test.js` | 🟢 OK |
-| US-5.2 | `AC-5.2.1/2` | Mastering block unlocks arpeggiated | P-022 | T050 (1/1 done) | T051 (1/1 done) | `chordSubStages.test.js` | 🟢 OK |
-| US-5.2 | `AC-5.2.1/3` | Mastering arpeggiated unlocks varied register and voicing spread | P-022 | T050 (1/1 done) | T051 (1/1 done) | `chordSubStages.test.js` | 🟢 OK |
-| US-5.2 | `AC-5.2.2` | Each chord presentation is a separate Leitner item | P-022 | T050 (1/1 done) | T051 (1/1 done) | `chordSubStages.test.js` | 🟢 OK |
-| US-5.2 | `AC-5.2.3` | The arpeggiation tempo setting applies to the next arpeggiated question | P-022 | T050 (1/1 done) | T051 (1/1 done) | `chordSubStages.test.js` | 🟢 OK |
+| US-5.1 | `AC-5.1.1/1` | Chord level 1 is block maj and min in root position only | P-021 | T048, T101 (2/2 done) | T049, T104 (2/2 done) | `chordQualities.test.js` | 🟢 OK |
+| US-5.1 | `AC-5.1.1/2` | Chord level 2 is block and adds dim in root position only | P-021 | T048, T101 (2/2 done) | T049, T104 (2/2 done) | `chordQualities.test.js` | 🟢 OK |
+| US-5.1 | `AC-5.1.1/3` | Chord level 3 is block and adds aug in root position only | P-021 | T048, T101 (2/2 done) | T049, T104 (2/2 done) | `chordQualities.test.js` | 🟢 OK |
+| US-5.1 | `AC-5.1.1/4` | Chord level 4 is block maj and min in root, first and second inversions | P-021 | T048, T101 (2/2 done) | T049, T104 (2/2 done) | `chordQualities.test.js` | 🟢 OK |
+| US-5.1 | `AC-5.1.1/5` | Chord level 5 is block all triads in any inversion | P-021 | T048, T101 (2/2 done) | T049, T104 (2/2 done) | `chordQualities.test.js` | 🟢 OK |
+| US-5.1 | `AC-5.1.1/6` | Chord level 6 is block dom7, maj7 and m7 in root position only | P-021 | T048, T101 (2/2 done) | T049, T104 (2/2 done) | `chordQualities.test.js` | 🟢 OK |
+| US-5.1 | `AC-5.1.1/7` | Chord level 7 is block and adds m7b5 and dim7 in root position only | P-021 | T048, T101 (2/2 done) | T049, T104 (2/2 done) | `chordQualities.test.js` | 🟢 OK |
+| US-5.1 | `AC-5.1.1/8` | Chord level 8 is block all seventh chords in any inversion root through third | P-021 | T048, T101 (2/2 done) | T049, T104 (2/2 done) | `chordQualities.test.js` | 🟢 OK |
+| US-5.1 | `AC-5.1.1/9` | Chord level 9 is block all triads and sevenths plus sus2 and sus4 in root position | P-021 | T048, T101 (2/2 done) | T049, T104 (2/2 done) | `chordQualities.test.js` | 🟢 OK |
+| US-5.1 | `AC-5.1.1/10` | Chord level 10 is arpeggiated all triads in root position | P-021 | T048, T101 (2/2 done) | T049, T104 (2/2 done) | `chordQualities.test.js` | 🟢 OK |
+| US-5.1 | `AC-5.1.1/11` | Chord level 11 is arpeggiated all triads in any inversion | P-021 | T048, T101 (2/2 done) | T049, T104 (2/2 done) | `chordQualities.test.js` | 🟢 OK |
+| US-5.1 | `AC-5.1.1/12` | Chord level 12 is arpeggiated all seventh chords in root position | P-021 | T048, T101 (2/2 done) | T049, T104 (2/2 done) | `chordQualities.test.js` | 🟢 OK |
+| US-5.1 | `AC-5.1.1/13` | Chord level 13 is arpeggiated all qualities in any voicing | P-021 | T048, T101 (2/2 done) | T049, T104 (2/2 done) | `chordQualities.test.js` | 🟢 OK |
+| US-5.1 | `AC-5.1.1/14` | Chord level 14 is varied all triads in any inversion | P-021 | T048, T101 (2/2 done) | T049, T104 (2/2 done) | `chordQualities.test.js` | 🟢 OK |
+| US-5.1 | `AC-5.1.1/15` | Chord level 15 is varied all qualities in any voicing as mixed review | P-021 | T048, T101 (2/2 done) | T049, T104 (2/2 done) | `chordQualities.test.js` | 🟢 OK |
+| US-5.1 | `AC-5.1.2/1` | The correct answer for an inverted chord is the quality alone | P-021 | T048, T101 (2/2 done) | T049, T104 (2/2 done) | `chordQualities.test.js` | 🟢 OK |
+| US-5.1 | `AC-5.1.2/2` | The inversion varies the sound without changing the answer options | P-021 | T048, T101 (2/2 done) | T049, T104 (2/2 done) | `chordOptions.test.js` | 🟢 OK |
+| US-5.1 | `AC-5.1.3/1` | A quality group is drilled in root position only when it first appears | P-021 | T048, T101 (2/2 done) | T049, T104 (2/2 done) | `chordQualities.test.js` | 🟢 OK |
+| US-5.1 | `AC-5.1.3/2` | Inverted voicings of a group are introduced in a later level after root-position mastery | P-021 | T048, T101 (2/2 done) | T049, T104 (2/2 done) | `chordQualities.test.js` | 🟢 OK |
+| US-5.1 | `AC-5.1.4` | Voicing is a Leitner dimension for chord qualities | P-021 | T048, T101 (2/2 done) | T049, T104 (2/2 done) | `chordQualities.test.js` | 🟢 OK |
+| US-5.1 | `AC-5.1.5` | Chord roots are randomized across the register | P-021 | T048, T101 (2/2 done) | T049, T104 (2/2 done) | `chordQualities.test.js` | 🟢 OK |
+| US-5.2 | `AC-5.2.1/1` | Levels 1 to 9 present block chords in close voicing and fixed register | P-022 | T050, T101 (2/2 done) | T051, T104 (2/2 done) | `chordTiers.test.js` | 🟢 OK |
+| US-5.2 | `AC-5.2.1/2` | Levels 10 to 13 present arpeggiated chords | P-022 | T050, T101 (2/2 done) | T051, T104 (2/2 done) | `chordTiers.test.js` | 🟢 OK |
+| US-5.2 | `AC-5.2.1/3` | Levels 14 to 15 present varied register and voicing spread | P-022 | T050, T101 (2/2 done) | T051, T104 (2/2 done) | `chordTiers.test.js` | 🟢 OK |
+| US-5.2 | `AC-5.2.2` | Each chord presentation is a separate Leitner item | P-022 | T050, T101 (2/2 done) | T051, T104 (2/2 done) | `chordTiers.test.js` | 🟢 OK |
+| US-5.2 | `AC-5.2.3` | The arpeggiation tempo setting applies to the next arpeggiated question | P-022 | T050, T101 (2/2 done) | T051, T104 (2/2 done) | `chordTiers.test.js` | 🟢 OK |
 | US-5.3 | `AC-5.3.1/1` 🖵 | The m7b5 button reads m7♭5 · half-diminished | P-023 | T052 (1/1 done) | T053 (1/1 done) | `chordGrid.spec.js` | 🟢 OK |
 | US-5.3 | `AC-5.3.1/2` 🖵 | Only the chord level's pool is shown | P-023 | T052 (1/1 done) | T053 (1/1 done) | `chordGrid.spec.js` | 🟢 OK |
 | US-6.1 | `AC-6.1.1` 🖵 | The Inversions track is locked until Chord Qualities level 1 is mastered | P-024 | T054 (1/1 done) | T055 (1/1 done) | `inversionsUnlock.spec.js` | 🟢 OK |
 | US-6.1 | `AC-6.1.2` 🖵 | Mastering Chord Qualities level 1 unlocks the Inversions track | P-024 | T054 (1/1 done) | T055 (1/1 done) | `inversionsUnlock.spec.js` | 🟢 OK |
-| US-6.2 | `AC-6.2.1/1` | Inversion level 1 pool is the major triad in root, first and second inversion | P-025 | T056 (1/1 done) | T057 (1/1 done) | `inversions.test.js` | 🟢 OK |
-| US-6.2 | `AC-6.2.1/2` | Inversion level 2 pool is the minor triad in root, first and second inversion | P-025 | T056 (1/1 done) | T057 (1/1 done) | `inversions.test.js` | 🟢 OK |
-| US-6.2 | `AC-6.2.1/3` | Inversion level 3 pool is mixed major and minor inversions | P-025 | T056 (1/1 done) | T057 (1/1 done) | `inversions.test.js` | 🟢 OK |
-| US-6.2 | `AC-6.2.1/4` | Inversion level 4 pool is seventh chords in root through third inversion | P-025 | T056 (1/1 done) | T057 (1/1 done) | `inversions.test.js` | 🟢 OK |
-| US-6.2 | `AC-6.2.2/1` | Inversion level 3 requires selecting both quality and inversion | P-025 | T056 (1/1 done) | T057 (1/1 done) | `inversionAnswer.spec.js` | 🟢 OK |
-| US-6.2 | `AC-6.2.2/2` | An inversion level 3 answer is correct only if both parts are correct | P-025 | T056 (1/1 done) | T057 (1/1 done) | `inversions.test.js` | 🟢 OK |
-| US-6.2 | `AC-6.2.3` | Inversion sub-stages unlock in order block, arpeggiated | P-025 | T056 (1/1 done) | T057 (1/1 done) | `inversions.test.js` | 🟢 OK |
+| US-6.2 | `AC-6.2.1/1` | Inversion level 1 is block major triad in root, first and second inversion | P-025 | T056, T101 (2/2 done) | T057, T104 (2/2 done) | `inversions.test.js` | 🟢 OK |
+| US-6.2 | `AC-6.2.1/2` | Inversion level 2 is block minor triad in root, first and second inversion | P-025 | T056, T101 (2/2 done) | T057, T104 (2/2 done) | `inversions.test.js` | 🟢 OK |
+| US-6.2 | `AC-6.2.1/3` | Inversion level 3 is block mixed major and minor inversions | P-025 | T056, T101 (2/2 done) | T057, T104 (2/2 done) | `inversions.test.js` | 🟢 OK |
+| US-6.2 | `AC-6.2.1/4` | Inversion level 4 is block seventh chords in root through third inversion | P-025 | T056, T101 (2/2 done) | T057, T104 (2/2 done) | `inversions.test.js` | 🟢 OK |
+| US-6.2 | `AC-6.2.1/5` | Inversion level 5 is arpeggiated mixed major and minor inversions | P-025 | T056, T101 (2/2 done) | T057, T104 (2/2 done) | `inversions.test.js` | 🟢 OK |
+| US-6.2 | `AC-6.2.1/6` | Inversion level 6 is arpeggiated seventh chords in root through third inversion | P-025 | T056, T101 (2/2 done) | T057, T104 (2/2 done) | `inversions.test.js` | 🟢 OK |
+| US-6.2 | `AC-6.2.2/1` | Inversion levels 3 and 5 require selecting both quality and inversion | P-025 | T056, T101 (2/2 done) | T057, T104 (2/2 done) | `inversionAnswer.spec.js` | 🟢 OK |
+| US-6.2 | `AC-6.2.2/2` | An inversion level 3 or 5 answer is correct only if both parts are correct | P-025 | T056, T101 (2/2 done) | T057, T104 (2/2 done) | `inversions.test.js` | 🟢 OK |
+| US-6.2 | `AC-6.2.3/1` | Levels 1 to 4 present block chords | P-025 | T056, T101 (2/2 done) | T057, T104 (2/2 done) | `inversions.test.js` | 🟢 OK |
+| US-6.2 | `AC-6.2.3/2` | Levels 5 to 6 present arpeggiated chords | P-025 | T056, T101 (2/2 done) | T057, T104 (2/2 done) | `inversions.test.js` | 🟢 OK |
 | US-7.1 | `AC-7.1.1/1` | Melodic level 1 phrases are 3 stepwise notes starting on Do in even eighths | P-026 | T058 (1/1 done) | T059 (1/1 done) | `melodic.test.js` | 🟢 OK |
 | US-7.1 | `AC-7.1.1/2` | Melodic level 2 phrases are 4 to 5 notes of steps and thirds starting on Do | P-026 | T058 (1/1 done) | T059 (1/1 done) | `melodic.test.js` | 🟢 OK |
 | US-7.1 | `AC-7.1.1/3` | Melodic level 3 phrases are 8 eighth notes with diatonic leaps up to P5 | P-026 | T058 (1/1 done) | T059 (1/1 done) | `melodic.test.js` | 🟢 OK |
@@ -267,18 +284,24 @@ fail the build, and it is outstanding work — never a settled decision.
 | US-7.3 | `AC-7.3.3` 🖵 | Session stats report average replays per question | P-028 | T062 (1/1 done) | T063 (1/1 done) | `replayCap.spec.js` | 🟢 OK |
 | US-8.1 | `AC-8.1.1` 🖵 | The Progressions track is locked showing both prerequisites and their status | P-029 | T064 (1/1 done) | T065 (1/1 done) | `progressionsUnlock.spec.js` | 🟢 OK |
 | US-8.1 | `AC-8.1.2` 🖵 | Mastering both prerequisites unlocks the Progressions track | P-029 | T064 (1/1 done) | T065 (1/1 done) | `progressionsUnlock.spec.js` | 🟢 OK |
-| US-8.2 | `AC-8.2.1/1` | Progression level 1 uses only I, IV, V in root position | P-030 | T066 (1/1 done) | T067 (1/1 done) | `progressions.test.js` | 🟢 OK |
-| US-8.2 | `AC-8.2.1/2` | Progression level 2 adds vi with 4-chord pop templates | P-030 | T066 (1/1 done) | T067 (1/1 done) | `progressions.test.js` | 🟢 OK |
-| US-8.2 | `AC-8.2.1/3` | Progression level 3 adds ii and iii | P-030 | T066 (1/1 done) | T067 (1/1 done) | `progressions.test.js` | 🟢 OK |
-| US-8.2 | `AC-8.2.1/4` | Progression level 4 uses minor-key vocabulary i, iv, v, V, VI, VII, III | P-030 | T066 (1/1 done) | T067 (1/1 done) | `progressions.test.js` | 🟢 OK |
-| US-8.2 | `AC-8.2.1/5` | Progression level 5 uses diatonic seventh qualities | P-030 | T066 (1/1 done) | T067 (1/1 done) | `progressions.test.js` | 🟢 OK |
-| US-8.2 | `AC-8.2.1/6` | Progression level 6 uses inversions in the bass | P-030 | T066 (1/1 done) | T067 (1/1 done) | `progressions.test.js` | 🟢 OK |
-| US-8.2 | `AC-8.2.1/7` | Progression level 7 uses 8-chord phrases and borrowed chords | P-030 | T066 (1/1 done) | T067 (1/1 done) | `progressions.test.js` | 🟢 OK |
-| US-8.2 | `AC-8.2.1/8` | Every generated progression is played in a randomly selected key | P-030 | T066 (1/1 done) | T067 (1/1 done) | `progressions.test.js` | 🟢 OK |
-| US-8.2 | `AC-8.2.2` | Progressions are drawn only from the built-in catalog at or below the level | P-030 | T066 (1/1 done) | T067 (1/1 done) | `progressions.test.js` | 🟢 OK |
-| US-8.2 | `AC-8.2.3` 🖵 | Named progressions show their name in feedback | P-030 | T066 (1/1 done) | T067 (1/1 done) | `progressionFeedback.test.js` | 🟢 OK |
-| US-8.2 | `AC-8.2.4` | Each rotation of a rotation-marked family is a distinct Leitner item | P-030 | T066 (1/1 done) | T067 (1/1 done) | `progressions.test.js` | 🟢 OK |
-| US-8.2 | `AC-8.2.5` | A cadence establishes the key before every progression | P-030 | T066 (1/1 done) | T067 (1/1 done) | `progressions.test.js` | 🟢 OK |
+| US-8.2 | `AC-8.2.1/1` | Progression level 1 is block using only I, IV, V in root position | P-030 | T066, T101 (2/2 done) | T067, T104 (2/2 done) | `progressions.test.js` | 🟢 OK |
+| US-8.2 | `AC-8.2.1/2` | Progression level 2 is block and adds vi with 4-chord pop templates | P-030 | T066, T101 (2/2 done) | T067, T104 (2/2 done) | `progressions.test.js` | 🟢 OK |
+| US-8.2 | `AC-8.2.1/3` | Progression level 3 is block and adds ii and iii | P-030 | T066, T101 (2/2 done) | T067, T104 (2/2 done) | `progressions.test.js` | 🟢 OK |
+| US-8.2 | `AC-8.2.1/4` | Progression level 4 is block using minor-key vocabulary i, iv, v, V, VI, VII, III | P-030 | T066, T101 (2/2 done) | T067, T104 (2/2 done) | `progressions.test.js` | 🟢 OK |
+| US-8.2 | `AC-8.2.1/5` | Progression level 5 is block using diatonic seventh qualities | P-030 | T066, T101 (2/2 done) | T067, T104 (2/2 done) | `progressions.test.js` | 🟢 OK |
+| US-8.2 | `AC-8.2.1/6` | Progression level 6 is block using inversions in the bass | P-030 | T066, T101 (2/2 done) | T067, T104 (2/2 done) | `progressions.test.js` | 🟢 OK |
+| US-8.2 | `AC-8.2.1/7` | Progression level 7 is block using 8-chord phrases and borrowed chords | P-030 | T066, T101 (2/2 done) | T067, T104 (2/2 done) | `progressions.test.js` | 🟢 OK |
+| US-8.2 | `AC-8.2.1/8` | Every generated progression is played in a randomly selected key | P-030 | T066, T101 (2/2 done) | T067, T104 (2/2 done) | `progressions.test.js` | 🟢 OK |
+| US-8.2 | `AC-8.2.1/9` | Progression level 8 is voice-led over catalog tiers 1 to 3 | P-030 | T066, T101 (2/2 done) | T067, T104 (2/2 done) | `progressions.test.js` | 🟢 OK |
+| US-8.2 | `AC-8.2.1/10` | Progression level 9 is voice-led over catalog tiers 1 to 5 | P-030 | T066, T101 (2/2 done) | T067, T104 (2/2 done) | `progressions.test.js` | 🟢 OK |
+| US-8.2 | `AC-8.2.1/11` | Progression level 10 is voice-led over catalog tiers 1 to 7 | P-030 | T066, T101 (2/2 done) | T067, T104 (2/2 done) | `progressions.test.js` | 🟢 OK |
+| US-8.2 | `AC-8.2.1/12` | Progression level 11 is arpeggiated over catalog tiers 1 to 3 | P-030 | T066, T101 (2/2 done) | T067, T104 (2/2 done) | `progressions.test.js` | 🟢 OK |
+| US-8.2 | `AC-8.2.1/13` | Progression level 12 is arpeggiated over catalog tiers 1 to 5 | P-030 | T066, T101 (2/2 done) | T067, T104 (2/2 done) | `progressions.test.js` | 🟢 OK |
+| US-8.2 | `AC-8.2.1/14` | Progression level 13 is arpeggiated over catalog tiers 1 to 7 | P-030 | T066, T101 (2/2 done) | T067, T104 (2/2 done) | `progressions.test.js` | 🟢 OK |
+| US-8.2 | `AC-8.2.2` | Progressions are drawn only from the built-in catalog at or below the level's catalog tier | P-030 | T066, T101 (2/2 done) | T067, T104 (2/2 done) | `progressions.test.js` | 🟢 OK |
+| US-8.2 | `AC-8.2.3` 🖵 | Named progressions show their name in feedback | P-030 | T066, T101 (2/2 done) | T067, T104 (2/2 done) | `progressionFeedback.test.js` | 🟢 OK |
+| US-8.2 | `AC-8.2.4` | Each rotation of a rotation-marked family is a distinct Leitner item | P-030 | T066, T101 (2/2 done) | T067, T104 (2/2 done) | `progressions.test.js` | 🟢 OK |
+| US-8.2 | `AC-8.2.5` | A cadence establishes the key before every progression | P-030 | T066, T101 (2/2 done) | T067, T104 (2/2 done) | `progressions.test.js` | 🟢 OK |
 | US-8.3 | `AC-8.3.1` 🖵 | The numeral row is scoped to the level vocabulary | P-031 | T068 (1/1 done) | T069 (1/1 done) | `numeralInput.spec.js` | 🟢 OK |
 | US-8.3 | `AC-8.3.2/1` 🖵 | Tapping a numeral appends to the visible numeral sequence | P-031 | T068 (1/1 done) | T069 (1/1 done) | `numeralInput.spec.js` | 🟢 OK |
 | US-8.3 | `AC-8.3.2/2` 🖵 | Delete-last, clear-all and insert-at-cursor edit the numeral sequence | P-031 | T068 (1/1 done) | T069 (1/1 done) | `numeralInput.spec.js` | 🟢 OK |
@@ -289,10 +312,10 @@ fail the build, and it is outstanding work — never a settled decision.
 | US-8.4 | `AC-8.4.1/3` 🖵 | Each bass-first step is scored separately | P-032 | T070 (1/1 done) | T071 (1/1 done) | `bassFirst.spec.js` | 🟢 OK |
 | US-8.4 | `AC-8.4.2/1` 🖵 | The bass-first toggle is unavailable at progression level 1 | P-032 | T070 (1/1 done) | T071 (1/1 done) | `bassFirst.spec.js` | 🟢 OK |
 | US-8.4 | `AC-8.4.2/2` 🖵 | The bass-first toggle is available from progression level 2 onward | P-032 | T070 (1/1 done) | T071 (1/1 done) | `bassFirst.spec.js` | 🟢 OK |
-| US-8.5 | `AC-8.5.1/1` | A progression level starts in the identical block voicings sub-stage | P-033 | T072 (1/1 done) | T073 (1/1 done) | `progressionTextures.test.js` | 🟢 OK |
-| US-8.5 | `AC-8.5.1/2` | Mastering block unlocks voice-led voicings with varied register | P-033 | T072 (1/1 done) | T073 (1/1 done) | `progressionTextures.test.js` | 🟢 OK |
-| US-8.5 | `AC-8.5.1/3` | Mastering voice-led unlocks arpeggiated or strummed texture | P-033 | T072 (1/1 done) | T073 (1/1 done) | `progressionTextures.test.js` | 🟢 OK |
-| US-8.5 | `AC-8.5.2` | Texture is a Leitner dimension for progressions | P-033 | T072 (1/1 done) | T073 (1/1 done) | `progressionTextures.test.js` | 🟢 OK |
+| US-8.5 | `AC-8.5.1/1` | Levels 1 to 7 use identical block voicings | P-033 | T072, T101 (2/2 done) | T073, T104 (2/2 done) | `progressionTextures.test.js` | 🟢 OK |
+| US-8.5 | `AC-8.5.1/2` | Levels 8 to 10 use voice-led voicings with varied register | P-033 | T072, T101 (2/2 done) | T073, T104 (2/2 done) | `progressionTextures.test.js` | 🟢 OK |
+| US-8.5 | `AC-8.5.1/3` | Levels 11 to 13 use arpeggiated or strummed texture | P-033 | T072, T101 (2/2 done) | T073, T104 (2/2 done) | `progressionTextures.test.js` | 🟢 OK |
+| US-8.5 | `AC-8.5.2` | Texture is a Leitner dimension for progressions | P-033 | T072, T101 (2/2 done) | T073, T104 (2/2 done) | `progressionTextures.test.js` | 🟢 OK |
 | US-9.1 | `AC-9.1.1` 🖵 | Every level node displays one of four states | P-034 | T074 (1/1 done) | T075 (1/1 done) | `homeMap.spec.js` | 🟢 OK |
 | US-9.1 | `AC-9.1.2/1` 🖵 | A connection is drawn from Chord Qualities L1 to Inversions | P-034 | T074 (1/1 done) | T075 (1/1 done) | `homeMap.spec.js` | 🟢 OK |
 | US-9.1 | `AC-9.1.2/2` 🖵 | Connections are drawn from Chord Qualities L6 and Inversions L1 to Progressions | P-034 | T074 (1/1 done) | T075 (1/1 done) | `homeMap.spec.js` | 🟢 OK |
@@ -332,6 +355,8 @@ fail the build, and it is outstanding work — never a settled decision.
 | US-10.3 | `AC-10.3.3/1` | Import validates the schema version | P-040 | T086 (1/1 done) | T087 (1/1 done) | `exportImport.test.js` | 🟢 OK |
 | US-10.3 | `AC-10.3.3/2` | Conflicting items merge by most-recent-per-item on import | P-040 | T086 (1/1 done) | T087 (1/1 done) | `exportImport.test.js` | 🟢 OK |
 | US-10.3 | `AC-10.3.3/3` | An invalid import file is rejected with a clear error | P-040 | T086 (1/1 done) | T087 (1/1 done) | `exportImport.test.js` | 🟢 OK |
+| US-10.3 | `AC-10.3.4/1` | Stored progress from before the restructure is discarded on load and settings are retained | P-048 | T103 (1/1 done) | T106 (1/1 done) | `storage.test.js` | 🟢 OK |
+| US-10.3 | `AC-10.3.4/2` | Importing an export file from before the restructure is rejected with an error naming both schema versions | P-048 | T103 (1/1 done) | T106 (1/1 done) | `exportImport.test.js` | 🟢 OK |
 | US-10.4 | `AC-10.4.1/1` 🖵 | Cadence frequency is configurable | P-041 | T088 (1/1 done) | T089 (1/1 done) | `settings.spec.js` | 🟢 OK |
 | US-10.4 | `AC-10.4.1/2` 🖵 | Replay limits are configurable | P-041 | T088 (1/1 done) | T089 (1/1 done) | `settings.spec.js` | 🟢 OK |
 | US-10.4 | `AC-10.4.1/3` 🖵 | Arpeggiation tempo is configurable | P-041 | T088 (1/1 done) | T089 (1/1 done) | `settings.spec.js` | 🟢 OK |

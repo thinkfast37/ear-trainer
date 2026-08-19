@@ -11,7 +11,7 @@ test.describe('US-10.3 — export', () => {
     const path = await download.path();
     const { readFileSync } = await import('node:fs');
     const doc = JSON.parse(readFileSync(path, 'utf8'));
-    expect(doc.schemaVersion).toBe(1);
+    expect(doc.schemaVersion).toBe(2); // schema 2 since the presentation-tier restructure (D-007)
     expect(doc.xp).toBe(77);
     expect(doc.items['interval:P5:asc'].box).toBe(3);        // Leitner state
     expect(doc.streak).toEqual({ current: 2, best: 4, lastCompletedDay: '2026-08-17' }); // streaks

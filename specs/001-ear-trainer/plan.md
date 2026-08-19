@@ -77,7 +77,7 @@ src/
 ├── app/    router.js  store.js  settings.js
 ├── audio/  context.js  sampler.js  scheduler.js  renderer.js
 ├── theory/ notes.js  intervals.js  chords.js  scales.js  cadence.js  progressions.js  melody.js  voicing.js
-├── learning/ random.js  leitner.js  selection.js  mastery.js  subStages.js  unlocks.js
+├── learning/ random.js  leitner.js  selection.js  mastery.js  unlocks.js
 │             scoring.js  xp.js  streak.js  stats.js  session.js  mixedReview.js
 ├── tracks/ intervals.js  scaleDegrees.js  chordQualities.js  inversions.js  melodic.js  progressions.js  index.js
 ├── storage/ storage.js  schema.js  exportImport.js
@@ -113,30 +113,30 @@ that carry the verbatim-titled tests. `—` in the AC column marks infrastructur
 | **P-007** | US-1.2 — Mobile-safe audio initialization | AC-1.2.1–AC-1.2.3 | T020 | T021 |
 | **P-008** | US-1.3 — Unified exercise renderer | AC-1.3.1–AC-1.3.3 | T022 | T023 |
 | **P-009** | US-2.1 — Per-item Leitner scheduling | AC-2.1.1–AC-2.1.4 | T024 | T025 |
-| **P-010** | US-2.2 — Mastery-gated level advancement | AC-2.2.1–AC-2.2.3 | T026 | T027 |
+| **P-010** | US-2.2 — Mastery-gated level advancement | AC-2.2.1–AC-2.2.3 | T026, T102 | T027, T105 |
 | **P-011** | US-2.3 — Interleaved review mode | AC-2.3.1–AC-2.3.3 | T028 | T029 |
 | **P-012** | US-2.4 — Immediate feedback with comparison replay | AC-2.4.1–AC-2.4.3 | T030 | T031 |
 | **P-013** | US-2.5 — Confusion-weighted question generation | AC-2.5.1–AC-2.5.3 | T032 | T033 |
-| **P-014** | US-3.1 — Interval level progression | AC-3.1.1–AC-3.1.3 | T034 | T035 |
-| **P-015** | US-3.2 — Interval presentation sub-stages | AC-3.2.1–AC-3.2.3 | T036 | T037 |
+| **P-014** | US-3.1 — Interval level progression | AC-3.1.1–AC-3.1.3 | T034, T101 | T035, T104 |
+| **P-015** | US-3.2 — Interval presentation tiers | AC-3.2.1–AC-3.2.3 | T036, T101 | T037, T104 |
 | **P-016** | US-3.3 — Interval answer input | AC-3.3.1–AC-3.3.2 | T038 | T039 |
 | **P-017** | US-3.4 — Anchor-song reference | AC-3.4.1–AC-3.4.5 | T040 | T041 |
 | **P-018** | US-4.1 — Tonal context establishment | AC-4.1.1–AC-4.1.3 | T042 | T043 |
 | **P-019** | US-4.2 — Scale degree level progression | AC-4.2.1–AC-4.2.3 | T044 | T045 |
 | **P-020** | US-4.3 — Degree answer input | AC-4.3.1–AC-4.3.2 | T046 | T047 |
-| **P-021** | US-5.1 — Chord quality level progression | AC-5.1.1–AC-5.1.5 | T048 | T049 |
-| **P-022** | US-5.2 — Chord presentation sub-stages | AC-5.2.1–AC-5.2.3 | T050 | T051 |
+| **P-021** | US-5.1 — Chord quality level progression | AC-5.1.1–AC-5.1.5 | T048, T101 | T049, T104 |
+| **P-022** | US-5.2 — Chord presentation tiers | AC-5.2.1–AC-5.2.3 | T050, T101 | T051, T104 |
 | **P-023** | US-5.3 — Chord quality answer input | AC-5.3.1 | T052 | T053 |
 | **P-024** | US-6.1 — Inversion track unlock | AC-6.1.1–AC-6.1.2 | T054 | T055 |
-| **P-025** | US-6.2 — Inversion level progression | AC-6.2.1–AC-6.2.3 | T056 | T057 |
+| **P-025** | US-6.2 — Inversion level progression | AC-6.2.1–AC-6.2.3 | T056, T101 | T057, T104 |
 | **P-026** | US-7.1 — Melodic dictation levels | AC-7.1.1–AC-7.1.2 | T058 | T059 |
 | **P-027** | US-7.2 — Sequence answer input | AC-7.2.1–AC-7.2.3 | T060 | T061 |
 | **P-028** | US-7.3 — Limited replays with replay scoring | AC-7.3.1–AC-7.3.3 | T062 | T063 |
 | **P-029** | US-8.1 — Progression track unlock | AC-8.1.1–AC-8.1.2 | T064 | T065 |
-| **P-030** | US-8.2 — Progression level design | AC-8.2.1–AC-8.2.5 | T066 | T067 |
+| **P-030** | US-8.2 — Progression level design | AC-8.2.1–AC-8.2.5 | T066, T101 | T067, T104 |
 | **P-031** | US-8.3 — Roman numeral answer input | AC-8.3.1–AC-8.3.3 | T068 | T069 |
 | **P-032** | US-8.4 — Bass-first sub-mode | AC-8.4.1–AC-8.4.2 | T070 | T071 |
-| **P-033** | US-8.5 — Voicing realism sub-stages | AC-8.5.1–AC-8.5.2 | T072 | T073 |
+| **P-033** | US-8.5 — Voicing realism tiers | AC-8.5.1–AC-8.5.2 | T072, T101 | T073, T104 |
 | **P-034** | US-9.1 — Unlock map | AC-9.1.1–AC-9.1.3 | T074 | T075 |
 | **P-035** | US-9.2 — Daily streak and session goal | AC-9.2.1–AC-9.2.3 | T076 | T077 |
 | **P-036** | US-9.3 — XP and level-up feedback | AC-9.3.1–AC-9.3.3 | T078 | T079 |
@@ -146,10 +146,12 @@ that carry the verbatim-titled tests. `—` in the AC column marks infrastructur
 | **P-040** | US-10.3 — Progress persistence and export | AC-10.3.1–AC-10.3.3 | T086 | T087 |
 | **P-041** | US-10.4 — Settings | AC-10.4.1–AC-10.4.3 | T088 | T089 |
 | **P-042** | Polish: quickstart, README, matrix, gates | — | T090–T091 | — |
-| **P-043** | US-2.6 — In-session progress visibility (post-MVP) | AC-2.6.1–AC-2.6.2 | T093 | T094 |
+| **P-043** | US-2.6 — In-session progress visibility (post-MVP) | AC-2.6.1–AC-2.6.2 | T093, T102 | T094, T105 |
 | **P-044** | US-9.2 — Daily-goal progress visibility (post-MVP extension) | AC-9.2.4 | T095 | T096 |
 | **P-045** | US-4.4 — Scale reference scaffold for novices (post-MVP) | AC-4.4.1–AC-4.4.6 | T097 | T098 |
 | **P-046** | US-4.5 — Scale-degree onboarding guidance (post-MVP) | AC-4.5.1–AC-4.5.3 | T099 | T100 |
+| **P-047** | US-2.2 — Pool-scaled mastery gate (post-MVP, D-006 amendment) | AC-2.2.4 | T102 | T105 |
+| **P-048** | US-10.3 — Progress reset at the presentation-tier restructure (post-MVP, D-007 amendment) | AC-10.3.4 | T103 | T106 |
 
 ## Complexity Tracking
 

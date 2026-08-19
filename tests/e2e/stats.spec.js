@@ -53,7 +53,7 @@ test.describe('US-9.4 Weakness dashboard', () => {
       const d = JSON.parse(JSON.stringify(window.__test.store.getState()));
       const now = Date.now(); const history = []; d.days = {};
       for (let day = 0; day < 7; day++) { const at = now - day * 86400000; const k = new Date(at); const key = `${k.getFullYear()}-${String(k.getMonth() + 1).padStart(2, '0')}-${String(k.getDate()).padStart(2, '0')}`; d.days[key] = { questions: 5, seconds: 60, complete: false }; for (let i = 0; i < 5; i++) history.push({ item: 'interval:P5:asc', correct: i < 3 + (day % 2), at: at - i, replays: 0, score: 1 }); }
-      d.levels['intervals:1'] = { mastered: false, masteredAt: null, subStage: 'asc', subStages: {}, history };
+      d.levels['intervals:1'] = { mastered: false, masteredAt: null, history };
       return d;
     });
     await page.evaluate((d) => window.__test.store.replace(d), doc);
