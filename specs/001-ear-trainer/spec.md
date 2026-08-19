@@ -185,17 +185,27 @@ that the game mechanic enforces real learning.
 
 **Independent Test**: drive a level to ≥ 90% rolling accuracy with all items in box ≥ 3 and
 confirm the next level unlocks; drive it to 90% with one item in box 2 and confirm it does
-not.
+not; confirm a two-item level needs 10 answers and a twelve-item level needs 36.
 
 **Acceptance Scenarios**:
 
 - **AC-2.2.1** — A level is mastered when accuracy and box conditions are both met
-  - **Given** my rolling accuracy over the last 20 answers in a level is ≥ 90%, and every item in the level has reached at least box 3
-  - **When** I complete the answer that satisfies both conditions
+  - **Given** my rolling accuracy over the last 20 answers in a level is ≥ 90%, every item in the level has reached at least box 3, and I have answered at least the level's minimum answer count (AC-2.2.4; 2026-08-18: was a flat 20 answers)
+  - **When** I complete the answer that satisfies all conditions
   - **Then** the level is marked mastered and the next level unlocks
   - **Cases**:
     - **AC-2.2.1/1** — The level is marked mastered on the satisfying answer
     - **AC-2.2.1/2** — The next level unlocks when the level is mastered
+
+- **AC-2.2.4** — The minimum answer count scales with the level's item count
+  - **Given** a level with N Leitner items (2026-08-18: added when levels became presentation tiers — a flat 20-answer floor cost a two-item level the same as a twelve-item one, so the smallest levels were the most tedious)
+  - **When** mastery is evaluated
+  - **Then** at least max(10, 3 × N) answers in the level are required
+  - **And** rolling accuracy is still measured over the last 20 answers regardless of N
+  - **Cases**:
+    - **AC-2.2.4/1** — A two-item level requires at least 10 answers
+    - **AC-2.2.4/2** — A twelve-item level requires at least 36 answers
+    - **AC-2.2.4/3** — Rolling accuracy is measured over the last 20 answers regardless of item count
 
 - **AC-2.2.2** — Accuracy alone does not master a level
   - **Given** my rolling accuracy is ≥ 90%, but at least one item in the level is below box 3
@@ -316,31 +326,30 @@ As a learner, I want to see how close I am to mastering the current stage while 
 so that I know how much longer to continue and when it is safe to stop.
 
 **Independent Test**: start an interval level 1 session and confirm the header meter counts
-answers toward the 20-answer window and tracks rolling accuracy; master the ascending
-sub-stage and confirm the transition announcement names descending.
+answers toward the level's minimum answer count and tracks rolling accuracy; master level 6
+(ascending) and confirm the celebration names level 7 as descending.
 
 **Acceptance Scenarios**:
 
 - **AC-2.6.1** — The session header shows a live mastery-progress meter
-  - **Given** a practice session in a level, scoped to the current sub-stage where the track has sub-stages
+  - **Given** a practice session in a level (2026-08-18: was "scoped to the current sub-stage where the track has sub-stages" — sub-stages were retired when levels became presentation tiers, US-3.2/5.2/6.2/8.5)
   - **When** I answer a question
-  - **Then** the session header shows how many answers count toward the 20-answer window, the rolling accuracy against the 90% threshold, and how many items are still below box 3, updated for that answer
-  - **And** where the track has sub-stages, the meter names the current sub-stage
+  - **Then** the session header shows how many answers count toward the level's minimum answer count (AC-2.2.4), the rolling accuracy against the 90% threshold, and how many items are still below box 3, updated for that answer
+  - **And** where the level carries a presentation, the meter names it (e.g. "Descending")
   - **Cases**:
-    - **AC-2.6.1/1** — The answers counted toward the 20-answer window are shown and update on each answer
+    - **AC-2.6.1/1** — The answers counted toward the level's minimum answer count are shown and update on each answer
     - **AC-2.6.1/2** — The rolling accuracy is shown against the 90% threshold and updates on each answer
     - **AC-2.6.1/3** — The number of items still below box 3 is shown
-    - **AC-2.6.1/4** — The current sub-stage name is shown for tracks with sub-stages
+    - **AC-2.6.1/4** — The level's presentation is named for tracks whose levels carry one
 
-- **AC-2.6.2** — Mastering a sub-stage is announced with the next sub-stage named
-  - **Given** the current sub-stage of a level in a track with sub-stages
-  - **When** my answer satisfies that sub-stage's mastery conditions
-  - **Then** the feedback panel announces the sub-stage is mastered and names the next sub-stage that now begins, with its position in the order (e.g. "Descending — 2 of 3")
-  - **And** when the mastered sub-stage is the last one, the level mastery celebration is shown instead of the transition announcement
+- **AC-2.6.2** — Mastering a level names the next level and its presentation
+  - **Given** a level in a track whose levels carry a presentation (2026-08-18: was "Mastering a sub-stage is announced with the next sub-stage named" — sub-stages were retired; the announcement now lives in the level celebration)
+  - **When** my answer satisfies the level's mastery conditions
+  - **Then** the level celebration (AC-9.3.2) names the next level that now unlocks, with its number and presentation (e.g. "Level 7 — Descending")
+  - **And** when the mastered level is the last in its track, the celebration says the track is complete instead
   - **Cases**:
-    - **AC-2.6.2/1** — The mastering answer's feedback announces the sub-stage is mastered
-    - **AC-2.6.2/2** — The next sub-stage is named with its position in the order
-    - **AC-2.6.2/3** — Mastering the last sub-stage shows the level celebration, not a transition announcement
+    - **AC-2.6.2/1** — The celebration names the next level with its number and presentation
+    - **AC-2.6.2/2** — Mastering the last level of a track says the track is complete
 
 ## Epic 3: Track 1 — Intervals
 
@@ -348,82 +357,96 @@ sub-stage and confirm the transition announcement names descending.
 
 *Traceability: `US-3.1` — Interval level progression*
 
-As a learner, I want intervals introduced from most-contrasting to most-confusable so that
-early success builds a foundation for hard discriminations.
+As a learner, I want intervals introduced from most-contrasting to most-confusable, in the
+easiest presentation first, so that early success builds a foundation for hard
+discriminations.
 
-**Independent Test**: for each level, generate questions and confirm the pool is exactly the
-listed set.
+**Independent Test**: for each level, generate questions and confirm the pool and
+presentation are exactly the listed set.
 
 **Acceptance Scenarios**:
 
-- **AC-3.1.1** — Each interval level draws from exactly its pool
-  - **Given** an interval level is active
+- **AC-3.1.1** — Each interval level draws from exactly its pool and presentation
+  - **Given** an interval level is active (2026-08-18: levels restructured from pool-major — every level cycling asc → desc → harm sub-stages — to presentation-major, so a learner is not held on P5/P8 for three sub-stages before hearing a third interval; the presentation column is now part of the level)
   - **When** questions are generated
-  - **Then** the question pool is exactly:
+  - **Then** the question pool and presentation are exactly:
 
-  | Level | Pool |
-  |---|---|
-  | 1 | P8, P5 |
-  | 2 | P8, P5, M3, m3 |
-  | 3 | P8, P5, M3, m3, P4 |
-  | 4 | P8, P5, M3, m3, P4, M2, m2 |
-  | 5 | P8, P5, M3, m3, P4, M2, m2, M6, m6 |
-  | 6 | all 12 simple intervals (adds M7, m7, TT) |
-  | 7 | all 12 simple intervals, mixed review |
-  | 8 | + m9, M9 (compound 2nds) |
-  | 9 | + m10, M10 (compound 3rds) |
-  | 10 | + P11, P12 |
-  | 11 | + m13, M13 |
-  | 12 | all simple + compound intervals, mixed review |
+  | Level | Presentation | Pool |
+  |---|---|---|
+  | 1 | ascending | P8, P5 |
+  | 2 | ascending | P8, P5, M3, m3 |
+  | 3 | ascending | P8, P5, M3, m3, P4 |
+  | 4 | ascending | P8, P5, M3, m3, P4, M2, m2 |
+  | 5 | ascending | P8, P5, M3, m3, P4, M2, m2, M6, m6 |
+  | 6 | ascending | all 12 simple intervals (adds M7, m7, TT) |
+  | 7 | descending | P8, P5, P4, M3, m3 |
+  | 8 | descending | P8, P5, P4, M3, m3, M2, m2, M6, m6 |
+  | 9 | descending | all 12 simple intervals |
+  | 10 | ascending and descending mixed | all 12 simple intervals |
+  | 11 | harmonic | P8, P5, P4, TT, M2, m2 (the intervals that fuse or beat) |
+  | 12 | harmonic | P8, P5, P4, TT, M2, m2, M3, m3, M6, m6 |
+  | 13 | harmonic | all 12 simple intervals (adds M7, m7) |
+  | 14 | ascending | all 12 simple + m9, M9, m10, M10 (compound 2nds and 3rds) |
+  | 15 | ascending | all 12 simple + m9, M9, m10, M10, P11, P12, m13, M13 |
+  | 16 | ascending, descending and harmonic mixed | all simple + compound intervals — mixed review |
 
   - **Cases**:
-    - **AC-3.1.1/1** — Interval level 1 pool is exactly P8, P5
-    - **AC-3.1.1/2** — Interval level 2 pool is exactly P8, P5, M3, m3
-    - **AC-3.1.1/3** — Interval level 3 pool is exactly P8, P5, M3, m3, P4
-    - **AC-3.1.1/4** — Interval level 4 pool is exactly P8, P5, M3, m3, P4, M2, m2
-    - **AC-3.1.1/5** — Interval level 5 pool is exactly P8, P5, M3, m3, P4, M2, m2, M6, m6
-    - **AC-3.1.1/6** — Interval level 6 pool is all 12 simple intervals
-    - **AC-3.1.1/7** — Interval level 7 pool is all 12 simple intervals as mixed review
-    - **AC-3.1.1/8** — Interval level 8 pool adds m9 and M9
-    - **AC-3.1.1/9** — Interval level 9 pool adds m10 and M10
-    - **AC-3.1.1/10** — Interval level 10 pool adds P11 and P12
-    - **AC-3.1.1/11** — Interval level 11 pool adds m13 and M13
-    - **AC-3.1.1/12** — Interval level 12 pool is all simple and compound intervals as mixed review
+    - **AC-3.1.1/1** — Interval level 1 is ascending P8, P5
+    - **AC-3.1.1/2** — Interval level 2 is ascending P8, P5, M3, m3
+    - **AC-3.1.1/3** — Interval level 3 is ascending P8, P5, M3, m3, P4
+    - **AC-3.1.1/4** — Interval level 4 is ascending P8, P5, M3, m3, P4, M2, m2
+    - **AC-3.1.1/5** — Interval level 5 is ascending P8, P5, M3, m3, P4, M2, m2, M6, m6
+    - **AC-3.1.1/6** — Interval level 6 is ascending all 12 simple intervals
+    - **AC-3.1.1/7** — Interval level 7 is descending P8, P5, P4, M3, m3
+    - **AC-3.1.1/8** — Interval level 8 is descending P8, P5, P4, M3, m3, M2, m2, M6, m6
+    - **AC-3.1.1/9** — Interval level 9 is descending all 12 simple intervals
+    - **AC-3.1.1/10** — Interval level 10 is ascending and descending mixed over all 12 simple intervals
+    - **AC-3.1.1/11** — Interval level 11 is harmonic P8, P5, P4, TT, M2, m2
+    - **AC-3.1.1/12** — Interval level 12 is harmonic P8, P5, P4, TT, M2, m2, M3, m3, M6, m6
+    - **AC-3.1.1/13** — Interval level 13 is harmonic all 12 simple intervals
+    - **AC-3.1.1/14** — Interval level 14 is ascending all 12 simple plus m9, M9, m10, M10
+    - **AC-3.1.1/15** — Interval level 15 is ascending all 12 simple plus all eight compound intervals
+    - **AC-3.1.1/16** — Interval level 16 is all presentations mixed over all simple and compound intervals
 
 - **AC-3.1.2** — Interval pools are cumulative and box-weighted
-  - **Given** any interval level above 1 is active
+  - **Given** any interval level above 1 within the same presentation tier is active (2026-08-18: was "any interval level above 1"; the pool now restarts when the presentation changes at levels 7, 11 and 14)
   - **When** 50 questions are generated
-  - **Then** intervals introduced in all previous levels also appear in the question stream
+  - **Then** intervals introduced in all previous levels of that tier also appear in the question stream
   - **And** selection among them is weighted by each item's Leitner box
   - **Cases**:
-    - **AC-3.1.2/1** — Intervals from all previous levels appear in the question stream
+    - **AC-3.1.2/1** — Intervals from all previous levels of the tier appear in the question stream
     - **AC-3.1.2/2** — Selection among cumulative intervals is weighted by Leitner box
 
 - **AC-3.1.3** — Compound interval questions offer the simple equivalent as a distractor
-  - **Given** a compound-interval level (8 and above) is active
+  - **Given** a compound-interval level (14 and above; 2026-08-18: was 8 and above) is active
   - **When** answer buttons are displayed for a compound interval question
   - **Then** the corresponding simple interval is included among the options (e.g., M2 as a distractor for M9)
 
-### User Story 3.2 - Interval presentation sub-stages
+### User Story 3.2 - Interval presentation tiers
 
-*Traceability: `US-3.2` — Interval presentation sub-stages*
+*Traceability: `US-3.2` — Interval presentation tiers*
 
-As a learner, I want each level to progress through ascending, descending, and harmonic
-presentations so that I master each interval in every form.
+As a learner, I want ascending intervals before descending, and descending before harmonic,
+so that each level has one difficulty and I master every interval in every form in the order
+the forms get harder. *(2026-08-18: was "Interval presentation sub-stages" — every level
+cycled asc → desc → harm. The maintainer's guidance is that presentation is the primary
+difficulty axis: ascending < descending < harmonic on the whole, so it orders the levels.)*
 
-**Independent Test**: master the ascending sub-stage of level 2 and confirm descending
-unlocks while harmonic stays locked.
+**Independent Test**: confirm levels 1–6 are ascending, 7–9 descending, 10 mixed
+direction, 11–13 harmonic, and that a level's presentation never changes with progress.
 
 **Acceptance Scenarios**:
 
-- **AC-3.2.1** — Interval sub-stages unlock in order ascending, descending, harmonic
-  - **Given** I am in the ascending sub-stage of interval level 2
-  - **When** the ascending sub-stage reaches its mastery threshold
-  - **Then** the descending sub-stage unlocks
-  - **And** the harmonic sub-stage remains locked until descending is mastered
+- **AC-3.2.1** — Interval levels are ordered ascending, descending, mixed direction, harmonic
+  - **Given** the interval track (2026-08-18: was "Interval sub-stages unlock in order ascending, descending, harmonic")
+  - **When** I look at its levels
+  - **Then** levels 1–6 are ascending only, 7–9 descending only, 10 ascending and descending mixed, 11–13 harmonic only, and each level's presentation is fixed by its definition, never by progress
   - **Cases**:
-    - **AC-3.2.1/1** — Mastering the ascending sub-stage unlocks the descending sub-stage
-    - **AC-3.2.1/2** — The harmonic sub-stage remains locked until descending is mastered
+    - **AC-3.2.1/1** — Levels 1 to 6 present intervals ascending only
+    - **AC-3.2.1/2** — Levels 7 to 9 present intervals descending only
+    - **AC-3.2.1/3** — Level 10 mixes ascending and descending presentations
+    - **AC-3.2.1/4** — Levels 11 to 13 present intervals harmonically only
+    - **AC-3.2.1/5** — A level's presentation is fixed by its definition and does not change with progress
 
 - **AC-3.2.2** — Each interval presentation form is a separate Leitner item
   - **Given** the interval m6
@@ -496,7 +519,7 @@ Appendix B songs for that interval.
   - **Then** I can browse all intervals in the level with their anchor songs without starting a session
 
 - **AC-3.4.4** — Compound interval feedback shows the octave-plus-simple decomposition
-  - **Given** feedback for a compound interval (level 8+)
+  - **Given** feedback for a compound interval (level 14+; 2026-08-18: was level 8+)
   - **When** anchor content displays
   - **Then** it shows the "octave + simple interval" decomposition and the simple interval's anchors
   - **And** any known compound-specific examples from Appendix B
@@ -750,39 +773,50 @@ questions.
 As a learner, I want qualities introduced from most-contrasting to most-confusable so that I
 build discrimination progressively.
 
-**Independent Test**: for each level, generate questions and confirm pool and voicing rules.
+**Independent Test**: for each level, generate questions and confirm pool, voicing rules and
+presentation.
 
 **Acceptance Scenarios**:
 
-- **AC-5.1.1** — Each chord-quality level draws from exactly its pool and voicing rules
-  - **Given** a chord-quality level is active
+- **AC-5.1.1** — Each chord-quality level draws from exactly its pool, voicing rules and presentation
+  - **Given** a chord-quality level is active (2026-08-18: levels restructured from pool-major — every level cycling block → arpeggiated → varied sub-stages — to presentation-major; the presentation column is now part of the level)
   - **When** questions are generated
-  - **Then** the pool and voicing rules are exactly:
+  - **Then** the pool, voicing rules and presentation are exactly:
 
-  | Level | Pool and voicing |
-  |---|---|
-  | 1 | maj, min — root position only |
-  | 2 | + dim — root position only |
-  | 3 | + aug — root position only |
-  | 4 | maj, min — root, 1st, and 2nd inversions |
-  | 5 | all triads (maj, min, dim, aug) — any inversion |
-  | 6 | dom7, maj7, m7 — root position only |
-  | 7 | + m7♭5, dim7 — root position only |
-  | 8 | all 7th chords — any inversion (root through 3rd) |
-  | 9 | + sus2, sus4 — root position |
-  | 10 | all qualities, any voicing — mixed review |
+  | Level | Presentation | Pool and voicing |
+  |---|---|---|
+  | 1 | block | maj, min — root position only |
+  | 2 | block | + dim — root position only |
+  | 3 | block | + aug — root position only |
+  | 4 | block | maj, min — root, 1st, and 2nd inversions |
+  | 5 | block | all triads (maj, min, dim, aug) — any inversion |
+  | 6 | block | dom7, maj7, m7 — root position only |
+  | 7 | block | + m7♭5, dim7 — root position only |
+  | 8 | block | all 7th chords — any inversion (root through 3rd) |
+  | 9 | block | all triads and 7ths + sus2, sus4 — root position |
+  | 10 | arpeggiated | all triads — root position |
+  | 11 | arpeggiated | all triads — any inversion |
+  | 12 | arpeggiated | all 7th chords — root position |
+  | 13 | arpeggiated | all qualities (triads, 7ths, sus) — any voicing |
+  | 14 | varied | all triads — any inversion |
+  | 15 | varied | all qualities, any voicing — mixed review |
 
   - **Cases**:
-    - **AC-5.1.1/1** — Chord level 1 pool is maj and min in root position only
-    - **AC-5.1.1/2** — Chord level 2 pool adds dim in root position only
-    - **AC-5.1.1/3** — Chord level 3 pool adds aug in root position only
-    - **AC-5.1.1/4** — Chord level 4 pool is maj and min in root, first and second inversions
-    - **AC-5.1.1/5** — Chord level 5 pool is all triads in any inversion
-    - **AC-5.1.1/6** — Chord level 6 pool is dom7, maj7 and m7 in root position only
-    - **AC-5.1.1/7** — Chord level 7 pool adds m7b5 and dim7 in root position only
-    - **AC-5.1.1/8** — Chord level 8 pool is all seventh chords in any inversion root through third
-    - **AC-5.1.1/9** — Chord level 9 pool adds sus2 and sus4 in root position
-    - **AC-5.1.1/10** — Chord level 10 pool is all qualities in any voicing as mixed review
+    - **AC-5.1.1/1** — Chord level 1 is block maj and min in root position only
+    - **AC-5.1.1/2** — Chord level 2 is block and adds dim in root position only
+    - **AC-5.1.1/3** — Chord level 3 is block and adds aug in root position only
+    - **AC-5.1.1/4** — Chord level 4 is block maj and min in root, first and second inversions
+    - **AC-5.1.1/5** — Chord level 5 is block all triads in any inversion
+    - **AC-5.1.1/6** — Chord level 6 is block dom7, maj7 and m7 in root position only
+    - **AC-5.1.1/7** — Chord level 7 is block and adds m7b5 and dim7 in root position only
+    - **AC-5.1.1/8** — Chord level 8 is block all seventh chords in any inversion root through third
+    - **AC-5.1.1/9** — Chord level 9 is block all triads and sevenths plus sus2 and sus4 in root position
+    - **AC-5.1.1/10** — Chord level 10 is arpeggiated all triads in root position
+    - **AC-5.1.1/11** — Chord level 11 is arpeggiated all triads in any inversion
+    - **AC-5.1.1/12** — Chord level 12 is arpeggiated all seventh chords in root position
+    - **AC-5.1.1/13** — Chord level 13 is arpeggiated all qualities in any voicing
+    - **AC-5.1.1/14** — Chord level 14 is varied all triads in any inversion
+    - **AC-5.1.1/15** — Chord level 15 is varied all qualities in any voicing as mixed review
 
 - **AC-5.1.2** — The answer is the quality regardless of voicing
   - **Given** a level that includes inverted voicings
@@ -812,26 +846,28 @@ build discrimination progressively.
   - **When** 20 consecutive questions play
   - **Then** chord roots vary across the register range with no fixed-pitch pattern
 
-### User Story 5.2 - Chord presentation sub-stages
+### User Story 5.2 - Chord presentation tiers
 
-*Traceability: `US-5.2` — Chord presentation sub-stages*
+*Traceability: `US-5.2` — Chord presentation tiers*
 
-As a learner, I want each level to progress from block to arpeggiated to varied voicings so
-that I can't rely on one fixed sound.
+As a learner, I want block chords before arpeggiated, and arpeggiated before varied
+voicings, so that each level has one difficulty and I can't rely on one fixed sound by the
+end. *(2026-08-18: was "Chord presentation sub-stages" — every level cycled block → arp →
+varied; presentation now orders the levels, as for intervals.)*
 
-**Independent Test**: progress through a level and confirm block → arpeggiated → varied
-unlock order; change the arpeggiation tempo and confirm the next arpeggio uses it.
+**Independent Test**: confirm levels 1–9 are block, 10–13 arpeggiated, 14–15 varied; change
+the arpeggiation tempo and confirm the next arpeggio uses it.
 
 **Acceptance Scenarios**:
 
-- **AC-5.2.1** — Chord sub-stages unlock in order block, arpeggiated, varied
-  - **Given** a chord-quality level
-  - **When** I progress through it
-  - **Then** sub-stages unlock in the order: block (close voicing, fixed register) → arpeggiated → varied register/voicing spread
+- **AC-5.2.1** — Chord levels are ordered block, arpeggiated, varied
+  - **Given** the chord-quality track (2026-08-18: was "Chord sub-stages unlock in order block, arpeggiated, varied")
+  - **When** I look at its levels
+  - **Then** levels 1–9 are block (close voicing, fixed register), 10–13 arpeggiated, 14–15 varied register/voicing spread, and each level's presentation is fixed by its definition, never by progress
   - **Cases**:
-    - **AC-5.2.1/1** — A chord level starts in the block sub-stage with close voicing and fixed register
-    - **AC-5.2.1/2** — Mastering block unlocks arpeggiated
-    - **AC-5.2.1/3** — Mastering arpeggiated unlocks varied register and voicing spread
+    - **AC-5.2.1/1** — Levels 1 to 9 present block chords in close voicing and fixed register
+    - **AC-5.2.1/2** — Levels 10 to 13 present arpeggiated chords
+    - **AC-5.2.1/3** — Levels 14 to 15 present varied register and voicing spread
 
 - **AC-5.2.2** — Each chord presentation is a separate Leitner item
   - **Given** the quality maj7
@@ -901,42 +937,49 @@ master it and confirm the track is available.
 As a learner, I want to learn inversions on familiar chord types first so that I isolate the
 inversion variable.
 
-**Independent Test**: for each level, generate questions and confirm the pool; at level 3
-confirm both quality and inversion are required.
+**Independent Test**: for each level, generate questions and confirm the pool and
+presentation; at levels 3 and 5 confirm both quality and inversion are required.
 
 **Acceptance Scenarios**:
 
-- **AC-6.2.1** — Each inversion level draws from exactly its pool
-  - **Given** an inversion level is active
+- **AC-6.2.1** — Each inversion level draws from exactly its pool and presentation
+  - **Given** an inversion level is active (2026-08-18: levels restructured from pool-major — every level cycling block → arpeggiated sub-stages — to presentation-major; the presentation column is now part of the level)
   - **When** questions are generated
-  - **Then** the pool is exactly:
+  - **Then** the pool and presentation are exactly:
 
-  | Level | Pool |
-  |---|---|
-  | 1 | major triad: root, 1st, 2nd inversion |
-  | 2 | minor triad: root, 1st, 2nd inversion |
-  | 3 | mixed maj + min inversions (answer = quality + inversion) |
-  | 4 | 7th chords: root, 1st, 2nd, 3rd inversion |
+  | Level | Presentation | Pool |
+  |---|---|---|
+  | 1 | block | major triad: root, 1st, 2nd inversion |
+  | 2 | block | minor triad: root, 1st, 2nd inversion |
+  | 3 | block | mixed maj + min inversions (answer = quality + inversion) |
+  | 4 | block | 7th chords: root, 1st, 2nd, 3rd inversion |
+  | 5 | arpeggiated | mixed maj + min inversions (answer = quality + inversion) |
+  | 6 | arpeggiated | 7th chords: root, 1st, 2nd, 3rd inversion |
 
   - **Cases**:
-    - **AC-6.2.1/1** — Inversion level 1 pool is the major triad in root, first and second inversion
-    - **AC-6.2.1/2** — Inversion level 2 pool is the minor triad in root, first and second inversion
-    - **AC-6.2.1/3** — Inversion level 3 pool is mixed major and minor inversions
-    - **AC-6.2.1/4** — Inversion level 4 pool is seventh chords in root through third inversion
+    - **AC-6.2.1/1** — Inversion level 1 is block major triad in root, first and second inversion
+    - **AC-6.2.1/2** — Inversion level 2 is block minor triad in root, first and second inversion
+    - **AC-6.2.1/3** — Inversion level 3 is block mixed major and minor inversions
+    - **AC-6.2.1/4** — Inversion level 4 is block seventh chords in root through third inversion
+    - **AC-6.2.1/5** — Inversion level 5 is arpeggiated mixed major and minor inversions
+    - **AC-6.2.1/6** — Inversion level 6 is arpeggiated seventh chords in root through third inversion
 
-- **AC-6.2.2** — Level 3 requires both quality and inversion to be correct
-  - **Given** inversion level 3
+- **AC-6.2.2** — Levels 3 and 5 require both quality and inversion to be correct
+  - **Given** inversion level 3 or 5 (2026-08-18: was "Level 3 requires…"; level 5 is the arpeggiated form of the same drill)
   - **When** I answer a question
   - **Then** I must select both the quality (maj/min) and the inversion
   - **And** the answer is correct only if both parts are correct
   - **Cases**:
-    - **AC-6.2.2/1** — Inversion level 3 requires selecting both quality and inversion
-    - **AC-6.2.2/2** — An inversion level 3 answer is correct only if both parts are correct
+    - **AC-6.2.2/1** — Inversion levels 3 and 5 require selecting both quality and inversion
+    - **AC-6.2.2/2** — An inversion level 3 or 5 answer is correct only if both parts are correct
 
-- **AC-6.2.3** — Inversion sub-stages unlock in order block, arpeggiated
-  - **Given** any inversion level
-  - **When** I progress through it
-  - **Then** sub-stages unlock in the order: block → arpeggiated
+- **AC-6.2.3** — Inversion levels are ordered block, then arpeggiated
+  - **Given** the inversions track (2026-08-18: was "Inversion sub-stages unlock in order block, arpeggiated")
+  - **When** I look at its levels
+  - **Then** levels 1–4 are block and 5–6 arpeggiated, each fixed by its definition
+  - **Cases**:
+    - **AC-6.2.3/1** — Levels 1 to 4 present block chords
+    - **AC-6.2.3/2** — Levels 5 to 6 present arpeggiated chords
 
 ---
 
@@ -1076,40 +1119,52 @@ status; master both and confirm availability.
 As a learner, I want progressions that grow in vocabulary and realism so that I end up
 hearing real songs.
 
-**Independent Test**: for each level, generate progressions and confirm vocabulary, catalog
-membership and random key; confirm names in feedback and rotation items.
+**Independent Test**: for each level, generate progressions and confirm vocabulary, texture,
+catalog membership and random key; confirm names in feedback and rotation items.
 
 **Acceptance Scenarios**:
 
-- **AC-8.2.1** — Each progression level uses only its vocabulary in a random key
-  - **Given** a progression level is active
+- **AC-8.2.1** — Each progression level uses only its vocabulary and texture in a random key
+  - **Given** a progression level is active (2026-08-18: levels restructured from pool-major — every level cycling block → voice-led → arpeggiated sub-stages — to presentation-major; texture is now a level property and the catalog is grouped into tiers, Appendix A, that levels draw on)
   - **When** a progression is generated from the level's catalog templates (Appendix A)
-  - **Then** it uses only the level's vocabulary and is played in a randomly selected key:
+  - **Then** it uses only the level's vocabulary and texture and is played in a randomly selected key:
 
-  | Level | Vocabulary |
-  |---|---|
-  | 1 | I, IV, V (3-chord progressions, root position) |
-  | 2 | + vi (4-chord pop templates, e.g., I–V–vi–IV) |
-  | 3 | + ii, iii |
-  | 4 | minor keys: i, iv, v, V, VI, VII, III |
-  | 5 | diatonic 7th qualities (ii7, V7, Imaj7, …) |
-  | 6 | inversions in the bass (e.g., I, V⁶) |
-  | 7 | 8-chord phrases + borrowed chords (♭VII, ♭VI, III, iv in major) |
+  | Level | Texture | Catalog tiers | Vocabulary |
+  |---|---|---|---|
+  | 1 | block | 1 | I, IV, V (3-chord progressions, root position) |
+  | 2 | block | 1–2 | + vi (4-chord pop templates, e.g., I–V–vi–IV) |
+  | 3 | block | 1–3 | + ii, iii |
+  | 4 | block | 1–4 | minor keys: i, iv, v, V, VI, VII, III |
+  | 5 | block | 1–5 | diatonic 7th qualities (ii7, V7, Imaj7, …) |
+  | 6 | block | 1–6 | inversions in the bass (e.g., I, V⁶) |
+  | 7 | block | 1–7 | 8-chord phrases + borrowed chords (♭VII, ♭VI, III, iv in major) |
+  | 8 | voice-led | 1–3 | major diatonic triads |
+  | 9 | voice-led | 1–5 | + minor keys and diatonic 7ths |
+  | 10 | voice-led | 1–7 | + bass inversions and borrowed chords |
+  | 11 | arpeggiated | 1–3 | major diatonic triads |
+  | 12 | arpeggiated | 1–5 | + minor keys and diatonic 7ths |
+  | 13 | arpeggiated | 1–7 | + bass inversions and borrowed chords |
 
   - **Cases**:
-    - **AC-8.2.1/1** — Progression level 1 uses only I, IV, V in root position
-    - **AC-8.2.1/2** — Progression level 2 adds vi with 4-chord pop templates
-    - **AC-8.2.1/3** — Progression level 3 adds ii and iii
-    - **AC-8.2.1/4** — Progression level 4 uses minor-key vocabulary i, iv, v, V, VI, VII, III
-    - **AC-8.2.1/5** — Progression level 5 uses diatonic seventh qualities
-    - **AC-8.2.1/6** — Progression level 6 uses inversions in the bass
-    - **AC-8.2.1/7** — Progression level 7 uses 8-chord phrases and borrowed chords
+    - **AC-8.2.1/1** — Progression level 1 is block using only I, IV, V in root position
+    - **AC-8.2.1/2** — Progression level 2 is block and adds vi with 4-chord pop templates
+    - **AC-8.2.1/3** — Progression level 3 is block and adds ii and iii
+    - **AC-8.2.1/4** — Progression level 4 is block using minor-key vocabulary i, iv, v, V, VI, VII, III
+    - **AC-8.2.1/5** — Progression level 5 is block using diatonic seventh qualities
+    - **AC-8.2.1/6** — Progression level 6 is block using inversions in the bass
+    - **AC-8.2.1/7** — Progression level 7 is block using 8-chord phrases and borrowed chords
     - **AC-8.2.1/8** — Every generated progression is played in a randomly selected key
+    - **AC-8.2.1/9** — Progression level 8 is voice-led over catalog tiers 1 to 3
+    - **AC-8.2.1/10** — Progression level 9 is voice-led over catalog tiers 1 to 5
+    - **AC-8.2.1/11** — Progression level 10 is voice-led over catalog tiers 1 to 7
+    - **AC-8.2.1/12** — Progression level 11 is arpeggiated over catalog tiers 1 to 3
+    - **AC-8.2.1/13** — Progression level 12 is arpeggiated over catalog tiers 1 to 5
+    - **AC-8.2.1/14** — Progression level 13 is arpeggiated over catalog tiers 1 to 7
 
-- **AC-8.2.2** — Progressions are drawn only from the built-in catalog at or below the level
-  - **Given** any progression level
+- **AC-8.2.2** — Progressions are drawn only from the built-in catalog at or below the level's catalog tier
+  - **Given** any progression level (2026-08-18: was "at or below the level" — level number and catalog tier no longer coincide above level 7)
   - **When** questions are generated
-  - **Then** every progression is an entry (or a rotation of an entry) from the catalog in Appendix A assigned to that level or a lower level
+  - **Then** every progression is an entry (or a rotation of an entry) from the catalog in Appendix A assigned to the level's highest catalog tier or a lower tier
 
 - **AC-8.2.3** — Named progressions show their name in feedback
   - **Given** a catalog progression with a common name (e.g., Axis, 50s, Andalusian)
@@ -1191,26 +1246,27 @@ confirm the toggle is absent at level 1.
     - **AC-8.4.2/1** — The bass-first toggle is unavailable at progression level 1
     - **AC-8.4.2/2** — The bass-first toggle is available from progression level 2 onward
 
-### User Story 8.5 - Voicing realism sub-stages
+### User Story 8.5 - Voicing realism tiers
 
-*Traceability: `US-8.5` — Voicing realism sub-stages*
+*Traceability: `US-8.5` — Voicing realism tiers*
 
 As a learner, I want later progression levels to vary voicing and texture so that I can't
-lean on fixed-voicing cues.
+lean on fixed-voicing cues. *(2026-08-18: was "Voicing realism sub-stages" — every level
+cycled block → voice-led → arp; texture now orders the levels, as for intervals.)*
 
-**Independent Test**: progress through a level and confirm the texture order; answer a
-template right as blocks and wrong as arpeggiated and confirm independent boxes.
+**Independent Test**: confirm levels 1–7 are block, 8–10 voice-led, 11–13 arpeggiated;
+answer a template right as blocks and wrong as arpeggiated and confirm independent boxes.
 
 **Acceptance Scenarios**:
 
-- **AC-8.5.1** — Progression texture sub-stages unlock in order block, voice-led, arpeggiated
-  - **Given** any progression level
-  - **When** I progress through it
-  - **Then** sub-stages unlock in the order: identical block voicings → voice-led voicings with varied register → arpeggiated/strummed texture
+- **AC-8.5.1** — Progression levels are ordered block, voice-led, arpeggiated
+  - **Given** the progressions track (2026-08-18: was "Progression texture sub-stages unlock in order block, voice-led, arpeggiated")
+  - **When** I look at its levels
+  - **Then** levels 1–7 use identical block voicings, 8–10 voice-led voicings with varied register, 11–13 arpeggiated/strummed texture, each fixed by its definition
   - **Cases**:
-    - **AC-8.5.1/1** — A progression level starts in the identical block voicings sub-stage
-    - **AC-8.5.1/2** — Mastering block unlocks voice-led voicings with varied register
-    - **AC-8.5.1/3** — Mastering voice-led unlocks arpeggiated or strummed texture
+    - **AC-8.5.1/1** — Levels 1 to 7 use identical block voicings
+    - **AC-8.5.1/2** — Levels 8 to 10 use voice-led voicings with varied register
+    - **AC-8.5.1/3** — Levels 11 to 13 use arpeggiated or strummed texture
 
 - **AC-8.5.2** — Texture is a Leitner dimension for progressions
   - **Given** the template "I–V–vi–IV"
@@ -1485,6 +1541,15 @@ and confirm merge and rejection behaviour.
     - **AC-10.3.3/2** — Conflicting items merge by most-recent-per-item on import
     - **AC-10.3.3/3** — An invalid import file is rejected with a clear error
 
+- **AC-10.3.4** — Progress recorded before the level restructure is reset, not migrated
+  - **Given** a stored progress document, or an export file, whose schema version predates the presentation-tier level restructure (2026-08-18: levels were renumbered in every sub-staged track and sub-stage state was removed; the maintainer chose a reset over a migration that could only guess which new level old answers belonged to)
+  - **When** the app loads that document, or I import that file
+  - **Then** on load the learning state (items, level mastery, streak and day log, XP, sessions, onboarding flags) is discarded and a fresh document is written, retaining only settings
+  - **And** an import of the older file is rejected with a clear error naming its schema version and the supported one
+  - **Cases**:
+    - **AC-10.3.4/1** — Stored progress from before the restructure is discarded on load and settings are retained
+    - **AC-10.3.4/2** — Importing an export file from before the restructure is rejected with an error naming both schema versions
+
 ### User Story 10.4 - Settings
 
 *Traceability: `US-10.4` — Settings*
@@ -1541,7 +1606,11 @@ restart, and confirm retention.
 - A learner answers before the stimulus has finished playing: the answer is accepted and the
   stimulus is stopped.
 - Rolling accuracy with fewer than 20 answers: computed over what exists; mastery still
-  requires ≥ 20 answers so a level cannot be mastered on 3 lucky answers.
+  requires the level's minimum answer count (max(10, 3 × items), AC-2.2.4) so a level cannot
+  be mastered on 3 lucky answers.
+- A level whose presentation list has several entries (interval levels 10 and 16): its items
+  are the pool crossed with every listed presentation, and each question draws one at random
+  by Leitner weight like any other item.
 - A level whose entire pool sits in one Leitner box: weighting degenerates to uniform.
 - Import of a file whose `schemaVersion` is newer than the app understands: rejected with a
   message naming the versions.
@@ -1564,10 +1633,12 @@ restart, and confirm retention.
   timestamp per item, promote on correct, demote to box 1 on incorrect, and weight selection
   by box.
 - **FR-004**: The system MUST decide level mastery from rolling accuracy over the last 20
-  answers (≥ 90%) and every item ≥ box 3, and unlock the next level on mastery.
+  answers (≥ 90%), every item ≥ box 3, and at least max(10, 3 × items) answers, and unlock
+  the next level on mastery.
 - **FR-005**: The system MUST provide six tracks — Intervals, Scale Degrees, Chord Qualities,
-  Inversions, Melodic Phrases, Chord Progressions — with the level pools, sub-stages, answer
-  inputs and unlock dependencies specified in Epics 3–8.
+  Inversions, Melodic Phrases, Chord Progressions — with the level pools, presentations,
+  answer inputs and unlock dependencies specified in Epics 3–8; a level's presentation is
+  part of its definition and levels are ordered by presentation difficulty.
 - **FR-006**: The system MUST provide Mixed Review across mastered levels of at least two
   tracks.
 - **FR-007**: The system MUST give feedback within 200 ms, offer comparison replay after an
@@ -1586,7 +1657,8 @@ restart, and confirm retention.
 
 - **Item**: `<track>:<thing>:<presentation>`; box (1–5), attempts, correct, lastSeen,
   confusion counts by wrong answer.
-- **Level**: track, number, pool, sub-stages, prerequisites, confusable pairs, replay limit.
+- **Level**: track, number, pool, presentation(s), prerequisites, confusable pairs, replay
+  limit; for progressions, the highest catalog tier drawn on.
 - **Question**: item, exercise object (notes, timing, presentation, key, voicing/register),
   options, replay count, answer, score.
 - **Session**: track/level or mixed review, questions answered, start/end time, replays.
@@ -1609,10 +1681,22 @@ restart, and confirm retention.
 
 ## Assumptions
 
-- Rolling accuracy is over the last 20 answers within a level (or sub-stage where sub-stages
-  exist); mastery of a level requires mastery of its last sub-stage where sub-stages exist.
-- Sub-stage mastery uses the same conditions as level mastery, scoped to the sub-stage's
-  items.
+- Rolling accuracy is over the last 20 answers within a level; the minimum answer count is
+  max(10, 3 × the level's item count) (2026-08-18: was a flat 20 per level or sub-stage —
+  the box floor already forces at least two correct answers per item, so a 3× multiplier
+  keeps small levels short without letting large ones be mastered on a thin sample).
+- Presentation tiers (2026-08-18): sub-stages within a level no longer exist. Presentation
+  (interval direction, chord texture, progression texture) is a property of the level, and
+  levels are ordered by presentation difficulty — ascending < descending < harmonic for
+  intervals; block < arpeggiated < varied for chords; block < arpeggiated for inversions;
+  block < voice-led < arpeggiated for progressions. The block-before-arpeggiated order for
+  chords is kept from the original spec unchanged. Item ids keep their presentation segment,
+  so per-presentation Leitner items (AC-3.2.2, AC-5.1.4, AC-5.2.2, AC-8.5.2) are unaffected.
+- Progression catalog tiers (2026-08-18): Appendix A's groupings are catalog *tiers* 1–7;
+  levels 1–7 draw on tiers 1–N as before, and levels 8–13 re-walk the tiers under the next
+  texture.
+- The stored-progress reset (AC-10.3.4) is a one-time consequence of renumbering; later
+  schema changes should migrate where a faithful mapping exists.
 - "Register range" defaults to C3–C5 for roots; the sample range is C2–C6.
 - Default cadence frequency: every question for Scale Degrees, Melodic Phrases and
   Progressions; none for Intervals, Chord Qualities and Inversions.
@@ -1640,12 +1724,12 @@ restart, and confirm retention.
 
 ## Appendix A: Built-in Progression Catalog
 
-Data source for US-8.2; ships as a bundled data file. Sources: the
+Data source for US-8.2; ships as a bundled data file. Groupings are catalog *tiers* (2026-08-18: headed "Level" until the presentation-tier restructure; a progression level now names the tiers it draws on, AC-8.2.1). Sources: the
 common-progression canon (David Bennett Piano's progression videos), Hooktheory's TheoryTab
 popularity data, and standard references. Each entry is a template; the engine transposes to
 random keys and, where marked, generates rotations.
 
-### Level 1 — I, IV, V
+### Tier 1 — I, IV, V
 
 | # | Progression | Name / notes |
 |---|-------------|--------------|
@@ -1657,7 +1741,7 @@ random keys and, where marked, generates rotations.
 | 6 | 12-bar blues: I–I–I–I–IV–IV–I–I–V–IV–I–I(V) | 12-bar blues |
 | 7 | 8-bar blues: I–V–IV–IV–I–V–I–V | 8-bar blues |
 
-### Level 2 — + vi
+### Tier 2 — + vi
 
 | # | Progression | Name / notes |
 |---|-------------|--------------|
@@ -1669,7 +1753,7 @@ random keys and, where marked, generates rotations.
 | 13 | vi–V–IV–V | Descending-then-hover |
 | 14 | vi–IV (2-chord vamp) | Minor-color vamp |
 
-### Level 3 — + ii, iii
+### Tier 3 — + ii, iii
 
 | # | Progression | Name / notes |
 |---|-------------|--------------|
@@ -1683,7 +1767,7 @@ random keys and, where marked, generates rotations.
 | 22 | iii–vi–ii–V | Extended circle turnaround |
 | 23 | I–ii–iii–IV–V (stepwise ascent) | Ascending diatonic steps |
 
-### Level 4 — Minor keys
+### Tier 4 — Minor keys
 
 | # | Progression | Name / notes |
 |---|-------------|--------------|
@@ -1698,7 +1782,7 @@ random keys and, where marked, generates rotations.
 | 32 | i–V–i–VII–III–VII–i–V | La Folia (classical) |
 | 33 | i–iv–VII–III | Minor circle-of-fifths |
 
-### Level 5 — Diatonic 7ths
+### Tier 5 — Diatonic 7ths
 
 | # | Progression | Name / notes |
 |---|-------------|--------------|
@@ -1709,7 +1793,7 @@ random keys and, where marked, generates rotations.
 | 38 | Imaj7–IVmaj7 vamp | Neo-soul/lo-fi vamp |
 | 39 | ii7–V7–iii7–vi7 | Royal Road with 7ths |
 
-### Level 6 — Inversions in the bass
+### Tier 6 — Inversions in the bass
 
 | # | Progression | Name / notes |
 |---|-------------|--------------|
@@ -1719,7 +1803,7 @@ random keys and, where marked, generates rotations.
 | 43 | i–i(maj7)/♯7 bass–i7/♭7 bass–i6/6 bass | Line cliché (descending chromatic inner/bass line) |
 | 44 | IV–I⁶–ii | Stepwise bass ascent fragment |
 
-### Level 7 — Borrowed chords & 8-chord phrases
+### Tier 7 — Borrowed chords & 8-chord phrases
 
 | # | Progression | Name / notes |
 |---|-------------|--------------|
@@ -1735,10 +1819,10 @@ random keys and, where marked, generates rotations.
 **Catalog rules:**
 - Rotations of rotation-marked families (Axis, 50s) are generated automatically and tracked as
   separate Leitner items
-- Every entry is stored with: numerals, level, name, rotation flag, and texture variants (per
+- Every entry is stored with: numerals, tier, name, rotation flag, and texture variants (per
   US-8.5)
 - The catalog is data-driven (JSON), so new progressions can be added without code changes
-- Entries can be flagged inactive per level for tuning difficulty
+- Entries can be flagged inactive per tier for tuning difficulty
 
 ## Appendix B: Interval Anchor-Song Reference
 

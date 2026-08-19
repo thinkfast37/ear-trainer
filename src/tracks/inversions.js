@@ -12,29 +12,29 @@ export function createInversionsTrack(def) {
   const levelByNo = (no) => def.levels.find((l) => l.no === no);
   return {
     id: def.id, name: def.name, def, kind: 'single',
-    itemsFor(levelNo, subStage = 'block') {
+    itemsFor(levelNo) {
       const l = levelByNo(levelNo);
       const ids = [];
-      for (const q of l.quality) for (const i of l.inversions) ids.push(itemId(q, i, subStage));
+      for (const pres of l.presentations) for (const q of l.quality) for (const i of l.inversions) ids.push(itemId(q, i, pres));
       return ids;
     },
-    generate({ levelNo, subStage = 'block', progress, rng, settings, bias = null, avoid = null, recency = null }) {
+    generate({ levelNo, progress, rng, settings, bias = null, avoid = null, recency = null }) {
       const level = levelByNo(levelNo);
-      const ids = this.itemsFor(levelNo, subStage);
+      const ids = this.itemsFor(levelNo);
       const id = selectItem(rng, progress, ids, { bias, avoid, recency });
-      const { quality, inversion } = parseItemId(id);
+      const { quality, inversion, presentation } = parseItemId(id);
       const root = pickRoot(rng, 16, settings.register);
-      const exercise = chordExercise(root, quality, inversion, subStage === 'arp' ? 'arp' : 'block', { tempo: settings.arpeggioTempo });
+      const exercise = chordExercise(root, quality, inversion, presentation === 'arp' ? 'arp' : 'block', { tempo: settings.arpeggioTempo });
       const combined = level.answer === 'qualityInversion';
       const answer = combined ? `${quality}:inv${inversion}` : `inv${inversion}`;
       const options = combined
         ? level.quality.flatMap((q) => level.inversions.map((i) => `${q}:inv${i}`))
         : level.inversions.map((i) => `inv${i}`);
-      return { trackId: def.id, levelNo, subStage, itemId: id, answer, options, exercise, kind: combined ? 'qualityInversion' : 'single', meta: { root, quality, inversion, combined, qualities: level.quality, inversions: level.inversions } };
+      return { trackId: def.id, levelNo, itemId: id, answer, options, exercise, kind: combined ? 'qualityInversion' : 'single', meta: { root, quality, inversion, combined, presentation, qualities: level.quality, inversions: level.inversions } };
     },
     optionItemId(optionId, question) {
       const [q, inv] = optionId.includes(':') ? optionId.split(':') : [question.meta.quality, optionId];
-      return itemId(q, Number(inv.slice(3)), question.subStage);
+      return itemId(q, Number(inv.slice(3)), question.meta.presentation);
     },
     evaluate(question, answer) { const correct = answer === question.answer; return { correct, score: correct ? 1 : 0 }; },
     optionLabel(id, settings) {
@@ -43,7 +43,7 @@ export function createInversionsTrack(def) {
     },
     exerciseFor(question, optionId, settings = { arpeggioTempo: 120 }) {
       const [q, inv] = optionId.includes(':') ? optionId.split(':') : [question.meta.quality, optionId];
-      return chordExercise(question.meta.root, q, Number(inv.slice(3)), question.subStage === 'arp' ? 'arp' : 'block', { tempo: settings.arpeggioTempo });
+      return chordExercise(question.meta.root, q, Number(inv.slice(3)), question.meta.presentation === 'arp' ? 'arp' : 'block', { tempo: settings.arpeggioTempo });
     },
   };
 }

@@ -27,8 +27,7 @@ export function accuracyTrend(progress, trackId) {
   const byDay = {};
   for (const [key, level] of Object.entries(progress.levels)) {
     if (!key.startsWith(`${trackId}:`)) continue;
-    const all = [...level.history, ...Object.values(level.subStages ?? {}).flatMap((s) => s.history ?? [])];
-    for (const h of all) {
+    for (const h of level.history) {
       const d = new Date(h.at);
       const k = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
       const b = byDay[k] ?? (byDay[k] = { day: k, correct: 0, total: 0 });

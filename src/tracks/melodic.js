@@ -21,7 +21,7 @@ export function createMelodicTrack(def) {
       const tonic = tonicMidi(key, settings.register);
       const exercise = melodicExercise(tonic, phrase.degrees, phrase.rhythm, 'major');
       const answer = phrase.degrees.map(String);
-      return { trackId: def.id, levelNo, subStage: null, itemId: itemId(levelNo), answer, options: DEGREE_OPTIONS, exercise, kind: 'sequence', meta: { key, tonic, phrase, replayLimit: level.replayLimit } };
+      return { trackId: def.id, levelNo, itemId: itemId(levelNo), answer, options: DEGREE_OPTIONS, exercise, kind: 'sequence', meta: { key, tonic, phrase, replayLimit: level.replayLimit } };
     },
     optionItemId(_optionId, question) { return question.itemId; },
     evaluate(question, answer) { return compareSequences(answer ?? [], question.answer); },

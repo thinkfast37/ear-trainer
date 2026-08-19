@@ -6,12 +6,14 @@ import { harness } from '../helpers/harness.js';
 import anchors from '../../../src/data/anchors.json';
 import { mount } from './dom.js';
 
-async function feedbackFor(intervalIdWanted, subStage = 'asc', levelNo = 5) {
+/** Feedback for `intervalIdWanted` in `presentation`; the level is chosen so that item exists (levels are presentation tiers, D-013). */
+async function feedbackFor(intervalIdWanted, presentation = 'asc', levelNo = presentation === 'desc' ? 8 : 5) {
   const h = harness({ trackId: 'intervals', levelNo, seed: 12 });
-  h.store.update((d) => { d.levels[`intervals:${levelNo}`] = { mastered: false, masteredAt: null, subStage, subStages: {}, history: [] }; });
   const s = h.newSession({});
+  const wanted = `interval:${intervalIdWanted}:${presentation}`;
   await s.start(); let guard = 0;
-  while (s.state.question.answer !== intervalIdWanted && guard++ < 500) await s.next();
+  while (s.state.question.itemId !== wanted && guard++ < 800) await s.next();
+  expect(s.state.question.itemId).toBe(wanted);
   s.submit(s.state.question.answer);
   const root = mount(() => {});
   renderFeedback(root, { session: s, track: h.tracks.byId.intervals, settings: h.store.getState().settings, onNext: () => {} });
@@ -49,14 +51,14 @@ describe('US-3.4 Anchor-song reference', () => {
     expect(anchorsFor('m3', 'asc').simple[0].direction).toBe('asc');
   });
   it('AC-3.4.4/1 — Compound feedback shows the octave plus simple interval decomposition with the simple anchors', async () => {
-    const root = await feedbackFor('M9', 'asc', 8);
+    const root = await feedbackFor('M9', 'asc', 14);
     expect(root.querySelector('[data-role="anchors-title"]').textContent).toBe('major 9th = octave + major 2nd');
     expect(root.querySelector('[data-role="decomposition"]').textContent).toMatch(/octave plus a major 2nd/);
     const titles = [...root.querySelectorAll('[data-role="anchor-list"] li strong')].map((s) => s.textContent);
     expect([...titles].sort()).toEqual(anchors.M2.map((a) => a.title).sort());
   });
   it('AC-3.4.4/2 — Compound feedback shows any known compound-specific examples', async () => {
-    const root = await feedbackFor('M9', 'asc', 8);
+    const root = await feedbackFor('M9', 'asc', 14);
     const ex = [...root.querySelectorAll('[data-role="compound-examples"] li strong')].map((s) => s.textContent);
     expect(ex).toEqual(anchors.M9.examples.map((a) => a.title));
     expect(ex.length).toBeGreaterThan(0);

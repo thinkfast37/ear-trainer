@@ -11,7 +11,7 @@ function progressWithAccuracyButWeakItem() {
   p.items['degree:Do:major'] = { box: 5, attempts: 10, correct: 10, lastSeen: 1, confusions: {} };
   p.items['degree:Mi:major'] = { box: 5, attempts: 10, correct: 10, lastSeen: 1, confusions: {} };
   p.items['degree:Sol:major'] = { box: 2, attempts: 3, correct: 1, lastSeen: 1, confusions: {} };
-  p.levels['scaleDegrees:1'] = { mastered: false, masteredAt: null, subStage: null, subStages: {}, history: Array.from({ length: 20 }, (_, i) => ({ item: 'degree:Do:major', correct: i !== 0, at: i, replays: 0, score: 1 })) };
+  p.levels['scaleDegrees:1'] = { mastered: false, masteredAt: null, history: Array.from({ length: 20 }, (_, i) => ({ item: 'degree:Do:major', correct: i !== 0, at: i, replays: 0, score: 1 })) };
   return p;
 }
 

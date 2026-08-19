@@ -16,7 +16,7 @@ describe('US-2.5 — answer options', () => {
       if (track.kind !== 'single') continue;
       for (const level of track.def.levels) {
         for (let i = 0; i < 30; i++) {
-          const q = track.generate({ levelNo: level.no, subStage: track.def.subStages[0], progress: emptyProgress(), rng, settings: DEFAULT_SETTINGS });
+          const q = track.generate({ levelNo: level.no, progress: emptyProgress(), rng, settings: DEFAULT_SETTINGS });
           for (const [a, b] of level.confusables) {
             if (a === q.answer) expect(q.options).toContain(b);
             if (b === q.answer) expect(q.options).toContain(a);

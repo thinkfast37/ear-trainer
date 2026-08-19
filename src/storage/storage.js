@@ -2,7 +2,7 @@
  * One JSON document, one key, two adapters (D-007): localStorage on the web, Capacitor
  * Preferences on device. Both store the identical serialised document (AC-10.2.4).
  */
-import { STORAGE_KEY, emptyProgress, normaliseProgress, validateProgress } from './schema.js';
+import { STORAGE_KEY, emptyProgress, normaliseProgress, validateProgress, needsReset, resetProgress } from './schema.js';
 
 export function localStorageAdapter(ls = globalThis.localStorage) {
   return {
@@ -38,10 +38,27 @@ export function parseProgress(text) {
   return normaliseProgress(doc);
 }
 
+/**
+ * A stored document from before the level restructure (schemaVersion < 2) is discarded and
+ * replaced by a fresh document keeping only its settings (AC-10.3.4/1, D-007). Returns the
+ * fresh document, or null when the text is not such a document.
+ */
+export function resetIfStale(text) {
+  if (!text) return null;
+  let doc;
+  try { doc = JSON.parse(text); } catch { return null; }
+  return needsReset(doc) ? resetProgress(doc) : null;
+}
+
 export function createStorage(adapter) {
   return {
     adapter,
-    async load() { return parseProgress(await adapter.get()) ?? emptyProgress(); },
+    async load() {
+      const text = await adapter.get();
+      const reset = resetIfStale(text);
+      if (reset) { await adapter.set(serialiseProgress(reset)); return reset; }
+      return parseProgress(text) ?? emptyProgress();
+    },
     async save(doc) { await adapter.set(serialiseProgress(doc)); },
     async clear() { await adapter.remove(); },
   };

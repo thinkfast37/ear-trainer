@@ -11,7 +11,7 @@ describe('US-5.1 — inversion does not change the options', () => {
     const track = buildTracks().byId.chordQualities; const rng = createRng(2);
     const byInv = {};
     for (let i = 0; i < 200; i++) {
-      const q = track.generate({ levelNo: 5, subStage: 'block', progress: emptyProgress(), rng, settings: DEFAULT_SETTINGS });
+      const q = track.generate({ levelNo: 5, progress: emptyProgress(), rng, settings: DEFAULT_SETTINGS });
       const root = mount(() => {}); renderAnswerGrid(root, { question: q, track, settings: DEFAULT_SETTINGS, onAnswer: () => {} });
       const opts = [...root.querySelectorAll('[data-option]')].map((b) => b.dataset.option).sort().join(',');
       (byInv[q.meta.inversion] ??= new Set()).add(opts);
@@ -24,7 +24,7 @@ describe('US-5.1 — inversion does not change the options', () => {
     for (const inv of Object.keys(byInv)) expect([...byInv[inv]].every((o) => all.has(o))).toBe(true);
     for (const opts of all) expect(opts.split(',')).toEqual(expect.arrayContaining(['maj', 'min', 'dim', 'aug']));
     // and the sound differs: different bass tone for different inversions of the same chord
-    const q0 = track.generate({ levelNo: 5, subStage: 'block', progress: emptyProgress(), rng, settings: DEFAULT_SETTINGS });
+    const q0 = track.generate({ levelNo: 5, progress: emptyProgress(), rng, settings: DEFAULT_SETTINGS });
     const ex1 = track.exerciseFor({ ...q0, meta: { ...q0.meta, inversion: 1 } }, q0.answer);
     const ex0 = track.exerciseFor({ ...q0, meta: { ...q0.meta, inversion: 0 } }, q0.answer);
     expect(ex1.events[0].midi).not.toBe(ex0.events[0].midi);

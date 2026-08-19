@@ -53,7 +53,7 @@ test.describe('US-8.4 Bass-first sub-mode', () => {
     await expect(page.locator('[data-role="bass-first-unavailable"]')).toContainText('available from Level 2');
   });
   test('AC-8.4.2/2 — The bass-first toggle is available from progression level 2 onward', async ({ page }) => {
-    for (const lvl of [2, 3, 7]) {
+    for (const lvl of [2, 3, 7, 13]) {
       await open(page, `#/level/progressions/${lvl}`);
       await expect(page.locator('[data-role="bass-first-toggle"]')).toBeVisible();
       await expect(page.locator('[data-role="bass-first-unavailable"]')).toHaveCount(0);

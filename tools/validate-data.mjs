@@ -9,6 +9,14 @@ import { isQuality } from '../src/theory/chords.js';
 import { isDegree } from '../src/theory/scales.js';
 import { isNumeral } from '../src/theory/progressions.js';
 
+/** The presentation set per presentation-bearing track (D-013). */
+export const PRESENTATIONS = Object.freeze({
+  intervals: ['asc', 'desc', 'harm'],
+  chordQualities: ['block', 'arp', 'varied'],
+  inversions: ['block', 'arp'],
+  progressions: ['block', 'voiceLed', 'arp'],
+});
+
 const read = (p) => JSON.parse(readFileSync(new URL(`../${p}`, import.meta.url), 'utf8'));
 
 export function validateLevels(data) {
@@ -23,9 +31,19 @@ export function validateLevels(data) {
       const pt = data.tracks.find((x) => x.id === p.track);
       if (pt && !pt.levels.some((l) => l.no === p.level)) errs.push(`levels: ${t.id} prerequisite names ${p.track} level ${p.level} which does not exist`);
     }
-    if (!Array.isArray(t.subStages)) errs.push(`levels: ${t.id} subStages must be an array`);
+    // Presentation is a level property (D-013); sub-stages no longer exist.
+    if ('subStages' in t) errs.push(`levels: ${t.id} subStages is no longer a track field (D-013) — presentation is a level property`);
+    const presSet = PRESENTATIONS[t.id];
     t.levels.forEach((l, i) => {
       if (l.no !== i + 1) errs.push(`levels: ${t.id} level numbers not contiguous at ${l.no}`);
+      if (presSet) {
+        if (!Array.isArray(l.presentations) || l.presentations.length === 0) errs.push(`levels: ${t.id} L${l.no} presentations must be a non-empty array`);
+        else {
+          for (const pr of l.presentations) if (!presSet.includes(pr)) errs.push(`levels: ${t.id} L${l.no} unknown presentation ${pr}`);
+          if (new Set(l.presentations).size !== l.presentations.length) errs.push(`levels: ${t.id} L${l.no} duplicate presentation`);
+        }
+      } else if ('presentations' in l) errs.push(`levels: ${t.id} L${l.no} has presentations but the track has no presentation set`);
+      if (t.id === 'progressions' && !(Number.isInteger(l.catalogTier) && l.catalogTier >= 1 && l.catalogTier <= 7)) errs.push(`levels: progressions L${l.no} catalogTier must be an integer 1–7`);
       const check = (id) => {
         switch (t.id) {
           case 'intervals': return isInterval(id);

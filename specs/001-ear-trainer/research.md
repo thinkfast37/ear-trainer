@@ -72,6 +72,15 @@ multiplied by a recency factor `1 + min(questionsSinceAsked, 20) / 10` within a 
 (never-asked = ×3), so a 20-item pool is reliably covered inside 50 questions. Leitner
 weighting still dominates; recency only stops an item being starved.
 
+**Amended 2026-08-18 (presentation tiers, D-013)**: the flat 20-answer minimum is replaced
+by `max(10, 3 × N)` where N is the number of Leitner items in the level (AC-2.2.4). The
+rolling-accuracy window stays 20. Reasoning: a flat floor cost a two-item level the same as
+a twelve-item one, so the smallest levels were the most tedious (level 1 of intervals needed
+60 answers on P5/P8 across its three sub-stages); the box floor already forces at least two
+correct answers per item, so 3× keeps small levels short without letting large ones be
+mastered on a thin sample. 5× was considered and rejected — it made the last progression
+level a 290-answer minimum. Sub-stage mastery no longer exists (D-013).
+
 **Why**: simple, explainable, deterministic to test with a seeded PRNG (`learning/random.js`,
 mulberry32).
 
@@ -83,6 +92,14 @@ in `localStorage`; on Capacitor, the same blob under the same key in `@capacitor
 `Capacitor.isNativePlatform()`. Writes are debounced (50 ms) and flushed on
 `visibilitychange`. Export = the same document; import merges items by `lastSeen` (newer
 wins), unions day logs, keeps the max streak, and rejects unknown/newer `schemaVersion`.
+
+**Amended 2026-08-18 (presentation tiers, D-013)**: `schemaVersion` becomes 2. A stored
+document with `schemaVersion` < 2 is not migrated: its learning state is discarded on load and
+a fresh document is written keeping only `settings` (AC-10.3.4/1); an import file with
+`schemaVersion` < 2 is rejected naming both versions (AC-10.3.4/2). Reasoning: levels were
+renumbered in four tracks and sub-stage state removed, so a migration could only guess which
+new level an old answer belonged to; the maintainer accepted the reset. Later schema changes
+should migrate where a faithful mapping exists.
 
 ## D-008 — Layout: two breakpoints, phone < 600 px ≤ tablet; desktop = tablet
 
@@ -110,8 +127,8 @@ adapter/contract level in unit tests plus a documented manual device checklist i
 
 ## D-011 — Content as bundled JSON, validated at build
 
-**Decision**: `src/data/levels.json` (every track's levels, pools, sub-stages, prerequisites,
-confusables, replay limits), `src/data/progressions.json` (Appendix A), `src/data/anchors.json`
+**Decision**: `src/data/levels.json` (every track's levels, pools, presentations — 2026-08-18:
+was sub-stages, see D-013 — prerequisites, confusables, replay limits), `src/data/progressions.json` (Appendix A), `src/data/anchors.json`
 (Appendix B). `tools/validate-data.mjs` runs under `npm run lint` and fails on a malformed
 entry.
 
@@ -124,3 +141,30 @@ textures. No external theory library.
 
 **Why**: the requirements are precise and small; a library brings its own naming and would
 still need wrapping.
+
+## D-013 — Presentation is a level property; levels are ordered by presentation difficulty
+
+**Decision (2026-08-18)**: no track has sub-stages. Every level of a presentation-bearing
+track carries `presentations: [...]` (intervals: `asc` | `desc` | `harm`; chord qualities:
+`block` | `arp` | `varied`; inversions: `block` | `arp`; progressions: `block` | `voiceLed` |
+`arp`); the level's Leitner items are its pool crossed with its presentations, and a
+multi-entry list (interval levels 10 and 16) is how a mixed level is expressed. Levels are
+ordered presentation-first — ascending < descending < harmonic; block < arpeggiated < varied;
+block < voice-led < arpeggiated — with the pool re-growing inside each tier (spec AC-3.1.1,
+AC-5.1.1, AC-6.2.1, AC-8.2.1). Progression levels name the highest catalog tier they draw on
+(`catalogTier`) because level number and Appendix A tier no longer coincide above level 7.
+`learning/subStages.js` and the `subStage`/`subStages` fields of level state are removed;
+level state is `{ mastered, masteredAt, history }`.
+
+**Why**: the maintainer's guidance is that presentation is the primary difficulty axis and a
+level should have one objective. Pool-major levels cycling every presentation gave
+levels × forms mastery gates and held a learner on P5/P8 for three sub-stages before a third
+interval was heard. The block-before-arpeggiated order for chords is kept from the original
+spec — arpeggiated is arguably the easier form for quality identification, but reversing it
+was not part of the decision and can be revisited as data.
+
+**Rejected**: keeping sub-stages but relaxing only their mastery gate (still 36 gates on
+intervals; does not make a level one difficulty); presentation-major with a per-level
+migration of stored progress (no faithful mapping from old level N sub-stage S to a new
+level — see D-007 amendment).
+

@@ -16,6 +16,7 @@ export function parseImport(text) {
   if (errs.length) {
     const v = errs.find((e) => e.startsWith('schemaVersion'));
     if (v && v.includes('newer')) return { ok: false, error: `This file was made by a newer version (schema ${doc.schemaVersion}); this app supports up to ${SCHEMA_VERSION}.` };
+    if (v && v.includes('older')) return { ok: false, error: `This file was made before the level restructure (schema ${doc.schemaVersion}); this app needs schema ${SCHEMA_VERSION} and cannot map its levels.` };
     return { ok: false, error: `That file is not an Ear Trainer export (${errs[0]}).` };
   }
   return { ok: true, doc: normaliseProgress(doc) };
@@ -37,13 +38,6 @@ export function mergeProgress(local, incoming) {
     for (const hh of lvl.history ?? []) if (!seen.has(`${hh.item}|${hh.at}`)) cur.history.push(hh);
     cur.history.sort((a, b) => a.at - b.at);
     if (cur.history.length > 200) cur.history.splice(0, cur.history.length - 200);
-    for (const [sid, ss] of Object.entries(lvl.subStages ?? {})) {
-      const cs = cur.subStages[sid] ?? (cur.subStages[sid] = { mastered: false, history: [] });
-      cs.mastered = cs.mastered || ss.mastered;
-      const sseen = new Set(cs.history.map((h) => `${h.item}|${h.at}`));
-      for (const hh of ss.history ?? []) if (!sseen.has(`${hh.item}|${hh.at}`)) cs.history.push(hh);
-      cs.history.sort((a, b) => a.at - b.at);
-    }
   }
   out.xp = Math.max(out.xp ?? 0, incoming.xp ?? 0);
   out.streak.best = Math.max(out.streak.best ?? 0, incoming.streak?.best ?? 0);
