@@ -27,7 +27,7 @@ export function createScaleDegreesTrack(def) {
   return {
     id: def.id, name: def.name, def, kind: 'single',
     itemsFor(levelNo) { const l = levelByNo(levelNo); return l.pool.map((d) => itemId(d, l.mode)); },
-    generate({ levelNo, progress, rng, settings, bias = null, avoid = null, accuracy = 0, prevKey = null, withCadence = true, recency = null }) {
+    generate({ levelNo, progress, rng, settings, bias = null, avoid = null, accuracy = 0, prevKey = null, recency = null }) {
       const level = levelByNo(levelNo);
       const ids = this.itemsFor(levelNo);
       const dw = degreeWeights(level.pool, accuracy);
@@ -36,9 +36,12 @@ export function createScaleDegreesTrack(def) {
       const { degree, mode } = parseItemId(id);
       const key = pickKey(rng, prevKey);
       const tonic = tonicMidi(key, settings.register);
-      const exercise = scaleDegreeExercise(tonic, degree, mode, { withCadence });
+      // The prelude is always built so the cadence and scale can be re-heard on demand whatever
+      // the cadence-frequency setting (AC-4.4.6/2); the session decides whether it auto-plays.
+      const scaleReference = level.scaleReference ?? 'none';
+      const exercise = scaleDegreeExercise(tonic, degree, mode, { withCadence: true, scale: scaleReference, tempo: settings.arpeggioTempo ?? 120 });
       const options = optionsFor(level.pool, degree, level.confusables);
-      return { trackId: def.id, levelNo, subStage: null, itemId: id, answer: degree, options, exercise, kind: 'single', meta: { key, tonic, mode } };
+      return { trackId: def.id, levelNo, subStage: null, itemId: id, answer: degree, options, exercise, kind: 'single', meta: { key, tonic, mode, scaleReference } };
     },
     optionItemId(optionId, question) { return itemId(optionId, question.meta.mode); },
     evaluate(question, answer) { const correct = answer === question.answer; return { correct, score: correct ? 1 : 0 }; },

@@ -1,4 +1,4 @@
-/** Cadence preludes and tonic references as event lists (Exercise fragments). */
+/** Cadence preludes, tonic references and the scale reference as event lists (Exercise fragments). */
 import { chordTones } from './chords.js';
 import { MAJOR, MINOR, HARMONIC_MINOR } from './scales.js';
 
@@ -24,4 +24,17 @@ export function cadenceEvents(tonicMidi, mode = 'major', at = 0) {
 
 export function tonicReference(tonicMidi, at = 0) {
   return { events: [{ midi: tonicMidi, at, dur: 0.6, gain: 0.8 }], duration: 0.7 };
+}
+
+/**
+ * Scale reference (US-4.4): the scale one note at a time, ascending Do → Do (octave) and back
+ * down to the starting Do, at eighth notes of `tempo` BPM. Returns {events, duration}.
+ */
+export function scaleReferenceEvents(tonicMidi, mode = 'major', at = 0, tempo = 120) {
+  const scale = mode === 'minor' ? MINOR : MAJOR;
+  const up = [...scale, 12];
+  const steps = [...up, ...up.slice(0, -1).reverse()];
+  const step = 60 / tempo / 2;
+  const events = steps.map((semi, i) => ({ midi: tonicMidi + semi, at: at + i * step, dur: step * 0.9, gain: 0.8 }));
+  return { events, duration: steps.length * step };
 }

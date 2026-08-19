@@ -148,6 +148,8 @@ that carry the verbatim-titled tests. `—` in the AC column marks infrastructur
 | **P-042** | Polish: quickstart, README, matrix, gates | — | T090–T091 | — |
 | **P-043** | US-2.6 — In-session progress visibility (post-MVP) | AC-2.6.1–AC-2.6.2 | T093 | T094 |
 | **P-044** | US-9.2 — Daily-goal progress visibility (post-MVP extension) | AC-9.2.4 | T095 | T096 |
+| **P-045** | US-4.4 — Scale reference scaffold for novices (post-MVP) | AC-4.4.1–AC-4.4.6 | T097 | T098 |
+| **P-046** | US-4.5 — Scale-degree onboarding guidance (post-MVP) | AC-4.5.1–AC-4.5.3 | T099 | T100 |
 
 ## Complexity Tracking
 

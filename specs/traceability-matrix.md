@@ -14,13 +14,13 @@
 -->
 
 **Feature**: specs/001-ear-trainer/spec.md
-**Criteria**: 216 across 37 User Stories
+**Criteria**: 242 across 39 User Stories
 
-**Coverage**: 216 of 216 criteria proven (100.0%)
+**Coverage**: 242 of 242 criteria proven (100.0%)
 
 | | Criteria | Share |
 |---|---|---|
-| 🟢 Proven | 216 | 100.0% |
+| 🟢 Proven | 242 | 100.0% |
 
 A row is one *criterion*: an Acceptance Criterion that asserts one thing, or one Case of
 an AC that asserts several. 🖵 marks a criterion that describes something a person sees or
@@ -71,6 +71,8 @@ fail the build, and it is outstanding work — never a settled decision.
 | 🟢 US-4.1 | 4 | **4** | · | · | · | · | · |
 | 🟢 US-4.2 | 7 | **7** | · | · | · | · | · |
 | 🟢 US-4.3 | 2 | **2** | · | · | · | · | · |
+| 🟢 US-4.4 | 19 | **19** | · | · | · | · | · |
+| 🟢 US-4.5 | 7 | **7** | · | · | · | · | · |
 | 🟢 US-5.1 | 16 | **16** | · | · | · | · | · |
 | 🟢 US-5.2 | 5 | **5** | · | · | · | · | · |
 | 🟢 US-5.3 | 2 | **2** | · | · | · | · | · |
@@ -189,6 +191,32 @@ fail the build, and it is outstanding work — never a settled decision.
 | US-4.2 | `AC-4.2.3` | Tendency tones are weighted higher after proficiency | P-019 | T044 (1/1 done) | T045 (1/1 done) | `scaleDegreeLevels.test.js` | 🟢 OK |
 | US-4.3 | `AC-4.3.1` 🖵 | Degree buttons show syllable and number when the setting is "both" | P-020 | T046 (1/1 done) | T047 (1/1 done) | `degreeRow.spec.js` | 🟢 OK |
 | US-4.3 | `AC-4.3.2` 🖵 | The degree answer row is scoped to the level pool | P-020 | T046 (1/1 done) | T047 (1/1 done) | `degreeRow.spec.js` | 🟢 OK |
+| US-4.4 | `AC-4.4.1/1` | The major scale plays ascending Do to Do and back down before the cadence at level 1 | P-045 | T097 (1/1 done) | T098 (1/1 done) | `scaleReference.test.js` | 🟢 OK |
+| US-4.4 | `AC-4.4.1/2` | The cadence follows the scale at level 1 | P-045 | T097 (1/1 done) | T098 (1/1 done) | `scaleReference.test.js` | 🟢 OK |
+| US-4.4 | `AC-4.4.1/3` | The target note follows the cadence at level 1 | P-045 | T097 (1/1 done) | T098 (1/1 done) | `scaleReference.test.js` | 🟢 OK |
+| US-4.4 | `AC-4.4.1/4` | The scale is part of the question's prelude, rendered by the one renderer | P-045 | T097 (1/1 done) | T098 (1/1 done) | `scaleReference.test.js` | 🟢 OK |
+| US-4.4 | `AC-4.4.2/1` | Level 1 auto-plays the scale and offers it on demand | P-045 | T097 (1/1 done) | T098 (1/1 done) | `scaleReference.test.js` | 🟢 OK |
+| US-4.4 | `AC-4.4.2/2` | Level 2 does not auto-play the scale but offers it on demand | P-045 | T097 (1/1 done) | T098 (1/1 done) | `scaleReference.test.js` | 🟢 OK |
+| US-4.4 | `AC-4.4.2/3` | Level 3 and above neither play nor offer the scale | P-045 | T097 (1/1 done) | T098 (1/1 done) | `scaleReference.test.js` | 🟢 OK |
+| US-4.4 | `AC-4.4.2/4` | The scale scaffold policy is read from the level definition, not fixed in code | P-045 | T097 (1/1 done) | T098 (1/1 done) | `scaleReference.test.js` | 🟢 OK |
+| US-4.4 | `AC-4.4.3/1` 🖵 | Hear scale, re-hear cadence and replay note are three distinct controls | P-045 | T097 (1/1 done) | T098 (1/1 done) | `scaleScaffold.test.js` | 🟢 OK |
+| US-4.4 | `AC-4.4.3/2` 🖵 | Hear scale plays only the scale of the question key | P-045 | T097 (1/1 done) | T098 (1/1 done) | `scaleScaffold.test.js` | 🟢 OK |
+| US-4.4 | `AC-4.4.3/3` 🖵 | Re-hear cadence plays only the cadence | P-045 | T097 (1/1 done) | T098 (1/1 done) | `scaleScaffold.test.js` | 🟢 OK |
+| US-4.4 | `AC-4.4.3/4` 🖵 | Replay note plays only the target note | P-045 | T097 (1/1 done) | T098 (1/1 done) | `scaleScaffold.test.js` | 🟢 OK |
+| US-4.4 | `AC-4.4.4/1` 🖵 | Tapping hear scale leaves the replay count and score unaffected | P-045 | T097 (1/1 done) | T098 (1/1 done) | `scaleScaffold.test.js` | 🟢 OK |
+| US-4.4 | `AC-4.4.4/2` 🖵 | Replay note still counts as a replay | P-045 | T097 (1/1 done) | T098 (1/1 done) | `scaleScaffold.test.js` | 🟢 OK |
+| US-4.4 | `AC-4.4.5/1` 🖵 | The hear-scale control is present but disabled from level 3 | P-045 | T097 (1/1 done) | T098 (1/1 done) | `scaleScaffold.test.js` | 🟢 OK |
+| US-4.4 | `AC-4.4.5/2` 🖵 | A hint says the scale reference is a level 1–2 aid | P-045 | T097 (1/1 done) | T098 (1/1 done) | `scaleScaffold.test.js` | 🟢 OK |
+| US-4.4 | `AC-4.4.5/3` 🖵 | Tapping the disabled control plays nothing | P-045 | T097 (1/1 done) | T098 (1/1 done) | `scaleScaffold.test.js` | 🟢 OK |
+| US-4.4 | `AC-4.4.6/1` | The scale auto-plays only when the cadence auto-plays | P-045 | T097 (1/1 done) | T098 (1/1 done) | `scaleReference.test.js` | 🟢 OK |
+| US-4.4 | `AC-4.4.6/2` | Hear scale and re-hear cadence remain available on demand regardless of the setting | P-045 | T097 (1/1 done) | T098 (1/1 done) | `scaleScaffold.test.js` | 🟢 OK |
+| US-4.5 | `AC-4.5.1/1` 🖵 | The guidance appears the first time the Scale Degrees track is opened | P-046 | T099 (1/1 done) | T100 (1/1 done) | `scaleScaffold.test.js` | 🟢 OK |
+| US-4.5 | `AC-4.5.1/2` 🖵 | The guidance says the chords set the key and the last chord is home (Do) | P-046 | T099 (1/1 done) | T100 (1/1 done) | `scaleScaffold.test.js` | 🟢 OK |
+| US-4.5 | `AC-4.5.1/3` 🖵 | The guidance says the scale plays every degree from Do and the question is which degree the final note is | P-046 | T099 (1/1 done) | T100 (1/1 done) | `scaleScaffold.test.js` | 🟢 OK |
+| US-4.5 | `AC-4.5.2/1` | Dismissed guidance does not reappear after a restart | P-046 | T099 (1/1 done) | T100 (1/1 done) | `scaleScaffold.test.js` | 🟢 OK |
+| US-4.5 | `AC-4.5.2/2` | A help affordance reopens the guidance on demand | P-046 | T099 (1/1 done) | T100 (1/1 done) | `scaleScaffold.test.js` | 🟢 OK |
+| US-4.5 | `AC-4.5.3/1` 🖵 | The first four level-1 questions show the "scale → cadence → note" hint | P-046 | T099 (1/1 done) | T100 (1/1 done) | `scaleScaffold.test.js` | 🟢 OK |
+| US-4.5 | `AC-4.5.3/2` 🖵 | The hint is not shown once 5 questions have been answered on the track | P-046 | T099 (1/1 done) | T100 (1/1 done) | `scaleScaffold.test.js` | 🟢 OK |
 | US-5.1 | `AC-5.1.1/1` | Chord level 1 pool is maj and min in root position only | P-021 | T048 (1/1 done) | T049 (1/1 done) | `chordQualities.test.js` | 🟢 OK |
 | US-5.1 | `AC-5.1.1/2` | Chord level 2 pool adds dim in root position only | P-021 | T048 (1/1 done) | T049 (1/1 done) | `chordQualities.test.js` | 🟢 OK |
 | US-5.1 | `AC-5.1.1/3` | Chord level 3 pool adds aug in root position only | P-021 | T048 (1/1 done) | T049 (1/1 done) | `chordQualities.test.js` | 🟢 OK |
@@ -286,7 +314,7 @@ fail the build, and it is outstanding work — never a settled decision.
 | US-9.4 | `AC-9.4.3` 🖵 | Item detail shows the most frequent wrong answers | P-037 | T080 (1/1 done) | T081 (1/1 done) | `stats.spec.js` | 🟢 OK |
 | US-9.4 | `AC-9.4.4` 🖵 | A track shows an accuracy trend after seven days of history | P-037 | T080 (1/1 done) | T081 (1/1 done) | `stats.spec.js` | 🟢 OK |
 | US-10.1 | `AC-10.1.1/1` 🖵 | A phone viewport renders the single-column stacked layout | P-038 | T082 (1/1 done) | T083 (1/1 done) | `layout.spec.js` | 🟢 OK |
-| US-10.1 | `AC-10.1.1/2` 🖵 | On a phone viewport all controls are visible and touch-friendly with no hover interactions | P-038 | T082 (1/1 done) | T083 (1/1 done) | `layout.spec.js` | 🟢 OK |
+| US-10.1 | `AC-10.1.1/2` 🖵 | On a phone viewport all controls are visible and touch-friendly with no hover interactions | P-038 | T082 (1/1 done) | T083 (1/1 done) | `layout.test.js`, `layout.spec.js` | 🟢 OK |
 | US-10.1 | `AC-10.1.2` 🖵 | Tablet viewports use the wider tablet layout | P-038 | T082 (1/1 done) | T083 (1/1 done) | `layout.spec.js` | 🟢 OK |
 | US-10.1 | `AC-10.1.3/1` 🖵 | A desktop viewport presents the tablet layout | P-038 | T082 (1/1 done) | T083 (1/1 done) | `layout.spec.js` | 🟢 OK |
 | US-10.1 | `AC-10.1.3/2` 🖵 | No desktop-only layout or hover-dependent behavior exists | P-038 | T082 (1/1 done) | T083 (1/1 done) | `layout.spec.js` | 🟢 OK |

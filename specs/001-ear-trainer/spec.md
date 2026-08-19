@@ -606,6 +606,139 @@ and confirm only Do, Mi, Sol.
   - **When** the answer row renders
   - **Then** only Do, Mi, Sol are shown
 
+### User Story 4.4 - Scale reference scaffold for novices
+
+*Traceability: `US-4.4` — Scale reference scaffold for novices*
+
+As a learner at the first scale-degree levels, I want to hear the whole scale from Do before
+the cadence and the target note, and to re-hear the scale, the cadence, or the note
+independently, so that I have a concrete reference for every degree while I am still learning
+what "home" sounds like. *(Added 2026-08-18: the maintainer, at level 1, found the bare
+cadence uninterpretable — "a bunch of chords" with no stated reference — and asked for the
+scale as a level-1 crutch that is withdrawn at higher levels.)*
+
+**Independent Test**: start a level 1 question in G major and confirm the G major scale plays
+up from G to G and back down, then I–IV–V–I in G, then the target note; confirm three
+reference controls (hear scale, re-hear cadence, replay note) and that the first two leave the
+replay count untouched; open level 3 and confirm the scale control is disabled with its hint.
+
+**Acceptance Scenarios**:
+
+- **AC-4.4.1** — A level-1 scale-degree question plays the scale, then the cadence, then the target
+  - **Given** scale-degree level 1 and the cadence frequency setting is "every question"
+  - **When** a question begins in the key of G major
+  - **Then** the G major scale plays ascending from Do up to the Do an octave above and back
+    down to the starting Do, one note at a time
+  - **And** the I–IV–V–I cadence in G major then plays
+  - **And** the target note then plays
+  - **And** the scale, the cadence and the target belong to the one question, so a replay of
+    the question reproduces the same sounds
+  - **Cases**:
+    - **AC-4.4.1/1** — The major scale plays ascending Do to Do and back down before the cadence at level 1
+    - **AC-4.4.1/2** — The cadence follows the scale at level 1
+    - **AC-4.4.1/3** — The target note follows the cadence at level 1
+    - **AC-4.4.1/4** — The scale is part of the question's prelude, rendered by the one renderer
+
+- **AC-4.4.2** — Which levels play or offer the scale is decided by level data
+  - **Given** the scale-degree track's level definitions
+  - **When** a question is generated at each level
+  - **Then** the scale is auto-played and offered on demand at level 1, offered on demand only
+    (not auto-played) at level 2, and neither played nor offered from level 3 onward, and this
+    is read from the level definition rather than fixed in code
+  - **Cases**:
+    - **AC-4.4.2/1** — Level 1 auto-plays the scale and offers it on demand
+    - **AC-4.4.2/2** — Level 2 does not auto-play the scale but offers it on demand
+    - **AC-4.4.2/3** — Level 3 and above neither play nor offer the scale
+    - **AC-4.4.2/4** — The scale scaffold policy is read from the level definition, not fixed in code
+
+- **AC-4.4.3** — Three reference controls are available during a scale-degree question
+  - **Given** an active scale-degree question at a level that offers the scale
+  - **When** I view the question screen
+  - **Then** I see three distinct controls: hear scale, re-hear cadence, and replay note
+  - **And** tapping hear scale plays the scale of the question key alone
+  - **And** tapping re-hear cadence plays the cadence alone (AC-4.1.3)
+  - **And** tapping replay note plays the target note alone
+  - **Cases**:
+    - **AC-4.4.3/1** — Hear scale, re-hear cadence and replay note are three distinct controls
+    - **AC-4.4.3/2** — Hear scale plays only the scale of the question key
+    - **AC-4.4.3/3** — Re-hear cadence plays only the cadence
+    - **AC-4.4.3/4** — Replay note plays only the target note
+
+- **AC-4.4.4** — Hearing the scale costs nothing
+  - **Given** an active scale-degree question at a level that offers the scale
+  - **When** I tap hear scale any number of times
+  - **Then** my replay count and score are unaffected
+  - **And** replay note still counts against the replay limit as before
+
+  - **Cases**:
+    - **AC-4.4.4/1** — Tapping hear scale leaves the replay count and score unaffected
+    - **AC-4.4.4/2** — Replay note still counts as a replay
+
+- **AC-4.4.5** — At levels without the scale, its control is shown disabled with a hint
+  - **Given** an active scale-degree question at level 3 or above
+  - **When** I view the question screen
+  - **Then** the hear-scale control is present but disabled
+  - **And** a short hint beside it says the scale reference is a level 1–2 aid
+  - **And** tapping it plays nothing
+  - **Cases**:
+    - **AC-4.4.5/1** — The hear-scale control is present but disabled from level 3
+    - **AC-4.4.5/2** — A hint says the scale reference is a level 1–2 aid
+    - **AC-4.4.5/3** — Tapping the disabled control plays nothing
+
+- **AC-4.4.6** — The scale follows the cadence-frequency setting
+  - **Given** scale-degree level 1
+  - **When** the cadence frequency setting is "first question only" or "never"
+  - **Then** the scale is auto-played exactly when the cadence is auto-played, and no more often
+  - **And** hear scale and re-hear cadence remain available on demand
+
+  - **Cases**:
+    - **AC-4.4.6/1** — The scale auto-plays only when the cadence auto-plays
+    - **AC-4.4.6/2** — Hear scale and re-hear cadence remain available on demand regardless of the setting
+
+### User Story 4.5 - Scale-degree onboarding guidance
+
+*Traceability: `US-4.5` — Scale-degree onboarding guidance*
+
+As a first-time learner, I want the Scale Degrees track to tell me what the sounds before the
+target note are for, so that I know the last chord is "home" and the question is which degree
+the final note is, rather than guessing what the chords are.
+
+**Independent Test**: reset progress, open Scale Degrees, confirm the guidance appears, dismiss
+it, restart the app, reopen the track and confirm it does not reappear; open it again from the
+help affordance; start level 1 and confirm the "scale → cadence → note" hint on the first
+questions.
+
+**Acceptance Scenarios**:
+
+- **AC-4.5.1** — First-time guidance explains the tonal reference
+  - **Given** I have never dismissed the Scale Degrees guidance
+  - **When** I open the Scale Degrees track
+  - **Then** a short guidance panel appears explaining that the chords set the key, the last
+    chord is home (Do), the scale plays every degree up from Do and back, and the question is
+    which degree the final note is
+  - **Cases**:
+    - **AC-4.5.1/1** — The guidance appears the first time the Scale Degrees track is opened
+    - **AC-4.5.1/2** — The guidance says the chords set the key and the last chord is home (Do)
+    - **AC-4.5.1/3** — The guidance says the scale plays every degree from Do and the question is which degree the final note is
+
+- **AC-4.5.2** — Dismissed guidance stays dismissed but remains reachable
+  - **Given** I have dismissed the guidance
+  - **When** I restart the app and reopen the Scale Degrees track
+  - **Then** the guidance does not appear automatically
+  - **And** a help affordance on the track opens it again on demand
+  - **Cases**:
+    - **AC-4.5.2/1** — Dismissed guidance does not reappear after a restart
+    - **AC-4.5.2/2** — A help affordance reopens the guidance on demand
+
+- **AC-4.5.3** — Early level-1 questions name the order of sounds
+  - **Given** scale-degree level 1 and fewer than 5 questions answered on the track
+  - **When** a question begins
+  - **Then** a one-line hint on the question screen names the order "scale → cadence → note"
+  - **And** from the 5th answered question the hint is no longer shown
+  - **Cases**:
+    - **AC-4.5.3/1** — The first four level-1 questions show the "scale → cadence → note" hint
+    - **AC-4.5.3/2** — The hint is not shown once 5 questions have been answered on the track
+
 ---
 
 ## Epic 5: Track 3 — Chord Qualities
@@ -1467,8 +1600,9 @@ restart, and confirm retention.
 
 - **SC-001**: A learner can go from app open to hearing the first question in under 3 taps.
 - **SC-002**: Verdict appears within 200 ms of answering in 100% of questions.
-- **SC-003**: Every one of the 37 user stories has 100% AC coverage with verbatim-named tests
-  (36 from the backlog, plus US-2.6 — in-session progress visibility, added 2026-08-18)
+- **SC-003**: Every one of the 39 user stories has 100% AC coverage with verbatim-named tests
+  (36 from the backlog, plus US-2.6 — in-session progress visibility, US-4.4 — scale
+  reference scaffold, and US-4.5 — scale-degree onboarding guidance, all added 2026-08-18)
   and no CRITICAL/HIGH traceability gaps.
 - **SC-004**: A full session completes in airplane mode with zero network requests.
 - **SC-005**: Progress round-trips through export → import with no loss.
@@ -1482,6 +1616,17 @@ restart, and confirm retention.
 - "Register range" defaults to C3–C5 for roots; the sample range is C2–C6.
 - Default cadence frequency: every question for Scale Degrees, Melodic Phrases and
   Progressions; none for Intervals, Chord Qualities and Inversions.
+- Scale reference scaffold (US-4.4, added 2026-08-18): the scale is played one note at a time
+  at the arpeggiation tempo, ascending Do → Do (octave) and descending back to the starting
+  Do, ending on Do without a separate held Do; it is auto-played at level 1 and on demand only
+  at level 2, never at level 3+ (major) or in minor keys (level 4+); the policy is level data.
+  It obeys the cadence-frequency setting (auto-plays exactly when the cadence does). "Replay"
+  in the session already replays the target note only and continues to count against the
+  replay limit; "hear scale" and "re-hear cadence" are free. Re-hear cadence keeps replaying
+  the cadence alone (AC-4.1.3), not the scale.
+- Scale-degree onboarding (US-4.5, added 2026-08-18): the dismissed flag is persisted with
+  progress and cleared by a progress reset; the "scale → cadence → note" hint counts questions
+  answered on the Scale Degrees track (not per level) and stops from the 5th.
 - Default replay limit: 3 per question (Melodic Phrases and Progressions); unlimited for the
   single-stimulus tracks unless configured.
 - Default arpeggiation tempo: 120 BPM eighth notes.

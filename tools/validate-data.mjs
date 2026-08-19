@@ -43,6 +43,10 @@ export function validateLevels(data) {
       if (t.id === 'melodic' && !(Array.isArray(l.notes) && l.notes.length === 2)) errs.push(`levels: melodic L${l.no} notes must be [min,max]`);
       if (!Array.isArray(l.confusables)) errs.push(`levels: ${t.id} L${l.no} confusables missing`);
       if (!('replayLimit' in l)) errs.push(`levels: ${t.id} L${l.no} replayLimit missing`);
+      if (t.id === 'scaleDegrees') {
+        if (!['auto', 'onDemand', 'none'].includes(l.scaleReference)) errs.push(`levels: scaleDegrees L${l.no} scaleReference must be auto | onDemand | none`);
+        else if (l.mode !== 'major' && l.scaleReference !== 'none') errs.push(`levels: scaleDegrees L${l.no} scaleReference must be none in ${l.mode} keys`);
+      }
     });
   }
   return errs;

@@ -4,7 +4,7 @@
  */
 import { chordTones } from './chords.js';
 import { arpeggiate, arpeggioDuration } from './voicing.js';
-import { cadenceEvents, tonicReference } from './cadence.js';
+import { cadenceEvents, tonicReference, scaleReferenceEvents } from './cadence.js';
 import { degreeToMidi, scaleStep } from './scales.js';
 
 const NOTE = 0.8;
@@ -47,13 +47,27 @@ export function melodicExercise(tonicMidi, degrees, rhythm, mode = 'major', { bp
   return ex;
 }
 
-/** A single scale degree with cadence prelude. */
-export function scaleDegreeExercise(tonicMidi, degreeId, mode = 'major', { withCadence = true } = {}) {
+/**
+ * A single scale degree with cadence prelude. `scale` is the level's scale-reference policy
+ * (US-4.4): 'auto' puts the scale before the cadence in the prelude, 'onDemand' builds it as a
+ * prelude part without auto-playing it, 'none' omits it. `prelude.parts` carries the cadence
+ * and (when offered) the scale separately so each can be re-heard alone.
+ */
+export function scaleDegreeExercise(tonicMidi, degreeId, mode = 'major', { withCadence = true, scale = 'none', tempo = 120 } = {}) {
   const midi = degreeToMidi(tonicMidi, degreeId);
   const ex = { ...singleNote(midi, { dur: 1.0 }), presentation: 'degree', key: { tonicMidi, mode } };
   if (withCadence) {
     const cad = cadenceEvents(tonicMidi, mode, 0);
-    ex.prelude = { events: cad.events, duration: cad.duration + 0.4 };
+    const parts = { cadence: cad };
+    if (scale !== 'none') parts.scale = scaleReferenceEvents(tonicMidi, mode, 0, tempo);
+    if (scale === 'auto') {
+      const gap = 0.3;
+      const cadOffset = parts.scale.duration + gap;
+      const cadShifted = cadenceEvents(tonicMidi, mode, cadOffset);
+      ex.prelude = { events: [...parts.scale.events, ...cadShifted.events], duration: cadOffset + cad.duration + 0.4, parts };
+    } else {
+      ex.prelude = { events: cad.events, duration: cad.duration + 0.4, parts };
+    }
   }
   return ex;
 }
