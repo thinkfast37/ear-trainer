@@ -14,13 +14,13 @@
 -->
 
 **Feature**: specs/001-ear-trainer/spec.md
-**Criteria**: 267 across 39 User Stories
+**Criteria**: 271 across 39 User Stories
 
-**Coverage**: 267 of 267 criteria proven (100.0%)
+**Coverage**: 271 of 271 criteria proven (100.0%)
 
 | | Criteria | Share |
 |---|---|---|
-| 🟢 Proven | 267 | 100.0% |
+| 🟢 Proven | 271 | 100.0% |
 
 A row is one *criterion*: an Acceptance Criterion that asserts one thing, or one Case of
 an AC that asserts several. 🖵 marks a criterion that describes something a person sees or
@@ -87,8 +87,8 @@ fail the build, and it is outstanding work — never a settled decision.
 | 🟢 US-8.4 | 5 | **5** | · | · | · | · | · |
 | 🟢 US-8.5 | 4 | **4** | · | · | · | · | · |
 | 🟢 US-9.1 | 5 | **5** | · | · | · | · | · |
-| 🟢 US-9.2 | 6 | **6** | · | · | · | · | · |
-| 🟢 US-9.3 | 5 | **5** | · | · | · | · | · |
+| 🟢 US-9.2 | 7 | **7** | · | · | · | · | · |
+| 🟢 US-9.3 | 8 | **8** | · | · | · | · | · |
 | 🟢 US-9.4 | 4 | **4** | · | · | · | · | · |
 | 🟢 US-10.1 | 9 | **9** | · | · | · | · | · |
 | 🟢 US-10.2 | 5 | **5** | · | · | · | · | · |
@@ -148,8 +148,8 @@ fail the build, and it is outstanding work — never a settled decision.
 | US-2.6 | `AC-2.6.1/2` 🖵 | The rolling accuracy is shown against the 90% threshold and updates on each answer | P-043 | T093, T102 (2/2 done) | T094, T105 (2/2 done) | `sessionProgress.test.js` | 🟢 OK |
 | US-2.6 | `AC-2.6.1/3` 🖵 | The number of items still below box 3 is shown | P-043 | T093, T102 (2/2 done) | T094, T105 (2/2 done) | `sessionProgress.test.js` | 🟢 OK |
 | US-2.6 | `AC-2.6.1/4` 🖵 | The level's presentation is named for tracks whose levels carry one | P-043 | T093, T102 (2/2 done) | T094, T105 (2/2 done) | `sessionProgress.test.js` | 🟢 OK |
-| US-2.6 | `AC-2.6.2/1` 🖵 | The celebration names the next level with its number and presentation | P-043 | T093, T102 (2/2 done) | T094, T105 (2/2 done) | `sessionProgress.test.js` | 🟢 OK |
-| US-2.6 | `AC-2.6.2/2` 🖵 | Mastering the last level of a track says the track is complete | P-043 | T093, T102 (2/2 done) | T094, T105 (2/2 done) | `sessionProgress.test.js` | 🟢 OK |
+| US-2.6 | `AC-2.6.2/1` 🖵 | The celebration names the next level with its number and presentation | P-043, P-049 | T093, T102, T107 (2/3 done) | T094, T105, T108 (2/3 done) | `sessionProgress.test.js` | 🟢 OK |
+| US-2.6 | `AC-2.6.2/2` 🖵 | Mastering the last level of a track says the track is complete | P-043, P-049 | T093, T102, T107 (2/3 done) | T094, T105, T108 (2/3 done) | `sessionProgress.test.js` | 🟢 OK |
 | US-3.1 | `AC-3.1.1/1` | Interval level 1 is ascending P8, P5 | P-014 | T034, T101 (2/2 done) | T035, T104 (2/2 done) | `intervals.test.js` | 🟢 OK |
 | US-3.1 | `AC-3.1.1/2` | Interval level 2 is ascending P8, P5, M3, m3 | P-014 | T034, T101 (2/2 done) | T035, T104 (2/2 done) | `intervals.test.js` | 🟢 OK |
 | US-3.1 | `AC-3.1.1/3` | Interval level 3 is ascending P8, P5, M3, m3, P4 | P-014 | T034, T101 (2/2 done) | T035, T104 (2/2 done) | `intervals.test.js` | 🟢 OK |
@@ -323,14 +323,18 @@ fail the build, and it is outstanding work — never a settled decision.
 | US-9.1 | `AC-9.1.3/2` 🖵 | Tapping an available node starts a session | P-034 | T074 (1/1 done) | T075 (1/1 done) | `homeMap.spec.js` | 🟢 OK |
 | US-9.2 | `AC-9.2.1/1` | Reaching 30 questions marks today complete and increments the streak | P-035 | T076 (1/1 done) | T077 (1/1 done) | `streak.test.js` | 🟢 OK |
 | US-9.2 | `AC-9.2.1/2` | Reaching 10 minutes marks today complete and increments the streak | P-035 | T076 (1/1 done) | T077 (1/1 done) | `streak.test.js` | 🟢 OK |
-| US-9.2 | `AC-9.2.2` 🖵 | A dismissible stopping-point suggestion follows the goal | P-035 | T076 (1/1 done) | T077 (1/1 done) | `stoppingPoint.spec.js` | 🟢 OK |
+| US-9.2 | `AC-9.2.2/1` 🖵 | A dismissible message suggests a good stopping point when the goal is met | P-035, P-049 | T076, T107 (1/2 done) | T077, T108 (1/2 done) | `stoppingPoint.spec.js` | 🟢 OK |
+| US-9.2 | `AC-9.2.2/2` 🖵 | The message appears within the viewport without scrolling | P-035, P-049 | T076, T107 (1/2 done) | T077, T108 (1/2 done) | `stoppingPoint.spec.js` | 🟢 OK |
 | US-9.2 | `AC-9.2.3` 🖵 | An optional local reminder fires on the mobile build | P-035 | T076 (1/1 done) | T077 (1/1 done) | `notifications.test.js` | 🟢 OK |
 | US-9.2 | `AC-9.2.4/1` 🖵 | Questions answered today are shown against the daily goal's question target during a session | P-044 | T095 (1/1 done) | T096 (1/1 done) | `sessionProgress.test.js` | 🟢 OK |
 | US-9.2 | `AC-9.2.4/2` 🖵 | The stopping-point message names the daily goal as the reason | P-044 | T095 (1/1 done) | T096 (1/1 done) | `sessionProgress.test.js` | 🟢 OK |
 | US-9.3 | `AC-9.3.1/1` | An in-session answer streak multiplies XP | P-036 | T078 (1/1 done) | T079 (1/1 done) | `xp.test.js` | 🟢 OK |
 | US-9.3 | `AC-9.3.1/2` | Fewer replays used multiplies XP | P-036 | T078 (1/1 done) | T079 (1/1 done) | `xp.test.js` | 🟢 OK |
 | US-9.3 | `AC-9.3.1/3` | A mixed-review question multiplies XP | P-036 | T078 (1/1 done) | T079 (1/1 done) | `xp.test.js` | 🟢 OK |
-| US-9.3 | `AC-9.3.2` 🖵 | Mastering a level shows a celebration with level stats | P-036 | T078 (1/1 done) | T079 (1/1 done) | `celebration.spec.js` | 🟢 OK |
+| US-9.3 | `AC-9.3.2/1` 🖵 | The dialog interrupts at the mastery moment and shows accuracy, time and weakest item | P-036, P-049 | T078, T107 (1/2 done) | T079, T108 (1/2 done) | `masteryDialog.test.js`, `celebration.spec.js` | 🟢 OK |
+| US-9.3 | `AC-9.3.2/2` 🖵 | Choosing to return to the main menu ends the session and shows the main menu | P-036, P-049 | T078, T107 (1/2 done) | T079, T108 (1/2 done) | `masteryDialog.test.js`, `celebration.spec.js` | 🟢 OK |
+| US-9.3 | `AC-9.3.2/3` 🖵 | Choosing to keep practising closes the dialog and the session continues on the same level | P-036, P-049 | T078, T107 (1/2 done) | T079, T108 (1/2 done) | `masteryDialog.test.js`, `celebration.spec.js` | 🟢 OK |
+| US-9.3 | `AC-9.3.4` 🖵 | Ending a session whose mastery dialog was never shown presents it before leaving | P-049 | T107 (0/1 done) | T108 (0/1 done) | `masteryDialog.test.js` | 🟢 OK |
 | US-9.3 | `AC-9.3.3` | XP never gates content | P-036 | T078 (1/1 done) | T079 (1/1 done) | `xp.test.js` | 🟢 OK |
 | US-9.4 | `AC-9.4.1` 🖵 | Track detail shows accuracy, attempts and box for every item | P-037 | T080 (1/1 done) | T081 (1/1 done) | `stats.spec.js` | 🟢 OK |
 | US-9.4 | `AC-9.4.2` 🖵 | The weakest items are listed first | P-037 | T080 (1/1 done) | T081 (1/1 done) | `stats.spec.js` | 🟢 OK |

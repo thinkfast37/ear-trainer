@@ -7,7 +7,7 @@ import { h, replace } from './dom.js';
 import { renderAnswerGrid, renderCombinedGrid } from './answerGrid.js';
 import { createSequenceModel, renderSequenceInput } from './sequenceInput.js';
 import { renderFeedback } from './feedback.js';
-import { celebrationStats, renderCelebration } from './celebration.js';
+import { celebrationStats, renderMasteryDialog } from './celebration.js';
 import { getSettings } from '../app/settings.js';
 import { getLevelState, evaluate, ACCURACY_THRESHOLD, BOX_FLOOR } from '../learning/mastery.js';
 import { dayKey } from '../learning/streak.js';
@@ -23,10 +23,39 @@ export function renderSessionScreen(container, { session, store, tracks, go, onE
   const feedbackArea = h('div', { class: 'stack', 'data-role': 'feedback-area' });
   const guidanceArea = h('div', { 'data-role': 'guidance-area' });
   const toastArea = h('div', { 'data-role': 'toast-area' });
-  wrap.append(header, status, stimulus, guidanceArea, answerArea, feedbackArea, toastArea);
+  const dialogArea = h('div', { 'data-role': 'dialog-area' });
+  wrap.append(header, status, stimulus, guidanceArea, answerArea, feedbackArea, toastArea, dialogArea);
   replace(container, wrap);
   let seqModel = null;
   let toastShown = false;
+  let masteryDialogShown = false;
+  let masteryDialogDismissed = false;
+
+  function leave() { session.end(); if (onEnd) onEnd(); else go('/home'); }
+
+  /** The mastery dialog (AC-9.3.2): return to the menu, or keep practising this level. */
+  function showMasteryDialog(trackId, levelNo) {
+    const state = store.getState();
+    const track = tracks.byId[trackId];
+    const ls = getLevelState(state, trackId, levelNo);
+    const stats = celebrationStats(ls, state.items, track.itemsFor(levelNo));
+    masteryDialogShown = true;
+    renderMasteryDialog(dialogArea, {
+      trackName: track.name, levelNo, stats, track,
+      onMenu: leave,
+      onKeepPractising: () => { masteryDialogDismissed = true; replace(dialogArea); },
+    });
+  }
+
+  /** End taps show a never-seen mastery from this session before leaving (AC-9.3.4). */
+  function endSession() {
+    const { trackId, levelNo, startedAt } = session.state;
+    if (!masteryDialogShown && trackId != null && levelNo != null) {
+      const ls = getLevelState(store.getState(), trackId, levelNo);
+      if (ls.masteredAt != null && ls.masteredAt >= startedAt) return showMasteryDialog(trackId, levelNo);
+    }
+    leave();
+  }
 
   function draw() {
     const st = session.state;
@@ -37,7 +66,7 @@ export function renderSessionScreen(container, { session, store, tracks, go, onE
     replace(header,
       h('span', { 'data-role': 'track-label' }, q.trackLabel + (st.mixed ? ' (Mixed Review)' : '')),
       h('span', { class: 'muted', 'data-role': 'progress' }, `Q${st.questions + (st.phase === 'question' ? 1 : 0)} · ${st.correct} correct`),
-      h('button', { class: 'btn ghost', 'data-action': 'end-session', onClick: () => { session.end(); onEnd?.(); } }, 'End'),
+      h('button', { class: 'btn ghost', 'data-action': 'end-session', onClick: endSession }, 'End'),
     );
     const state = store.getState();
     const ls = getLevelState(state, q.trackId, q.levelNo);
@@ -93,11 +122,7 @@ export function renderSessionScreen(container, { session, store, tracks, go, onE
       replace(feedbackArea);
       renderFeedback(feedbackArea, { session, track, settings, store, onNext: () => session.next().then(draw) });
       const r = st.result;
-      if (r.levelMastered) {
-        const ids = track.itemsFor(q.levelNo);
-        const stats = celebrationStats(r.levelState, store.getState().items, ids);
-        renderCelebration(feedbackArea, { trackName: track.name, levelNo: q.levelNo, stats, track, onContinue: () => go('/home') });
-      }
+      if (r.levelMastered && !masteryDialogDismissed) showMasteryDialog(q.trackId, q.levelNo);
       if (r.dayCompleted && !toastShown) {
         toastShown = true;
         const toast = h('div', { class: 'toast', role: 'status', 'data-role': 'stopping-point' },
