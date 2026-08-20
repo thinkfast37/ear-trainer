@@ -1,8 +1,9 @@
 /**
- * Mastery celebration (AC-9.3.2): accuracy, time, weakest item conquered — and what comes next
- * (AC-2.6.2): the next level with its presentation, or "track complete" after the last level.
+ * Mastery dialog (AC-9.3.2): a modal that interrupts the session with accuracy, time, weakest
+ * item conquered — and what comes next (AC-2.6.2): the next level with its presentation, or
+ * "track complete" after the last level. Offers returning to the menu or continuing to practise.
  */
-import { h } from './dom.js';
+import { h, replace } from './dom.js';
 import { levelTitle } from './labels.js';
 import { rollingAccuracy } from '../learning/mastery.js';
 import { accuracyOf } from '../learning/leitner.js';
@@ -22,8 +23,8 @@ export function nextLevelText(track, levelNo) {
   return next ? `Next: ${levelTitle(next)} unlocked` : `${track.name} complete — every level mastered`;
 }
 
-export function renderCelebration(container, { trackName, levelNo, stats, onContinue, track = null }) {
-  const el = h('div', { class: 'card celebrate', 'data-role': 'celebration' },
+export function renderMasteryDialog(container, { trackName, levelNo, stats, onMenu, onKeepPractising, track = null }) {
+  const card = h('div', { class: 'card celebrate', 'data-role': 'celebration', role: 'dialog', 'aria-modal': 'true', 'aria-label': `Level ${levelNo} mastered` },
     h('h2', {}, `🎉 Level ${levelNo} mastered!`),
     h('div', { class: 'muted' }, trackName),
     track ? h('div', { 'data-role': 'next-level', 'data-last': String(!track.def.levels.some((l) => l.no === levelNo + 1)) }, nextLevelText(track, levelNo)) : null,
@@ -32,8 +33,12 @@ export function renderCelebration(container, { trackName, levelNo, stats, onCont
       h('li', { 'data-stat': 'time' }, `Time ${Math.floor(stats.seconds / 60)}m ${stats.seconds % 60}s`),
       h('li', { 'data-stat': 'weakest' }, stats.weakest ? `Weakest item conquered: ${stats.weakest} (${Math.round(stats.weakestAccuracy * 100)}%)` : 'Weakest item conquered: —'),
     ),
-    h('button', { class: 'btn primary', 'data-action': 'continue', onClick: onContinue }, 'Continue'),
+    h('div', { class: 'row modal-actions' },
+      h('button', { class: 'btn primary', 'data-action': 'to-menu', onClick: onMenu }, 'Return to menu'),
+      h('button', { class: 'btn', 'data-action': 'keep-practising', onClick: onKeepPractising }, 'Keep practising'),
+    ),
   );
-  container.append(el);
-  return el;
+  const overlay = h('div', { class: 'modal-overlay', 'data-role': 'mastery-dialog' }, card);
+  replace(container, overlay);
+  return overlay;
 }

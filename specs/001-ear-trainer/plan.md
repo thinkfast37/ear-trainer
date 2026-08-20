@@ -152,6 +152,7 @@ that carry the verbatim-titled tests. `—` in the AC column marks infrastructur
 | **P-046** | US-4.5 — Scale-degree onboarding guidance (post-MVP) | AC-4.5.1–AC-4.5.3 | T099 | T100 |
 | **P-047** | US-2.2 — Pool-scaled mastery gate (post-MVP, D-006 amendment) | AC-2.2.4 | T102 | T105 |
 | **P-048** | US-10.3 — Progress reset at the presentation-tier restructure (post-MVP, D-007 amendment) | AC-10.3.4 | T103 | T106 |
+| **P-049** | US-9.3 — Mastery dialog and stopping-point visibility (post-MVP) | AC-9.3.2, AC-9.3.4, AC-2.6.2, AC-9.2.2 | T107 | T108 |
 
 ## Complexity Tracking
 

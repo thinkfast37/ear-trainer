@@ -345,8 +345,8 @@ answers toward the level's minimum answer count and tracks rolling accuracy; mas
 - **AC-2.6.2** — Mastering a level names the next level and its presentation
   - **Given** a level in a track whose levels carry a presentation (2026-08-18: was "Mastering a sub-stage is announced with the next sub-stage named" — sub-stages were retired; the announcement now lives in the level celebration)
   - **When** my answer satisfies the level's mastery conditions
-  - **Then** the level celebration (AC-9.3.2) names the next level that now unlocks, with its number and presentation (e.g. "Level 7 — Descending")
-  - **And** when the mastered level is the last in its track, the celebration says the track is complete instead
+  - **Then** the mastery dialog (AC-9.3.2) names the next level that now unlocks, with its number and presentation (e.g. "Level 7 — Descending") (2026-08-19: "the level celebration" → "the mastery dialog" with the AC-9.3.2 revision; the announcement itself is unchanged)
+  - **And** when the mastered level is the last in its track, the dialog says the track is complete instead
   - **Cases**:
     - **AC-2.6.2/1** — The celebration names the next level with its number and presentation
     - **AC-2.6.2/2** — Mastering the last level of a track says the track is complete
@@ -1335,6 +1335,10 @@ increments; confirm the stopping-point message.
   - **Given** I have just met the daily goal mid-session
   - **When** the current question completes
   - **Then** a dismissible message suggests this is a good stopping point
+  - **And** the message is visible within the viewport when it appears, without scrolling, clear of the device's bottom safe area (2026-08-19: added — the message must be seen when it fires, not discovered by scrolling)
+  - **Cases**:
+    - **AC-9.2.2/1** — A dismissible message suggests a good stopping point when the goal is met
+    - **AC-9.2.2/2** — The message appears within the viewport without scrolling
 
 - **AC-9.2.3** — An optional local reminder fires on the mobile build
   - **Given** notifications are enabled in settings on the Capacitor build
@@ -1370,10 +1374,20 @@ the celebration; confirm unlocks ignore XP.
     - **AC-9.3.1/2** — Fewer replays used multiplies XP
     - **AC-9.3.1/3** — A mixed-review question multiplies XP
 
-- **AC-9.3.2** — Mastering a level shows a celebration with level stats
-  - **Given** I have just mastered a level
+- **AC-9.3.2** — Mastering a level shows a mastery dialog with level stats and a choice
+  - **Given** I have just mastered a level (2026-08-19: was "shows a celebration with level stats" — the celebration rendered as an inline card below the feedback panel, below the fold on a phone, and only on the mastering answer, so learners routinely mastered levels without ever being told; it is now a dialog that interrupts the session and asks how to proceed)
   - **When** the mastery condition is met
-  - **Then** a celebration screen shows level stats (accuracy, time, weakest item conquered)
+  - **Then** a dialog interrupts the session, visible without scrolling, showing level stats (accuracy, time, weakest item conquered)
+  - **And** it offers an explicit choice: return to the main menu, or keep practising this level
+  - **Cases**:
+    - **AC-9.3.2/1** — The dialog interrupts at the mastery moment and shows accuracy, time and weakest item
+    - **AC-9.3.2/2** — Choosing to return to the main menu ends the session and shows the main menu
+    - **AC-9.3.2/3** — Choosing to keep practising closes the dialog and the session continues on the same level
+
+- **AC-9.3.4** — Ending a session whose mastery dialog was never shown presents it before leaving
+  - **Given** a level was mastered during this session and the mastery dialog has not been shown (2026-08-19: new criterion — a mastered level must never pass unannounced, even when the mastering moment was missed)
+  - **When** I end the session
+  - **Then** the mastery dialog (AC-9.3.2) is shown before the session screen is left
 
 - **AC-9.3.3** — XP never gates content
   - **Given** any XP total
