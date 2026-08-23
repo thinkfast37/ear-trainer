@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 import { describe, it, expect } from 'vitest';
 import { createLayout, layoutFor } from '../../../src/ui/layout.js';
-import { readFileSync } from 'node:fs';
+import { readFileSync, existsSync } from 'node:fs';
 
 describe('layout', () => {
   it('phone below 600, tablet at 600 and above (desktop = tablet)', () => {
@@ -27,5 +27,13 @@ describe('layout', () => {
     expect(html).toMatch(/<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/);
     const css = readFileSync('src/styles.css', 'utf8');
     expect(css).toMatch(/\.frame\s*\{[^}]*padding:\s*max\(env\(safe-area-inset-top\),\s*\d+px\)/);
+  });
+  it('Home-Screen icon: index.html links an apple-touch-icon and the image it names ships with the build (T109)', () => {
+    // Without this link an iOS Home-Screen save shows a page-screenshot tile; the T097 metas
+    // above already open the app standalone. Vite copies public/ to the site root.
+    const html = readFileSync('index.html', 'utf8');
+    const link = html.match(/<link rel="apple-touch-icon" href="\/([^"]+)"/);
+    expect(link).not.toBeNull();
+    expect(existsSync(`public/${link[1]}`)).toBe(true);
   });
 });

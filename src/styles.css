@@ -28,8 +28,10 @@ a { color: var(--accent); }
 .frame[data-layout="tablet"] { --cols: 2; }
 
 .topbar { display: flex; align-items: center; justify-content: space-between; gap: var(--gap); padding: 8px 0; }
-.topbar h1 { font-size: 1.15rem; margin: 0; }
-.nav { display: flex; gap: 8px; }
+/* The title yields and ellipsizes so a wide system font can never push the nav buttons
+   past the viewport edge (AC-10.1.1/2); .nav must not shrink below its buttons' tap size. */
+.topbar h1 { font-size: 1.15rem; margin: 0; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.nav { display: flex; gap: 8px; flex-shrink: 0; }
 
 .btn { min-height: var(--tap); min-width: var(--tap); padding: 10px 16px; border: 0; border-radius: var(--radius); background: var(--surface-2); color: var(--text); cursor: pointer; }
 .btn.primary { background: var(--accent); color: #0b1020; font-weight: 600; }
