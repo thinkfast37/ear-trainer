@@ -43,7 +43,7 @@ async function boot() {
 
   const audio = createAudioContextManager();
   const audioLog = [];
-  const sampler = createSampler(audio.get(), { baseUrl: `${import.meta.env.BASE_URL}samples/` });
+  const sampler = createSampler(audio.get, { baseUrl: `${import.meta.env.BASE_URL}samples/` });
   const rng = createRng(TEST_MODE ? 1 : undefined);
   const tracks = buildTracks();
   const notifications = createNotifications({ plugin: notifPlugin, isNative: platform.isNative });
