@@ -21,16 +21,24 @@ const ATTACK = 0.002;
 const RELEASE = 0.06;
 
 /**
- * @param ctx AudioContext (or FakeAudioContext)
+ * @param ctxLike AudioContext (or FakeAudioContext), or a function returning the current one —
+ *   the manager's `get`, so the sampler follows a context replaced after death (AC-1.2.3).
+ *   Decoded AudioBuffers are context-independent, so the samples survive the swap.
  * @param opts.baseUrl where the sample files live; opts.fetchImpl for tests
  */
-export function createSampler(ctx, { baseUrl = './samples/', fetchImpl = globalThis.fetch, ext = SAMPLE_FORMAT, sampleMidis = SAMPLE_MIDIS } = {}) {
+export function createSampler(ctxLike, { baseUrl = './samples/', fetchImpl = globalThis.fetch, ext = SAMPLE_FORMAT, sampleMidis = SAMPLE_MIDIS } = {}) {
+  const getCtx = typeof ctxLike === 'function' ? ctxLike : () => ctxLike;
   const buffers = new Map();
   const active = new Set();
   let master = null;
+  let masterCtx = null;
 
   function out() {
-    if (!master) { master = ctx.createGain(); master.gain.value = 0.9; master.connect(ctx.destination); }
+    const ctx = getCtx();
+    if (masterCtx !== ctx) {
+      master = ctx.createGain(); master.gain.value = 0.9; master.connect(ctx.destination);
+      masterCtx = ctx;
+    }
     return master;
   }
 
@@ -40,12 +48,13 @@ export function createSampler(ctx, { baseUrl = './samples/', fetchImpl = globalT
       const res = await fetchImpl(`${baseUrl}${sampleFileName(m, ext)}`);
       if (!res.ok) throw new Error(`sample ${m} failed to load (${res.status})`);
       const ab = await res.arrayBuffer();
-      buffers.set(m, await ctx.decodeAudioData(ab));
+      buffers.set(m, await getCtx().decodeAudioData(ab));
     }));
   }
 
   /** Schedule one note at absolute context time `at`. Returns the source node. */
   function noteOn(midi, at, dur, gain = 1) {
+    const ctx = getCtx();
     const sm = nearestSample(midi, sampleMidis);
     const buf = buffers.get(sm);
     if (!buf) throw new Error('samples not loaded');
@@ -67,12 +76,13 @@ export function createSampler(ctx, { baseUrl = './samples/', fetchImpl = globalT
   }
 
   function stopAll() {
-    for (const s of active) { try { s.stop(ctx.currentTime); } catch { /* already stopped */ } }
+    for (const s of active) { try { s.stop(getCtx().currentTime); } catch { /* already stopped */ } }
     active.clear();
   }
 
   return {
-    ctx, load, noteOn, stopAll,
+    get ctx() { return getCtx(); },
+    load, noteOn, stopAll,
     get loaded() { return buffers.size === sampleMidis.length; },
     buffers,
     sampleMidis,

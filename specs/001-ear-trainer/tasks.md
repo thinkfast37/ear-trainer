@@ -263,6 +263,18 @@ renumber the MVP section above.)*
 - [X] T108 [US9.3] Tests for the mastery dialog, verbatim-named per Case: `tests/unit/ui/masteryDialog.test.js` (AC-9.3.2/1–3, AC-9.3.4 — DOM-capable), `tests/e2e/celebration.spec.js` (renamed to the revised AC-9.3.2 title; dialog visible in viewport, both choices exercised), `tests/e2e/stoppingPoint.spec.js` (AC-9.2.2/1–2 — the message's bounding box lies within the viewport). Proves AC-9.3.2, AC-9.3.4, AC-9.2.2, AC-2.6.2.
 - [X] T109 Home-Screen icon: `public/apple-touch-icon.png` (a new 180×180 icon — a note radiating sound waves, drawn in the app's own palette on the app background), `index.html` (the `apple-touch-icon` link beside the existing web-app metas), `public/LICENSE.md` (original work), `tests/unit/ui/layout.test.js` (the link and the file it names exist — no AC ID: like T101's build stamp this is infrastructure that renders nothing inside the app; the standalone behaviour itself stays proven by the AC-10.1.1/2 test). Without it an iOS Home-Screen save shows a page-screenshot tile where the T097 metas already open the app standalone. Requested by the maintainer 2026-08-23.
 - [X] T110 [US10.1] Bug fix under AC-10.1.1/2: `src/styles.css` — the topbar title gains `min-width: 0` with ellipsis and `.nav` gains `flex-shrink: 0`, so a system font wider than the maintainer's can never push the Settings button past a 360px viewport edge. Found 2026-08-23 when the existing AC-10.1.1/2 e2e test failed under a wide fallback font (Settings right edge at 368.7px on a 360px viewport); the fix changes nothing visible unless space runs out, in which case the title truncates instead of a control clipping. No spec edit — the AC already forbids this.
+- [X] T111 [US1.2] Bug fix under AC-1.2.3 (2026-09-07, ported from rhythm-master's
+  AC-4.1.10 recovery): a context the browser leaves permanently stuck — iPadOS's
+  non-standard `interrupted` state after backgrounding, or a TV-browser context a
+  resume never starts — made "the next playback works without reload" false: playback
+  scheduled into a dead context is silence with no error. `src/audio/context.js` —
+  `ensureRunning()` catches a rejecting `resume()`, and closes and replaces a context
+  still not running after the attempt; `src/audio/sampler.js` — `createSampler` accepts
+  a context-returning function (the manager's `get`) so the master gain and every node
+  are built on the *current* context (decoded AudioBuffers are context-independent and
+  survive the swap); `src/main.js` — passes `audio.get` instead of the startup context.
+  Tests first in `tests/unit/ui/audioUnlock.test.js` (AC-1.2.3 qualifiers: interrupted
+  resume, dead-context replacement with the sampler following).
 
 ---
 

@@ -15,9 +15,27 @@ export function createAudioContextManager({ AudioContextCtor = globalThis.AudioC
     return ctx;
   }
 
+  /*
+   * A context can refuse to come back — iPadOS sometimes leaves one permanently
+   * 'interrupted' after backgrounding, and TV browsers can create one that a
+   * resume never starts — and scheduling into a dead context is silence with no
+   * error (AC-1.2.3). So a context still not running after the resume attempt is
+   * closed and replaced; consumers reach the context through get()/ensureRunning()
+   * rather than holding one, so they follow the replacement.
+   */
   async function ensureRunning() {
-    const c = get();
-    if (c.state !== 'running') await c.resume();
+    let c = get();
+    if (c.state !== 'running') {
+      try { await c.resume(); } catch { /* replaced below */ }
+    }
+    if (c.state !== 'running') {
+      try { await c.close?.(); } catch { /* a dead context may refuse even close() */ }
+      ctx = null;
+      c = get();
+      if (c.state !== 'running') {
+        try { await c.resume(); } catch { /* the caller's gesture has done all it can */ }
+      }
+    }
     return c;
   }
 
