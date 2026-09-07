@@ -64,4 +64,54 @@ describe('US-9.3 — mastery dialog', () => {
     expect(h.session.state.ended).toBe(true);
     expect(gone).toEqual(['/home']);
   });
+
+  it('AC-9.3.2/4 — The time shown is active practice time on the level, excluding background time and gaps over the idle cap: a gap over the idle cap', async () => {
+    // The regression the maintainer reported: a level started, abandoned for two hours and then
+    // finished said "152m". Time is now accumulated per answer and capped per gap (D-014).
+    let t = 1_700_000_000_000;
+    const h = harness({ trackId: 'intervals', levelNo: 1, now: () => t });
+    const root = screen(h);
+    await h.session.start();
+    for (let i = 0; i < 8; i++) { // eight brisk answers, three seconds each
+      t += 3000;
+      h.session.submit(h.session.state.question.answer);
+      await h.session.next();
+    }
+    t += 2 * 60 * 60 * 1000; // the level is abandoned for two hours
+    h.session.submit(h.session.state.question.answer);
+    await h.session.next();
+    t += 3000;
+    expect(h.session.submit(h.session.state.question.answer).levelMastered).toBe(true);
+    // 8×3s + the capped 60s + 3s = 87s of practice, against a 2h05m wall clock
+    expect(root.querySelector('[data-stat="time"]').textContent).toBe('Time 1m 27s');
+    expect(h.store.getState().levels['intervals:1'].activeSeconds).toBe(87);
+  });
+
+  it('AC-9.3.2/4 — The time shown is active practice time on the level, excluding background time and gaps over the idle cap: time in the background', async () => {
+    let t = 1_700_000_000_000;
+    const visibility = (value) => {
+      Object.defineProperty(document, 'visibilityState', { value, configurable: true });
+      document.dispatchEvent(new window.Event('visibilitychange'));
+    };
+    const h = harness({ trackId: 'intervals', levelNo: 1, now: () => t });
+    const root = screen(h);
+    await h.session.start();
+    for (let i = 0; i < 9; i++) {
+      t += 2000;
+      h.session.submit(h.session.state.question.answer);
+      await h.session.next();
+    }
+    // the app is suspended mid-question for four minutes — under the idle cap per gap only because
+    // the clock is stopped, not because the cap saved it
+    t += 1000;
+    visibility('hidden');
+    t += 4 * 60 * 1000;
+    visibility('visible');
+    t += 1000;
+    expect(h.session.submit(h.session.state.question.answer).levelMastered).toBe(true);
+    visibility('visible');
+    // 9×2s + 1s before + 1s after = 20s; the four minutes away count for nothing
+    expect(h.store.getState().levels['intervals:1'].activeSeconds).toBe(20);
+    expect(root.querySelector('[data-stat="time"]').textContent).toBe('Time 0m 20s');
+  });
 });

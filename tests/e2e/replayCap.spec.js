@@ -29,6 +29,9 @@ test.describe('US-7.3 Limited replays with replay scoring', () => {
       for (let i = 0; i < 4; i++) { if (i < 2) await s.replay(); s.submit(s.state.question.answer); if (i < 3) await s.next(); }
     });
     await page.locator('[data-action="end-session"]').tap();
+    // Ending a session now raises the summary before leaving (AC-2.6.3, 2026-09-07); the route to
+    // stats runs through it. The assertions below are unchanged — only the path to them is.
+    await page.locator('[data-action="summary-close"]').tap();
     await page.locator('[data-nav="stats"]').tap();
     const li = page.locator('[data-role="sessions"] li').first();
     await expect(li).toContainText('4 questions');

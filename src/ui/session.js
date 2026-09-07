@@ -8,8 +8,10 @@ import { renderAnswerGrid, renderCombinedGrid } from './answerGrid.js';
 import { createSequenceModel, renderSequenceInput } from './sequenceInput.js';
 import { renderFeedback } from './feedback.js';
 import { celebrationStats, renderMasteryDialog } from './celebration.js';
+import { masteryProgressPanel } from './masteryProgress.js';
+import { renderSessionSummary } from './sessionSummary.js';
 import { getSettings } from '../app/settings.js';
-import { getLevelState, evaluate, ACCURACY_THRESHOLD, BOX_FLOOR } from '../learning/mastery.js';
+import { getLevelState, evaluate, answersFromMastery, NEAR_MASTERY_ANSWERS } from '../learning/mastery.js';
 import { dayKey } from '../learning/streak.js';
 import { presentationLabel } from './labels.js';
 import { helpButton, questionsAnsweredOnTrack, ORDER_HINT, ORDER_HINT_UNTIL } from './guidance.js';
@@ -31,7 +33,17 @@ export function renderSessionScreen(container, { session, store, tracks, go, onE
   let masteryDialogShown = false;
   let masteryDialogDismissed = false;
 
-  function leave() { session.end(); if (onEnd) onEnd(); else go('/home'); }
+  // Practice time stops accruing while the app is away (D-014). The clock lives in the learning
+  // layer, which may not know a document exists, so the wiring is here.
+  const onVisibility = () => {
+    if (document.visibilityState === 'hidden') session.clock.pause();
+    else session.clock.resume();
+  };
+  document.addEventListener('visibilitychange', onVisibility);
+
+  function stop() { session.end(); document.removeEventListener('visibilitychange', onVisibility); }
+  function goHome() { if (onEnd) onEnd(); else go('/home'); }
+  function leave() { stop(); goHome(); }
 
   /** The mastery dialog (AC-9.3.2): return to the menu, or keep practising this level. */
   function showMasteryDialog(trackId, levelNo) {
@@ -47,14 +59,27 @@ export function renderSessionScreen(container, { session, store, tracks, go, onE
     });
   }
 
-  /** End taps show a never-seen mastery from this session before leaving (AC-9.3.4). */
+  /**
+   * End taps show a never-seen mastery from this session before leaving (AC-9.3.4), and otherwise
+   * the session summary (AC-2.6.3) — so stopping always says what the session bought and that it
+   * is kept, rather than dropping straight back to the menu.
+   */
   function endSession() {
     const { trackId, levelNo, startedAt } = session.state;
-    if (!masteryDialogShown && trackId != null && levelNo != null) {
-      const ls = getLevelState(store.getState(), trackId, levelNo);
-      if (ls.masteredAt != null && ls.masteredAt >= startedAt) return showMasteryDialog(trackId, levelNo);
-    }
-    leave();
+    if (trackId == null || levelNo == null) return leave(); // Mixed Review has no single level
+    const state = store.getState();
+    const ls = getLevelState(state, trackId, levelNo);
+    if (!masteryDialogShown && ls.masteredAt != null && ls.masteredAt >= startedAt) return showMasteryDialog(trackId, levelNo);
+    const track = tracks.byId[trackId];
+    const itemIds = track.itemsFor(levelNo);
+    const level = track.def.levels.find((l) => l.no === levelNo);
+    stop();
+    renderSessionSummary(dialogArea, {
+      trackName: track.name, levelNo, presentation: presentationLabel(level),
+      questions: session.state.questions, correct: session.state.correct,
+      evaluation: evaluate(ls.history, state.items, itemIds), itemCount: itemIds.length,
+      onClose: goHome,
+    });
   }
 
   function draw() {
@@ -73,16 +98,11 @@ export function renderSessionScreen(container, { session, store, tracks, go, onE
     const itemIds = track.itemsFor(q.levelNo);
     const ev = evaluate(ls.history, state.items, itemIds);
     const level = track.def.levels.find((l) => l.no === q.levelNo);
-    const meterParts = [];
     const pres = presentationLabel(level);
-    if (pres) meterParts.push(pres);
-    meterParts.push(`${ev.answered}/${ev.required}`);
-    meterParts.push(`${Math.round(ev.accuracy * 100)}% (target ${Math.round(ACCURACY_THRESHOLD * 100)}%)`);
-    if (ev.weakItems.length) meterParts.push(`${ev.weakItems.length} below box ${BOX_FLOOR}`);
     const goal = settings.sessionGoal;
     const today = state.days[dayKey(Date.now())] ?? { questions: 0 };
     replace(status,
-      h('span', { class: 'muted', 'data-role': 'mastery-meter', 'data-weak': String(ev.weakItems.length), 'data-presentation': pres ?? '' }, meterParts.join(' · ')),
+      masteryProgressPanel({ evaluation: ev, itemCount: itemIds.length, presentation: pres, compact: true }),
       h('span', { class: 'muted', 'data-role': 'goal-progress' }, `Today ${today.questions}/${goal.questions}`),
     );
     const capped = session.replayLimitReached();
@@ -125,8 +145,16 @@ export function renderSessionScreen(container, { session, store, tracks, go, onE
       if (r.levelMastered && !masteryDialogDismissed) showMasteryDialog(q.trackId, q.levelNo);
       if (r.dayCompleted && !toastShown) {
         toastShown = true;
-        const toast = h('div', { class: 'toast', role: 'status', 'data-role': 'stopping-point' },
-          h('span', {}, 'Daily goal reached — this is a good stopping point.'),
+        // Within reach of mastering the level, the goal is worth reporting but stopping is not
+        // worth advising (AC-9.2.2/3): a few answers short of mastery is the worst moment in a
+        // session to be told to stop. The day is complete and the streak has incremented either way.
+        const remaining = answersFromMastery(ev);
+        const nearly = remaining != null && remaining > 0 && remaining <= NEAR_MASTERY_ANSWERS;
+        const message = nearly
+          ? `Daily goal reached — and you are ${remaining} ${remaining === 1 ? 'answer' : 'answers'} from mastering this level. Worth finishing.`
+          : 'Daily goal reached — this is a good stopping point.';
+        const toast = h('div', { class: 'toast', role: 'status', 'data-role': 'stopping-point', 'data-near-mastery': String(nearly) },
+          h('span', {}, message),
           h('button', { class: 'btn', 'data-action': 'dismiss-toast', onClick: () => toast.remove() }, 'Dismiss'));
         replace(toastArea, toast);
       }

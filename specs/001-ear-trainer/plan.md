@@ -113,7 +113,7 @@ that carry the verbatim-titled tests. `—` in the AC column marks infrastructur
 | **P-007** | US-1.2 — Mobile-safe audio initialization | AC-1.2.1–AC-1.2.3 | T020 | T021 |
 | **P-008** | US-1.3 — Unified exercise renderer | AC-1.3.1–AC-1.3.3 | T022 | T023 |
 | **P-009** | US-2.1 — Per-item Leitner scheduling | AC-2.1.1–AC-2.1.4 | T024 | T025 |
-| **P-010** | US-2.2 — Mastery-gated level advancement | AC-2.2.1–AC-2.2.3 | T026, T102 | T027, T105 |
+| **P-010** | US-2.2 — Mastery-gated level advancement | AC-2.2.1–AC-2.2.3 | T026, T102, T112 | T027, T105, T115 |
 | **P-011** | US-2.3 — Interleaved review mode | AC-2.3.1–AC-2.3.3 | T028 | T029 |
 | **P-012** | US-2.4 — Immediate feedback with comparison replay | AC-2.4.1–AC-2.4.3 | T030 | T031 |
 | **P-013** | US-2.5 — Confusion-weighted question generation | AC-2.5.1–AC-2.5.3 | T032 | T033 |
@@ -146,13 +146,14 @@ that carry the verbatim-titled tests. `—` in the AC column marks infrastructur
 | **P-040** | US-10.3 — Progress persistence and export | AC-10.3.1–AC-10.3.3 | T086 | T087 |
 | **P-041** | US-10.4 — Settings | AC-10.4.1–AC-10.4.3 | T088 | T089 |
 | **P-042** | Polish: quickstart, README, matrix, gates | — | T090–T091 | — |
-| **P-043** | US-2.6 — In-session progress visibility (post-MVP) | AC-2.6.1–AC-2.6.2 | T093, T102 | T094, T105 |
+| **P-043** | US-2.6 — In-session progress visibility (post-MVP) | AC-2.6.1–AC-2.6.2 | T093, T102, T112 | T094, T105, T115 |
 | **P-044** | US-9.2 — Daily-goal progress visibility (post-MVP extension) | AC-9.2.4 | T095 | T096 |
 | **P-045** | US-4.4 — Scale reference scaffold for novices (post-MVP) | AC-4.4.1–AC-4.4.6 | T097 | T098 |
 | **P-046** | US-4.5 — Scale-degree onboarding guidance (post-MVP) | AC-4.5.1–AC-4.5.3 | T099 | T100 |
 | **P-047** | US-2.2 — Pool-scaled mastery gate (post-MVP, D-006 amendment) | AC-2.2.4 | T102 | T105 |
 | **P-048** | US-10.3 — Progress reset at the presentation-tier restructure (post-MVP, D-007 amendment) | AC-10.3.4 | T103 | T106 |
-| **P-049** | US-9.3 — Mastery dialog and stopping-point visibility (post-MVP) | AC-9.3.2, AC-9.3.4, AC-2.6.2, AC-9.2.2 | T107 | T108 |
+| **P-049** | US-9.3 — Mastery dialog and stopping-point visibility (post-MVP) | AC-9.3.2, AC-9.3.4, AC-2.6.2, AC-9.2.2 | T107, T113, T114 | T108, T116, T117 |
+| **P-050** | US-2.6 — End-of-session progress summary (post-MVP) | AC-2.6.3 | T112 | T115 |
 
 ## Complexity Tracking
 

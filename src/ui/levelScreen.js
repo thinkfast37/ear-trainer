@@ -1,6 +1,7 @@
 /** Level screen (US-2.2, US-3.4, US-8.4): status, unmet mastery conditions, presentation, start, reference. */
 import { h, replace } from './dom.js';
 import { getLevelState, evaluate, describeUnmet } from '../learning/mastery.js';
+import { masteryProgressPanel } from './masteryProgress.js';
 import { presentationLabel } from './labels.js';
 import { renderGuidance, helpButton, guidanceDismissed } from './guidance.js';
 
@@ -17,6 +18,9 @@ export function renderLevelScreen(container, { store, tracks, trackId, levelNo, 
   wrap.append(h('h2', {}, `${track.name} — Level ${levelNo}${pres ? ` — ${pres}` : ''}`));
   wrap.append(h('div', { class: 'card', 'data-role': 'mastery-status', 'data-mastered': String(ls.mastered) },
     h('div', { class: 'verdict' }, ls.mastered ? 'Mastered ✓' : 'Not yet mastered'),
+    // All three conditions, met ones included (AC-2.2.2/3) — listing only what is unmet hid how
+    // close a met condition was to slipping, and left the box floor the least legible of the three.
+    masteryProgressPanel({ evaluation: ev, itemCount: itemIds.length }),
     ls.mastered ? h('div', { class: 'muted' }, 'You can keep reviewing this level; boxes still move.') :
       h('ul', { 'data-role': 'unmet' }, describeUnmet(ev.unmet, ev).map((t) => h('li', { class: 'unmet' }, `To master: ${t}`))),
   ));

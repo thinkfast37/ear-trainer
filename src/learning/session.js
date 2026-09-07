@@ -11,6 +11,7 @@ import { partnersOf } from './options.js';
 import { questionScore } from './scoring.js';
 import { awardXp } from './xp.js';
 import { recordActivity } from './streak.js';
+import { createActiveClock } from './activeTime.js';
 import { masteredLevels } from './mixedReview.js';
 import { getSettings } from '../app/settings.js';
 
@@ -18,10 +19,13 @@ let seq = 0;
 
 export function createSession({ trackId = null, levelNo = null, mixed = false, bassFirst = false }, { store, tracks, renderer, rng, now = () => Date.now() }) {
   const id = `s${now()}-${++seq}`;
+  // Practice time is accumulated per answer, never wall clock (D-014, AC-9.3.2/4). The UI drives
+  // pause/resume from visibilitychange; nothing here reaches for a timer.
+  const clock = createActiveClock({ now });
   const state = {
     id, trackId, levelNo, mixed, bassFirst,
     phase: 'idle', question: null, result: null, replaysUsed: 0, stepIndex: 0, stepResults: [],
-    startedAt: now(), lastTick: now(), questions: 0, correct: 0, replays: 0, streak: 0,
+    startedAt: now(), questions: 0, correct: 0, replays: 0, streak: 0, activeSeconds: 0,
     prevKey: null, prevItem: null, bias: null, ended: false, cadenceHeard: false, asked: 0, lastAsked: {},
   };
   const listeners = new Set();
@@ -158,8 +162,8 @@ export function createSession({ trackId = null, levelNo = null, mixed = false, b
     const chosen = answer;
     const chosenItemId = q.kind === 'single' && typeof answer === 'string' ? t.optionItemId(answer, q) : null;
     const ts = now();
-    const elapsed = Math.min(60, Math.max(0, Math.round((ts - state.lastTick) / 1000)));
-    state.lastTick = ts;
+    const elapsed = clock.tick();
+    state.activeSeconds += elapsed;
     state.questions++;
     if (correct) { state.correct++; state.streak++; } else state.streak = 0;
     const level = levelDef(q.trackId, q.levelNo);
@@ -171,6 +175,7 @@ export function createSession({ trackId = null, levelNo = null, mixed = false, b
       const ls = d.levels[key] ?? (d.levels[key] = emptyLevelState());
       const entry = { item: q.itemId, correct, at: ts, replays: state.replaysUsed, score };
       pushHistory(ls.history, entry);
+      ls.activeSeconds = (ls.activeSeconds ?? 0) + elapsed;
       let levelMastered = false;
       const wasMastered = ls.mastered;
       const ev = evaluate(ls.history, d.items, t.itemsFor(q.levelNo));
@@ -210,8 +215,8 @@ export function createSession({ trackId = null, levelNo = null, mixed = false, b
 
   return {
     id, state, start, play, replay, rehearCadence, hearScale, scaleAvailable, playComparison, submit, next, end,
-    replayLimitReached, currentStep,
+    replayLimitReached, currentStep, clock,
     subscribe(fn) { listeners.add(fn); return () => listeners.delete(fn); },
-    summary() { return { questions: state.questions, correct: state.correct, replays: state.replays, avgReplays: state.questions ? state.replays / state.questions : 0, seconds: Math.round((now() - state.startedAt) / 1000) }; },
+    summary() { return { questions: state.questions, correct: state.correct, replays: state.replays, avgReplays: state.questions ? state.replays / state.questions : 0, seconds: state.activeSeconds }; },
   };
 }

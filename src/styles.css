@@ -96,5 +96,12 @@ input[type="checkbox"] { width: 24px; height: 24px; }
 .hidden { display: none !important; }
 .session-status { justify-content: space-between; font-size: 0.85rem; flex-wrap: wrap; }
 .substage-transition { color: var(--accent); font-weight: 600; }
+/* Mastery conditions (AC-2.2.2/3, AC-2.6.1/5). A met condition is marked by its tick and its
+   colour together — the tick carries it for a reader who cannot separate green from grey. */
+.mastery-progress { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 0.85rem; }
+.mastery-progress:not(.compact) { flex-direction: column; text-align: left; margin: 12px 0; }
+.mastery-progress .condition { color: var(--muted); white-space: nowrap; }
+.mastery-progress .condition[data-met="true"] { color: var(--ok); }
+.mastery-progress .mark { font-weight: 700; }
 .guidance p { margin: 6px 0; }
 .order-hint { flex-basis: 100%; }
