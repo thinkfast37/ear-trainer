@@ -78,4 +78,17 @@ describe('US-10.3 Progress persistence and export', () => {
     expect(back.ok).toBe(true); expect(back.doc).toEqual(h.store.getState());
     expect(exportFileName(new Date(2026, 7, 18).getTime())).toBe('ear-trainer-progress-2026-08-18.json');
   });
+
+  it('merges level active seconds as the max, never the sum', () => {
+    const local = emptyProgress();
+    local.levels['intervals:1'] = { mastered: false, masteredAt: null, activeSeconds: 300, history: [] };
+    const incoming = emptyProgress();
+    incoming.levels['intervals:1'] = { mastered: false, masteredAt: null, activeSeconds: 420, history: [] };
+    incoming.levels['intervals:2'] = { mastered: false, masteredAt: null, activeSeconds: 90, history: [] };
+    const out = mergeProgress(local, incoming);
+    // the same practice exported and re-imported must not double-count (D-014)
+    expect(out.levels['intervals:1'].activeSeconds).toBe(420);
+    expect(mergeProgress(out, incoming).levels['intervals:1'].activeSeconds).toBe(420);
+    expect(out.levels['intervals:2'].activeSeconds).toBe(90);
+  });
 });

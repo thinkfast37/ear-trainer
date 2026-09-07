@@ -59,6 +59,12 @@ export function normaliseProgress(doc) {
   out.settings.sessionGoal = { ...base.settings.sessionGoal, ...(doc.settings?.sessionGoal ?? {}) };
   out.settings.notifications = { ...base.settings.notifications, ...(doc.settings?.notifications ?? {}) };
   out.streak = { ...base.streak, ...(doc.streak ?? {}) };
+  // Levels written before D-014 carry no activeSeconds; they start counting from the next answer
+  // rather than being back-filled from a wall clock that was never practice time.
+  out.levels = Object.fromEntries(Object.entries(doc.levels ?? {}).map(([key, lvl]) => [key, {
+    ...lvl,
+    activeSeconds: Number.isFinite(lvl?.activeSeconds) && lvl.activeSeconds >= 0 ? lvl.activeSeconds : 0,
+  }]));
   out.guidance = { ...base.guidance, ...(doc.guidance ?? {}) };
   out.schemaVersion = SCHEMA_VERSION;
   return out;

@@ -34,6 +34,8 @@ export function mergeProgress(local, incoming) {
     if (!cur) { out.levels[key] = structuredClone(lvl); continue; }
     cur.mastered = cur.mastered || lvl.mastered;
     cur.masteredAt = cur.masteredAt ?? lvl.masteredAt ?? null;
+    // Max, not sum: the same practice exported and re-imported must not double-count (D-014).
+    cur.activeSeconds = Math.max(cur.activeSeconds ?? 0, lvl.activeSeconds ?? 0);
     const seen = new Set(cur.history.map((h) => `${h.item}|${h.at}`));
     for (const hh of lvl.history ?? []) if (!seen.has(`${hh.item}|${hh.at}`)) cur.history.push(hh);
     cur.history.sort((a, b) => a.at - b.at);

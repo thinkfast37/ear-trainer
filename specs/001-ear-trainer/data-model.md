@@ -10,7 +10,7 @@
                           "confusions": { "M6": 2, "P5": 1 } }
   },
   "levels": {
-    "intervals:2": { "mastered": true, "masteredAt": 1755500000000,
+    "intervals:2": { "mastered": true, "masteredAt": 1755500000000, "activeSeconds": 412,
                      "history": [ { "item": "interval:m3:asc", "correct": true, "at": 1755500000000, "replays": 1, "score": 1 } ] }
   },
   "xp": 1240,
@@ -36,12 +36,19 @@ Rules:
   answers by option id.
 - `levels[<trackId>:<levelNo>].history` keeps at most the last 200 answers (rolling accuracy
   needs 20; the trend view needs dated history, which `days` and `sessions` also carry).
-- `days` keys are local-date ISO strings.
+- `levels[<trackId>:<levelNo>].activeSeconds` (2026-09-07, D-014) is active practice time on the
+  level in whole seconds, accumulated per answer and never reset — a level practised across five
+  sittings carries their sum. A document written before this field loads with it absent and is
+  normalised to `0`; the count then starts from the next answer, so an older level under-reports
+  rather than reporting a wall clock. It is not part of the mastery gate.
+- `days` keys are local-date ISO strings; `seconds` is accumulated by the same clock as
+  `activeSeconds` (D-014), so time with the app backgrounded counts toward neither.
 - Level state has no sub-stage fields (2026-08-18, D-013): a level's presentation is data,
   not progress. Loading a `schemaVersion` < 2 document discards everything but `settings` and
   writes a fresh v2 document (AC-10.3.4/1); importing one is rejected (AC-10.3.4/2).
 - Import merge (AC-10.3.3/2): per item, the record with the newer `lastSeen` wins; `levels`
-  mastered = OR; `xp` = max; `streak.best` = max; `days` = union taking the larger counts;
+  mastered = OR; `levels[…].activeSeconds` = max (2026-09-07: max, not sum — the same practice
+  exported and re-imported must not double-count); `xp` = max; `streak.best` = max; `days` = union taking the larger counts;
   `sessions` = union by id; `settings` = local wins.
 - `guidance` holds per-track "first-open guidance dismissed" flags; a progress reset clears it
   (US-4.5). Import: local wins.

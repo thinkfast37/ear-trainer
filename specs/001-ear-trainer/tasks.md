@@ -276,6 +276,54 @@ renumber the MVP section above.)*
   Tests first in `tests/unit/ui/audioUnlock.test.js` (AC-1.2.3 qualifiers: interrupted
   resume, dead-context replacement with the sampler following).
 
+- [X] T112 [US2.6][US2.2] Mastery-condition progress, everywhere it is read, and an end-of-session
+  summary: `src/learning/mastery.js` (`describeProgress` — the three conditions as labelled
+  progress with a met flag, and `answersFromMastery` for T114), new `src/ui/masteryProgress.js`
+  (one renderer used by the session header, the level screen and the summary — the panel had to
+  exist in three places, and three hand-rolled versions is how they drift), `src/ui/session.js`
+  (the header meter renders all three conditions, met ones included; the End tap raises the
+  summary), `src/ui/levelScreen.js` (the panel sits beside the existing unmet list), new
+  `src/ui/sessionSummary.js` (the end-of-session dialog: questions and correct this session, the
+  three conditions, and that progress is saved), `src/styles.css`. Implements AC-2.6.1/1–5,
+  AC-2.2.2/3, AC-2.6.3/1–5. Requested by the maintainer 2026-09-07: "it would be good to know
+  where my progress is at" after a session ended with no statement of what the answers bought.
+- [X] T113 [US9.3] Active practice time per level (D-014, AC-9.3.2 revision): new
+  `src/learning/activeTime.js` (the capped, pausable accumulator), `src/learning/session.js`
+  (the clock replaces the raw `lastTick` gap and feeds both `levels[…].activeSeconds` and the day
+  log), `src/ui/session.js` (drives `pause()`/`resume()` from `visibilitychange` — the UI layer is
+  the only one that may know about `document`), `src/ui/celebration.js` (`celebrationStats` reads
+  the stored total instead of `last - first`), `src/storage/schema.js` (`activeSeconds` normalised
+  to 0 on load), `src/storage/exportImport.js` (merged as max, not sum),
+  `specs/001-ear-trainer/data-model.md`. Implements AC-9.3.2/4. Fixes the reported 152-minute
+  level: the wall clock from first answer to last counted an abandoned afternoon as practice.
+- [X] T114 [US9.2] The stopping-point message defers within reach of mastery (AC-9.2.2 revision):
+  `src/ui/session.js` — when `answersFromMastery` (T112) returns at most 5, the message says how
+  many answers remain and encourages finishing instead of suggesting a stop; the day is still
+  completed and the streak still increments. Implements AC-9.2.2/3–4. Requested by the maintainer
+  2026-09-07: being told to stop a few answers short of mastering a long level is the worst
+  moment in a session to be told to stop.
+- [X] T115 [US2.6][US2.2] Tests for T112, verbatim-named per Case:
+  `tests/unit/learning/masteryProgress.test.js` (`describeProgress`, `answersFromMastery`),
+  `tests/unit/ui/sessionProgress.test.js` (AC-2.6.1/1–5 — the /3 test is renamed to the revised
+  Case title and asserts the count against the item count, which the old assertion on
+  "2 below box 3" did not; AC-2.6.3/1–5 — DOM-capable), `tests/unit/ui/levelScreen.test.js`
+  (AC-2.2.2/3), `tests/e2e/sessionSummary.spec.js` (AC-2.6.3/1–4 on a phone viewport — the
+  summary must be readable and dismissible where it is actually used), `tests/e2e/replayCap.spec.js`
+  (AC-7.3.3's path to the stats view now runs through the summary — its assertions are untouched;
+  the modal is what a session now ends on, so the test taps through it rather than around it).
+  Proves AC-2.6.1, AC-2.2.2/3, AC-2.6.3.
+- [X] T116 [US9.3] Tests for T113, verbatim-named per Case: `tests/unit/learning/activeTime.test.js`
+  (the cap, the pause, resumption, accumulation across ticks — with an injected clock),
+  `tests/unit/ui/masteryDialog.test.js` (AC-9.3.2/4: a level answered across a long gap reports
+  practice time, not the wall clock — the regression the maintainer reported),
+  `tests/unit/storage/schema.test.js` and `tests/unit/storage/exportImport.test.js` (the field
+  normalises to 0 and merges as max). Proves AC-9.3.2/4.
+- [X] T117 [US9.2] Tests for T114, verbatim-named per Case: `tests/unit/ui/sessionProgress.test.js`
+  (AC-9.2.2/3–4 — DOM-capable: within five answers the message names the remaining count; with a
+  box condition still unmet it suggests stopping as before), `tests/e2e/stoppingPoint.spec.js`
+  (unchanged AC-9.2.2/1–2 still pass — the deferral must not swallow the ordinary message).
+  Proves AC-9.2.2/3–4.
+
 ---
 
 ## Dependencies & Execution Order

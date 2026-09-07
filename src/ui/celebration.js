@@ -11,10 +11,11 @@ import { accuracyOf } from '../learning/leitner.js';
 export function celebrationStats(levelState, items, itemIds) {
   const history = [...levelState.history];
   const accuracy = rollingAccuracy(history, history.length || 1);
-  const first = history[0]?.at ?? 0; const last = history[history.length - 1]?.at ?? first;
   let weakest = null;
   for (const id of itemIds) { const it = items[id]; if (!it) continue; if (!weakest || accuracyOf(it) < accuracyOf(weakest.it)) weakest = { id, it }; }
-  return { accuracy, seconds: Math.round((last - first) / 1000), weakest: weakest?.id ?? null, weakestAccuracy: weakest ? accuracyOf(weakest.it) : null };
+  // Active practice time on the level (AC-9.3.2/4, D-014) — not the span from its first answer to
+  // its last, which counted every hour the level sat abandoned in between.
+  return { accuracy, seconds: levelState.activeSeconds ?? 0, weakest: weakest?.id ?? null, weakestAccuracy: weakest ? accuracyOf(weakest.it) : null };
 }
 
 /** Text for the "next" line: the next level's title, or that the track is complete (AC-2.6.2). */

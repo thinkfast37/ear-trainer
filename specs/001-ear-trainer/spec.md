@@ -211,10 +211,11 @@ not; confirm a two-item level needs 10 answers and a twelve-item level needs 36.
   - **Given** my rolling accuracy is ≥ 90%, but at least one item in the level is below box 3
   - **When** I view the level screen
   - **Then** the level is not mastered
-  - **And** the screen shows which condition is unmet
+  - **And** the screen shows every mastery condition with progress toward it — answers against the minimum, accuracy against the threshold, and items at box 3 or above against the level's item count — marking each as met or unmet (2026-09-07: was "shows which condition is unmet" — listing only the unmet conditions left a learner unable to see how close the met ones were to slipping, and made the box-3 condition, which is what "get them consistently right" actually means here, the least legible of the three)
   - **Cases**:
     - **AC-2.2.2/1** — The level is not mastered while an item is below box 3
     - **AC-2.2.2/2** — The level screen shows which mastery condition is unmet
+    - **AC-2.2.2/3** — The level screen shows every mastery condition with its progress, including those already met
 
 - **AC-2.2.3** — Mastered levels stay reviewable and decay per item
   - **Given** a mastered level
@@ -334,13 +335,14 @@ answers toward the level's minimum answer count and tracks rolling accuracy; mas
 - **AC-2.6.1** — The session header shows a live mastery-progress meter
   - **Given** a practice session in a level (2026-08-18: was "scoped to the current sub-stage where the track has sub-stages" — sub-stages were retired when levels became presentation tiers, US-3.2/5.2/6.2/8.5)
   - **When** I answer a question
-  - **Then** the session header shows how many answers count toward the level's minimum answer count (AC-2.2.4), the rolling accuracy against the 90% threshold, and how many items are still below box 3, updated for that answer
+  - **Then** the session header shows all three mastery conditions, each labelled and carrying its current value against its target — answers counted toward the level's minimum answer count (AC-2.2.4), rolling accuracy against the 90% threshold, and items at box 3 or above against the level's item count — updated for that answer (2026-09-07: the box condition was "how many items are still below box 3", a bare count with no denominator; and a condition already met dropped out of the meter, so the learner could not see which of the three was actually holding the level)
   - **And** where the level carries a presentation, the meter names it (e.g. "Descending")
   - **Cases**:
     - **AC-2.6.1/1** — The answers counted toward the level's minimum answer count are shown and update on each answer
     - **AC-2.6.1/2** — The rolling accuracy is shown against the 90% threshold and updates on each answer
-    - **AC-2.6.1/3** — The number of items still below box 3 is shown
+    - **AC-2.6.1/3** — Items at box 3 or above are shown against the level's item count
     - **AC-2.6.1/4** — The level's presentation is named for tracks whose levels carry one
+    - **AC-2.6.1/5** — Every mastery condition is labelled and stays shown once it is met
 
 - **AC-2.6.2** — Mastering a level names the next level and its presentation
   - **Given** a level in a track whose levels carry a presentation (2026-08-18: was "Mastering a sub-stage is announced with the next sub-stage named" — sub-stages were retired; the announcement now lives in the level celebration)
@@ -350,6 +352,20 @@ answers toward the level's minimum answer count and tracks rolling accuracy; mas
   - **Cases**:
     - **AC-2.6.2/1** — The celebration names the next level with its number and presentation
     - **AC-2.6.2/2** — Mastering the last level of a track says the track is complete
+
+- **AC-2.6.3** — Ending a session says where the level now stands and that progress is kept
+  - **Given** a practice session in a level that was not mastered during it (2026-09-07: new criterion — ending a session navigated straight back to the menu, so a learner who had answered twenty questions was told nothing about what those answers had bought and had no way to tell whether stopping cost them anything; answers were always persisted, but nothing in the app said so)
+  - **When** I end the session
+  - **Then** a summary shows how many questions I answered in the session and how many were correct
+  - **And** it shows the level's three mastery conditions with their current values, as AC-2.6.1 does
+  - **And** it states that this progress is saved and the level resumes where it left off
+  - **And** dismissing it returns to the menu
+  - **Cases**:
+    - **AC-2.6.3/1** — The summary shows the session's questions answered and correct count
+    - **AC-2.6.3/2** — The summary shows the level's three mastery conditions with current values
+    - **AC-2.6.3/3** — The summary states that progress is saved
+    - **AC-2.6.3/4** — Dismissing the summary returns to the menu
+    - **AC-2.6.3/5** — A session that mastered the level shows the mastery dialog instead
 
 ## Epic 3: Track 1 — Intervals
 
@@ -1336,9 +1352,12 @@ increments; confirm the stopping-point message.
   - **When** the current question completes
   - **Then** a dismissible message suggests this is a good stopping point
   - **And** the message is visible within the viewport when it appears, without scrolling, clear of the device's bottom safe area (2026-08-19: added — the message must be seen when it fires, not discovered by scrolling)
+  - **And** when answering is the only mastery condition the current level still fails, and at most five answers remain, the message says how many remain and encourages finishing instead of suggesting a stop (2026-09-07: added — the daily goal fired mid-level and advised stopping a few answers short of mastery, which is the worst moment in a session to be told to stop; the daily goal is still recorded and the streak still increments, only the advice changes)
   - **Cases**:
     - **AC-9.2.2/1** — A dismissible message suggests a good stopping point when the goal is met
     - **AC-9.2.2/2** — The message appears within the viewport without scrolling
+    - **AC-9.2.2/3** — Within five answers of mastering the level, the message says how many remain instead of suggesting a stop
+    - **AC-9.2.2/4** — With a mastery condition other than answering still unmet, the message suggests a stopping point as usual
 
 - **AC-9.2.3** — An optional local reminder fires on the mobile build
   - **Given** notifications are enabled in settings on the Capacitor build
@@ -1378,11 +1397,13 @@ the celebration; confirm unlocks ignore XP.
   - **Given** I have just mastered a level (2026-08-19: was "shows a celebration with level stats" — the celebration rendered as an inline card below the feedback panel, below the fold on a phone, and only on the mastering answer, so learners routinely mastered levels without ever being told; it is now a dialog that interrupts the session and asks how to proceed)
   - **When** the mastery condition is met
   - **Then** a dialog interrupts the session, visible without scrolling, showing level stats (accuracy, time, weakest item conquered)
+  - **And** the time shown is active practice time on that level — the time spent answering its questions, accumulated across every session, excluding time the app spent in the background and any single gap longer than the idle cap (D-014) (2026-09-07: "time" was undefined here, and was implemented as the wall clock from the level's first answer to its last; a level started, abandoned for two hours and finished reported 152 minutes)
   - **And** it offers an explicit choice: return to the main menu, or keep practising this level
   - **Cases**:
     - **AC-9.3.2/1** — The dialog interrupts at the mastery moment and shows accuracy, time and weakest item
     - **AC-9.3.2/2** — Choosing to return to the main menu ends the session and shows the main menu
     - **AC-9.3.2/3** — Choosing to keep practising closes the dialog and the session continues on the same level
+    - **AC-9.3.2/4** — The time shown is active practice time on the level, excluding background time and gaps over the idle cap
 
 - **AC-9.3.4** — Ending a session whose mastery dialog was never shown presents it before leaving
   - **Given** a level was mastered during this session and the mastery dialog has not been shown (2026-08-19: new criterion — a mastered level must never pass unannounced, even when the mastering moment was missed)

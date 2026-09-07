@@ -32,4 +32,21 @@ describe('US-2.2 — level screen', () => {
     expect(unmet[0]).toMatch(/1 still below/);
     expect(unmet.some((t) => /accuracy/.test(t))).toBe(false);
   });
+  it('AC-2.2.2/3 — The level screen shows every mastery condition with its progress, including those already met', () => {
+    // scaleDegrees L1 has 3 items, so the minimum is max(10, 3×3) = 10 (AC-2.2.4). With 20 answers
+    // at 95% and one item at box 2, answers and accuracy are met and the box floor is not. Before
+    // the 2026-09-07 revision only the unmet one was rendered.
+    const store = createStore(progressWithAccuracyButWeakItem());
+    const root = mount(renderLevelScreen, { store, tracks: buildTracks(), trackId: 'scaleDegrees', levelNo: 1, go: () => {} });
+    const panel = root.querySelector('[data-role="mastery-status"] [data-role="mastery-progress"]');
+    expect(panel).not.toBeNull();
+    const byId = Object.fromEntries([...panel.querySelectorAll('[data-condition]')].map((e) => [e.dataset.condition, e]));
+    expect(Object.keys(byId)).toEqual(['answers', 'accuracy', 'boxes']);
+    expect(byId.answers.dataset.met).toBe('true');
+    expect(byId.answers.textContent).toContain("10/10");
+    expect(byId.accuracy.dataset.met).toBe('true');
+    expect(byId.accuracy.textContent).toContain('95%');
+    expect(byId.boxes.dataset.met).toBe('false');
+    expect(byId.boxes.textContent).toContain('2/3');
+  });
 });

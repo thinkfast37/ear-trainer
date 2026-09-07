@@ -168,3 +168,30 @@ intervals; does not make a level one difficulty); presentation-major with a per-
 migration of stored progress (no faithful mapping from old level N sub-stage S to a new
 level — see D-007 amendment).
 
+
+## D-014 — Practice time is accumulated per answer, capped, and paused while the app is hidden
+
+**Decision** (2026-09-07): "time on a level" is a stored total, `levels[<trackId>:<levelNo>].activeSeconds`,
+accumulated one answer at a time. On each submitted answer the clock contributes
+`min(60, elapsed since the previous answer, excluding any interval in which the document was
+hidden)` seconds. The 60-second idle cap and the hidden-time exclusion are the two things that
+keep the number a measure of practice rather than of elapsed existence. `learning/activeTime.js`
+owns the accumulator; the UI layer, which is the only layer that knows about `document`, drives
+its `pause()`/`resume()` from `visibilitychange`.
+
+The same value feeds the day log's `seconds`, which the daily goal's minutes target reads
+(AC-9.2.1/2). That is a deliberate consequence, not a second decision: the day log already used
+the capped per-answer gap, so the only change is that a gap spent in the background no longer
+counts. It can only move the minutes counter down, toward what it always claimed to measure.
+
+**Why**: `celebrationStats` computed level time as `lastAnswer.at - firstAnswer.at`, which is
+the wall clock across every session and every idle hour in between — a level started, abandoned
+and finished the next day reported hours. Per-answer accumulation is the only shape that
+survives a level being practised over several sittings, and it needs no timer.
+
+**Rejected**: a ticking `setInterval` timer with a start/stop lifecycle (introduces exactly the
+timer-driven state D-004 keeps out of the scheduling path, and still has to solve the
+backgrounded case); the session record's `startedAt`/`endedAt` span (same wall-clock flaw, one
+session at a time); an idle cap short enough to be a pure "answering time" measure (a learner
+legitimately thinking about a hard melodic dictation for 40 seconds is practising, and a cap
+below that punishes the levels that need it most).
