@@ -34,7 +34,7 @@ export function renderLevelScreen(container, { store, tracks, trackId, levelNo, 
       startRow.append(h('span', { class: 'muted', 'data-role': 'bass-first-unavailable' }, 'Bass-first mode is available from Level 2'));
     }
   }
-  startRow.append(h('button', { class: 'btn primary', 'data-action': 'start-session', onClick: () => go(`/session/${trackId}/${levelNo}${bassFirst ? '?bassFirst=1' : ''}`) }, 'Start'));
+  startRow.append(h('button', { class: 'btn primary', 'data-action': 'start-session', 'data-autofocus': '', onClick: () => go(`/session/${trackId}/${levelNo}${bassFirst ? '?bassFirst=1' : ''}`) }, 'Start'));
   if (trackId === 'intervals') startRow.append(h('button', { class: 'btn', 'data-action': 'open-reference', onClick: () => go(`/reference/${trackId}/${levelNo}`) }, 'Reference'));
   const guidanceArea = h('div', { 'data-role': 'guidance-area' });
   const help = helpButton({ store, trackId, container: guidanceArea });

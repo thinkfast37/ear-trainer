@@ -14,13 +14,13 @@
 -->
 
 **Feature**: specs/001-ear-trainer/spec.md
-**Criteria**: 281 across 39 User Stories
+**Criteria**: 310 across 42 User Stories
 
-**Coverage**: 281 of 281 criteria proven (100.0%)
+**Coverage**: 310 of 310 criteria proven (100.0%)
 
 | | Criteria | Share |
 |---|---|---|
-| 🟢 Proven | 281 | 100.0% |
+| 🟢 Proven | 310 | 100.0% |
 
 A row is one *criterion*: an Acceptance Criterion that asserts one thing, or one Case of
 an AC that asserts several. 🖵 marks a criterion that describes something a person sees or
@@ -94,6 +94,9 @@ fail the build, and it is outstanding work — never a settled decision.
 | 🟢 US-10.2 | 5 | **5** | · | · | · | · | · |
 | 🟢 US-10.3 | 7 | **7** | · | · | · | · | · |
 | 🟢 US-10.4 | 9 | **9** | · | · | · | · | · |
+| 🟢 US-11.1 | 10 | **10** | · | · | · | · | · |
+| 🟢 US-11.2 | 4 | **4** | · | · | · | · | · |
+| 🟢 US-11.3 | 15 | **15** | · | · | · | · | · |
 
 ## Every criterion
 
@@ -380,3 +383,32 @@ fail the build, and it is outstanding work — never a settled decision.
 | US-10.4 | `AC-10.4.1/7` 🖵 | The notification toggle is configurable on mobile | P-041 | T088 (1/1 done) | T089 (1/1 done) | `settings.spec.js` | 🟢 OK |
 | US-10.4 | `AC-10.4.2` | Settings persist across a restart | P-041 | T088 (1/1 done) | T089 (1/1 done) | `settings.spec.js` | 🟢 OK |
 | US-10.4 | `AC-10.4.3` 🖵 | A Credits view reachable from Settings lists every bundled asset and its licence | P-041 | T088 (1/1 done) | T089 (1/1 done) | `settings.spec.js` | 🟢 OK |
+| US-11.1 | `AC-11.1.1` 🖵 | A shown result focuses its primary next action | P-051 | T118 (1/1 done) | T119 (1/1 done) | `keyboardSession.test.js`, `keyboardNav.spec.js` | 🟢 OK |
+| US-11.1 | `AC-11.1.2/1` 🖵 | A single-choice question focuses its first answer button | P-051 | T118 (1/1 done) | T119 (1/1 done) | `keyboardSession.test.js`, `keyboardNav.spec.js` | 🟢 OK |
+| US-11.1 | `AC-11.1.2/2` 🖵 | A sequence question focuses its first option button | P-051 | T118 (1/1 done) | T119 (1/1 done) | `keyboardSession.test.js` | 🟢 OK |
+| US-11.1 | `AC-11.1.2/3` 🖵 | A combined quality-and-inversion question focuses its first quality button | P-051 | T118 (1/1 done) | T119 (1/1 done) | `keyboardSession.test.js` | 🟢 OK |
+| US-11.1 | `AC-11.1.3/1` 🖵 | The first screen after load has focus on a control | P-051 | T118 (1/1 done) | T119 (1/1 done) | `focusNav.test.js`, `keyboardNav.spec.js` | 🟢 OK |
+| US-11.1 | `AC-11.1.3/2` 🖵 | A re-render that removes the focused control moves focus to that screen's primary control | P-051 | T118 (1/1 done) | T119 (1/1 done) | `focusNav.test.js` | 🟢 OK |
+| US-11.1 | `AC-11.1.3/3` 🖵 | Navigating to another screen moves focus to that screen's primary control | P-051 | T118 (1/1 done) | T119 (1/1 done) | `focusNav.test.js`, `keyboardSession.test.js` | 🟢 OK |
+| US-11.1 | `AC-11.1.4/1` 🖵 | An opened dialog focuses its primary action | P-051 | T118 (1/1 done) | T119 (1/1 done) | `focusNav.test.js`, `keyboardSession.test.js` | 🟢 OK |
+| US-11.1 | `AC-11.1.4/2` 🖵 | Arrow keys inside an open dialog never focus a control outside it | P-051 | T118 (1/1 done) | T119 (1/1 done) | `focusNav.test.js` | 🟢 OK |
+| US-11.1 | `AC-11.1.5` 🖵 | Focus never moves while the learner is already using a screen | P-051 | T118 (1/1 done) | T119 (1/1 done) | `focusNav.test.js` | 🟢 OK |
+| US-11.2 | `AC-11.2.1/1` 🖵 | The focus indicator is drawn on plain `:focus`, not gated behind `:focus-visible` | P-052 | T120 (1/1 done) | T121 (1/1 done) | `focusNav.test.js` | 🟢 OK |
+| US-11.2 | `AC-11.2.1/2` 🖵 | The focus indicator is at least 3 px thick and offset clear of the control's edge | P-052 | T120 (1/1 done) | T121 (1/1 done) | `focusNav.test.js`, `keyboardNav.spec.js` | 🟢 OK |
+| US-11.2 | `AC-11.2.1/3` 🖵 | No rule anywhere removes the focus outline | P-052 | T120 (1/1 done) | T121 (1/1 done) | `focusNav.test.js` | 🟢 OK |
+| US-11.2 | `AC-11.2.2` 🖵 | A control that already carries an outline still shows its focus indicator | P-052 | T120 (1/1 done) | T121 (1/1 done) | `focusNav.test.js`, `keyboardNav.spec.js` | 🟢 OK |
+| US-11.3 | `AC-11.3.1/1` 🖵 | Right and Left move along a row of answer choices | P-053 | T122 (1/1 done) | T123 (1/1 done) | `focusNav.test.js`, `keyboardNav.spec.js` | 🟢 OK |
+| US-11.3 | `AC-11.3.1/2` 🖵 | Down and Up move between rows of the answer grid, keeping the column | P-053 | T122 (1/1 done) | T123 (1/1 done) | `focusNav.test.js`, `keyboardNav.spec.js` | 🟢 OK |
+| US-11.3 | `AC-11.3.1/3` 🖵 | Arrows move out of a group of choices to the controls around it | P-053 | T122 (1/1 done) | T123 (1/1 done) | `focusNav.test.js`, `keyboardNav.spec.js` | 🟢 OK |
+| US-11.3 | `AC-11.3.1/4` 🖵 | An arrow with no control in that direction leaves focus where it is | P-053 | T122 (1/1 done) | T123 (1/1 done) | `focusNav.test.js`, `keyboardNav.spec.js` | 🟢 OK |
+| US-11.3 | `AC-11.3.2` 🖵 | Enter activates the focused control | P-053 | T122 (1/1 done) | T123 (1/1 done) | `focusNav.test.js`, `keyboardNav.spec.js` | 🟢 OK |
+| US-11.3 | `AC-11.3.3` 🖵 | A key the app handles does not scroll the page | P-053 | T122 (1/1 done) | T123 (1/1 done) | `focusNav.test.js`, `keyboardNav.spec.js` | 🟢 OK |
+| US-11.3 | `AC-11.3.4/1` 🖵 | Escape closes the mastery dialog and the session continues | P-053 | T122 (1/1 done) | T123 (1/1 done) | `focusNav.test.js`, `keyboardSession.test.js` | 🟢 OK |
+| US-11.3 | `AC-11.3.4/2` 🖵 | Escape closes the session summary and returns to the menu | P-053 | T122 (1/1 done) | T123 (1/1 done) | `keyboardSession.test.js` | 🟢 OK |
+| US-11.3 | `AC-11.3.4/3` 🖵 | Escape closes the guidance panel | P-053 | T122 (1/1 done) | T123 (1/1 done) | `keyboardSession.test.js` | 🟢 OK |
+| US-11.3 | `AC-11.3.5/1` 🖵 | Escape in a session returns to that level's screen and ends the session | P-053 | T122 (1/1 done) | T123 (1/1 done) | `focusNav.test.js`, `keyboardNav.spec.js` | 🟢 OK |
+| US-11.3 | `AC-11.3.5/2` 🖵 | Escape on a level screen returns to the home map | P-053 | T122 (1/1 done) | T123 (1/1 done) | `focusNav.test.js`, `keyboardNav.spec.js` | 🟢 OK |
+| US-11.3 | `AC-11.3.5/3` 🖵 | Escape on the reference, stats, settings and credits screens returns to the screen that opens them | P-053 | T122 (1/1 done) | T123 (1/1 done) | `focusNav.test.js`, `keyboardNav.spec.js` | 🟢 OK |
+| US-11.3 | `AC-11.3.5/4` 🖵 | Escape on the home map does nothing | P-053 | T122 (1/1 done) | T123 (1/1 done) | `focusNav.test.js`, `keyboardNav.spec.js` | 🟢 OK |
+| US-11.3 | `AC-11.3.6` 🖵 | Arrow keys inside a value control still change its value | P-053 | T122 (1/1 done) | T123 (1/1 done) | `focusNav.test.js`, `keyboardNav.spec.js` | 🟢 OK |
+| US-11.3 | `AC-11.3.7` 🖵 | Pointer and touch activation are unchanged | P-053 | T122 (1/1 done) | T123 (1/1 done) | `keyboardNav.spec.js` | 🟢 OK |

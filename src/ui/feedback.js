@@ -31,7 +31,8 @@ export function renderFeedback(container, { session, track, settings, onNext }) 
     } }, 'Hear correct vs. yours'));
     panel.append(controls, labels);
   } else panel.append(controls);
-  panel.append(h('button', { class: 'btn primary', 'data-action': 'next', onClick: onNext }, 'Next'));
+  // Next is what OK presses once a result is up (AC-11.1.1).
+  panel.append(h('button', { class: 'btn primary', 'data-action': 'next', 'data-autofocus': '', onClick: onNext }, 'Next'));
 
   if (q.trackId === 'intervals') {
     const { intervalId, presentation } = parseIntervalItem(q.itemId);

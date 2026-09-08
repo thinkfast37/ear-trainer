@@ -31,7 +31,8 @@ export function renderSequenceInput(container, { options, labelFor, model, onSub
     if (model.cursor === null) seq.append(h('span', { class: 'tok cursor', 'data-role': 'end-cursor', 'aria-hidden': 'true' }, '▏'));
     submit.disabled = disabled || model.length() === 0;
   };
-  for (const id of options) grid.append(h('button', { class: 'btn', 'data-option': id, disabled, onClick: () => { model.add(id); draw(); } }, labelFor(id)));
+  // The first option is where a D-pad starts on a sequence question (AC-11.1.2/2).
+  options.forEach((id, i) => grid.append(h('button', { class: 'btn', 'data-option': id, 'data-autofocus': i === 0 && !disabled ? '' : null, disabled, onClick: () => { model.add(id); draw(); } }, labelFor(id))));
   controls.append(
     h('button', { class: 'btn', 'data-action': 'delete-last', disabled, onClick: () => { model.deleteLast(); draw(); } }, 'Delete last'),
     h('button', { class: 'btn', 'data-action': 'clear-all', disabled, onClick: () => { model.clear(); draw(); } }, 'Clear all'),

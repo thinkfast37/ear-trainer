@@ -324,6 +324,58 @@ renumber the MVP section above.)*
   (unchanged AC-9.2.2/1–2 still pass — the deferral must not swallow the ordinary message).
   Proves AC-9.2.2/3–4.
 
+- [X] T118 [US11.1] Focus lands on the next action (P-051): new `src/ui/focusNav.js` (D-015 — the
+  navigator, installed once over the frame: a `MutationObserver` restores focus whenever a render
+  leaves it on `document.body`, choosing the control a screen marks `data-autofocus`, else the
+  screen's first control, else the top bar; an open `.modal-overlay` becomes the whole focus and
+  navigation scope, which is what traps a dialog); `src/main.js` (installs it, and now holds the
+  session screen so it can be unmounted); `src/ui/session.js` (`unmount()` removes the
+  `visibilitychange` listener — leaving by Back is an ordinary exit now, and only the End path ran
+  `stop()`); `data-autofocus` markers on the control each screen wants pressed next —
+  `src/ui/answerGrid.js` (first answer, first quality), `src/ui/sequenceInput.js` (first option),
+  `src/ui/feedback.js` (Next), `src/ui/levelScreen.js` (Start), `src/ui/homeMap.js` (first level
+  node that is not locked), `src/ui/celebration.js` and `src/ui/sessionSummary.js` (the dialog's
+  primary action), `src/ui/guidance.js`. Implements AC-11.1.1, AC-11.1.2/1–3, AC-11.1.3/1–3,
+  AC-11.1.4/1–2, AC-11.1.5 (2026-09-08).
+- [X] T119 [US11.1] Tests for US-11.1, verbatim-named per Case: `tests/unit/ui/focusNav.test.js`
+  (AC-11.1.3/1–3, AC-11.1.4/1–2, AC-11.1.5 — DOM-capable, with stated geometry since jsdom lays
+  nothing out) and `tests/unit/ui/keyboardSession.test.js` (AC-11.1.1, AC-11.1.2/1–3,
+  AC-11.1.4/1 through the real session, level and home renderers inside a real frame);
+  `tests/e2e/keyboardNav.spec.js` (AC-11.1.1, AC-11.1.2/1, AC-11.1.3/1 in a real browser, and a
+  question answered and advanced with no pointer at all). Proves AC-11.1.1–AC-11.1.5 (2026-09-08).
+- [X] T120 [US11.2] Visible focus indicator (P-052): `src/styles.css` — `--focus`/`--focus-width`/
+  `--focus-offset`, a plain `:focus` rule (never `:focus-visible`: a TV browser whose remote
+  presents as a pointer would suppress the ring exactly where it is needed) covering `.btn`,
+  `.node`, `a`, `select`, `input`, `textarea` and anything with a `tabindex`; `.btn.selected` and
+  `.seq .tok.cursor` move their marks from `outline` to an inset `box-shadow` so a selected or
+  cursored control can still show that it is the focused one. Implements AC-11.2.1/1–3,
+  AC-11.2.2 (2026-09-08).
+- [X] T121 [US11.2] Tests for US-11.2, verbatim-named per Case: `tests/unit/ui/focusNav.test.js`
+  (AC-11.2.1/1–3, AC-11.2.2 — over the stylesheet's rules with comments stripped, so prose
+  explaining why a rule is absent cannot read as the rule being present) and
+  `tests/e2e/keyboardNav.spec.js` (AC-11.2.1/2, AC-11.2.2 against the computed style of a focused
+  node in a real browser). Proves AC-11.2.1, AC-11.2.2 (2026-09-08).
+- [X] T122 [US11.3] Arrow-key navigation (P-053): `src/ui/focusNav.js` — `pickInDirection`
+  (a pure resolver over plain rects: forward distance plus sideways offset, weighted eight times
+  heavier when the candidate does not overlap the origin's extent on the other axis, which is what
+  keeps a grid column), the `keydown` handler (arrows always `preventDefault` so the page never
+  scrolls, even when focus stays put; Enter clicks only what the browser does not activate itself,
+  so nothing fires twice; Escape/Backspace/GoBack/BrowserBack close the topmost `[data-dismiss]`
+  and otherwise go up), and the value-control exemption that leaves Up/Down to a select or number
+  field and Left/Right to a text caret; `src/app/router.js` — `backPathFor`, the routing table read
+  backwards; `src/main.js` — the Back handler; `data-dismiss` markers on the mastery dialog's
+  "Keep practising", the summary's "Return to menu", the guidance panel's "Got it" and the
+  stopping-point toast's "Dismiss". Implements AC-11.3.1/1–4, AC-11.3.2, AC-11.3.3, AC-11.3.4/1–3,
+  AC-11.3.5/1–4, AC-11.3.6, AC-11.3.7 (2026-09-08).
+- [X] T123 [US11.3] Tests for US-11.3, verbatim-named per Case: `tests/unit/ui/focusNav.test.js`
+  (AC-11.3.1/1–4 over a stated grid layout, AC-11.3.2 for a non-native control, AC-11.3.3,
+  AC-11.3.5/1–4 over `backPathFor`, AC-11.3.6 — DOM-capable) and
+  `tests/unit/ui/keyboardSession.test.js` (AC-11.3.4/1–3 against the real dialogs and panel);
+  `tests/e2e/keyboardNav.spec.js` (AC-11.3.1/1–4 against the browser's own grid layout at both
+  viewports, AC-11.3.2 activating a real button exactly once, AC-11.3.3, AC-11.3.5/1–4 as real
+  navigations, AC-11.3.6 with a select's value actually stepping, AC-11.3.7 driving the same flow
+  by tap). Proves AC-11.3.1–AC-11.3.7 (2026-09-08).
+
 ---
 
 ## Dependencies & Execution Order
@@ -335,6 +387,7 @@ renumber the MVP section above.)*
 - Epic 9 needs the tracks and mastery; Epic 10 needs everything for parity tests.
 - Within a story: the test task is written with the implementation task; tests fail first.
 - Post-MVP presentation tiers (2026-08-18): T101 (data) → T102 (engine/UI) and T103 (storage) → T104–T106 (tests, written alongside; the renamed titles fail T5/T7 until they exist).
+- Post-MVP keyboard navigation (2026-09-08): T118 (the navigator and the `data-autofocus` markers) → T120 (the focus ring) and T122 (arrows, Enter, Back) → T119/T121/T123 (tests, written alongside).
 
 ## Parallel Opportunities
 

@@ -154,6 +154,9 @@ that carry the verbatim-titled tests. `—` in the AC column marks infrastructur
 | **P-048** | US-10.3 — Progress reset at the presentation-tier restructure (post-MVP, D-007 amendment) | AC-10.3.4 | T103 | T106 |
 | **P-049** | US-9.3 — Mastery dialog and stopping-point visibility (post-MVP) | AC-9.3.2, AC-9.3.4, AC-2.6.2, AC-9.2.2 | T107, T113, T114 | T108, T116, T117 |
 | **P-050** | US-2.6 — End-of-session progress summary (post-MVP) | AC-2.6.3 | T112 | T115 |
+| **P-051** | US-11.1 — Focus lands on the next action (post-MVP) | AC-11.1.1–AC-11.1.5 | T118 | T119 |
+| **P-052** | US-11.2 — Visible focus indicator (post-MVP) | AC-11.2.1–AC-11.2.2 | T120 | T121 |
+| **P-053** | US-11.3 — Arrow-key navigation (post-MVP) | AC-11.3.1–AC-11.3.7 | T122 | T123 |
 
 ## Complexity Tracking
 

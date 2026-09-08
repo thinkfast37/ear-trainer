@@ -195,3 +195,36 @@ backgrounded case); the session record's `startedAt`/`endedAt` span (same wall-c
 session at a time); an idle cap short enough to be a pure "answering time" measure (a learner
 legitimately thinking about a hard melodic dictation for 40 seconds is practising, and a cap
 below that punishes the levels that need it most).
+
+## D-015 — Directional focus navigation is geometric and installed once, not wired per screen
+
+**Decision** (2026-09-08, US-11.1–US-11.3): one module, `src/ui/focusNav.js`, installed at the
+composition root over the whole app frame. It resolves an arrow press by measuring the live
+bounding boxes of the currently focusable elements and picking the nearest one in that
+direction, rather than by any per-screen key map or `tabindex` ordering. A `MutationObserver`
+on the frame restores focus whenever a render leaves it on `document.body`, choosing the
+element a screen marks `data-autofocus` and otherwise the first focusable one.
+
+Screens participate by adding a single `data-autofocus` attribute to the control that should be
+pressed next. No screen registers key handlers, neighbour tables, or focus calls of its own.
+
+**Why**: the app has about twelve screens whose controls are built by ten renderers, several of
+which lay out in a CSS grid whose column count is a `auto-fill` function of viewport width. A
+declared neighbour map would have to be rebuilt by every renderer and would be wrong at the
+first breakpoint; reading geometry is correct by construction at any width, and is the one
+approach that needs nothing from a screen that has not thought about the D-pad. Restoring focus
+from a mutation, rather than from each renderer, is what makes "focus is never lost"
+(AC-11.1.3) a property of the app instead of a checklist item every future screen can miss.
+
+This is input, not layout: no branch on platform, form factor, or user-agent (D-008,
+Constitution VI). The same handlers ship to phone, tablet, desktop and TV, and pointer and
+touch paths are untouched (AC-11.3.7).
+
+**Rejected**: a roving-`tabindex` widget pattern per screen (correct for a single listbox, but
+it is per-widget bookkeeping across ten renderers and says nothing about moving *between*
+widgets, which is most of what a D-pad does); relying on Tab order alone (a TV remote has no
+Tab, and the AC asks for movement that matches the visual layout, which document order does not
+in a wrapped grid); a third-party spatial-navigation library (Constitution V — the app ships
+offline and self-contained, and the whole resolver is about sixty lines); listening for TV
+manufacturer key codes (the Hisense browser reports standard `ArrowUp`/`Enter`; a
+vendor-specific table would be untestable here and is exactly the platform branch VI forbids).

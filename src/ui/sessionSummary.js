@@ -16,7 +16,7 @@ export function renderSessionSummary(container, { trackName, levelNo, presentati
     masteryProgressPanel({ evaluation, itemCount, presentation: null }),
     h('div', { 'data-role': 'saved-note' }, 'Your progress is saved. This level picks up exactly where you left off.'),
     h('div', { class: 'row modal-actions' },
-      h('button', { class: 'btn primary', 'data-action': 'summary-close', onClick: onClose }, 'Return to menu'),
+      h('button', { class: 'btn primary', 'data-action': 'summary-close', 'data-autofocus': '', 'data-dismiss': '', onClick: onClose }, 'Return to menu'),
     ),
   );
   const overlay = h('div', { class: 'modal-overlay', 'data-role': 'session-summary-dialog' }, card);
