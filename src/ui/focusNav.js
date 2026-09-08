@@ -136,7 +136,11 @@ export function installFocusNav({ frame, content, onBack, doc = document }) {
   function restoreFocus() {
     const active = doc.activeElement;
     if (active && active !== doc.body && focusScope().contains(active)) return;
-    preferred()?.focus();
+    // `preventScroll` because nobody asked for this focus: a render placed it. Without it,
+    // focusing a primary action that sits below the fold — Next, under the anchor panel on a
+    // phone — scrolls the page on every result, which is a change no pointer user asked for
+    // (AC-9.2.2/2). Deliberate arrow movement in `move()` scrolls normally, as it should.
+    preferred()?.focus({ preventScroll: true });
   }
 
   function move(direction) {

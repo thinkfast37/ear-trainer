@@ -324,7 +324,39 @@ renumber the MVP section above.)*
   (unchanged AC-9.2.2/1–2 still pass — the deferral must not swallow the ordinary message).
   Proves AC-9.2.2/3–4.
 
-- [X] T118 [US11.1] Focus lands on the next action (P-051): new `src/ui/focusNav.js` (D-015 — the
+- [X] T118 [US3.4] Direction-scoped anchor data and the cue gate (P-051): `src/data/anchors.json`
+  restructured from one mixed list per interval to `{ "asc": [...], "desc": [...] }`, direction
+  now the key and no longer a field on the entry (a field could disagree with how the entry was
+  shown, and did); optional `notes` field carrying the pitch pair. `tools/validate-data.mjs` —
+  `validateAnchors` checks 1–5 entries per direction, rejects a stray `direction` field, and the
+  new exported `cueIsSpecific` rejects a cue naming neither quoted words, pitch letters nor
+  counted note positions (AC-3.4.7); `specs/001-ear-trainer/data-model.md` and Appendix B of
+  `spec.md` updated to the new shape. Content: the ascending minor 3rd is cued "don't"→"make"
+  and the descending one "Hey"→"Jude" (the reported bug — one *Hey Jude* entry was serving both
+  directions with the descending cue); dated or unfindable references replaced from research
+  (Star Wars m6/m7 ascending, Bohemian Rhapsody m6/m7 descending and M6 ascending, Song of
+  Storms and Super Mario M6 ascending, Wonderwall M2 descending, Perfect M2/m3/M3 ascending,
+  Here Comes the Sun M3 descending, Hedwig's Theme P4 both directions, Clocks P5 ascending,
+  My Heart Will Go On P8 descending); the `Superman theme` M7 entry **deleted** — the fanfare
+  outlines a perfect 5th then a 4th and contains no major 7th, so the entry asserted an interval
+  the piece does not have. Implements AC-3.4.2, AC-3.4.7 (2026-09-08).
+- [X] T119 [US3.4] Direction-scoped anchor display and wrong-answer comparison (P-051):
+  `src/ui/anchors.js` — `anchorsFor` returns only the asked direction's entries, direction word
+  derived from the key, panel carries `data-direction` and `data-anchor-role`, entries render
+  their pitch pair and state their direction in words; `src/ui/feedback.js` — the anchor panel
+  moved **above** the Next control (rendered after it, it sat below the fold on a phone and was
+  never seen — AC-3.4.1/3) and, on a wrong single-interval answer, the chosen interval's anchors
+  render beside the correct one's, labelled "You chose — …" (AC-3.4.6); `src/ui/reference.js` —
+  the browse view lists both directions per interval, since browsing is not tied to a question.
+  Implements AC-3.4.1/3, AC-3.4.2, AC-3.4.6 (2026-09-08).
+- [X] T120 [US3.4] Tests for T118, verbatim-named per Case: `tests/unit/data/anchors.test.js`
+  (AC-3.4.7 — every shipped cue names notes or words, plus the rejections the gate exists for;
+  both directions populated for every simple interval; the *Hey Jude* cues). Proves AC-3.4.7.
+- [X] T121 [US3.4] Tests for T119, verbatim-named per Case: `tests/unit/ui/anchors.test.js`
+  (AC-3.4.1/1–3, AC-3.4.2/1–3, AC-3.4.6/1–3 — DOM-capable), `tests/e2e/reference.spec.js`
+  (AC-3.4.3 unchanged, now asserting a panel per direction). Proves AC-3.4.1, AC-3.4.2,
+  AC-3.4.6.
+- [X] T122 [US11.1] Focus lands on the next action (P-052): new `src/ui/focusNav.js` (D-015 — the
   navigator, installed once over the frame: a `MutationObserver` restores focus whenever a render
   leaves it on `document.body`, choosing the control a screen marks `data-autofocus`, else the
   screen's first control, else the top bar; an open `.modal-overlay` becomes the whole focus and
@@ -335,27 +367,31 @@ renumber the MVP section above.)*
   `src/ui/answerGrid.js` (first answer, first quality), `src/ui/sequenceInput.js` (first option),
   `src/ui/feedback.js` (Next), `src/ui/levelScreen.js` (Start), `src/ui/homeMap.js` (first level
   node that is not locked), `src/ui/celebration.js` and `src/ui/sessionSummary.js` (the dialog's
-  primary action), `src/ui/guidance.js`. Implements AC-11.1.1, AC-11.1.2/1–3, AC-11.1.3/1–3,
-  AC-11.1.4/1–2, AC-11.1.5 (2026-09-08).
-- [X] T119 [US11.1] Tests for US-11.1, verbatim-named per Case: `tests/unit/ui/focusNav.test.js`
+  primary action), `src/ui/guidance.js`. Restoration focuses with `preventScroll` — nobody asked
+  for that focus, a render placed it, and without it focusing a primary action below the fold
+  (Next, under T119's anchor panel on a phone) scrolls the page on every result, which the
+  AC-9.2.2/2 e2e test caught on the merge with T118/T119. Deliberate arrow movement scrolls
+  normally. Implements AC-11.1.1, AC-11.1.2/1–3, AC-11.1.3/1–3, AC-11.1.4/1–2,
+  AC-11.1.5 (2026-09-08).
+- [X] T123 [US11.1] Tests for US-11.1, verbatim-named per Case: `tests/unit/ui/focusNav.test.js`
   (AC-11.1.3/1–3, AC-11.1.4/1–2, AC-11.1.5 — DOM-capable, with stated geometry since jsdom lays
   nothing out) and `tests/unit/ui/keyboardSession.test.js` (AC-11.1.1, AC-11.1.2/1–3,
   AC-11.1.4/1 through the real session, level and home renderers inside a real frame);
   `tests/e2e/keyboardNav.spec.js` (AC-11.1.1, AC-11.1.2/1, AC-11.1.3/1 in a real browser, and a
   question answered and advanced with no pointer at all). Proves AC-11.1.1–AC-11.1.5 (2026-09-08).
-- [X] T120 [US11.2] Visible focus indicator (P-052): `src/styles.css` — `--focus`/`--focus-width`/
+- [X] T124 [US11.2] Visible focus indicator (P-053): `src/styles.css` — `--focus`/`--focus-width`/
   `--focus-offset`, a plain `:focus` rule (never `:focus-visible`: a TV browser whose remote
   presents as a pointer would suppress the ring exactly where it is needed) covering `.btn`,
   `.node`, `a`, `select`, `input`, `textarea` and anything with a `tabindex`; `.btn.selected` and
   `.seq .tok.cursor` move their marks from `outline` to an inset `box-shadow` so a selected or
   cursored control can still show that it is the focused one. Implements AC-11.2.1/1–3,
   AC-11.2.2 (2026-09-08).
-- [X] T121 [US11.2] Tests for US-11.2, verbatim-named per Case: `tests/unit/ui/focusNav.test.js`
+- [X] T125 [US11.2] Tests for US-11.2, verbatim-named per Case: `tests/unit/ui/focusNav.test.js`
   (AC-11.2.1/1–3, AC-11.2.2 — over the stylesheet's rules with comments stripped, so prose
   explaining why a rule is absent cannot read as the rule being present) and
   `tests/e2e/keyboardNav.spec.js` (AC-11.2.1/2, AC-11.2.2 against the computed style of a focused
   node in a real browser). Proves AC-11.2.1, AC-11.2.2 (2026-09-08).
-- [X] T122 [US11.3] Arrow-key navigation (P-053): `src/ui/focusNav.js` — `pickInDirection`
+- [X] T126 [US11.3] Arrow-key navigation (P-054): `src/ui/focusNav.js` — `pickInDirection`
   (a pure resolver over plain rects: forward distance plus sideways offset, weighted eight times
   heavier when the candidate does not overlap the origin's extent on the other axis, which is what
   keeps a grid column), the `keydown` handler (arrows always `preventDefault` so the page never
@@ -367,7 +403,7 @@ renumber the MVP section above.)*
   "Keep practising", the summary's "Return to menu", the guidance panel's "Got it" and the
   stopping-point toast's "Dismiss". Implements AC-11.3.1/1–4, AC-11.3.2, AC-11.3.3, AC-11.3.4/1–3,
   AC-11.3.5/1–4, AC-11.3.6, AC-11.3.7 (2026-09-08).
-- [X] T123 [US11.3] Tests for US-11.3, verbatim-named per Case: `tests/unit/ui/focusNav.test.js`
+- [X] T127 [US11.3] Tests for US-11.3, verbatim-named per Case: `tests/unit/ui/focusNav.test.js`
   (AC-11.3.1/1–4 over a stated grid layout, AC-11.3.2 for a non-native control, AC-11.3.3,
   AC-11.3.5/1–4 over `backPathFor`, AC-11.3.6 — DOM-capable) and
   `tests/unit/ui/keyboardSession.test.js` (AC-11.3.4/1–3 against the real dialogs and panel);
@@ -387,7 +423,7 @@ renumber the MVP section above.)*
 - Epic 9 needs the tracks and mastery; Epic 10 needs everything for parity tests.
 - Within a story: the test task is written with the implementation task; tests fail first.
 - Post-MVP presentation tiers (2026-08-18): T101 (data) → T102 (engine/UI) and T103 (storage) → T104–T106 (tests, written alongside; the renamed titles fail T5/T7 until they exist).
-- Post-MVP keyboard navigation (2026-09-08): T118 (the navigator and the `data-autofocus` markers) → T120 (the focus ring) and T122 (arrows, Enter, Back) → T119/T121/T123 (tests, written alongside).
+- Post-MVP keyboard navigation (2026-09-08): T122 (the navigator and the `data-autofocus` markers) → T124 (the focus ring) and T126 (arrows, Enter, Back) → T123/T125/T127 (tests, written alongside).
 
 ## Parallel Opportunities
 

@@ -14,13 +14,13 @@
 -->
 
 **Feature**: specs/001-ear-trainer/spec.md
-**Criteria**: 310 across 42 User Stories
+**Criteria**: 317 across 42 User Stories
 
-**Coverage**: 310 of 310 criteria proven (100.0%)
+**Coverage**: 317 of 317 criteria proven (100.0%)
 
 | | Criteria | Share |
 |---|---|---|
-| 🟢 Proven | 310 | 100.0% |
+| 🟢 Proven | 317 | 100.0% |
 
 A row is one *criterion*: an Acceptance Criterion that asserts one thing, or one Case of
 an AC that asserts several. 🖵 marks a criterion that describes something a person sees or
@@ -67,7 +67,7 @@ fail the build, and it is outstanding work — never a settled decision.
 | 🟢 US-3.1 | 19 | **19** | · | · | · | · | · |
 | 🟢 US-3.2 | 8 | **8** | · | · | · | · | · |
 | 🟢 US-3.3 | 3 | **3** | · | · | · | · | · |
-| 🟢 US-3.4 | 7 | **7** | · | · | · | · | · |
+| 🟢 US-3.4 | 14 | **14** | · | · | · | · | · |
 | 🟢 US-4.1 | 4 | **4** | · | · | · | · | · |
 | 🟢 US-4.2 | 7 | **7** | · | · | · | · | · |
 | 🟢 US-4.3 | 2 | **2** | · | · | · | · | · |
@@ -190,13 +190,20 @@ fail the build, and it is outstanding work — never a settled decision.
 | US-3.3 | `AC-3.3.1/1` 🖵 | Only the level 3 interval buttons P8, P5, M3, m3, P4 are shown | P-016 | T038 (1/1 done) | T039 (1/1 done) | `intervalGrid.spec.js` | 🟢 OK |
 | US-3.3 | `AC-3.3.1/2` 🖵 | Each interval answer touch target is at least 44 px | P-016 | T038 (1/1 done) | T039 (1/1 done) | `intervalGrid.spec.js` | 🟢 OK |
 | US-3.3 | `AC-3.3.2` 🖵 | The label setting switches interval buttons to full names | P-016 | T038 (1/1 done) | T039 (1/1 done) | `intervalGrid.spec.js` | 🟢 OK |
-| US-3.4 | `AC-3.4.1/1` 🖵 | Up to five anchor songs for the correct interval are shown | P-017 | T040 (1/1 done) | T041 (1/1 done) | `anchors.test.js` | 🟢 OK |
-| US-3.4 | `AC-3.4.1/2` 🖵 | Each anchor entry shows the song title and its lyric or motif cue | P-017 | T040 (1/1 done) | T041 (1/1 done) | `anchors.test.js` | 🟢 OK |
-| US-3.4 | `AC-3.4.2` | Descending anchors are listed first for descending questions | P-017 | T040 (1/1 done) | T041 (1/1 done) | `anchors.test.js` | 🟢 OK |
+| US-3.4 | `AC-3.4.1/1` 🖵 | Up to five anchor songs for the correct interval are shown | P-017, P-051 | T040, T118, T119 (3/3 done) | T041, T120, T121 (3/3 done) | `anchors.test.js` | 🟢 OK |
+| US-3.4 | `AC-3.4.1/2` 🖵 | Each anchor entry shows the song title and its lyric or motif cue | P-017, P-051 | T040, T118, T119 (3/3 done) | T041, T120, T121 (3/3 done) | `anchors.test.js` | 🟢 OK |
+| US-3.4 | `AC-3.4.1/3` 🖵 | The anchor list appears above the Next control | P-017, P-051 | T040, T118, T119 (3/3 done) | T041, T120, T121 (3/3 done) | `anchors.test.js` | 🟢 OK |
+| US-3.4 | `AC-3.4.2/1` 🖵 | An ascending question shows only ascending anchors | P-017, P-051 | T040, T118, T119 (3/3 done) | T041, T120, T121 (3/3 done) | `anchors.test.js` | 🟢 OK |
+| US-3.4 | `AC-3.4.2/2` 🖵 | A descending question shows only descending anchors | P-017, P-051 | T040, T118, T119 (3/3 done) | T041, T120, T121 (3/3 done) | `anchors.test.js` | 🟢 OK |
+| US-3.4 | `AC-3.4.2/3` 🖵 | Each anchor entry states its direction in words | P-017, P-051 | T040, T118, T119 (3/3 done) | T041, T120, T121 (3/3 done) | `anchors.test.js` | 🟢 OK |
 | US-3.4 | `AC-3.4.3` 🖵 | Anchor songs are browsable without starting a session | P-017 | T040 (1/1 done) | T041 (1/1 done) | `reference.spec.js` | 🟢 OK |
 | US-3.4 | `AC-3.4.4/1` 🖵 | Compound feedback shows the octave plus simple interval decomposition with the simple anchors | P-017 | T040 (1/1 done) | T041 (1/1 done) | `anchors.test.js` | 🟢 OK |
 | US-3.4 | `AC-3.4.4/2` 🖵 | Compound feedback shows any known compound-specific examples | P-017 | T040 (1/1 done) | T041 (1/1 done) | `anchors.test.js` | 🟢 OK |
 | US-3.4 | `AC-3.4.5` | Anchor-song data ships as bundled static JSON | P-017 | T040 (1/1 done) | T041 (1/1 done) | `anchorsBundled.test.js` | 🟢 OK |
+| US-3.4 | `AC-3.4.6/1` 🖵 | A wrong answer shows both the correct and the chosen interval's anchors | P-051 | T118, T119 (2/2 done) | T120, T121 (2/2 done) | `anchors.test.js` | 🟢 OK |
+| US-3.4 | `AC-3.4.6/2` 🖵 | Each of the two anchor sets is labelled with its interval | P-051 | T118, T119 (2/2 done) | T120, T121 (2/2 done) | `anchors.test.js` | 🟢 OK |
+| US-3.4 | `AC-3.4.6/3` 🖵 | A correct answer shows only the correct interval's anchors | P-051 | T118, T119 (2/2 done) | T120, T121 (2/2 done) | `anchors.test.js` | 🟢 OK |
+| US-3.4 | `AC-3.4.7` | Every anchor cue names the notes or the words where the interval occurs | P-051 | T118, T119 (2/2 done) | T120, T121 (2/2 done) | `anchors.test.js` | 🟢 OK |
 | US-4.1 | `AC-4.1.1` | A cadence in the question key precedes each scale-degree question | P-018 | T042 (1/1 done) | T043 (1/1 done) | `scaleDegrees.test.js` | 🟢 OK |
 | US-4.1 | `AC-4.1.2` | Keys rotate across a session | P-018 | T042 (1/1 done) | T043 (1/1 done) | `scaleDegrees.test.js` | 🟢 OK |
 | US-4.1 | `AC-4.1.3/1` 🖵 | Tapping re-hear cadence replays the cadence | P-018 | T042 (1/1 done) | T043 (1/1 done) | `scaleDegrees.spec.js` | 🟢 OK |
@@ -383,32 +390,32 @@ fail the build, and it is outstanding work — never a settled decision.
 | US-10.4 | `AC-10.4.1/7` 🖵 | The notification toggle is configurable on mobile | P-041 | T088 (1/1 done) | T089 (1/1 done) | `settings.spec.js` | 🟢 OK |
 | US-10.4 | `AC-10.4.2` | Settings persist across a restart | P-041 | T088 (1/1 done) | T089 (1/1 done) | `settings.spec.js` | 🟢 OK |
 | US-10.4 | `AC-10.4.3` 🖵 | A Credits view reachable from Settings lists every bundled asset and its licence | P-041 | T088 (1/1 done) | T089 (1/1 done) | `settings.spec.js` | 🟢 OK |
-| US-11.1 | `AC-11.1.1` 🖵 | A shown result focuses its primary next action | P-051 | T118 (1/1 done) | T119 (1/1 done) | `keyboardSession.test.js`, `keyboardNav.spec.js` | 🟢 OK |
-| US-11.1 | `AC-11.1.2/1` 🖵 | A single-choice question focuses its first answer button | P-051 | T118 (1/1 done) | T119 (1/1 done) | `keyboardSession.test.js`, `keyboardNav.spec.js` | 🟢 OK |
-| US-11.1 | `AC-11.1.2/2` 🖵 | A sequence question focuses its first option button | P-051 | T118 (1/1 done) | T119 (1/1 done) | `keyboardSession.test.js` | 🟢 OK |
-| US-11.1 | `AC-11.1.2/3` 🖵 | A combined quality-and-inversion question focuses its first quality button | P-051 | T118 (1/1 done) | T119 (1/1 done) | `keyboardSession.test.js` | 🟢 OK |
-| US-11.1 | `AC-11.1.3/1` 🖵 | The first screen after load has focus on a control | P-051 | T118 (1/1 done) | T119 (1/1 done) | `focusNav.test.js`, `keyboardNav.spec.js` | 🟢 OK |
-| US-11.1 | `AC-11.1.3/2` 🖵 | A re-render that removes the focused control moves focus to that screen's primary control | P-051 | T118 (1/1 done) | T119 (1/1 done) | `focusNav.test.js` | 🟢 OK |
-| US-11.1 | `AC-11.1.3/3` 🖵 | Navigating to another screen moves focus to that screen's primary control | P-051 | T118 (1/1 done) | T119 (1/1 done) | `focusNav.test.js`, `keyboardSession.test.js` | 🟢 OK |
-| US-11.1 | `AC-11.1.4/1` 🖵 | An opened dialog focuses its primary action | P-051 | T118 (1/1 done) | T119 (1/1 done) | `focusNav.test.js`, `keyboardSession.test.js` | 🟢 OK |
-| US-11.1 | `AC-11.1.4/2` 🖵 | Arrow keys inside an open dialog never focus a control outside it | P-051 | T118 (1/1 done) | T119 (1/1 done) | `focusNav.test.js` | 🟢 OK |
-| US-11.1 | `AC-11.1.5` 🖵 | Focus never moves while the learner is already using a screen | P-051 | T118 (1/1 done) | T119 (1/1 done) | `focusNav.test.js` | 🟢 OK |
-| US-11.2 | `AC-11.2.1/1` 🖵 | The focus indicator is drawn on plain `:focus`, not gated behind `:focus-visible` | P-052 | T120 (1/1 done) | T121 (1/1 done) | `focusNav.test.js` | 🟢 OK |
-| US-11.2 | `AC-11.2.1/2` 🖵 | The focus indicator is at least 3 px thick and offset clear of the control's edge | P-052 | T120 (1/1 done) | T121 (1/1 done) | `focusNav.test.js`, `keyboardNav.spec.js` | 🟢 OK |
-| US-11.2 | `AC-11.2.1/3` 🖵 | No rule anywhere removes the focus outline | P-052 | T120 (1/1 done) | T121 (1/1 done) | `focusNav.test.js` | 🟢 OK |
-| US-11.2 | `AC-11.2.2` 🖵 | A control that already carries an outline still shows its focus indicator | P-052 | T120 (1/1 done) | T121 (1/1 done) | `focusNav.test.js`, `keyboardNav.spec.js` | 🟢 OK |
-| US-11.3 | `AC-11.3.1/1` 🖵 | Right and Left move along a row of answer choices | P-053 | T122 (1/1 done) | T123 (1/1 done) | `focusNav.test.js`, `keyboardNav.spec.js` | 🟢 OK |
-| US-11.3 | `AC-11.3.1/2` 🖵 | Down and Up move between rows of the answer grid, keeping the column | P-053 | T122 (1/1 done) | T123 (1/1 done) | `focusNav.test.js`, `keyboardNav.spec.js` | 🟢 OK |
-| US-11.3 | `AC-11.3.1/3` 🖵 | Arrows move out of a group of choices to the controls around it | P-053 | T122 (1/1 done) | T123 (1/1 done) | `focusNav.test.js`, `keyboardNav.spec.js` | 🟢 OK |
-| US-11.3 | `AC-11.3.1/4` 🖵 | An arrow with no control in that direction leaves focus where it is | P-053 | T122 (1/1 done) | T123 (1/1 done) | `focusNav.test.js`, `keyboardNav.spec.js` | 🟢 OK |
-| US-11.3 | `AC-11.3.2` 🖵 | Enter activates the focused control | P-053 | T122 (1/1 done) | T123 (1/1 done) | `focusNav.test.js`, `keyboardNav.spec.js` | 🟢 OK |
-| US-11.3 | `AC-11.3.3` 🖵 | A key the app handles does not scroll the page | P-053 | T122 (1/1 done) | T123 (1/1 done) | `focusNav.test.js`, `keyboardNav.spec.js` | 🟢 OK |
-| US-11.3 | `AC-11.3.4/1` 🖵 | Escape closes the mastery dialog and the session continues | P-053 | T122 (1/1 done) | T123 (1/1 done) | `focusNav.test.js`, `keyboardSession.test.js` | 🟢 OK |
-| US-11.3 | `AC-11.3.4/2` 🖵 | Escape closes the session summary and returns to the menu | P-053 | T122 (1/1 done) | T123 (1/1 done) | `keyboardSession.test.js` | 🟢 OK |
-| US-11.3 | `AC-11.3.4/3` 🖵 | Escape closes the guidance panel | P-053 | T122 (1/1 done) | T123 (1/1 done) | `keyboardSession.test.js` | 🟢 OK |
-| US-11.3 | `AC-11.3.5/1` 🖵 | Escape in a session returns to that level's screen and ends the session | P-053 | T122 (1/1 done) | T123 (1/1 done) | `focusNav.test.js`, `keyboardNav.spec.js` | 🟢 OK |
-| US-11.3 | `AC-11.3.5/2` 🖵 | Escape on a level screen returns to the home map | P-053 | T122 (1/1 done) | T123 (1/1 done) | `focusNav.test.js`, `keyboardNav.spec.js` | 🟢 OK |
-| US-11.3 | `AC-11.3.5/3` 🖵 | Escape on the reference, stats, settings and credits screens returns to the screen that opens them | P-053 | T122 (1/1 done) | T123 (1/1 done) | `focusNav.test.js`, `keyboardNav.spec.js` | 🟢 OK |
-| US-11.3 | `AC-11.3.5/4` 🖵 | Escape on the home map does nothing | P-053 | T122 (1/1 done) | T123 (1/1 done) | `focusNav.test.js`, `keyboardNav.spec.js` | 🟢 OK |
-| US-11.3 | `AC-11.3.6` 🖵 | Arrow keys inside a value control still change its value | P-053 | T122 (1/1 done) | T123 (1/1 done) | `focusNav.test.js`, `keyboardNav.spec.js` | 🟢 OK |
-| US-11.3 | `AC-11.3.7` 🖵 | Pointer and touch activation are unchanged | P-053 | T122 (1/1 done) | T123 (1/1 done) | `keyboardNav.spec.js` | 🟢 OK |
+| US-11.1 | `AC-11.1.1` 🖵 | A shown result focuses its primary next action | P-052 | T122 (1/1 done) | T123 (1/1 done) | `keyboardSession.test.js`, `keyboardNav.spec.js` | 🟢 OK |
+| US-11.1 | `AC-11.1.2/1` 🖵 | A single-choice question focuses its first answer button | P-052 | T122 (1/1 done) | T123 (1/1 done) | `keyboardSession.test.js`, `keyboardNav.spec.js` | 🟢 OK |
+| US-11.1 | `AC-11.1.2/2` 🖵 | A sequence question focuses its first option button | P-052 | T122 (1/1 done) | T123 (1/1 done) | `keyboardSession.test.js` | 🟢 OK |
+| US-11.1 | `AC-11.1.2/3` 🖵 | A combined quality-and-inversion question focuses its first quality button | P-052 | T122 (1/1 done) | T123 (1/1 done) | `keyboardSession.test.js` | 🟢 OK |
+| US-11.1 | `AC-11.1.3/1` 🖵 | The first screen after load has focus on a control | P-052 | T122 (1/1 done) | T123 (1/1 done) | `focusNav.test.js`, `keyboardNav.spec.js` | 🟢 OK |
+| US-11.1 | `AC-11.1.3/2` 🖵 | A re-render that removes the focused control moves focus to that screen's primary control | P-052 | T122 (1/1 done) | T123 (1/1 done) | `focusNav.test.js` | 🟢 OK |
+| US-11.1 | `AC-11.1.3/3` 🖵 | Navigating to another screen moves focus to that screen's primary control | P-052 | T122 (1/1 done) | T123 (1/1 done) | `focusNav.test.js`, `keyboardSession.test.js` | 🟢 OK |
+| US-11.1 | `AC-11.1.4/1` 🖵 | An opened dialog focuses its primary action | P-052 | T122 (1/1 done) | T123 (1/1 done) | `focusNav.test.js`, `keyboardSession.test.js` | 🟢 OK |
+| US-11.1 | `AC-11.1.4/2` 🖵 | Arrow keys inside an open dialog never focus a control outside it | P-052 | T122 (1/1 done) | T123 (1/1 done) | `focusNav.test.js` | 🟢 OK |
+| US-11.1 | `AC-11.1.5` 🖵 | Focus never moves while the learner is already using a screen | P-052 | T122 (1/1 done) | T123 (1/1 done) | `focusNav.test.js` | 🟢 OK |
+| US-11.2 | `AC-11.2.1/1` 🖵 | The focus indicator is drawn on plain `:focus`, not gated behind `:focus-visible` | P-053 | T124 (1/1 done) | T125 (1/1 done) | `focusNav.test.js` | 🟢 OK |
+| US-11.2 | `AC-11.2.1/2` 🖵 | The focus indicator is at least 3 px thick and offset clear of the control's edge | P-053 | T124 (1/1 done) | T125 (1/1 done) | `focusNav.test.js`, `keyboardNav.spec.js` | 🟢 OK |
+| US-11.2 | `AC-11.2.1/3` 🖵 | No rule anywhere removes the focus outline | P-053 | T124 (1/1 done) | T125 (1/1 done) | `focusNav.test.js` | 🟢 OK |
+| US-11.2 | `AC-11.2.2` 🖵 | A control that already carries an outline still shows its focus indicator | P-053 | T124 (1/1 done) | T125 (1/1 done) | `focusNav.test.js`, `keyboardNav.spec.js` | 🟢 OK |
+| US-11.3 | `AC-11.3.1/1` 🖵 | Right and Left move along a row of answer choices | P-054 | T126 (1/1 done) | T127 (1/1 done) | `focusNav.test.js`, `keyboardNav.spec.js` | 🟢 OK |
+| US-11.3 | `AC-11.3.1/2` 🖵 | Down and Up move between rows of the answer grid, keeping the column | P-054 | T126 (1/1 done) | T127 (1/1 done) | `focusNav.test.js`, `keyboardNav.spec.js` | 🟢 OK |
+| US-11.3 | `AC-11.3.1/3` 🖵 | Arrows move out of a group of choices to the controls around it | P-054 | T126 (1/1 done) | T127 (1/1 done) | `focusNav.test.js`, `keyboardNav.spec.js` | 🟢 OK |
+| US-11.3 | `AC-11.3.1/4` 🖵 | An arrow with no control in that direction leaves focus where it is | P-054 | T126 (1/1 done) | T127 (1/1 done) | `focusNav.test.js`, `keyboardNav.spec.js` | 🟢 OK |
+| US-11.3 | `AC-11.3.2` 🖵 | Enter activates the focused control | P-054 | T126 (1/1 done) | T127 (1/1 done) | `focusNav.test.js`, `keyboardNav.spec.js` | 🟢 OK |
+| US-11.3 | `AC-11.3.3` 🖵 | A key the app handles does not scroll the page | P-054 | T126 (1/1 done) | T127 (1/1 done) | `focusNav.test.js`, `keyboardNav.spec.js` | 🟢 OK |
+| US-11.3 | `AC-11.3.4/1` 🖵 | Escape closes the mastery dialog and the session continues | P-054 | T126 (1/1 done) | T127 (1/1 done) | `focusNav.test.js`, `keyboardSession.test.js` | 🟢 OK |
+| US-11.3 | `AC-11.3.4/2` 🖵 | Escape closes the session summary and returns to the menu | P-054 | T126 (1/1 done) | T127 (1/1 done) | `keyboardSession.test.js` | 🟢 OK |
+| US-11.3 | `AC-11.3.4/3` 🖵 | Escape closes the guidance panel | P-054 | T126 (1/1 done) | T127 (1/1 done) | `keyboardSession.test.js` | 🟢 OK |
+| US-11.3 | `AC-11.3.5/1` 🖵 | Escape in a session returns to that level's screen and ends the session | P-054 | T126 (1/1 done) | T127 (1/1 done) | `focusNav.test.js`, `keyboardNav.spec.js` | 🟢 OK |
+| US-11.3 | `AC-11.3.5/2` 🖵 | Escape on a level screen returns to the home map | P-054 | T126 (1/1 done) | T127 (1/1 done) | `focusNav.test.js`, `keyboardNav.spec.js` | 🟢 OK |
+| US-11.3 | `AC-11.3.5/3` 🖵 | Escape on the reference, stats, settings and credits screens returns to the screen that opens them | P-054 | T126 (1/1 done) | T127 (1/1 done) | `focusNav.test.js`, `keyboardNav.spec.js` | 🟢 OK |
+| US-11.3 | `AC-11.3.5/4` 🖵 | Escape on the home map does nothing | P-054 | T126 (1/1 done) | T127 (1/1 done) | `focusNav.test.js`, `keyboardNav.spec.js` | 🟢 OK |
+| US-11.3 | `AC-11.3.6` 🖵 | Arrow keys inside a value control still change its value | P-054 | T126 (1/1 done) | T127 (1/1 done) | `focusNav.test.js`, `keyboardNav.spec.js` | 🟢 OK |
+| US-11.3 | `AC-11.3.7` 🖵 | Pointer and touch activation are unchanged | P-054 | T126 (1/1 done) | T127 (1/1 done) | `keyboardNav.spec.js` | 🟢 OK |

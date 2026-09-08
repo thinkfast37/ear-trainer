@@ -97,9 +97,21 @@ Rotations, when `rotations: true`, are generated as items `prog:<id>r<k>:<textur
 ## Anchors (`src/data/anchors.json`)
 
 ```jsonc
-{ "m2": [ { "title": "Jaws theme", "cue": "the two-note motif", "direction": "asc", "playsMotif": true } ],
+{ "m2": { "asc":  [ { "title": "Jaws theme", "cue": "the two-note shark motif", "notes": "E → F", "playsMotif": true } ],
+          "desc": [ { "title": "Für Elise", "cue": "the two alternating opening piano notes", "notes": "E → D♯" } ] },
   "m9": { "simple": "m2", "examples": [ { "title": "…", "cue": "…" } ] } }
 ```
+
+Simple intervals store anchors **per direction** (2026-09-08; was one mixed list with a
+`direction` field on each entry). Direction is the key and never a field: when it was a field,
+an entry's direction could disagree with the direction it was shown for, and it did — an
+ascending minor 3rd showed *Hey Jude* cued at "Hey Jude", the descending one. `validateAnchors`
+rejects a stray `direction` field for that reason.
+
+Each list holds 1–5 entries. `cue` names the words (quoted) or the notes; `tools/validate-data.mjs`
+rejects a cue that names neither (AC-3.4.7). `notes` is the optional pitch pair shown after the
+cue, omitted where the pitches depend on the arrangement's key. `playsMotif` marks entries the
+app can render as a two-note motif on piano.
 
 ## Exercise (in memory; stored on a Question for replay)
 
