@@ -4,12 +4,15 @@ import { h } from './dom.js';
 export function renderAnswerGrid(container, { question, track, settings, onAnswer, disabled = false, selected = null, marks = null }) {
   const grid = h('div', { class: 'grid answer-grid', role: 'group', 'aria-label': 'Answer options' });
   const opts = question.kind === 'qualityInversion' ? question.options : question.options;
+  let first = true;
   for (const id of opts) {
     const cls = ['btn', 'answer'];
     if (selected === id) cls.push('selected');
     if (marks?.correct === id) cls.push('correct');
     if (marks?.incorrect === id) cls.push('incorrect');
-    grid.append(h('button', { class: cls.join(' '), 'data-option': id, disabled, onClick: () => onAnswer(id) }, track.optionLabel(id, settings)));
+    // The first choice is where a D-pad starts on a new question (AC-11.1.2/1).
+    grid.append(h('button', { class: cls.join(' '), 'data-option': id, 'data-autofocus': first && !disabled ? '' : null, disabled, onClick: () => onAnswer(id) }, track.optionLabel(id, settings)));
+    first = false;
   }
   container.append(grid);
   return grid;
@@ -27,7 +30,8 @@ export function renderCombinedGrid(container, { question, track, settings, onAns
     for (const b of iRow.querySelectorAll('button')) b.classList.toggle('selected', b.dataset.inversion === inversion);
     submit.disabled = disabled || !(quality && inversion);
   };
-  for (const q of question.meta.qualities) qRow.append(h('button', { class: 'btn', 'data-quality': q, disabled, onClick: () => { quality = q; refresh(); } }, track.optionLabel(`${q}:inv0`, settings).split(' · ')[0]));
+  // The first quality is where a D-pad starts on a combined question (AC-11.1.2/3).
+  question.meta.qualities.forEach((q, i) => qRow.append(h('button', { class: 'btn', 'data-quality': q, 'data-autofocus': i === 0 && !disabled ? '' : null, disabled, onClick: () => { quality = q; refresh(); } }, track.optionLabel(`${q}:inv0`, settings).split(' · ')[0])));
   for (const i of question.meta.inversions) iRow.append(h('button', { class: 'btn', 'data-inversion': `inv${i}`, disabled, onClick: () => { inversion = `inv${i}`; refresh(); } }, track.optionLabel(`inv${i}`, settings)));
   submit.addEventListener('click', () => onAnswer(`${quality}:${inversion}`));
   wrap.append(h('div', { class: 'muted' }, 'Quality'), qRow, h('div', { class: 'muted' }, 'Inversion'), iRow, submit);

@@ -35,8 +35,9 @@ export function renderMasteryDialog(container, { trackName, levelNo, stats, onMe
       h('li', { 'data-stat': 'weakest' }, stats.weakest ? `Weakest item conquered: ${stats.weakest} (${Math.round(stats.weakestAccuracy * 100)}%)` : 'Weakest item conquered: —'),
     ),
     h('div', { class: 'row modal-actions' },
-      h('button', { class: 'btn primary', 'data-action': 'to-menu', onClick: onMenu }, 'Return to menu'),
-      h('button', { class: 'btn', 'data-action': 'keep-practising', onClick: onKeepPractising }, 'Keep practising'),
+      h('button', { class: 'btn primary', 'data-action': 'to-menu', 'data-autofocus': '', onClick: onMenu }, 'Return to menu'),
+      // Back closes the dialog and leaves the session running (AC-11.3.4/1).
+      h('button', { class: 'btn', 'data-action': 'keep-practising', 'data-dismiss': '', onClick: onKeepPractising }, 'Keep practising'),
     ),
   );
   const overlay = h('div', { class: 'modal-overlay', 'data-role': 'mastery-dialog' }, card);

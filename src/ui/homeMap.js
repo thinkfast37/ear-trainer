@@ -24,6 +24,8 @@ export function renderHomeMap(container, { store, tracks, go, now = () => Date.n
 
   const map = h('div', { class: 'map', 'data-role': 'map' });
   const nodeEls = {};
+  // A D-pad starts on the first level it can actually open, not on a locked one (AC-11.1.3/3).
+  let autofocusNode = null;
   for (const tid of TRACK_ORDER) {
     const track = tracks.byId[tid];
     const def = defs[tid];
@@ -42,6 +44,7 @@ export function renderHomeMap(container, { store, tracks, go, now = () => Date.n
         if (state === 'locked') onLocked?.(levelUnlockCondition(progress, def, lvl.no, defs), sec);
         else go(`/level/${tid}/${lvl.no}`);
       } }, String(lvl.no));
+      if (!autofocusNode && state !== 'locked') { autofocusNode = btn; btn.setAttribute('data-autofocus', ''); }
       nodes.append(btn);
       nodeEls[`${tid}:${lvl.no}`] = btn;
     }

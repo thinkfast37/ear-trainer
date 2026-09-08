@@ -47,7 +47,7 @@ export function renderGuidance(container, { store, trackId, onDismiss = null }) 
   const panel = h('div', { class: 'card guidance', role: 'note', 'data-role': 'guidance', 'data-track': trackId },
     h('h3', {}, g.title),
     ...g.lines.map((t) => h('p', {}, t)),
-    h('button', { class: 'btn', 'data-action': 'dismiss-guidance', onClick: () => { dismissGuidance(store, trackId); replace(container); onDismiss?.(); } }, 'Got it'),
+    h('button', { class: 'btn', 'data-action': 'dismiss-guidance', 'data-autofocus': '', 'data-dismiss': '', onClick: () => { dismissGuidance(store, trackId); replace(container); onDismiss?.(); } }, 'Got it'),
   );
   replace(container, panel);
   return panel;

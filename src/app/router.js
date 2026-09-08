@@ -17,3 +17,24 @@ export function createRouter(win, onRoute) {
     stop() { win.removeEventListener('hashchange', handler); },
   };
 }
+
+/**
+ * Where a Back/Escape press goes from `route` when nothing is open (AC-11.3.5): one screen up,
+ * and nowhere from the home map. Kept beside the parser because it is the routing table read
+ * backwards, and pure so the whole rule is unit-testable without a DOM.
+ */
+export function backPathFor(route) {
+  const [name, a, b] = route.parts;
+  switch (name) {
+    case 'level': return '/home';
+    case 'session': return a && a !== 'mixed' && b ? `/level/${a}/${b}` : '/home';
+    case 'reference': return a && b ? `/level/${a}/${b}` : '/home';
+    case 'credits': return '/settings';
+    case 'stats':
+      if (route.params.item) return `/stats?track=${route.params.track ?? ''}`;
+      if (route.params.track) return '/stats';
+      return '/home';
+    case 'settings': return '/home';
+    default: return null; // home, and anything that resolves to it
+  }
+}

@@ -31,7 +31,6 @@ export function renderFeedback(container, { session, track, settings, onNext }) 
     } }, 'Hear correct vs. yours'));
     panel.append(controls, labels);
   } else panel.append(controls);
-
   // Anchors sit above Next (AC-3.4.1/3): rendered after it they fell below the fold on a phone
   // and were never seen. On a wrong answer the chosen interval's anchors follow the correct
   // one's, so the two references can be compared (AC-3.4.6).
@@ -43,7 +42,9 @@ export function renderFeedback(container, { session, track, settings, onNext }) 
       renderAnchors(panel, { intervalId: r.chosen, direction, role: 'chosen' });
     }
   }
-  panel.append(h('button', { class: 'btn primary', 'data-action': 'next', onClick: onNext }, 'Next'));
+  // Next is what OK presses once a result is up (AC-11.1.1); it stays below the anchors so the
+  // reading order the eye follows and the order the D-pad walks are the same one.
+  panel.append(h('button', { class: 'btn primary', 'data-action': 'next', 'data-autofocus': '', onClick: onNext }, 'Next'));
   container.append(panel);
   return panel;
 }

@@ -155,12 +155,14 @@ export function renderSessionScreen(container, { session, store, tracks, go, onE
           : 'Daily goal reached — this is a good stopping point.';
         const toast = h('div', { class: 'toast', role: 'status', 'data-role': 'stopping-point', 'data-near-mastery': String(nearly) },
           h('span', {}, message),
-          h('button', { class: 'btn', 'data-action': 'dismiss-toast', onClick: () => toast.remove() }, 'Dismiss'));
+          h('button', { class: 'btn', 'data-action': 'dismiss-toast', 'data-dismiss': '', onClick: () => toast.remove() }, 'Dismiss'));
         replace(toastArea, toast);
       }
     }
   }
   session.subscribe(draw);
   draw();
-  return { wrap, draw };
+  // Leaving a session by Back (AC-11.3.5/1) is now an ordinary exit, so the screen has to be
+  // able to take its listener with it — `stop()` alone runs only on the End path.
+  return { wrap, draw, unmount: () => document.removeEventListener('visibilitychange', onVisibility) };
 }

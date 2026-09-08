@@ -5,13 +5,14 @@ import { createAudioContextManager } from './audio/context.js';
 import { createSampler } from './audio/sampler.js';
 import { createRenderer } from './audio/renderer.js';
 import { createStore } from './app/store.js';
-import { createRouter } from './app/router.js';
+import { createRouter, backPathFor } from './app/router.js';
 import { getSettings } from './app/settings.js';
 import { createStorage, localStorageAdapter, preferencesAdapter } from './storage/storage.js';
 import { createRng } from './learning/random.js';
 import { createSession } from './learning/session.js';
 import { buildTracks } from './tracks/index.js';
 import { createLayout } from './ui/layout.js';
+import { installFocusNav } from './ui/focusNav.js';
 import { renderHomeMap } from './ui/homeMap.js';
 import { renderLevelScreen } from './ui/levelScreen.js';
 import { renderSessionScreen } from './ui/session.js';
@@ -56,12 +57,27 @@ async function boot() {
   window.addEventListener('resize', layout.relayout);
   window.addEventListener('orientationchange', layout.relayout);
 
+  // D-pad / keyboard navigation over the whole frame (US-11.1–US-11.3, D-015). Back closes
+  // whatever is open, and otherwise goes up one screen (AC-11.3.4, AC-11.3.5).
+  const focusNav = installFocusNav({
+    frame: layout.frame,
+    content: layout.content,
+    onBack: () => {
+      if (focusNav.dismissTop()) return true;
+      const path = backPathFor(router.current());
+      if (!path) return false;
+      go(path);
+      return true;
+    },
+  });
+
   let session = null;
+  let sessionScreen = null;
   const go = (path) => router.go(path);
   const showError = (msg) => replace(layout.content, h('div', { class: 'card error', role: 'alert' }, msg));
 
   function route(r) {
-    if (r.name !== 'session' && session) { session.end(); session = null; }
+    if (r.name !== 'session' && session) { sessionScreen?.unmount(); sessionScreen = null; session.end(); session = null; }
     switch (r.name) {
       case 'home': return renderHomeMap(layout.content, { store, tracks, go, onLocked: (msg, sec) => {
         let el = sec.querySelector('[data-role="unlock-condition"]');
@@ -78,7 +94,7 @@ async function boot() {
         const opts = mixed ? { mixed: true } : { trackId: r.parts[1], levelNo: Number(r.parts[2]), bassFirst: r.params.bassFirst === '1' };
         session = createSession(opts, { store, tracks, renderer, rng });
         if (TEST_MODE) window.__test.session = session;
-        renderSessionScreen(layout.content, { session, store, tracks, go, onEnd: () => go('/home') });
+        sessionScreen = renderSessionScreen(layout.content, { session, store, tracks, go, onEnd: () => go('/home') });
         session.start().catch((e) => showError(`Playback failed: ${e.message}`));
         return null;
       }
@@ -99,6 +115,7 @@ async function boot() {
       platform,
       audio,
       sampler,
+      focusNav,
     };
   }
   router.start();

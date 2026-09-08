@@ -1661,6 +1661,161 @@ restart, and confirm retention.
   - **Given** the settings screen (2026-08-18: added under Constitution v1.1.0 Principle X — the piano samples are CC BY 3.0 and attribution is a condition of shipping them)
   - **When** I open Credits
   - **Then** every bundled third-party asset is listed with its author, source and licence
+---
+
+## Epic 11: Remote-Control and Keyboard Navigation
+
+Added 2026-09-08. The maintainer practises on a Hisense smart TV whose built-in browser gives
+the remote only a mouse-style pointer: every action means dragging a cursor across the screen
+to the next button. This epic makes the whole app operable from a D-pad (arrow keys), OK/Enter
+and Back, and from a Bluetooth keyboard, with no pointer movement at all — while leaving mouse
+and touch on phone, tablet and desktop exactly as they were. It is input, not layout: nothing
+here branches on platform or form factor (D-008, Constitution VI), and the same keyboard
+behaviour ships to every device.
+
+### User Story 11.1 - Focus lands on the next action
+
+*Traceability: `US-11.1` — Focus lands on the next action*
+
+As a learner on a TV, I want the next thing I am going to press to already be selected when a
+screen changes, so that answering a question, reading a result and moving on is a run of OK
+presses rather than a cursor drag before each one.
+
+**Independent Test**: answer a question with the keyboard alone and confirm that focus is on
+Next when the result appears and on the first answer choice when the next question loads,
+without touching the pointer.
+
+**Acceptance Scenarios**:
+
+- **AC-11.1.1** — A shown result focuses its primary next action
+  - **Given** a question has been answered and the feedback panel is showing
+  - **When** the panel appears
+  - **Then** keyboard focus is on the panel's primary next action (Next)
+
+- **AC-11.1.2** — A loaded question focuses the first answer choice
+  - **Given** a new question has loaded and its stimulus has played
+  - **When** the answer input renders
+  - **Then** keyboard focus is on the first answer choice
+  - **Cases**:
+    - **AC-11.1.2/1** — A single-choice question focuses its first answer button
+    - **AC-11.1.2/2** — A sequence question focuses its first option button
+    - **AC-11.1.2/3** — A combined quality-and-inversion question focuses its first quality button
+
+- **AC-11.1.3** — Focus is never left on the page body
+  - **Given** any screen of the app
+  - **When** it has finished rendering
+  - **Then** keyboard focus rests on a control on that screen, never on the page body or a removed element
+  - **Cases**:
+    - **AC-11.1.3/1** — The first screen after load has focus on a control
+    - **AC-11.1.3/2** — A re-render that removes the focused control moves focus to that screen's primary control
+    - **AC-11.1.3/3** — Navigating to another screen moves focus to that screen's primary control
+
+- **AC-11.1.4** — An open dialog takes focus and keeps it
+  - **Given** a modal dialog is open (the mastery dialog or the session summary)
+  - **When** it renders
+  - **Then** focus moves to its primary action
+  - **And** focus cannot leave the dialog by keyboard while it is open
+  - **Cases**:
+    - **AC-11.1.4/1** — An opened dialog focuses its primary action
+    - **AC-11.1.4/2** — Arrow keys inside an open dialog never focus a control outside it
+
+- **AC-11.1.5** — Focus never moves while the learner is already using a screen
+  - **Given** I have focused a control on the current screen myself
+  - **When** part of the screen re-renders without removing that control
+  - **Then** focus stays where I put it
+
+### User Story 11.2 - Visible focus indicator
+
+*Traceability: `US-11.2` — Visible focus indicator*
+
+As a learner sitting across the room from a TV, I want the selected control to be obviously
+highlighted, so that I can tell what OK will press without walking closer to the screen.
+
+**Independent Test**: focus each kind of control and confirm a thick, high-contrast ring is
+drawn around it, including on a control that already carries a selected or graded outline.
+
+**Acceptance Scenarios**:
+
+- **AC-11.2.1** — Every focusable control shows a high-contrast focus indicator whenever it has focus
+  - **Given** any focusable control in the app
+  - **When** it receives focus by any means
+  - **Then** a focus indicator of at least 3 px is drawn around it in a colour that contrasts with both the control and the page background
+  - **Cases**:
+    - **AC-11.2.1/1** — The focus indicator is drawn on plain `:focus`, not gated behind `:focus-visible`
+    - **AC-11.2.1/2** — The focus indicator is at least 3 px thick and offset clear of the control's edge
+    - **AC-11.2.1/3** — No rule anywhere removes the focus outline
+
+- **AC-11.2.2** — A control that already carries an outline still shows its focus indicator
+  - **Given** a control drawn with its own outline (a selected answer, a sequence cursor token)
+  - **When** it has focus
+  - **Then** the focus indicator remains distinguishable from that outline
+
+### User Story 11.3 - Arrow-key navigation
+
+*Traceability: `US-11.3` — Arrow-key navigation*
+
+As a learner with a D-pad or a keyboard, I want arrows to move between controls the way the
+screen looks, OK to press what is selected, and Back to go back, so that I never need a pointer.
+
+**Independent Test**: drive a whole session — start, answer, read feedback, move on, leave —
+with only the four arrows, Enter and Escape.
+
+**Acceptance Scenarios**:
+
+- **AC-11.3.1** — Arrow keys move focus to the neighbouring control in that direction
+  - **Given** a focused control and other controls laid out around it (2026-09-08: Case /3 was
+    "Down from the last row of the grid reaches the controls below it" — during a question
+    nothing focusable sits below the answer grid, so that wording asserted a layout the app does
+    not have; the property worth proving is that arrows are not trapped inside a widget, in
+    whichever direction the surrounding controls lie)
+  - **When** I press an arrow key
+  - **Then** focus moves to the nearest control in that direction according to the visual layout, and stays put when there is none
+  - **And** Left and Right stay on the row, while Up and Down cross rows
+  - **Cases**:
+    - **AC-11.3.1/1** — Right and Left move along a row of answer choices
+    - **AC-11.3.1/2** — Down and Up move between rows of the answer grid, keeping the column
+    - **AC-11.3.1/3** — Arrows move out of a group of choices to the controls around it
+    - **AC-11.3.1/4** — An arrow with no control in that direction leaves focus where it is
+
+- **AC-11.3.2** — Enter activates the focused control
+  - **Given** a focused control
+  - **When** I press Enter
+  - **Then** the control activates exactly once, as though it had been clicked
+
+- **AC-11.3.3** — A key the app handles does not scroll the page
+  - **Given** a focused control on a scrollable screen
+  - **When** I press an arrow key the app handles
+  - **Then** the browser's own scrolling for that key is suppressed
+
+- **AC-11.3.4** — Escape closes an open dialog or panel
+  - **Given** a modal dialog or a dismissible panel is open
+  - **When** I press Escape
+  - **Then** it closes and the screen beneath it keeps its focus
+  - **Cases**:
+    - **AC-11.3.4/1** — Escape closes the mastery dialog and the session continues
+    - **AC-11.3.4/2** — Escape closes the session summary and returns to the menu
+    - **AC-11.3.4/3** — Escape closes the guidance panel
+
+- **AC-11.3.5** — Escape with nothing open goes up one screen
+  - **Given** no dialog or panel is open
+  - **When** I press Escape
+  - **Then** the app navigates one level up, and does nothing at the home screen
+  - **Cases**:
+    - **AC-11.3.5/1** — Escape in a session returns to that level's screen and ends the session
+    - **AC-11.3.5/2** — Escape on a level screen returns to the home map
+    - **AC-11.3.5/3** — Escape on the reference, stats, settings and credits screens returns to the screen that opens them
+    - **AC-11.3.5/4** — Escape on the home map does nothing
+
+- **AC-11.3.6** — Arrow keys inside a value control still change its value
+  - **Given** a focused select or number field on the settings screen
+  - **When** I press Up or Down
+  - **Then** the control changes its own value as it always did, and Left or Right moves focus away from it
+
+- **AC-11.3.7** — Pointer and touch activation are unchanged
+  - **Given** any control the keyboard can reach
+  - **When** it is clicked or tapped instead
+  - **Then** it behaves exactly as it did before keyboard navigation existed
+
 
 ---
 
@@ -1687,6 +1842,10 @@ restart, and confirm retention.
   length.
 - Sequence answer submitted shorter or longer than the target: positions beyond the shorter
   length count as incorrect.
+- A screen renders with no focusable control at all (an error card): focus falls back to the
+  top bar, which is always mounted, so the next arrow or OK press has somewhere to start from.
+- A TV browser reports its remote as a pointer device: the focus indicator is drawn on plain
+  `:focus` precisely so that this cannot suppress it (AC-11.2.1/1).
 
 ## Requirements *(mandatory)*
 
@@ -1719,6 +1878,11 @@ restart, and confirm retention.
 - **FR-011**: The system MUST expose the settings in AC-10.4.1 and persist them.
 - **FR-012**: Level definitions, the progression catalog (Appendix A) and anchor songs
   (Appendix B) MUST be bundled JSON data.
+- **FR-013**: The system MUST be fully operable from a D-pad or keyboard alone — arrow keys
+  moving focus by visual layout, Enter activating the focused control, Escape closing an open
+  dialog or otherwise going up one screen — MUST keep focus on a control of the current screen
+  at all times, and MUST draw a high-contrast focus indicator on plain focus, without changing
+  pointer or touch behaviour and without branching on platform or form factor.
 
 ### Key Entities
 
@@ -1738,10 +1902,13 @@ restart, and confirm retention.
 ### Measurable Outcomes
 
 - **SC-001**: A learner can go from app open to hearing the first question in under 3 taps.
+- **SC-006**: A learner can complete a full session — start, answer, read feedback, advance,
+  leave — using only arrow keys, Enter and Escape, with the pointer never moved.
 - **SC-002**: Verdict appears within 200 ms of answering in 100% of questions.
-- **SC-003**: Every one of the 39 user stories has 100% AC coverage with verbatim-named tests
+- **SC-003**: Every one of the 42 user stories has 100% AC coverage with verbatim-named tests
   (36 from the backlog, plus US-2.6 — in-session progress visibility, US-4.4 — scale
-  reference scaffold, and US-4.5 — scale-degree onboarding guidance, all added 2026-08-18)
+  reference scaffold, and US-4.5 — scale-degree onboarding guidance, all added 2026-08-18,
+  and US-11.1–US-11.3 — remote-control and keyboard navigation, added 2026-09-08)
   and no CRITICAL/HIGH traceability gaps.
 - **SC-004**: A full session completes in airplane mode with zero network requests.
 - **SC-005**: Progress round-trips through export → import with no loss.
