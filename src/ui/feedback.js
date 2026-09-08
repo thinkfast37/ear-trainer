@@ -31,12 +31,19 @@ export function renderFeedback(container, { session, track, settings, onNext }) 
     } }, 'Hear correct vs. yours'));
     panel.append(controls, labels);
   } else panel.append(controls);
-  panel.append(h('button', { class: 'btn primary', 'data-action': 'next', onClick: onNext }, 'Next'));
 
+  // Anchors sit above Next (AC-3.4.1/3): rendered after it they fell below the fold on a phone
+  // and were never seen. On a wrong answer the chosen interval's anchors follow the correct
+  // one's, so the two references can be compared (AC-3.4.6).
   if (q.trackId === 'intervals') {
     const { intervalId, presentation } = parseIntervalItem(q.itemId);
-    renderAnchors(panel, { intervalId, direction: presentation === 'desc' ? 'desc' : 'asc' });
+    const direction = presentation === 'desc' ? 'desc' : 'asc';
+    renderAnchors(panel, { intervalId, direction });
+    if (!r.correct && q.kind === 'single' && typeof r.chosen === 'string' && r.chosen !== intervalId) {
+      renderAnchors(panel, { intervalId: r.chosen, direction, role: 'chosen' });
+    }
   }
+  panel.append(h('button', { class: 'btn primary', 'data-action': 'next', onClick: onNext }, 'Next'));
   container.append(panel);
   return panel;
 }

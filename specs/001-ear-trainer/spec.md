@@ -520,14 +520,26 @@ Appendix B songs for that interval.
   - **When** the feedback screen displays
   - **Then** it shows up to 5 anchor songs for the correct interval from Appendix B
   - **And** each entry shows the song title and the lyric/motif cue where the interval occurs
+  - **And** the anchors appear above the Next control, not below it (2026-09-08: the panel was
+    rendered after Next, so on a phone it sat below the fold and learners never saw it)
   - **Cases**:
     - **AC-3.4.1/1** — Up to five anchor songs for the correct interval are shown
     - **AC-3.4.1/2** — Each anchor entry shows the song title and its lyric or motif cue
+    - **AC-3.4.1/3** — The anchor list appears above the Next control
 
-- **AC-3.4.2** — Descending anchors are listed first for descending questions
-  - **Given** the question was a descending interval
+- **AC-3.4.2** — Anchor songs match the direction of the question that was asked
+  (2026-09-08: was "Descending anchors are listed first for descending questions". Sorting a
+  single mixed list put wrong-direction anchors on screen — an ascending minor 3rd showed
+  *Hey Jude* cued at "Hey Jude", which is the descending one. Anchors are now stored per
+  direction and only the matching direction is shown.)
+  - **Given** an interval question in a given direction
   - **When** anchor songs display
-  - **Then** descending anchors are listed first, marked with their direction
+  - **Then** only anchors for that direction are shown
+  - **And** each entry states its direction in words
+  - **Cases**:
+    - **AC-3.4.2/1** — An ascending question shows only ascending anchors
+    - **AC-3.4.2/2** — A descending question shows only descending anchors
+    - **AC-3.4.2/3** — Each anchor entry states its direction in words
 
 - **AC-3.4.3** — Anchor songs are browsable without starting a session
   - **Given** any interval level screen
@@ -547,6 +559,26 @@ Appendix B songs for that interval.
   - **Given** the anchor song data
   - **When** the app is built
   - **Then** the reference ships as static JSON bundled with the app (no network dependency)
+
+- **AC-3.4.6** — A wrong answer shows the chosen interval's anchors beside the correct one's
+  (2026-09-08: new. The feedback screen already plays "correct vs. yours"; the reference
+  songs for both build the contrast in memory, which is what the anchors are for.)
+  - **Given** I answered an interval question incorrectly
+  - **When** the feedback screen displays
+  - **Then** anchors for the interval I chose are shown alongside anchors for the correct
+    interval, each labelled with its interval
+  - **And** a correct answer shows only the correct interval's anchors
+  - **Cases**:
+    - **AC-3.4.6/1** — A wrong answer shows both the correct and the chosen interval's anchors
+    - **AC-3.4.6/2** — Each of the two anchor sets is labelled with its interval
+    - **AC-3.4.6/3** — A correct answer shows only the correct interval's anchors
+
+- **AC-3.4.7** — Every anchor cue names the notes or the words where the interval occurs
+  (2026-09-08: new. Cues like "opening" or "heard harmonically" cannot be found by ear, so
+  the data gate rejects them.)
+  - **Given** the anchor song data
+  - **When** data validation runs
+  - **Then** an entry whose cue names neither specific notes nor specific words fails the build
 
 ---
 
@@ -1861,79 +1893,94 @@ random keys and, where marked, generates rotations.
 
 ## Appendix B: Interval Anchor-Song Reference
 
-Static reference data for US-3.4; ships as a bundled data file. Direction is ascending
-unless marked (desc).
+Static reference data for US-3.4; ships as a bundled data file. Anchors are stored and
+shown **per direction** (2026-09-08) — an ascending question never shows a descending
+anchor. Every cue names the words (quoted) or the notes, so it can be found by ear;
+`tools/validate-data.mjs` rejects one that names neither (AC-3.4.7).
 
 ### Simple intervals
 
-**Minor 2nd (m2)**: *Jaws* theme — the two-note motif; *Für Elise* — opening E–D♯ (desc);
-*White Christmas* — "I'm drea-ming…"; *The Pink Panther* theme — opening chromatic slide;
-*Isn't She Lovely* — "Isn't she…"
+**Minor 2nd (m2)**
 
-**Major 2nd (M2)**: *Happy Birthday* — "Happy birth-…"; *Frère Jacques* — opening; *Silent
-Night* — "Si-lent…" (desc); *Mary Had a Little Lamb* — opening (desc, then asc); *Do-Re-Mi*
-(The Sound of Music) — "Doe, a deer"
+- *Ascending*: *Jaws theme* — the two-note shark motif (E → F); *White Christmas* — "I'm drea-ming"; *The Pink Panther theme* — the first two notes of the sax riff
+- *Descending*: *Für Elise* — the two alternating opening piano notes (E → D♯); *Jurassic Park main theme* — the first two notes of the melody
 
-**Minor 3rd (m3)**: *Greensleeves* — "A-las…"; *Smoke on the Water* — riff's first interval
-(as commonly sung); *Brahms' Lullaby* — "Lul-la-by…"; *Georgia on My Mind* — "Geor-gia…";
-*Hey Jude* — "Hey Jude" (desc)
+**Major 2nd (M2)**
 
-**Major 3rd (M3)**: *Oh, When the Saints Go Marching In* — "Oh when…"; *Kumbaya* —
-"Kum-ba…"; *Morning Has Broken* — opening; *Blue Danube Waltz* — opening arpeggio; *Swing
-Low, Sweet Chariot* — "Swing low…" (desc)
+- *Ascending*: *Happy Birthday* — "Hap-py" → "birth-"; *Perfect (Ed Sheeran)* — "I" → "found" (E♭ → F); *Frère Jacques* — "Frè-re" → "Jac-ques"
+- *Descending*: *Wonderwall (Oasis)* — "To-" → "-day" (B → A); *Mary Had a Little Lamb* — "Ma-ry" → "had"; *Silent Night* — "Si-lent" → "night"
 
-**Perfect 4th (P4)**: *Here Comes the Bride* — "Here comes…"; *Amazing Grace* — "A-maz-…";
-*We Wish You a Merry Christmas* — "We wish…"; *Hedwig's Theme* (Harry Potter) — after the
-pickup note; *Auld Lang Syne* — "Should auld…"
+**Minor 3rd (m3)**
 
-**Tritone (TT)**: *The Simpsons* theme — "The Simp-sons"; *Maria* (West Side Story) —
-"Ma-ri-a"; *Purple Haze* — opening riff; *Danse Macabre* — the violin's "devil's interval";
-*YYZ* (Rush) — opening motif
+- *Ascending*: *Hey Jude (The Beatles)* — "don't" → "make" (A → C); *Perfect (Ed Sheeran)* — "found" → "a" (F → A♭); *Smoke on the Water (Deep Purple)* — the first two notes of the riff (G → B♭)
+- *Descending*: *Hey Jude (The Beatles)* — "Hey" → "Jude" (C → A)
 
-**Perfect 5th (P5)**: *Twinkle, Twinkle, Little Star* — "Twin-kle twin-kle"; *Star Wars* main
-theme — after the pickup; *Also Sprach Zarathustra* (2001) — second interval of the opening;
-*Scarborough Fair* — "Are you…"; *Flintstones* theme — "Flint-stones" (desc)
+**Major 3rd (M3)**
 
-**Minor 6th (m6)**: *Where Do I Begin* (Love Story theme) — opening; *Manhã de Carnaval*
-(Black Orpheus) — opening; *In My Life* (The Beatles) — opening guitar (desc); *The Morning
-After* — opening; *Go Down Moses* — "When Is-rael…" (desc)
+- *Ascending*: *Perfect (Ed Sheeran)* — "love" → "for" (A♭ → C); *Oh, When the Saints Go Marching In* — "Oh" → "when"; *Kumbaya* — "Kum" → "ba"
+- *Descending*: *Here Comes the Sun (The Beatles)* — the first two notes of the opening guitar riff (F♯ → D); *Super Mario Bros. theme* — notes 3 → 4 of the opening "E E E C" (E → C); *Swing Low, Sweet Chariot* — "Swing" → "low"
 
-**Major 6th (M6)**: NBC chimes — first two notes; *My Bonnie Lies Over the Ocean* — "My
-Bon-nie"; *Jingle Bells* — "Dash-ing through the snow"; *It Came Upon a Midnight Clear* —
-opening; *Take the "A" Train* — opening
+**Perfect 4th (P4)**
 
-**Minor 7th (m7)**: *Somewhere* (West Side Story) — "There's a place for us"; *Star Trek*
-(original series theme) — opening leap; *Watermelon Man* — opening horn line; *An American in
-Paris* — main theme leap; *The Winner Takes It All* — "The win-ner…" (desc)
+- *Ascending*: *Hedwig's Theme (Harry Potter)* — the first two notes (B → E); *Here Comes the Bride* — "Here" → "comes"; *Amazing Grace* — "A-" → "-maz-"; *We Wish You a Merry Christmas* — "We" → "wish"
+- *Descending*: *Hedwig's Theme (Harry Potter)* — notes 5 → 6 of the opening phrase (E → B)
 
-**Major 7th (M7)**: *Take On Me* — the big chorus leap; *Don't Know Why* (Norah Jones) —
-opening (desc); *Cast Your Fate to the Wind* — opening; *I Love You* (Cole Porter) — "I love
-you" (desc); *Superman* theme — the leap in the main fanfare
+**Tritone (TT)**
 
-**Octave (P8)**: *Somewhere Over the Rainbow* — "Some-where"; *Starman* (David Bowie) —
-"Star-man" in the chorus; *Singin' in the Rain* — "I'm sing-in'"; *The Christmas Song* —
-"Chest-nuts roast-ing"; *My Sharona* — the octave riff
+- *Ascending*: *The Simpsons theme* — "The Simp-" → "-sons" (C → F♯); *Purple Haze (Jimi Hendrix)* — the first two notes of the riff
+- *Descending*: *The Simpsons theme* — the same two notes reversed — a tritone inverts to a tritone (F♯ → C)
 
-### Compound intervals (levels 8–12)
+**Perfect 5th (P5)**
+
+- *Ascending*: *Star Wars main title* — the first two notes of the fanfare (B♭ → F); *Twinkle, Twinkle, Little Star* — "Twin-kle" → "twin-kle"; *Clocks (Coldplay)* — the first two notes of the piano riff (E♭ → B♭); *Also Sprach Zarathustra (2001)* — notes 2 → 3 of the opening fanfare
+- *Descending*: *The Flintstones theme* — "Flint-" → "-stones"
+
+**Minor 6th (m6)**
+
+- *Ascending*: *Star Wars main title* — the bridge — two repeated notes, then the jump up that starts the new phrase (D → B♭); *In My Life (The Beatles)* — the first two notes of the opening guitar riff
+- *Descending*: *Bohemian Rhapsody (Queen)* — "real-" → "-ly" in "nothing really matters" (E♭ → G); *Super Mario Bros. theme* — the second strain — the drop after "A" back down to "F" (F → A)
+
+**Major 6th (M6)**
+
+- *Ascending*: *Song of Storms (Zelda)* — the ocarina motif "D–F–D" — F up to the high D (F → D); *Super Mario Bros. theme* — after the low chromatic dip, the leap from "G" up to "E" that launches the rising figure (G → E); *Bohemian Rhapsody (Queen)* — "es-" → "-cape" in "no escape from reality" (F → D); *Jingle Bells* — "Dash-ing" → "through"
+- *Descending*: *Jingle Bells* — the same two notes reversed, sung back down from "through" to "Dash-ing"
+
+**Minor 7th (m7)**
+
+- *Ascending*: *Star Wars main title* — the soaring high note capping the opening phrase — the last note of "F–C–B♭–A–G" leaps to the top (G → F); *Somewhere (West Side Story)* — "There's" → "a"
+- *Descending*: *Bohemian Rhapsody (Queen)* — "land-slide" → "no" — the drop into "no escape" (E♭ → F); *The Winner Takes It All (ABBA)* — "The win-" → "-ner"
+
+**Major 7th (M7)**
+
+- *Ascending*: *Take On Me (a-ha)* — the chorus leap on "take"
+- *Descending*: *Don't Know Why (Norah Jones)* — the first two notes of the melody
+
+**Octave (P8)**
+
+- *Ascending*: *Somewhere Over the Rainbow* — "Some-" → "-where"; *Starman (David Bowie)* — "Star-" → "-man" in the chorus; *My Sharona (The Knack)* — the first two notes of the octave riff
+- *Descending*: *My Heart Will Go On (Titanic)* — "Near" → "far"; *Super Mario Bros. theme* — the drop to the low note after "E E E C E G" (G → G)
+
+### Compound intervals (levels 14+)
 
 Presented as **octave + simple interval** plus the known real-world examples:
 
 | Interval | = Octave + | Known examples |
 |---|---|---|
-| m9 | m2 | Mostly heard harmonically in jazz voicings; *What Is This Thing Called Love* piano stab (some arrangements) |
-| M9 | M2 | *La Traviata* Act 1 Prelude; *Somewhere in My Memory* (Home Alone) span |
-| m10 | m3 | Ragtime stride left-hand leaps (*Maple Leaf Rag*) |
-| M10 | M3 | Chopin *Étude Op. 10 No. 1*-style arpeggios; stride piano bass |
-| P11 | P4 | *On the Trail* (Grofé) horn leap; rare melodically |
-| P12 | P5 | *Rhapsody in Blue* opening clarinet span |
-| m13 | m6 | Heard harmonically in jazz 13th chords |
-| M13 | M6 | Jazz-harmony color, not a melodic leap |
+| m9 | m2 | *What Is This Thing Called Love* — the first two notes of the piano stab (some arrangements) |
+| M9 | M2 | *Somewhere in My Memory (Home Alone)* — the first two notes of the melody's span |
+| m10 | m3 | *Hey Jude (The Beatles)* — "Hey" → "Jude" with the second note an octave lower |
+| M10 | M3 | *Here Comes the Sun (The Beatles)* — the riff's first two notes, an octave apart |
+| P11 | P4 | *Hedwig's Theme (Harry Potter)* — the first two notes, an octave wider (B → E) |
+| P12 | P5 | *Star Wars main title* — the fanfare's first two notes, an octave wider (B♭ → F) |
+| m13 | m6 | *Star Wars main title* — the bridge's two notes, an octave wider (D → B♭) |
+| M13 | M6 | *Song of Storms (Zelda)* — the "D–F–D" motif leap, an octave wider (F → D) |
 
 **Data rules:**
-- Each entry stores: interval id, direction, title, cue text, and an optional "plays the
-  motif" flag for entries where the app can render the two-note motif on piano
+- Simple intervals store `asc` and `desc` lists of 1–5 entries each; direction is the key,
+  never a field on the entry
+- Each entry stores: title, cue text naming the words or notes, an optional `notes` pitch
+  pair, and an optional "plays the motif" flag for entries the app can render on piano
 - Compound entries additionally store the simple-equivalent id for the decomposition display
-
 ## Deferred (v2) — not in this feature
 
 US-V2.1 (sing-back with mic pitch detection) and US-V2.2 (honor-system sing-first prompt)

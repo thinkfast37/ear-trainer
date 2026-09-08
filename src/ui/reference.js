@@ -11,7 +11,8 @@ export function renderReference(container, { tracks, trackId, levelNo, go }) {
   for (const iv of level.pool) {
     const sec = h('section', { class: 'stack', 'data-interval': iv });
     sec.append(h('h3', {}, intervalLabel(iv, 'full')));
-    renderAnchors(sec, { intervalId: iv, direction: 'asc' });
+    // Both directions, since browsing is not tied to a question that had one (AC-3.4.2).
+    for (const direction of ['asc', 'desc']) renderAnchors(sec, { intervalId: iv, direction });
     wrap.append(sec);
   }
   replace(container, wrap);

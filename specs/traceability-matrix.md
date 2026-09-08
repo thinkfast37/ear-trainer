@@ -14,13 +14,13 @@
 -->
 
 **Feature**: specs/001-ear-trainer/spec.md
-**Criteria**: 281 across 39 User Stories
+**Criteria**: 288 across 39 User Stories
 
-**Coverage**: 281 of 281 criteria proven (100.0%)
+**Coverage**: 288 of 288 criteria proven (100.0%)
 
 | | Criteria | Share |
 |---|---|---|
-| 🟢 Proven | 281 | 100.0% |
+| 🟢 Proven | 288 | 100.0% |
 
 A row is one *criterion*: an Acceptance Criterion that asserts one thing, or one Case of
 an AC that asserts several. 🖵 marks a criterion that describes something a person sees or
@@ -67,7 +67,7 @@ fail the build, and it is outstanding work — never a settled decision.
 | 🟢 US-3.1 | 19 | **19** | · | · | · | · | · |
 | 🟢 US-3.2 | 8 | **8** | · | · | · | · | · |
 | 🟢 US-3.3 | 3 | **3** | · | · | · | · | · |
-| 🟢 US-3.4 | 7 | **7** | · | · | · | · | · |
+| 🟢 US-3.4 | 14 | **14** | · | · | · | · | · |
 | 🟢 US-4.1 | 4 | **4** | · | · | · | · | · |
 | 🟢 US-4.2 | 7 | **7** | · | · | · | · | · |
 | 🟢 US-4.3 | 2 | **2** | · | · | · | · | · |
@@ -187,13 +187,20 @@ fail the build, and it is outstanding work — never a settled decision.
 | US-3.3 | `AC-3.3.1/1` 🖵 | Only the level 3 interval buttons P8, P5, M3, m3, P4 are shown | P-016 | T038 (1/1 done) | T039 (1/1 done) | `intervalGrid.spec.js` | 🟢 OK |
 | US-3.3 | `AC-3.3.1/2` 🖵 | Each interval answer touch target is at least 44 px | P-016 | T038 (1/1 done) | T039 (1/1 done) | `intervalGrid.spec.js` | 🟢 OK |
 | US-3.3 | `AC-3.3.2` 🖵 | The label setting switches interval buttons to full names | P-016 | T038 (1/1 done) | T039 (1/1 done) | `intervalGrid.spec.js` | 🟢 OK |
-| US-3.4 | `AC-3.4.1/1` 🖵 | Up to five anchor songs for the correct interval are shown | P-017 | T040 (1/1 done) | T041 (1/1 done) | `anchors.test.js` | 🟢 OK |
-| US-3.4 | `AC-3.4.1/2` 🖵 | Each anchor entry shows the song title and its lyric or motif cue | P-017 | T040 (1/1 done) | T041 (1/1 done) | `anchors.test.js` | 🟢 OK |
-| US-3.4 | `AC-3.4.2` | Descending anchors are listed first for descending questions | P-017 | T040 (1/1 done) | T041 (1/1 done) | `anchors.test.js` | 🟢 OK |
+| US-3.4 | `AC-3.4.1/1` 🖵 | Up to five anchor songs for the correct interval are shown | P-017, P-051 | T040, T118, T119 (3/3 done) | T041, T120, T121 (3/3 done) | `anchors.test.js` | 🟢 OK |
+| US-3.4 | `AC-3.4.1/2` 🖵 | Each anchor entry shows the song title and its lyric or motif cue | P-017, P-051 | T040, T118, T119 (3/3 done) | T041, T120, T121 (3/3 done) | `anchors.test.js` | 🟢 OK |
+| US-3.4 | `AC-3.4.1/3` 🖵 | The anchor list appears above the Next control | P-017, P-051 | T040, T118, T119 (3/3 done) | T041, T120, T121 (3/3 done) | `anchors.test.js` | 🟢 OK |
+| US-3.4 | `AC-3.4.2/1` 🖵 | An ascending question shows only ascending anchors | P-017, P-051 | T040, T118, T119 (3/3 done) | T041, T120, T121 (3/3 done) | `anchors.test.js` | 🟢 OK |
+| US-3.4 | `AC-3.4.2/2` 🖵 | A descending question shows only descending anchors | P-017, P-051 | T040, T118, T119 (3/3 done) | T041, T120, T121 (3/3 done) | `anchors.test.js` | 🟢 OK |
+| US-3.4 | `AC-3.4.2/3` 🖵 | Each anchor entry states its direction in words | P-017, P-051 | T040, T118, T119 (3/3 done) | T041, T120, T121 (3/3 done) | `anchors.test.js` | 🟢 OK |
 | US-3.4 | `AC-3.4.3` 🖵 | Anchor songs are browsable without starting a session | P-017 | T040 (1/1 done) | T041 (1/1 done) | `reference.spec.js` | 🟢 OK |
 | US-3.4 | `AC-3.4.4/1` 🖵 | Compound feedback shows the octave plus simple interval decomposition with the simple anchors | P-017 | T040 (1/1 done) | T041 (1/1 done) | `anchors.test.js` | 🟢 OK |
 | US-3.4 | `AC-3.4.4/2` 🖵 | Compound feedback shows any known compound-specific examples | P-017 | T040 (1/1 done) | T041 (1/1 done) | `anchors.test.js` | 🟢 OK |
 | US-3.4 | `AC-3.4.5` | Anchor-song data ships as bundled static JSON | P-017 | T040 (1/1 done) | T041 (1/1 done) | `anchorsBundled.test.js` | 🟢 OK |
+| US-3.4 | `AC-3.4.6/1` 🖵 | A wrong answer shows both the correct and the chosen interval's anchors | P-051 | T118, T119 (2/2 done) | T120, T121 (2/2 done) | `anchors.test.js` | 🟢 OK |
+| US-3.4 | `AC-3.4.6/2` 🖵 | Each of the two anchor sets is labelled with its interval | P-051 | T118, T119 (2/2 done) | T120, T121 (2/2 done) | `anchors.test.js` | 🟢 OK |
+| US-3.4 | `AC-3.4.6/3` 🖵 | A correct answer shows only the correct interval's anchors | P-051 | T118, T119 (2/2 done) | T120, T121 (2/2 done) | `anchors.test.js` | 🟢 OK |
+| US-3.4 | `AC-3.4.7` | Every anchor cue names the notes or the words where the interval occurs | P-051 | T118, T119 (2/2 done) | T120, T121 (2/2 done) | `anchors.test.js` | 🟢 OK |
 | US-4.1 | `AC-4.1.1` | A cadence in the question key precedes each scale-degree question | P-018 | T042 (1/1 done) | T043 (1/1 done) | `scaleDegrees.test.js` | 🟢 OK |
 | US-4.1 | `AC-4.1.2` | Keys rotate across a session | P-018 | T042 (1/1 done) | T043 (1/1 done) | `scaleDegrees.test.js` | 🟢 OK |
 | US-4.1 | `AC-4.1.3/1` 🖵 | Tapping re-hear cadence replays the cadence | P-018 | T042 (1/1 done) | T043 (1/1 done) | `scaleDegrees.spec.js` | 🟢 OK |
