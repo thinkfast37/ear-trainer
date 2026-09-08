@@ -324,6 +324,39 @@ renumber the MVP section above.)*
   (unchanged AC-9.2.2/1–2 still pass — the deferral must not swallow the ordinary message).
   Proves AC-9.2.2/3–4.
 
+- [X] T118 [US3.4] Direction-scoped anchor data and the cue gate (P-051): `src/data/anchors.json`
+  restructured from one mixed list per interval to `{ "asc": [...], "desc": [...] }`, direction
+  now the key and no longer a field on the entry (a field could disagree with how the entry was
+  shown, and did); optional `notes` field carrying the pitch pair. `tools/validate-data.mjs` —
+  `validateAnchors` checks 1–5 entries per direction, rejects a stray `direction` field, and the
+  new exported `cueIsSpecific` rejects a cue naming neither quoted words, pitch letters nor
+  counted note positions (AC-3.4.7); `specs/001-ear-trainer/data-model.md` and Appendix B of
+  `spec.md` updated to the new shape. Content: the ascending minor 3rd is cued "don't"→"make"
+  and the descending one "Hey"→"Jude" (the reported bug — one *Hey Jude* entry was serving both
+  directions with the descending cue); dated or unfindable references replaced from research
+  (Star Wars m6/m7 ascending, Bohemian Rhapsody m6/m7 descending and M6 ascending, Song of
+  Storms and Super Mario M6 ascending, Wonderwall M2 descending, Perfect M2/m3/M3 ascending,
+  Here Comes the Sun M3 descending, Hedwig's Theme P4 both directions, Clocks P5 ascending,
+  My Heart Will Go On P8 descending); the `Superman theme` M7 entry **deleted** — the fanfare
+  outlines a perfect 5th then a 4th and contains no major 7th, so the entry asserted an interval
+  the piece does not have. Implements AC-3.4.2, AC-3.4.7 (2026-09-08).
+- [X] T119 [US3.4] Direction-scoped anchor display and wrong-answer comparison (P-051):
+  `src/ui/anchors.js` — `anchorsFor` returns only the asked direction's entries, direction word
+  derived from the key, panel carries `data-direction` and `data-anchor-role`, entries render
+  their pitch pair and state their direction in words; `src/ui/feedback.js` — the anchor panel
+  moved **above** the Next control (rendered after it, it sat below the fold on a phone and was
+  never seen — AC-3.4.1/3) and, on a wrong single-interval answer, the chosen interval's anchors
+  render beside the correct one's, labelled "You chose — …" (AC-3.4.6); `src/ui/reference.js` —
+  the browse view lists both directions per interval, since browsing is not tied to a question.
+  Implements AC-3.4.1/3, AC-3.4.2, AC-3.4.6 (2026-09-08).
+- [X] T120 [US3.4] Tests for T118, verbatim-named per Case: `tests/unit/data/anchors.test.js`
+  (AC-3.4.7 — every shipped cue names notes or words, plus the rejections the gate exists for;
+  both directions populated for every simple interval; the *Hey Jude* cues). Proves AC-3.4.7.
+- [X] T121 [US3.4] Tests for T119, verbatim-named per Case: `tests/unit/ui/anchors.test.js`
+  (AC-3.4.1/1–3, AC-3.4.2/1–3, AC-3.4.6/1–3 — DOM-capable), `tests/e2e/reference.spec.js`
+  (AC-3.4.3 unchanged, now asserting a panel per direction). Proves AC-3.4.1, AC-3.4.2,
+  AC-3.4.6.
+
 ---
 
 ## Dependencies & Execution Order

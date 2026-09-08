@@ -85,19 +85,46 @@ export function validateProgressions(cat) {
   return errs;
 }
 
+/**
+ * A cue a learner can actually find by ear (AC-3.4.7): it quotes the words, names the pitches,
+ * or counts the notes. "opening" and "heard harmonically" name nothing and are rejected — that
+ * is how entries like "Jazz 13th chords — heard harmonically" got in.
+ */
+const CUE_QUOTES_WORDS = /["“”]/;
+const CUE_NAMES_PITCHES = /\b[A-G][♯♭#b]?\b/;
+const CUE_COUNTS_NOTES = /\b(?:first|second|third|fourth|fifth|last|one|two|three|four|five)\b[^.]*\bnotes?\b/i;
+const CUE_NUMBERS_NOTES = /\bnotes?\s*\d/i;
+export function cueIsSpecific(cue) {
+  return CUE_QUOTES_WORDS.test(cue) || CUE_NAMES_PITCHES.test(cue) || CUE_COUNTS_NOTES.test(cue) || CUE_NUMBERS_NOTES.test(cue);
+}
+
 export function validateAnchors(a) {
   const errs = [];
   const simple = ['m2', 'M2', 'm3', 'M3', 'P4', 'TT', 'P5', 'm6', 'M6', 'm7', 'M7', 'P8'];
   const compound = ['m9', 'M9', 'm10', 'M10', 'P11', 'P12', 'm13', 'M13'];
+  // Anchors are stored per direction (2026-09-08). Direction is the key, never a field on the
+  // entry: a single mixed list let an entry's direction disagree with how it was shown.
+  const checkEntries = (id, list, where) => {
+    if (!Array.isArray(list) || list.length < 1 || list.length > 5) errs.push(`anchors: ${id}.${where} needs 1–5 entries`);
+    for (const e of list ?? []) {
+      if (!e.title || !e.cue) errs.push(`anchors: ${id}.${where} entry malformed`);
+      else if (!cueIsSpecific(e.cue)) errs.push(`anchors: ${id}.${where} cue for "${e.title}" names neither notes nor words`);
+      if ('direction' in e) errs.push(`anchors: ${id}.${where} entry carries a direction field; direction is the key`);
+    }
+  };
   for (const id of simple) {
-    const list = a[id];
-    if (!Array.isArray(list) || list.length < 1 || list.length > 5) errs.push(`anchors: ${id} needs 1–5 entries`);
-    for (const e of list ?? []) if (!e.title || !e.cue || !['asc', 'desc'].includes(e.direction)) errs.push(`anchors: ${id} entry malformed`);
+    const entry = a[id];
+    if (!entry || Array.isArray(entry) || typeof entry !== 'object') { errs.push(`anchors: ${id} needs asc and desc lists`); continue; }
+    for (const dir of ['asc', 'desc']) checkEntries(id, entry[dir], dir);
   }
   for (const id of compound) {
     const c = a[id];
     if (!c || !simple.includes(c.simple)) errs.push(`anchors: ${id} needs a simple equivalent`);
     if (!Array.isArray(c?.examples)) errs.push(`anchors: ${id} needs examples[]`);
+    for (const e of c?.examples ?? []) {
+      if (!e.title || !e.cue) errs.push(`anchors: ${id} example malformed`);
+      else if (!cueIsSpecific(e.cue)) errs.push(`anchors: ${id} cue for "${e.title}" names neither notes nor words`);
+    }
   }
   return errs;
 }
